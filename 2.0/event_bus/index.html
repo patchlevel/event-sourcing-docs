@@ -272,21 +272,6 @@
 
   
   
-  
-    <li class="md-nav__item">
-      <a href="../faq/" class="md-nav__link">
-        FAQ
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
     
   
   
@@ -296,7 +281,7 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
       
       
       
@@ -317,13 +302,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_4">
+        <label class="md-nav__link" for="__nav_3">
           Basics
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Basics" data-md-level="1">
-        <label class="md-nav__title" for="__nav_4">
+        <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Basics
         </label>
@@ -508,7 +493,7 @@
     <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
       
       
       
@@ -521,13 +506,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_5">
+        <label class="md-nav__link" for="__nav_4">
           Advance
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Advance" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
+        <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Advance
         </label>
@@ -594,7 +579,7 @@
     <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
       
       
       
@@ -605,15 +590,17 @@
         
           
         
+          
+        
       
       
-        <label class="md-nav__link" for="__nav_6">
+        <label class="md-nav__link" for="__nav_5">
           Other
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Other" data-md-level="1">
-        <label class="md-nav__title" for="__nav_6">
+        <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           Other
         </label>
@@ -655,6 +642,20 @@
     <li class="md-nav__item">
       <a href="../cli/" class="md-nav__link">
         CLI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        FAQ
       </a>
     </li>
   
@@ -777,11 +778,12 @@ and automatically fetched, saved and dispatched from the repository.</p>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nv">$eventBus</span><span class="o">-&gt;</span><span class="na">addListener</span><span class="p">(</span><span class="nv">$mailListener</span><span class="p">);</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nv">$eventBus</span><span class="o">-&gt;</span><span class="na">addListener</span><span class="p">(</span><span class="nv">$projectionListener</span><span class="p">);</span>
 </code></pre></div>
-<blockquote>
-<p><img alt="📖" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f4d6.svg" title=":book:" /> You can determine the order in which the listeners are executed. For example, 
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can determine the order in which the listeners are executed. For example, 
 you can also add listeners after <code>ProjectionListener</code>
 to access the <a href="../projection/">projections</a>.</p>
-</blockquote>
+</div>
 <h2 id="symfony-event-bus">Symfony event bus</h2>
 <p>You can also use the <a href="https://symfony.com/doc/current/components/messenger.html">symfony message bus</a> 
 which is much more powerful. </p>
@@ -796,11 +798,12 @@ which is much more powerful. </p>
 <a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="nv">$projectionListener</span>
 <a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">]);</span>
 </code></pre></div>
-<blockquote>
-<p><img alt="📖" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f4d6.svg" title=":book:" /> You can determine the order in which the listeners are executed. For example,
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can determine the order in which the listeners are executed. For example,
 you can also add listeners after <code>ProjectionListener</code>
 to access the <a href="../projection/">projections</a>.</p>
-</blockquote>
+</div>
 <p>Or plug it together by hand:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\SymfonyEventBus</span><span class="p">;</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
@@ -808,12 +811,16 @@ to access the <a href="../projection/">projections</a>.</p>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nv">$eventBus</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SymfonyEventBus</span><span class="p">(</span><span class="nv">$symfonyMessenger</span><span class="p">);</span>
 </code></pre></div>
-<blockquote>
-<p><img alt="⚠" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/26a0.svg" title=":warning:" /> You can't mix it with a command bus.
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You can't mix it with a command bus.
 You should create a <a href="https://symfony.com/doc/current/messenger/multiple_buses.html">new bus</a> for it.</p>
-<p><img alt="📖" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f4d6.svg" title=":book:" /> An event bus can have zero or more listeners on an event. 
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An event bus can have zero or more listeners on an event. 
 You should allow no handler in the <a href="https://symfony.com/doc/current/components/messenger.html">HandleMessageMiddleware</a>.</p>
-</blockquote>
+</div>
 <h2 id="listener">Listener</h2>
 <p>A listener must implement the <code>Listener</code> interface and define the <code>__invoke</code> method.
 This listener is then called for all saved events / messages.</p>
@@ -830,11 +837,15 @@ This listener is then called for all saved events / messages.</p>
 <a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    <span class="p">}</span>
 <a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="p">}</span>
 </code></pre></div>
-<blockquote>
-<p><img alt="⚠" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/26a0.svg" title=":warning:" /> If you only want to listen to certain messages, then you have to check it in the <code>__invoke</code> method.</p>
-<p><img alt="📖" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f4d6.svg" title=":book:" /> Basically, listeners can be categorized according to their tasks. 
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you only want to listen to certain messages, then you have to check it in the <code>__invoke</code> method.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Basically, listeners can be categorized according to their tasks. 
 We have a <a href="../processor/">processor</a> and <a href="../projection/">projections</a>.</p>
-</blockquote>
+</div>
 
               
             </article>

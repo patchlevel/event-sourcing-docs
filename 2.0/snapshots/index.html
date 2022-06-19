@@ -273,28 +273,13 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../faq/" class="md-nav__link">
-        FAQ
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
     
       
     
     <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
       
       
       
@@ -315,13 +300,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_4">
+        <label class="md-nav__link" for="__nav_3">
           Basics
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Basics" data-md-level="1">
-        <label class="md-nav__title" for="__nav_4">
+        <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Basics
         </label>
@@ -446,7 +431,7 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
       
       
       
@@ -459,13 +444,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_5">
+        <label class="md-nav__link" for="__nav_4">
           Advance
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Advance" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
+        <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Advance
         </label>
@@ -614,7 +599,7 @@
     <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
       
       
       
@@ -625,15 +610,17 @@
         
           
         
+          
+        
       
       
-        <label class="md-nav__link" for="__nav_6">
+        <label class="md-nav__link" for="__nav_5">
           Other
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Other" data-md-level="1">
-        <label class="md-nav__title" for="__nav_6">
+        <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           Other
         </label>
@@ -675,6 +662,20 @@
     <li class="md-nav__item">
       <a href="../cli/" class="md-nav__link">
         CLI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        FAQ
       </a>
     </li>
   
@@ -805,9 +806,10 @@ In addition, a <code>SnapshotStore</code> must then be given.</p>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="nv">$repository</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultRepository</span><span class="p">(</span><span class="nv">$store</span><span class="p">,</span> <span class="nv">$eventStream</span><span class="p">,</span> <span class="nx">Profile</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nv">$snapshotStore</span><span class="p">);</span>
 </code></pre></div>
-<blockquote>
-<p><img alt="📖" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f4d6.svg" title=":book:" /> You can read more about Repository <a href="../repository/">here</a>.</p>
-</blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can read more about Repository <a href="../repository/">here</a>.</p>
+</div>
 <p>So that the state can also be cached, the aggregate must be taught how to <code>serialize</code> and <code>deserialize</code> its state.
 To do this, the aggregate must inherit from the <code>SnapshotableAggregateRoot</code>
 instead of the <code>AggregateRoot</code> and implement the necessary methods.</p>
@@ -837,10 +839,12 @@ instead of the <code>AggregateRoot</code> and implement the necessary methods.</
 <a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>    <span class="p">}</span>
 <a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="p">}</span>
 </code></pre></div>
-<blockquote>
-<p><img alt="⚠" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/26a0.svg" title=":warning:" /> In the end it has to be possible to serialize it as json.</p>
-</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In the end it has to be possible to serialize it as json.</p>
+</div>
 <h2 id="batch">Batch</h2>
+<p>// Todo</p>
 <h2 id="adapter">Adapter</h2>
 <p>We offer a few <code>SnapshotAdapter</code> implementations that you can use.
 But not a direct implementation of a cache. 

@@ -272,21 +272,6 @@
 
   
   
-  
-    <li class="md-nav__item">
-      <a href="../faq/" class="md-nav__link">
-        FAQ
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
     
   
   
@@ -296,7 +281,7 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
       
       
       
@@ -317,13 +302,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_4">
+        <label class="md-nav__link" for="__nav_3">
           Basics
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Basics" data-md-level="1">
-        <label class="md-nav__title" for="__nav_4">
+        <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Basics
         </label>
@@ -529,7 +514,7 @@
     <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
       
       
       
@@ -542,13 +527,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_5">
+        <label class="md-nav__link" for="__nav_4">
           Advance
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Advance" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
+        <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Advance
         </label>
@@ -615,7 +600,7 @@
     <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
       
       
       
@@ -626,15 +611,17 @@
         
           
         
+          
+        
       
       
-        <label class="md-nav__link" for="__nav_6">
+        <label class="md-nav__link" for="__nav_5">
           Other
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Other" data-md-level="1">
-        <label class="md-nav__title" for="__nav_6">
+        <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           Other
         </label>
@@ -676,6 +663,20 @@
     <li class="md-nav__item">
       <a href="../cli/" class="md-nav__link">
         CLI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        FAQ
       </a>
     </li>
   
@@ -782,11 +783,12 @@
 
 
 <h1 id="aggregate">Aggregate</h1>
-<blockquote>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
 <p>Aggregate is a pattern in Domain-Driven Design. A DDD aggregate is a cluster of domain objects 
 that can be treated as a single unit. [...]</p>
-<p><img alt="📖" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f4d6.svg" title=":book:" /> <a href="https://martinfowler.com/bliki/DDD_Aggregate.html">DDD Aggregate - Martin Flower</a> </p>
-</blockquote>
+<p><a href="https://martinfowler.com/bliki/DDD_Aggregate.html">DDD Aggregate - Martin Flower</a> </p>
+</div>
 <p>An AggregateRoot has to inherit from <code>AggregateRoot</code> and need to implement the method <code>aggregateRootId</code>.
 <code>aggregateRootId</code> is the identifier from <code>AggregateRoot</code> like a primary key for an entity.
 The events will be added later, but the following is enough to make it executable:</p>
@@ -815,10 +817,14 @@ There you also have to give the aggregate a name.</p>
 <a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="p">}</span>
 <a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="p">}</span>
 </code></pre></div>
-<blockquote>
-<p><img alt="⚠" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/26a0.svg" title=":warning:" /> The aggregate is not yet finished and has only been built to the point that you can instantiate the object.</p>
-<p><img alt="📖" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f4d6.svg" title=":book:" /> An aggregateId can be an <strong>uuid</strong>, you can find more about this <a href="../faq/">here</a>.</p>
-</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The aggregate is not yet finished and has only been built to the point that you can instantiate the object.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An aggregateId can be an <strong>uuid</strong>, you can find more about this <a href="../faq/">here</a>.</p>
+</div>
 <p>We use a so-called named constructor here to create an object of the AggregateRoot.
 The constructor itself is protected and cannot be called from outside.
 But it is possible to define different named constructors for different use-cases like <code>createFromRegistration</code>.</p>
@@ -842,13 +848,17 @@ But it is possible to define different named constructors for different use-case
 <a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="p">}</span>
 <a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="p">}</span>
 </code></pre></div>
-<blockquote>
-<p><img alt="⚠" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/26a0.svg" title=":warning:" /> If you look in the database now, you would see that nothing has been saved.
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you look in the database now, you would see that nothing has been saved.
 This is because only events are stored in the database and as long as no events exist,
 nothing happens.</p>
-<p><img alt="📖" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f4d6.svg" title=":book:" /> A <strong>command bus</strong> system is not necessary, only recommended.
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A <strong>command bus</strong> system is not necessary, only recommended.
 The interaction can also easily take place in a controller or service.</p>
-</blockquote>
+</div>
 <h3 id="create-a-new-aggregate">Create a new aggregate</h3>
 <p>In order that an aggregate is actually saved, at least one event must exist in the DB.
 For our aggregate we create the Event <code>ProfileCreated</code>:</p>
@@ -863,9 +873,10 @@ For our aggregate we create the Event <code>ProfileCreated</code>:</p>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="p">)</span> <span class="p">{}</span>
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="p">}</span>
 </code></pre></div>
-<blockquote>
-<p><img alt="📖" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f4d6.svg" title=":book:" /> You can find out more about events <a href="../events/">here</a>.</p>
-</blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can find out more about events <a href="../events/">here</a>.</p>
+</div>
 <p>After we have defined the event, we have to adapt the creation of the profile:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateRoot</span><span class="p">;</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
@@ -903,9 +914,10 @@ For our aggregate we create the Event <code>ProfileCreated</code>:</p>
 <a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>    <span class="p">}</span>
 <a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="p">}</span>
 </code></pre></div>
-<blockquote>
-<p><img alt="📖" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f4d6.svg" title=":book:" /> Prefixing the apply methods with "apply" improves readability.</p>
-</blockquote>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Prefixing the apply methods with "apply" improves readability.</p>
+</div>
 <p>In our named constructor <code>create</code> we have now created the event and recorded it with the method <code>record</code>.
 The aggregate remembers all recorded events in order to save them later.
 At the same time, a defined apply method is executed directly so that we can change our state.</p>
@@ -927,9 +939,10 @@ As example we can add a <code>NameChanged</code> event:</p>
 <a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="p">}</span>
 <a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="p">}</span>
 </code></pre></div>
-<blockquote>
-<p><img alt="📖" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f4d6.svg" title=":book:" /> Events should best be written in the past, as they describe a state that has happened.</p>
-</blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Events should best be written in the past, as they describe a state that has happened.</p>
+</div>
 <p>After we have defined the event, we can define a new public method called <code>changeName</code> to change the profile name. 
 This method then creates the event <code>NameChanged</code> and records it:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateRoot</span><span class="p">;</span>
@@ -1003,9 +1016,10 @@ where we change the name depending on the value in the event.</p>
 <a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>    <span class="p">}</span>
 <a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="p">}</span>
 </code></pre></div>
-<blockquote>
-<p><img alt="📖" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f4d6.svg" title=":book:" /> You can read more about Repository <a href="../repository/">here</a>.</p>
-</blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can read more about Repository <a href="../repository/">here</a>.</p>
+</div>
 <p>Here the aggregate is loaded from the <code>repository</code> by fetching all events from the database.
 These events are then executed again with the <code>apply</code> methods in order to rebuild the current state.
 All of this happens automatically in the <code>load</code> method.</p>
@@ -1091,9 +1105,10 @@ you can suppress the missing apply exceptions these events with the <code>Suppre
 <a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>    <span class="p">}</span>
 <a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="p">}</span>
 </code></pre></div>
-<blockquote>
-<p><img alt="⚠" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/26a0.svg" title=":warning:" /> When all events are suppressed, debugging becomes more difficult if you forget an apply method.</p>
-</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When all events are suppressed, debugging becomes more difficult if you forget an apply method.</p>
+</div>
 <h2 id="business-rules">Business rules</h2>
 <p>Usually, aggregates have business rules that must be observed. Like there may not be more than 10 people in a group.</p>
 <p>These rules must be checked before an event is recorded. 
@@ -1134,9 +1149,10 @@ and were then also saved in the database. </p>
 <a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a>    <span class="p">}</span>
 <a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a><span class="p">}</span>
 </code></pre></div>
-<blockquote>
-<p><img alt="⚠" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/26a0.svg" title=":warning:" /> Disregarding this can break the rebuilding of the state!</p>
-</blockquote>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Disregarding this can break the rebuilding of the state!</p>
+</div>
 <p>We have now ensured that this rule takes effect when a name is changed with the method <code>changeName</code>. 
 But when we create a new profile this rule does not currently apply.</p>
 <p>In order for this to work, we either have to duplicate the rule or outsource it. 
@@ -1212,10 +1228,14 @@ since we only expected a string before but now passed a <code>Name</code> value 
 <a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>    <span class="p">)</span> <span class="p">{}</span>
 <a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="p">}</span>
 </code></pre></div>
-<blockquote>
-<p><img alt="⚠" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/26a0.svg" title=":warning:" /> The payload must be serializable and unserializable as json.</p>
-<p><img alt="📖" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f4d6.svg" title=":book:" /> You can find out more about event normalizer <a href="../events/#normalizer">here</a>.</p>
-</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The payload must be serializable and unserializable as json.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can find out more about event normalizer <a href="../events/#normalizer">here</a>.</p>
+</div>
 <p>There are also cases where business rules have to be defined depending on the aggregate state.
 Sometimes also from states, which were changed in the same method.
 This is not a problem, as the <code>apply</code> methods are always executed immediately.</p>
@@ -1294,7 +1314,7 @@ and the <code>AggregateRootRegistry</code> is built up.</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../faq/" class="md-footer__link md-footer__link--prev" aria-label="Previous: FAQ" rel="prev">
+        <a href="../getting_started/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Getting Started" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1303,7 +1323,7 @@ and the <code>AggregateRootRegistry</code> is built up.</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              FAQ
+              Getting Started
             </div>
           </div>
         </a>
