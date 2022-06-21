@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://patchlevel.de/2.0/tools/">
+        <link rel="canonical" href="https://patchlevel.de/2.0/migration/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.3">
     
     
       
-        <title>Tools - Event Sourcing</title>
+        <title>Schema Migration - Event Sourcing</title>
       
     
     
@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tools" class="md-skip">
+        <a href="#migration" class="md-skip">
           Skip to content
         </a>
       
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Tools
+              Schema Migration
             
           </span>
         </div>
@@ -440,19 +440,41 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_4">
-          Advance
+          Advanced
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Advance" data-md-level="1">
+      <nav class="md-nav" aria-label="Advanced" data-md-level="1">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
-          Advance
+          Advanced
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../normalizer/" class="md-nav__link">
+        Normalizer
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -488,8 +510,50 @@
   
   
     <li class="md-nav__item">
+      <a href="../outbox/" class="md-nav__link">
+        Outbox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../pipeline/" class="md-nav__link">
         Pipeline
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decorator/" class="md-nav__link">
+        Message Decorator
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clock/" class="md-nav__link">
+        Time / Clock
       </a>
     </li>
   
@@ -530,17 +594,19 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_5">
-          Other
+          Other / Tools
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Other" data-md-level="1">
+      <nav class="md-nav" aria-label="Other / Tools" data-md-level="1">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
-          Other
+          Other / Tools
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -550,84 +616,9 @@
   
   
     <li class="md-nav__item">
-      <a href="../tests/" class="md-nav__link">
-        Tests
+      <a href="../uuid/" class="md-nav__link">
+        UUID
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Tools
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        Tools
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#watch" class="md-nav__link">
-    Watch
-  </a>
-  
-    <nav class="md-nav" aria-label="Watch">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#watch-client" class="md-nav__link">
-    Watch client
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#watch-server" class="md-nav__link">
-    Watch server
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -651,10 +642,100 @@
               
   
   
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Schema Migration
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Schema Migration
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-migration-schema-provider" class="md-nav__link">
+    Configure Migration Schema Provider
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cli-example" class="md-nav__link">
+    CLI example
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-commands" class="md-nav__link">
+    Migration commands
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
   
     <li class="md-nav__item">
-      <a href="../faq/" class="md-nav__link">
-        FAQ
+      <a href="../watch_server/" class="md-nav__link">
+        Watch Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests/" class="md-nav__link">
+        Tests
       </a>
     </li>
   
@@ -694,29 +775,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#watch" class="md-nav__link">
-    Watch
-  </a>
-  
-    <nav class="md-nav" aria-label="Watch">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#watch-client" class="md-nav__link">
-    Watch client
+  <a href="#installation" class="md-nav__link">
+    Installation
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#watch-server" class="md-nav__link">
-    Watch server
+      
+        <li class="md-nav__item">
+  <a href="#configure-migration-schema-provider" class="md-nav__link">
+    Configure Migration Schema Provider
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#cli-example" class="md-nav__link">
+    CLI example
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-commands" class="md-nav__link">
+    Migration commands
+  </a>
   
 </li>
       
@@ -732,71 +814,93 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/patchlevel/event-sourcing/edit/2.0.x/docs/pages/tools.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/patchlevel/event-sourcing/edit/2.0.x/docs/pages/migration.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
 
-<h1 id="tools">Tools</h1>
-<p>The library offers a few developer tools to simplify the work and debug of event sourcing.</p>
-<h2 id="watch">Watch</h2>
-<p>We have implemented a watch server that can be used for development.
-Every event that is saved is sent to the watch server using a watch listener.
-You can subscribe to it and display the information anywhere, e.g. in the CLI.</p>
-<h3 id="watch-client">Watch client</h3>
-<p>The watch client and the listener are used to send all events that are saved to a specific host.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\WatchServer\SocketWatchServerClient</span><span class="p">;</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\WatchServer\WatchListener</span><span class="p">;</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nv">$watchServerClient</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SocketWatchServerClient</span><span class="p">(</span><span class="s1">&#39;127.0.0.1:5000&#39;</span><span class="p">,</span> <span class="nv">$serializer</span><span class="p">);</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nv">$watchListener</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WatchListener</span><span class="p">(</span><span class="nv">$watchServerClient</span><span class="p">);</span>
-</code></pre></div>
+<h1 id="migration">Migration</h1>
+<p>You can use doctrine migration, which is known from doctrine orm, to create your schema and keep it in sync.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>This should only be used for dev purposes and should not be registered in production.</p>
+<p>To use the migration CLI commands, you have to configure the <a href="../cli/">CLI</a> beforehand.</p>
 </div>
-<h3 id="watch-server">Watch server</h3>
-<p>The watch server is used to receive all events that are sent.
-You can subscribe to the watch server and process or display each event as you wish.
-As soon as you execute <code>start</code>, the server will be started until you terminate the php process.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\Message</span><span class="p">;</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\WatchServer\SocketWatchServer</span><span class="p">;</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nv">$watchServer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SocketWatchServer</span><span class="p">(</span><span class="s1">&#39;127.0.0.1:5000&#39;</span><span class="p">,</span> <span class="nv">$serializer</span><span class="p">);</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nv">$watchServer</span><span class="o">-&gt;</span><span class="na">listen</span><span class="p">(</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="k">function</span> <span class="p">(</span><span class="nx">Message</span> <span class="nv">$message</span><span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="p">}</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">);</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="nv">$watchServer</span><span class="o">-&gt;</span><span class="na">start</span><span class="p">();</span>
+<h2 id="installation">Installation</h2>
+<p>In order to be able to use <code>doctrine/migrations</code>,
+you have to install the associated package.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>composer require doctrine/migrations
 </code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The host must match the one defined in the watch server client.</p>
-</div>
-<p>Here is an example of how to use it with a symfony cli.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Console\Command</span><span class="p">;</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\WatchServer\SocketWatchServer</span><span class="p">;</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">use</span> <span class="nx">Symfony\Component\Console\Application</span><span class="p">;</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nv">$cli</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Application</span><span class="p">(</span><span class="s1">&#39;Event-Sourcing CLI&#39;</span><span class="p">);</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nv">$cli</span><span class="o">-&gt;</span><span class="na">setCatchExceptions</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+<h2 id="configure-migration-schema-provider">Configure Migration Schema Provider</h2>
+<p>We have added a <code>schema provider</code> for doctrine migrations
+so that you just have to plug the whole thing together.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\MigrationSchemaProvider</span><span class="p">;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nv">$schemaProvider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MigrationSchemaProvider</span><span class="p">(</span><span class="nv">$store</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="cli-example">CLI example</h2>
+<p>You can plug this together, for example, as follows to create CLI applications like <code>cli.php</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\DriverManager</span><span class="p">;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">use</span> <span class="nx">Doctrine\Migrations\DependencyFactory</span><span class="p">;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">use</span> <span class="nx">Doctrine\Migrations\Configuration\Migration\PhpFile</span><span class="p">;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">use</span> <span class="nx">Doctrine\Migrations\Configuration\Connection\ExistingConnection</span><span class="p">;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">use</span> <span class="nx">Doctrine\Migrations\Tools\Console\Command</span><span class="p">;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">use</span> <span class="nx">Symfony\Component\Console\Application</span><span class="p">;</span>
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="nv">$watchServer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SocketWatchServer</span><span class="p">(</span><span class="s1">&#39;127.0.0.1:5000&#39;</span><span class="p">,</span> <span class="nv">$serializer</span><span class="p">);</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="nv">$command</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WatchCommand</span><span class="p">(</span><span class="nv">$watchServer</span><span class="p">);</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="nv">$cli</span><span class="o">-&gt;</span><span class="na">addCommands</span><span class="p">([</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="cm">/* more commands */</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="k">new</span> <span class="nx">Command\WatchCommand</span><span class="p">(</span><span class="nv">$watchServer</span><span class="p">),</span>
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="p">]);</span>
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
-<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="nv">$cli</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">();</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="nv">$connection</span> <span class="o">=</span> <span class="nx">DriverManager</span><span class="o">::</span><span class="na">getConnection</span><span class="p">([</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="s1">&#39;url&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mysql://user:secret@localhost/app&#39;</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="p">]);</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="nv">$config</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PhpFile</span><span class="p">(</span><span class="s1">&#39;migrations.php&#39;</span><span class="p">);</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="nv">$dependencyFactory</span> <span class="o">=</span> <span class="nx">DependencyFactory</span><span class="o">::</span><span class="na">fromConnection</span><span class="p">(</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    <span class="nv">$config</span><span class="p">,</span> 
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    <span class="k">new</span> <span class="nx">ExistingConnection</span><span class="p">(</span><span class="nv">$connection</span><span class="p">)</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="p">);</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="nv">$store</span> <span class="o">=</span> <span class="cm">/* define your doctrine store */</span><span class="p">;</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="nv">$dependencyFactory</span><span class="o">-&gt;</span><span class="na">setService</span><span class="p">(</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>    <span class="nx">SchemaProvider</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> 
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>    <span class="k">new</span> <span class="nx">MigrationSchemaProvider</span><span class="p">(</span><span class="nv">$store</span><span class="p">)</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="p">);</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="nv">$cli</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Application</span><span class="p">(</span><span class="s1">&#39;Event-Sourcing CLI&#39;</span><span class="p">);</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="nv">$cli</span><span class="o">-&gt;</span><span class="na">setCatchExceptions</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="nv">$cli</span><span class="o">-&gt;</span><span class="na">addCommands</span><span class="p">([</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>    <span class="c1">// other cli commands</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>    <span class="k">new</span> <span class="nx">Command\ExecuteCommand</span><span class="p">(</span><span class="nv">$dependencyFactory</span><span class="p">,</span> <span class="s1">&#39;event-sourcing:migrations:execute&#39;</span><span class="p">),</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>    <span class="k">new</span> <span class="nx">Command\GenerateCommand</span><span class="p">(</span><span class="nv">$dependencyFactory</span><span class="p">,</span> <span class="s1">&#39;event-sourcing:migrations:generate&#39;</span><span class="p">),</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>    <span class="k">new</span> <span class="nx">Command\LatestCommand</span><span class="p">(</span><span class="nv">$dependencyFactory</span><span class="p">,</span> <span class="s1">&#39;event-sourcing:migrations:latest&#39;</span><span class="p">),</span>
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>    <span class="k">new</span> <span class="nx">Command\ListCommand</span><span class="p">(</span><span class="nv">$dependencyFactory</span><span class="p">,</span> <span class="s1">&#39;event-sourcing:migrations:list&#39;</span><span class="p">),</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>    <span class="k">new</span> <span class="nx">Command\MigrateCommand</span><span class="p">(</span><span class="nv">$dependencyFactory</span><span class="p">,</span> <span class="s1">&#39;event-sourcing:migrations:migrate&#39;</span><span class="p">),</span>
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>    <span class="k">new</span> <span class="nx">Command\DiffCommand</span><span class="p">(</span><span class="nv">$dependencyFactory</span><span class="p">,</span> <span class="s1">&#39;event-sourcing:migrations:diff&#39;</span><span class="p">),</span>
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>    <span class="k">new</span> <span class="nx">Command\StatusCommand</span><span class="p">(</span><span class="nv">$dependencyFactory</span><span class="p">,</span> <span class="s1">&#39;event-sourcing:migrations:status&#39;</span><span class="p">),</span>
+<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>    <span class="k">new</span> <span class="nx">Command\VersionCommand</span><span class="p">(</span><span class="nv">$dependencyFactory</span><span class="p">,</span> <span class="s1">&#39;event-sourcing:migrations:version&#39;</span><span class="p">),</span>
+<a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="p">]);</span>
+<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>
+<a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a><span class="nv">$cli</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">();</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The command can be terminated with <code>ctrl+c</code> or <code>control+c</code>.</p>
+<p>Here you can find more information on how to 
+<a href="https://www.doctrine-project.org/projects/doctrine-migrations/en/3.3/reference/custom-configuration.html">configure doctrine migration</a>.</p>
 </div>
+<h2 id="migration-commands">Migration commands</h2>
+<p>There are some commands to use the migration feature.</p>
+<ul>
+<li>ExecuteCommand: <code>event-sourcing:migrations:execute</code></li>
+<li>GenerateCommand: <code>event-sourcing:migrations:generate</code></li>
+<li>LatestCommand: <code>event-sourcing:migrations:latest</code></li>
+<li>ListCommand: <code>event-sourcing:migrations:list</code></li>
+<li>MigrateCommand: <code>event-sourcing:migrations:migrate</code></li>
+<li>DiffCommand: <code>event-sourcing:migrations:diff</code></li>
+<li>StatusCommand: <code>event-sourcing:migrations:status</code></li>
+<li>VersionCommand: <code>event-sourcing:migrations:version</code></li>
+</ul>
 
               
             </article>
@@ -815,7 +919,7 @@ As soon as you execute <code>start</code>, the server will be started until you 
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../tests/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Tests" rel="prev">
+        <a href="../cli/" class="md-footer__link md-footer__link--prev" aria-label="Previous: CLI" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -824,20 +928,20 @@ As soon as you execute <code>start</code>, the server will be started until you 
               <span class="md-footer__direction">
                 Previous
               </span>
-              Tests
+              CLI
             </div>
           </div>
         </a>
       
       
         
-        <a href="../cli/" class="md-footer__link md-footer__link--next" aria-label="Next: CLI" rel="next">
+        <a href="../watch_server/" class="md-footer__link md-footer__link--next" aria-label="Next: Watch Server" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              CLI
+              Watch Server
             </div>
           </div>
           <div class="md-footer__button md-icon">

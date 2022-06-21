@@ -525,19 +525,41 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_4">
-          Advance
+          Advanced
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Advance" data-md-level="1">
+      <nav class="md-nav" aria-label="Advanced" data-md-level="1">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
-          Advance
+          Advanced
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../normalizer/" class="md-nav__link">
+        Normalizer
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -573,8 +595,50 @@
   
   
     <li class="md-nav__item">
+      <a href="../outbox/" class="md-nav__link">
+        Outbox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../pipeline/" class="md-nav__link">
         Pipeline
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decorator/" class="md-nav__link">
+        Message Decorator
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clock/" class="md-nav__link">
+        Time / Clock
       </a>
     </li>
   
@@ -613,17 +677,19 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_5">
-          Other
+          Other / Tools
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Other" data-md-level="1">
+      <nav class="md-nav" aria-label="Other / Tools" data-md-level="1">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
-          Other
+          Other / Tools
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -633,22 +699,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../tests/" class="md-nav__link">
-        Tests
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../tools/" class="md-nav__link">
-        Tools
+      <a href="../uuid/" class="md-nav__link">
+        UUID
       </a>
     </li>
   
@@ -675,8 +727,36 @@
   
   
     <li class="md-nav__item">
-      <a href="../faq/" class="md-nav__link">
-        FAQ
+      <a href="../migration/" class="md-nav__link">
+        Schema Migration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../watch_server/" class="md-nav__link">
+        Watch Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests/" class="md-nav__link">
+        Tests
       </a>
     </li>
   
@@ -823,7 +903,7 @@ There you also have to give the aggregate a name.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>An aggregateId can be an <strong>uuid</strong>, you can find more about this <a href="../faq/">here</a>.</p>
+<p>An aggregateId can be an <strong>uuid</strong>, you can find more about this <a href="../uuid/">here</a>.</p>
 </div>
 <p>We use a so-called named constructor here to create an object of the AggregateRoot.
 The constructor itself is protected and cannot be called from outside.
@@ -906,7 +986,7 @@ For our aggregate we create the Event <code>ProfileCreated</code>:</p>
 <a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>        <span class="k">return</span> <span class="nv">$self</span><span class="p">;</span>
 <a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>    <span class="p">}</span>
 <a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>
-<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>    <span class="c1">#[Apply(ProfileCreated::class)]</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>    <span class="c1">#[Apply]</span>
 <a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">applyProfileCreated</span><span class="p">(</span><span class="nx">ProfileCreated</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> 
 <a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>    <span class="p">{</span>
 <a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">id</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">profileId</span><span class="p">;</span>
@@ -978,14 +1058,14 @@ This method then creates the event <code>NameChanged</code> and records it:</p>
 <a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">NameChanged</span><span class="p">(</span><span class="nv">$name</span><span class="p">));</span>
 <a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>    <span class="p">}</span>
 <a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>
-<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>    <span class="c1">#[Apply(ProfileCreated::class)]</span>
+<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>    <span class="c1">#[Apply]</span>
 <a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">applyProfileCreated</span><span class="p">(</span><span class="nx">ProfileCreated</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
 <a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>    <span class="p">{</span>
 <a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">id</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">profileId</span><span class="p">;</span>
 <a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
 <a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a>    <span class="p">}</span>
 <a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a>
-<a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>    <span class="c1">#[Apply(NameChanged::class)]</span>
+<a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>    <span class="c1">#[Apply]</span>
 <a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">applyNameChanged</span><span class="p">(</span><span class="nx">NameChanged</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
 <a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a>    <span class="p">{</span>
 <a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
@@ -1073,7 +1153,7 @@ you can suppress the missing apply exceptions these events with the <code>Suppre
 <a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
 <a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>    <span class="c1">// ...</span>
 <a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
-<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>    <span class="c1">#[Apply(ProfileCreated::class)]</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>    <span class="c1">#[Apply]</span>
 <a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">applyProfileCreated</span><span class="p">(</span><span class="nx">ProfileCreated</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
 <a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>    <span class="p">{</span>
 <a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">id</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">profileId</span><span class="p">;</span>
@@ -1097,7 +1177,7 @@ you can suppress the missing apply exceptions these events with the <code>Suppre
 <a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
 <a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>    <span class="c1">// ...</span>
 <a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>
-<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>    <span class="c1">#[Apply(ProfileCreated::class)]</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>    <span class="c1">#[Apply]</span>
 <a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">applyProfileCreated</span><span class="p">(</span><span class="nx">ProfileCreated</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
 <a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>    <span class="p">{</span>
 <a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">id</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">profileId</span><span class="p">;</span>
@@ -1142,7 +1222,7 @@ and were then also saved in the database. </p>
 <a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">NameChanged</span><span class="p">(</span><span class="nv">$name</span><span class="p">));</span>
 <a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a>    <span class="p">}</span>
 <a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a>
-<a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a>    <span class="c1">#[Apply(NameChanged::class)]</span>
+<a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a>    <span class="c1">#[Apply]</span>
 <a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">applyNameChanged</span><span class="p">(</span><span class="nx">NameChanged</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> 
 <a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a>    <span class="p">{</span>
 <a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">();</span>
@@ -1207,7 +1287,7 @@ Here we show how we can do it all with a value object:</p>
 <a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">NameChanged</span><span class="p">(</span><span class="nv">$name</span><span class="p">));</span>
 <a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a>    <span class="p">}</span>
 <a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a>
-<a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a>    <span class="c1">#[Apply(NameChanged::class)]</span>
+<a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a>    <span class="c1">#[Apply]</span>
 <a id="__codelineno-12-32" name="__codelineno-12-32" href="#__codelineno-12-32"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">applyNameChanged</span><span class="p">(</span><span class="nx">NameChanged</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> 
 <a id="__codelineno-12-33" name="__codelineno-12-33" href="#__codelineno-12-33"></a>    <span class="p">{</span>
 <a id="__codelineno-12-34" name="__codelineno-12-34" href="#__codelineno-12-34"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
@@ -1271,7 +1351,7 @@ or fill a <a href="../projection/">projection</a> with fully booked hotels.</p>
 <a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a>        <span class="p">}</span>
 <a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a>    <span class="p">}</span>
 <a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a>
-<a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a>    <span class="c1">#[Apply(RoomBocked::class)]</span>
+<a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a>    <span class="c1">#[Apply]</span>
 <a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">applyRoomBocked</span><span class="p">(</span><span class="nx">RoomBocked</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> 
 <a id="__codelineno-14-31" name="__codelineno-14-31" href="#__codelineno-14-31"></a>    <span class="p">{</span>
 <a id="__codelineno-14-32" name="__codelineno-14-32" href="#__codelineno-14-32"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">people</span><span class="o">++</span><span class="p">;</span>

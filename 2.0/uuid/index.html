@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://patchlevel.de/2.0/faq/">
+        <link rel="canonical" href="https://patchlevel.de/2.0/uuid/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.3">
     
     
       
-        <title>FAQ - Event Sourcing</title>
+        <title>UUID - Event Sourcing</title>
       
     
     
@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#faq" class="md-skip">
+        <a href="#uuid" class="md-skip">
           Skip to content
         </a>
       
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              FAQ
+              UUID
             
           </span>
         </div>
@@ -440,19 +440,41 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_4">
-          Advance
+          Advanced
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Advance" data-md-level="1">
+      <nav class="md-nav" aria-label="Advanced" data-md-level="1">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
-          Advance
+          Advanced
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../normalizer/" class="md-nav__link">
+        Normalizer
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -488,8 +510,50 @@
   
   
     <li class="md-nav__item">
+      <a href="../outbox/" class="md-nav__link">
+        Outbox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../pipeline/" class="md-nav__link">
         Pipeline
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decorator/" class="md-nav__link">
+        Message Decorator
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clock/" class="md-nav__link">
+        Time / Clock
       </a>
     </li>
   
@@ -530,17 +594,19 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_5">
-          Other
+          Other / Tools
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Other" data-md-level="1">
+      <nav class="md-nav" aria-label="Other / Tools" data-md-level="1">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
-          Other
+          Other / Tools
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -548,25 +614,21 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../tests/" class="md-nav__link">
-        Tests
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        UUID
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../tools/" class="md-nav__link">
-        Tools
-      </a>
+      
     </li>
   
 
@@ -590,59 +652,39 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          FAQ
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        FAQ
+    <li class="md-nav__item">
+      <a href="../migration/" class="md-nav__link">
+        Schema Migration
       </a>
-      
-        
+    </li>
+  
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+            
+          
+            
+              
   
   
   
-    
+    <li class="md-nav__item">
+      <a href="../watch_server/" class="md-nav__link">
+        Watch Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#how-can-i-generate-an-aggregate-id" class="md-nav__link">
-    How can i generate an aggregate id?
-  </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-can-i-improve-the-handling-of-the-repositories" class="md-nav__link">
-    How can i improve the handling of the repositories?
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
+    <li class="md-nav__item">
+      <a href="../tests/" class="md-nav__link">
+        Tests
+      </a>
     </li>
   
 
@@ -674,28 +716,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#how-can-i-generate-an-aggregate-id" class="md-nav__link">
-    How can i generate an aggregate id?
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-can-i-improve-the-handling-of-the-repositories" class="md-nav__link">
-    How can i improve the handling of the repositories?
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -706,20 +726,13 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/patchlevel/event-sourcing/edit/2.0.x/docs/pages/faq.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/patchlevel/event-sourcing/edit/2.0.x/docs/pages/uuid.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
 
-<h1 id="faq">FAQ</h1>
-<p>Here you will find some answers to the most common questions 
-that did not fit in the actual documentation.</p>
-<ul>
-<li><a href="#how-can-i-generate-an-aggregate-id">How can i generate an aggregate id?</a></li>
-<li><a href="#how-can-i-improve-the-handling-of-the-repositories">How can i improve the handling of the repositories?</a></li>
-</ul>
-<h2 id="how-can-i-generate-an-aggregate-id">How can i generate an aggregate id?</h2>
+<h1 id="uuid">UUID</h1>
 <p>A UUID can be generated for the <code>aggregateId</code>. There are two popular libraries that can be used:</p>
 <ul>
 <li><a href="https://github.com/ramsey/uuid">ramsey/uuid</a></li>
@@ -843,41 +856,6 @@ The whole thing looks like this:</p>
 <a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>    <span class="p">}</span>
 <a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a><span class="p">}</span>
 </code></pre></div>
-<h2 id="how-can-i-improve-the-handling-of-the-repositories">How can i improve the handling of the repositories?</h2>
-<p>In clean code you want to have explicit type hints for the repositories 
-so that you don't accidentally use the wrong repository. 
-It would also help in frameworks with a dependency injection container, 
-as this allows the services to be autowired. 
-However, you cannot inherit from our repository implementations. 
-Instead, you just have to wrap these repositories. 
-This also gives you more type security.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Repository\Repository</span><span class="p">;</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">class</span> <span class="nc">ProfileRepository</span> 
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">{</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="k">private</span> <span class="nx">Repository</span> <span class="nv">$repository</span><span class="p">;</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">__constructor</span><span class="p">(</span><span class="nx">Repository</span> <span class="nv">$repository</span><span class="p">)</span> 
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="p">{</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">repository</span> <span class="o">=</span> <span class="nv">$repository</span><span class="p">;</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="p">}</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">load</span><span class="p">(</span><span class="nx">ProfileId</span> <span class="nv">$id</span><span class="p">)</span><span class="o">:</span> <span class="nx">Profile</span> 
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    <span class="p">{</span>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">repository</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span><span class="nv">$id</span><span class="o">-&gt;</span><span class="na">toString</span><span class="p">());</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    <span class="p">}</span>
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">save</span><span class="p">(</span><span class="nx">Profile</span> <span class="nv">$profile</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> 
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>    <span class="p">{</span>
-<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">repository</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$profile</span><span class="p">);</span>
-<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    <span class="p">}</span>
-<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>
-<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">has</span><span class="p">(</span><span class="nx">ProfileId</span> <span class="nv">$id</span><span class="p">)</span><span class="o">:</span> <span class="nx">bool</span> 
-<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>    <span class="p">{</span>
-<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">repository</span><span class="o">-&gt;</span><span class="na">has</span><span class="p">(</span><span class="nv">$id</span><span class="o">-&gt;</span><span class="na">toString</span><span class="p">());</span>
-<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>    <span class="p">}</span>
-<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="p">}</span>
-</code></pre></div>
 
               
             </article>
@@ -896,7 +874,7 @@ This also gives you more type security.</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../cli/" class="md-footer__link md-footer__link--prev" aria-label="Previous: CLI" rel="prev">
+        <a href="../clock/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Time / Clock" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -905,11 +883,26 @@ This also gives you more type security.</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              CLI
+              Time / Clock
             </div>
           </div>
         </a>
       
+      
+        
+        <a href="../cli/" class="md-footer__link md-footer__link--next" aria-label="Next: CLI" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              CLI
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
       
     </nav>
   

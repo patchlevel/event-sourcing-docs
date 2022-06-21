@@ -504,19 +504,41 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_4">
-          Advance
+          Advanced
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Advance" data-md-level="1">
+      <nav class="md-nav" aria-label="Advanced" data-md-level="1">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
-          Advance
+          Advanced
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../normalizer/" class="md-nav__link">
+        Normalizer
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -552,8 +574,50 @@
   
   
     <li class="md-nav__item">
+      <a href="../outbox/" class="md-nav__link">
+        Outbox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../pipeline/" class="md-nav__link">
         Pipeline
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decorator/" class="md-nav__link">
+        Message Decorator
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clock/" class="md-nav__link">
+        Time / Clock
       </a>
     </li>
   
@@ -592,17 +656,19 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_5">
-          Other
+          Other / Tools
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Other" data-md-level="1">
+      <nav class="md-nav" aria-label="Other / Tools" data-md-level="1">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
-          Other
+          Other / Tools
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -612,22 +678,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../tests/" class="md-nav__link">
-        Tests
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../tools/" class="md-nav__link">
-        Tools
+      <a href="../uuid/" class="md-nav__link">
+        UUID
       </a>
     </li>
   
@@ -654,8 +706,36 @@
   
   
     <li class="md-nav__item">
-      <a href="../faq/" class="md-nav__link">
-        FAQ
+      <a href="../migration/" class="md-nav__link">
+        Schema Migration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../watch_server/" class="md-nav__link">
+        Watch Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests/" class="md-nav__link">
+        Tests
       </a>
     </li>
   
@@ -768,8 +848,7 @@ A message contains the following information:</p>
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="nv">$eventBus</span><span class="o">-&gt;</span><span class="na">dispatch</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
 </code></pre></div>
 <p>You don't have to create the message yourself, 
-it is automatically created in the aggregate 
-and automatically fetched, saved and dispatched from the repository.</p>
+it is automatically created, saved and dispatched in the repository.</p>
 <h2 id="default-event-bus">Default event bus</h2>
 <p>The library also delivers a light-weight event bus. This can only register listener and dispatch events.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\DefaultEventBus</span><span class="p">;</span>

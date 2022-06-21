@@ -341,6 +341,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#result" class="md-nav__link">
+    Result
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -523,19 +530,41 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_4">
-          Advance
+          Advanced
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Advance" data-md-level="1">
+      <nav class="md-nav" aria-label="Advanced" data-md-level="1">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
-          Advance
+          Advanced
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../normalizer/" class="md-nav__link">
+        Normalizer
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -571,8 +600,50 @@
   
   
     <li class="md-nav__item">
+      <a href="../outbox/" class="md-nav__link">
+        Outbox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../pipeline/" class="md-nav__link">
         Pipeline
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decorator/" class="md-nav__link">
+        Message Decorator
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clock/" class="md-nav__link">
+        Time / Clock
       </a>
     </li>
   
@@ -611,17 +682,19 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_5">
-          Other
+          Other / Tools
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Other" data-md-level="1">
+      <nav class="md-nav" aria-label="Other / Tools" data-md-level="1">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
-          Other
+          Other / Tools
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -631,22 +704,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../tests/" class="md-nav__link">
-        Tests
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../tools/" class="md-nav__link">
-        Tools
+      <a href="../uuid/" class="md-nav__link">
+        UUID
       </a>
     </li>
   
@@ -673,8 +732,36 @@
   
   
     <li class="md-nav__item">
-      <a href="../faq/" class="md-nav__link">
-        FAQ
+      <a href="../migration/" class="md-nav__link">
+        Schema Migration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../watch_server/" class="md-nav__link">
+        Watch Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests/" class="md-nav__link">
+        Tests
       </a>
     </li>
   
@@ -762,6 +849,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#result" class="md-nav__link">
+    Result
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -783,6 +877,15 @@
 <h1 id="getting-started">Getting Started</h1>
 <p>In our little getting started example, we manage hotels.
 We keep the example small, so we can only create hotels and let guests check in and check out.</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Create some events</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Define an aggregate root</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Create projections</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Add a processor</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Configure your application</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Setup database</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Play with your domain</li>
+</ul>
 <h2 id="define-some-events">Define some events</h2>
 <p>First we define the events that happen in our system.</p>
 <p>A hotel can be created with a <code>name</code> and a <code>id</code>:</p>
@@ -1080,7 +1183,14 @@ we need the associated schema and databases.</p>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>An aggregateId can be an <strong>uuid</strong>, you can find more about this <a href="../faq/">here</a>.</p>
+<p>An aggregateId can be an <strong>uuid</strong>, you can find more about this <a href="../uuid/">here</a>.</p>
+</div>
+<h2 id="result">Result</h2>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>We have successfully implemented and used event sourcing.</p>
+<p>Feel free to browse further in the documentation for more detailed information. 
+If there are still open questions, create a ticket on Github and we will try to help you.</p>
 </div>
 
               
