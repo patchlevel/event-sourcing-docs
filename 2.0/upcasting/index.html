@@ -507,9 +507,54 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Upcasting
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Upcasting
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#adjust-payload" class="md-nav__link">
+    Adjust payload
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adjust-event-name" class="md-nav__link">
+    Adjust event name
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-event-stream" class="md-nav__link">
+    Update event stream
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -550,7 +595,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decorator/" class="md-nav__link">
+      <a href="../message_decorator/" class="md-nav__link">
         Message Decorator
       </a>
     </li>
@@ -716,6 +761,35 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#adjust-payload" class="md-nav__link">
+    Adjust payload
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adjust-event-name" class="md-nav__link">
+    Adjust event name
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-event-stream" class="md-nav__link">
+    Update event stream
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -733,7 +807,86 @@
 
 
 <h1 id="upcasting">Upcasting</h1>
-<p>// Todo</p>
+<p>There are cases where the already have events in our stream but there is data missing or not in the right format for our
+new usecase. Normally you would need to create versioned events for this. This can lead to many versions of the same
+event which could lead to some chaos. To prevent this we offer <code>Upcaster</code>, which can operate on the payload before
+denormalizing to an event object. There you can change the event name and adjust the payload of the event.</p>
+<h2 id="adjust-payload">Adjust payload</h2>
+<p>Let's assume the have an <code>ProfileCreated</code> event which holds an email. Now the business needs to have all emails to be in
+lower cast. For that we could adjust the aggregate and the projections to take care of that. Or we can do this
+beforehand so we dont need to maintain two different places.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\Upcast\Upcast</span><span class="p">;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\Upcast\Upcaster</span><span class="p">;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileCreatedEmailLowerCastUpcaster</span> <span class="k">implements</span> <span class="nx">Upcaster</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">{</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__invoke</span><span class="p">(</span><span class="nx">Upcast</span> <span class="nv">$upcast</span><span class="p">)</span><span class="o">:</span> <span class="nx">Upcast</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="p">{</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="c1">// ignore if other event is processed</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="k">if</span> <span class="p">(</span><span class="nv">$upcast</span><span class="o">-&gt;</span><span class="na">eventName</span> <span class="o">!==</span> <span class="s1">&#39;profile_created&#39;</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>            <span class="k">return</span> <span class="nv">$upcast</span><span class="p">;</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="p">}</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="nv">$payload</span> <span class="o">=</span> <span class="nv">$upcast</span><span class="o">-&gt;</span><span class="na">payload</span><span class="p">;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        <span class="nv">$payload</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">strtolower</span><span class="p">(</span><span class="nv">$payload</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]);</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>         <span class="k">return</span> <span class="k">new</span> <span class="nx">Upcast</span><span class="p">(</span><span class="nv">$upcast</span><span class="o">-&gt;</span><span class="na">eventName</span><span class="p">,</span> <span class="nv">$payload</span><span class="p">)</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="p">}</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="p">}</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You need to consider that other events are passed to the Upcaster. So and early out is here endorsed.</p>
+</div>
+<h2 id="adjust-event-name">Adjust event name</h2>
+<p>For the upgrade to 2.0.0 this feature is also really handy since we adjusted the event value from FQCN to an unique
+name which the user needs to choose. This opens up for moving or renaming the events at code level. Here an example for
+the upgrade path.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Metadata\Event\EventRegistry</span><span class="p">;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\Upcast\Upcaster</span><span class="p">;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\Upcast\Upcast</span><span class="p">;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">LegacyEventNameUpaster</span> <span class="k">implements</span> <span class="nx">Upcaster</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">{</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="k">private</span> <span class="nx">readonly</span> <span class="nx">EventRegistry</span> <span class="nv">$eventRegistry</span><span class="p">){}</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__invoke</span><span class="p">(</span><span class="nx">Upcast</span> <span class="nv">$upcast</span><span class="p">)</span><span class="o">:</span> <span class="nx">Upcast</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="p">{</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        <span class="k">return</span> <span class="k">new</span> <span class="nx">Upcast</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">eventRegistry</span><span class="o">-&gt;</span><span class="na">eventName</span><span class="p">(</span><span class="nv">$upcast</span><span class="o">-&gt;</span><span class="na">eventName</span><span class="p">),</span> <span class="nv">$upcast</span><span class="o">-&gt;</span><span class="na">payload</span><span class="p">);</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="p">}</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="update-event-stream">Update event stream</h2>
+<p>But what if we need it also in our stream because some other applications has also access on it? Or want to cleanup our
+Upcasters since we have collected alot of them over the time? Then we can use our pipeline feature without any
+middlewares to achive a complete rebuild of our stream with adjusted event data.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">EventStreamCleanupCommand</span> <span class="k">extends</span> <span class="nx">Command</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="p">{</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="k">protected</span> <span class="k">static</span> <span class="nv">$defaultName</span> <span class="o">=</span> <span class="s1">&#39;event-stream:cleanup&#39;</span><span class="p">;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="k">protected</span> <span class="k">static</span> <span class="nv">$defaultDescription</span> <span class="o">=</span> <span class="s1">&#39;rebuild event stream&#39;</span><span class="p">;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="k">private</span> <span class="nx">readonly</span> <span class="nx">Store</span> <span class="nv">$sourceStore</span><span class="p">,</span> 
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="k">private</span> <span class="nx">readonly</span> <span class="nx">Store</span> <span class="nv">$targetStore</span><span class="p">,</span> 
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        <span class="k">private</span> <span class="nx">readonly</span> <span class="nx">ProjectionHandler</span> <span class="nv">$projectionHandler</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="p">){</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="p">}</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">execute</span><span class="p">(</span><span class="nx">InputInterface</span> <span class="nv">$input</span><span class="p">,</span> <span class="nx">OutputInterface</span> <span class="nv">$output</span><span class="p">)</span><span class="o">:</span> <span class="nx">int</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    <span class="p">{</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>        <span class="nv">$pipeline</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Pipeline</span><span class="p">(</span><span class="k">new</span> <span class="nx">StoreSource</span><span class="p">(</span><span class="nv">$sourceStore</span><span class="p">),</span> <span class="k">new</span> <span class="nx">StoreTarget</span><span class="p">(</span><span class="nv">$targetStore</span><span class="p">));</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>        <span class="nv">$pipeline</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">();</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    <span class="p">}</span>
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Under no circumstances may the same store be used that is used for the source. 
+Otherwise the store will be broken afterwards!</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can find out more about the pipeline <a href="../pipeline/">here</a>.</p>
+</div>
 
               
             </article>

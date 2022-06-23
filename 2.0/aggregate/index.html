@@ -358,12 +358,18 @@
     Create a new aggregate
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Create a new aggregate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#modify-an-aggregate" class="md-nav__link">
     Modify an aggregate
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -623,7 +629,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decorator/" class="md-nav__link">
+      <a href="../message_decorator/" class="md-nav__link">
         Message Decorator
       </a>
     </li>
@@ -800,12 +806,18 @@
     Create a new aggregate
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Create a new aggregate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#modify-an-aggregate" class="md-nav__link">
     Modify an aggregate
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -939,7 +951,7 @@ nothing happens.</p>
 <p>A <strong>command bus</strong> system is not necessary, only recommended.
 The interaction can also easily take place in a controller or service.</p>
 </div>
-<h3 id="create-a-new-aggregate">Create a new aggregate</h3>
+<h2 id="create-a-new-aggregate">Create a new aggregate</h2>
 <p>In order that an aggregate is actually saved, at least one event must exist in the DB.
 For our aggregate we create the Event <code>ProfileCreated</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Event</span><span class="p">;</span>
