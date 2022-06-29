@@ -877,15 +877,6 @@
 <h1 id="getting-started">Getting Started</h1>
 <p>In our little getting started example, we manage hotels.
 We keep the example small, so we can only create hotels and let guests check in and check out.</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Create some events</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Define an aggregate root</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Create projections</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Add a processor</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Configure your application</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Setup database</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Play with your domain</li>
-</ul>
 <h2 id="define-some-events">Define some events</h2>
 <p>First we define the events that happen in our system.</p>
 <p>A hotel can be created with a <code>name</code> and a <code>id</code>:</p>
@@ -1123,7 +1114,7 @@ we need a projection for it.</p>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\DefaultEventBus</span><span class="p">;</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\MetadataAwareProjectionHandler</span><span class="p">;</span>
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\ProjectionListener</span><span class="p">;</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Repository\DefaultRepository</span><span class="p">;</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Repository\DefaultRepositoryManager</span><span class="p">;</span>
 <a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\DefaultEventSerializer</span><span class="p">;</span>
 <a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\SingleTableStore</span><span class="p">;</span>
 <a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
@@ -1152,7 +1143,13 @@ we need a projection for it.</p>
 <a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a>    <span class="s1">&#39;eventstore&#39;</span>
 <a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a><span class="p">);</span>
 <a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a>
-<a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a><span class="nv">$hotelRepository</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultRepository</span><span class="p">(</span><span class="nv">$store</span><span class="p">,</span> <span class="nv">$eventBus</span><span class="p">,</span> <span class="nx">Hotel</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a><span class="nv">$repositoryManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultRepositoryManager</span><span class="p">(</span>
+<a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a>    <span class="nv">$aggregateRegistry</span><span class="p">,</span>
+<a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a>    <span class="nv">$store</span><span class="p">,</span>
+<a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a>    <span class="nv">$eventBus</span>
+<a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a><span class="p">);</span>
+<a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a>
+<a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a><span class="nv">$repository</span> <span class="o">=</span> <span class="nv">$repositoryManager</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nx">Hotel</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

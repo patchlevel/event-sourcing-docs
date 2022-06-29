@@ -521,9 +521,47 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Outbox
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Outbox
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-outbox" class="md-nav__link">
+    Using outbox
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -716,6 +754,28 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-outbox" class="md-nav__link">
+    Using outbox
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -733,7 +793,65 @@
 
 
 <h1 id="outbox">Outbox</h1>
-<p>// Todo</p>
+<p>There is the problem that errors can occur when saving an aggregate or in the individual event listeners. 
+This means that you either saved an aggregate, but an error occurred in the email listener, so that no email went out. 
+Or that an email was sent but the aggregate could not be saved.</p>
+<p>Both cases are very bad and can only be solved if both the saving of an aggregate 
+and the dispatching of the events are in a transaction.</p>
+<p>The best way to ensure this is to store the events to be dispatched together 
+with the aggregate in a transaction in the same database.</p>
+<p>After the transaction becomes successful, the events can be loaded from the outbox table with a worker 
+and then dispatched into the correct event bus. As soon as the events have been dispatched, 
+they are deleted from the outbox table. If an error occurs when dispatching, the whole thing will be retrieved later.</p>
+<h2 id="configuration">Configuration</h2>
+<p>First you have to replace the correct event bus with an outbox event bus.
+This stores the events to be dispatched in the database.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Repository\DefaultRepositoryManager</span><span class="p">;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Outbox\OutboxEventBus</span><span class="p">;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nv">$outboxEventBus</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OutboxEventBus</span><span class="p">(</span><span class="nv">$store</span><span class="p">);</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nv">$repositoryManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultRepositoryManager</span><span class="p">(</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="nv">$aggregateRootRegistry</span><span class="p">,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="nv">$store</span><span class="p">,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="nv">$outboxEventBus</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">);</span> 
+</code></pre></div>
+<p>And then you have to define the consumer. This gets the right event bus. 
+It is used to load the events to be dispatched from the database, dispatch the events and then empty the outbox table.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nv">$consumer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">StoreOutboxConsumer</span><span class="p">(</span><span class="nv">$store</span><span class="p">,</span> <span class="nv">$realEventBus</span><span class="p">);</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nv">$consumer</span><span class="o">-&gt;</span><span class="na">consume</span><span class="p">();</span>
+</code></pre></div>
+<h2 id="using-outbox">Using outbox</h2>
+<p>So that this is also executed in a transaction, you have to make sure that a transaction has also been started.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nv">$store</span><span class="o">-&gt;</span><span class="na">transactional</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$command</span><span class="p">,</span> <span class="nv">$profileRepository</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="nv">$profile</span> <span class="o">=</span> <span class="nx">Profile</span><span class="o">::</span><span class="na">register</span><span class="p">(</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        <span class="nv">$command</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">(),</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        <span class="nv">$command</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">()</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="p">);</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="nv">$profileRepository</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$profile</span><span class="p">);</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">});</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can find out more about transaction <a href="../store/#transaction">here</a>.</p>
+</div>
+<p>You can also interact directly with the outbox store.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nv">$store</span><span class="o">-&gt;</span><span class="na">saveOutboxMessage</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nv">$store</span><span class="o">-&gt;</span><span class="na">markOutboxMessageConsumed</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nv">$store</span><span class="o">-&gt;</span><span class="na">retrieveOutboxMessages</span><span class="p">();</span> 
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nv">$store</span><span class="o">-&gt;</span><span class="na">countOutboxMessages</span><span class="p">()</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Both single table store and multi table store implement the outbox store.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Interacting with the outbox store is also possible via the <a href="../cli/">cli</a>.</p>
+</div>
 
               
             </article>

@@ -692,6 +692,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#outbox-commands" class="md-nav__link">
+    Outbox commands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cli-example" class="md-nav__link">
     CLI example
   </a>
@@ -810,6 +817,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#outbox-commands" class="md-nav__link">
+    Outbox commands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cli-example" class="md-nav__link">
     CLI example
   </a>
@@ -871,6 +885,16 @@ see the <a href="../store/">store</a> documentation for this.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The <a href="../pipeline/">pipeline</a> will be used to rebuild the projection.</p>
+</div>
+<h2 id="outbox-commands">Outbox commands</h2>
+<p>Interacting with the outbox store is also possible via the cli.</p>
+<ul>
+<li>OutboxInfoCommand: <code>event-sourcing:outbox:info</code></li>
+<li>OutboxConsumeCommand: <code>event-sourcing:outbox:consume</code></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can find out more about outbox <a href="../outbox/">here</a>.</p>
 </div>
 <h2 id="cli-example">CLI example</h2>
 <p>A cli php file can look like this:</p>

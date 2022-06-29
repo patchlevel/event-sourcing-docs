@@ -402,6 +402,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#working-with-dates" class="md-nav__link">
+    Working with dates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#aggregate-root-registry" class="md-nav__link">
     Aggregate Root Registry
   </a>
@@ -850,6 +857,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#working-with-dates" class="md-nav__link">
+    Working with dates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#aggregate-root-registry" class="md-nav__link">
     Aggregate Root Registry
   </a>
@@ -881,7 +895,7 @@
 that can be treated as a single unit. [...]</p>
 <p><a href="https://martinfowler.com/bliki/DDD_Aggregate.html">DDD Aggregate - Martin Flower</a> </p>
 </div>
-<p>An AggregateRoot has to inherit from <code>AggregateRoot</code> and need to implement the method <code>aggregateRootId</code>.
+<p>An Aggregate has to inherit from <code>AggregateRoot</code> and need to implement the method <code>aggregateRootId</code>.
 <code>aggregateRootId</code> is the identifier from <code>AggregateRoot</code> like a primary key for an entity.
 The events will be added later, but the following is enough to make it executable:</p>
 <p>To register an aggregate you have to set the <code>Aggregate</code> attribute over the class,
@@ -900,7 +914,7 @@ There you also have to give the aggregate a name.</p>
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span>
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="p">}</span>
 <a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">create</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$id</span><span class="p">)</span><span class="o">:</span> <span class="nx">self</span> 
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">register</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$id</span><span class="p">)</span><span class="o">:</span> <span class="nx">self</span> 
 <a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="p">{</span>
 <a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="nv">$self</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">self</span><span class="p">();</span>
 <a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="c1">// todo: record create event</span>
@@ -913,32 +927,29 @@ There you also have to give the aggregate a name.</p>
 <p class="admonition-title">Warning</p>
 <p>The aggregate is not yet finished and has only been built to the point that you can instantiate the object.</p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>An aggregateId can be an <strong>uuid</strong>, you can find more about this <a href="../uuid/">here</a>.</p>
 </div>
 <p>We use a so-called named constructor here to create an object of the AggregateRoot.
 The constructor itself is protected and cannot be called from outside.
-But it is possible to define different named constructors for different use-cases like <code>createFromRegistration</code>.</p>
+But it is possible to define different named constructors for different use-cases like <code>import</code>.</p>
 <p>After the basic structure for an aggregate is in place, it could theoretically be saved:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Repository\Repository</span><span class="p">;</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">CreateProfileHandler</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">{</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="k">private</span> <span class="nx">Repository</span> <span class="nv">$profileRepository</span><span class="p">;</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">Repository</span> <span class="nv">$profileRepository</span><span class="p">)</span> 
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="p">{</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">profileRepository</span> <span class="o">=</span> <span class="nv">$profileRepository</span><span class="p">;</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="p">}</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__invoke</span><span class="p">(</span><span class="nx">CreateProfile</span> <span class="nv">$command</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="p">{</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        <span class="nv">$profile</span> <span class="o">=</span> <span class="nx">Profile</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="nv">$command</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">());</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">profileRepository</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$profile</span><span class="p">);</span>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="p">}</span>
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="p">}</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="k">private</span> <span class="nx">readonly</span> <span class="nx">Repository</span> <span class="nv">$profileRepository</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="p">)</span> <span class="p">{}</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__invoke</span><span class="p">(</span><span class="nx">CreateProfile</span> <span class="nv">$command</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="p">{</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        <span class="nv">$profile</span> <span class="o">=</span> <span class="nx">Profile</span><span class="o">::</span><span class="na">register</span><span class="p">(</span><span class="nv">$command</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">());</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">profileRepository</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$profile</span><span class="p">);</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="p">}</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -953,11 +964,11 @@ The interaction can also easily take place in a controller or service.</p>
 </div>
 <h2 id="create-a-new-aggregate">Create a new aggregate</h2>
 <p>In order that an aggregate is actually saved, at least one event must exist in the DB.
-For our aggregate we create the Event <code>ProfileCreated</code>:</p>
+For our aggregate we create the Event <code>ProfileRegistered</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Event</span><span class="p">;</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1">#[Event(&#39;profile.created&#39;)]</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileCreated</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1">#[Event(&#39;profile.registered&#39;)]</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileRegistered</span>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">{</span>
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="k">public</span> <span class="nx">readonly</span> <span class="nx">string</span> <span class="nv">$profileId</span><span class="p">,</span>
@@ -990,16 +1001,16 @@ For our aggregate we create the Event <code>ProfileCreated</code>:</p>
 <a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
 <a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>    <span class="p">}</span>
 <a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>
-<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">create</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$id</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">)</span><span class="o">:</span> <span class="nx">self</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">register</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$id</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">)</span><span class="o">:</span> <span class="nx">self</span>
 <a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>    <span class="p">{</span>
 <a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>        <span class="nv">$self</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">self</span><span class="p">();</span>
-<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>        <span class="nv">$self</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">ProfileCreated</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$name</span><span class="p">));</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>        <span class="nv">$self</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">ProfileRegistered</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$name</span><span class="p">));</span>
 <a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>
 <a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>        <span class="k">return</span> <span class="nv">$self</span><span class="p">;</span>
 <a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>    <span class="p">}</span>
 <a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>
 <a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>    <span class="c1">#[Apply]</span>
-<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">applyProfileCreated</span><span class="p">(</span><span class="nx">ProfileCreated</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> 
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">applyProfileRegistered</span><span class="p">(</span><span class="nx">ProfileRegistered</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> 
 <a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>    <span class="p">{</span>
 <a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">id</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">profileId</span><span class="p">;</span>
 <a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
@@ -1010,12 +1021,12 @@ For our aggregate we create the Event <code>ProfileCreated</code>:</p>
 <p class="admonition-title">Tip</p>
 <p>Prefixing the apply methods with "apply" improves readability.</p>
 </div>
-<p>In our named constructor <code>create</code> we have now created the event and recorded it with the method <code>record</code>.
-The aggregate remembers all recorded events in order to save them later.
+<p>In our named constructor <code>register</code> we have now created the event and recorded it with the method <code>recordThat</code>.
+The aggregate remembers all new recorded events in order to save them later.
 At the same time, a defined apply method is executed directly so that we can change our state.</p>
 <p>So that the AggregateRoot also knows which method it should call, 
-we have to provide it with the <code>Apply</code> <a href="https://www.php.net/manual/en/language.attributes.overview.php">attributes</a>.
-We did that in the <code>applyProfileCreated</code> method.
+we have to mark it with the <code>Apply</code> <a href="https://www.php.net/manual/en/language.attributes.overview.php">attributes</a>.
+We did that in the <code>applyProfileRegistered</code> method.
 In this method we change the <code>Profile</code> properties <code>id</code> and <code>name</code> with the transferred values.</p>
 <h3 id="modify-an-aggregate">Modify an aggregate</h3>
 <p>In order to change the state of the aggregates afterwards, only further events have to be defined.
@@ -1057,10 +1068,10 @@ This method then creates the event <code>NameChanged</code> and records it:</p>
 <a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
 <a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>    <span class="p">}</span>
 <a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>
-<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">create</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$id</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">)</span><span class="o">:</span> <span class="k">static</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">register</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$id</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">)</span><span class="o">:</span> <span class="k">static</span>
 <a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>    <span class="p">{</span>
 <a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>        <span class="nv">$self</span> <span class="o">=</span> <span class="k">new</span> <span class="k">static</span><span class="p">();</span>
-<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>        <span class="nv">$self</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">ProfileCreated</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$name</span><span class="p">));</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>        <span class="nv">$self</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">ProfileRegistered</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$name</span><span class="p">));</span>
 <a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>
 <a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>        <span class="k">return</span> <span class="nv">$self</span><span class="p">;</span>
 <a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>    <span class="p">}</span>
@@ -1071,7 +1082,7 @@ This method then creates the event <code>NameChanged</code> and records it:</p>
 <a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>    <span class="p">}</span>
 <a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>
 <a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>    <span class="c1">#[Apply]</span>
-<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">applyProfileCreated</span><span class="p">(</span><span class="nx">ProfileCreated</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">applyProfileRegistered</span><span class="p">(</span><span class="nx">ProfileRegistered</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
 <a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>    <span class="p">{</span>
 <a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">id</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">profileId</span><span class="p">;</span>
 <a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
@@ -1119,7 +1130,8 @@ All of this happens automatically in the <code>load</code> method.</p>
 In this method the event <code>NameChanged</code> is generated and recorded.
 The <code>applyNameChanged</code> method was also called again internally to adjust the state.</p>
 <p>When the <code>save</code> method is called on the repository, 
-all newly recorded events are then fetched and written to the database.</p>
+all newly recorded events are then fetched and written to the database.
+In this specific case only the <code>NameChanged</code> changed event.</p>
 <h2 id="multiple-apply-attributes-on-the-same-method">Multiple apply attributes on the same method</h2>
 <p>You can also define several apply attributes with different events using the same method.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateRoot</span><span class="p">;</span>
@@ -1279,10 +1291,10 @@ Here we show how we can do it all with a value object:</p>
 <a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>    <span class="k">private</span> <span class="nx">string</span> <span class="nv">$id</span><span class="p">;</span>
 <a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>    <span class="k">private</span> <span class="nx">Name</span> <span class="nv">$name</span><span class="p">;</span>
 <a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>
-<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">create</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$id</span><span class="p">,</span> <span class="nx">Name</span> <span class="nv">$name</span><span class="p">)</span><span class="o">:</span> <span class="k">static</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">register</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$id</span><span class="p">,</span> <span class="nx">Name</span> <span class="nv">$name</span><span class="p">)</span><span class="o">:</span> <span class="k">static</span>
 <a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>    <span class="p">{</span>
 <a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>        <span class="nv">$self</span> <span class="o">=</span> <span class="k">new</span> <span class="k">static</span><span class="p">();</span>
-<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>        <span class="nv">$self</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">ProfileCreated</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$name</span><span class="p">));</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>        <span class="nv">$self</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">ProfileRegistered</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$name</span><span class="p">));</span>
 <a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>
 <a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>        <span class="k">return</span> <span class="nv">$self</span><span class="p">;</span>
 <a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>    <span class="p">}</span>
@@ -1340,7 +1352,7 @@ or fill a <a href="../projection/">projection</a> with fully booked hotels.</p>
 <a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Apply</span><span class="p">;</span>
 <a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\SuppressMissingApply</span><span class="p">;</span>
 <a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="c1">#[Aggregate(&#39;profile&#39;)]</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="c1">#[Aggregate(&#39;hotel&#39;)]</span>
 <a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="c1">#[SuppressMissingApply([FullyBooked::class])]</span>
 <a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Hotel</span> <span class="k">extends</span> <span class="nx">AggregateRoot</span>
 <a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="p">{</span>
@@ -1370,23 +1382,80 @@ or fill a <a href="../projection/">projection</a> with fully booked hotels.</p>
 <a id="__codelineno-14-33" name="__codelineno-14-33" href="#__codelineno-14-33"></a>    <span class="p">}</span>
 <a id="__codelineno-14-34" name="__codelineno-14-34" href="#__codelineno-14-34"></a><span class="p">}</span>
 </code></pre></div>
+<h2 id="working-with-dates">Working with dates</h2>
+<p>An aggregate should always be deterministic. In other words, whenever I execute methods on the aggregate, 
+I always get the same result. This also makes testing much easier.</p>
+<p>But that often doesn't seem to be possible, e.g. if you want to save a createAt date. 
+But you can pass this information by yourself.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateRoot</span><span class="p">;</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Apply</span><span class="p">;</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="c1">#[Aggregate(&#39;profile&#39;)]</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">AggregateRoot</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="p">{</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>    <span class="k">private</span> <span class="nx">string</span> <span class="nv">$id</span><span class="p">;</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>    <span class="k">private</span> <span class="nx">Name</span> <span class="nv">$name</span><span class="p">;</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>    <span class="k">private</span> <span class="nx">DateTimeImmutable</span> <span class="nv">$registeredAt</span><span class="p">;</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">register</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$id</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">,</span> <span class="nx">DateTimeImmutable</span> <span class="nv">$registeredAt</span><span class="p">)</span><span class="o">:</span> <span class="k">static</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>    <span class="p">{</span>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>        <span class="nv">$self</span> <span class="o">=</span> <span class="k">new</span> <span class="k">static</span><span class="p">();</span>
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>        <span class="nv">$self</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">ProfileRegistered</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$name</span><span class="p">,</span> <span class="nv">$registeredAt</span><span class="p">));</span>
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>        <span class="k">return</span> <span class="nv">$self</span><span class="p">;</span>
+<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>    <span class="p">}</span>
+<a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a>
+<a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a><span class="p">}</span>
+</code></pre></div>
+<p>But if you still want to make sure that the time is "now" and not in the past or future, you can pass a clock.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateRoot</span><span class="p">;</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Apply</span><span class="p">;</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Clock\Clock</span><span class="p">;</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="c1">#[Aggregate(&#39;profile&#39;)]</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">AggregateRoot</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="p">{</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>    <span class="k">private</span> <span class="nx">string</span> <span class="nv">$id</span><span class="p">;</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>    <span class="k">private</span> <span class="nx">Name</span> <span class="nv">$name</span><span class="p">;</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>    <span class="k">private</span> <span class="nx">DateTimeImmutable</span> <span class="nv">$registeredAt</span><span class="p">;</span>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">register</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$id</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">,</span> <span class="nx">Clock</span> <span class="nv">$clock</span><span class="p">)</span><span class="o">:</span> <span class="k">static</span>
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>    <span class="p">{</span>
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>        <span class="nv">$self</span> <span class="o">=</span> <span class="k">new</span> <span class="k">static</span><span class="p">();</span>
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>        <span class="nv">$self</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">ProfileRegistered</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$name</span><span class="p">,</span> <span class="nv">$clock</span><span class="o">-&gt;</span><span class="na">now</span><span class="p">()));</span>
+<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>
+<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a>        <span class="k">return</span> <span class="nv">$self</span><span class="p">;</span>
+<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a>    <span class="p">}</span>
+<a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a>
+<a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a><span class="p">}</span>
+</code></pre></div>
+<p>Now you can pass the <code>SystemClock</code> to determine the current time. 
+Or for test purposes the <code>FrozenClock</code>, which always returns the same time.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can find out more about clock <a href="../clock/">here</a>.</p>
+</div>
 <h2 id="aggregate-root-registry">Aggregate Root Registry</h2>
 <p>The library needs to know about all aggregates so that the correct aggregate class is used to load from the database.
 There is an <code>AggregateRootRegistry</code> for this purpose. The registry is a simple hashmap between aggregate name and aggregate class.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Metadata\AggregateRoot\AggregateRootRegistry</span><span class="p">;</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="nv">$aggregateRegistry</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AggregateRootRegistry</span><span class="p">([</span>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    <span class="s1">&#39;profile&#39;</span> <span class="o">=&gt;</span> <span class="nx">Profile</span><span class="o">::</span><span class="na">class</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="p">]);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Metadata\AggregateRoot\AggregateRootRegistry</span><span class="p">;</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="nv">$aggregateRegistry</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AggregateRootRegistry</span><span class="p">([</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>    <span class="s1">&#39;profile&#39;</span> <span class="o">=&gt;</span> <span class="nx">Profile</span><span class="o">::</span><span class="na">class</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="p">]);</span>
 </code></pre></div>
 <p>So that you don't have to create it by hand, you can use a factory.
 By default, the <code>AttributeAggregateRootRegistryFactory</code> is used.
 There, with the help of paths, all classes with the attribute <code>Aggregate</code> are searched for
 and the <code>AggregateRootRegistry</code> is built up.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Metadata\AggregateRoot\AttributeAggregateRootRegistryFactory</span><span class="p">;</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Metadata\AggregateRoot\AggregateRootRegistry</span><span class="p">;</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="nv">$aggregateRegistry</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">AttributeEventRegistryFactory</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$paths</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Metadata\AggregateRoot\AttributeAggregateRootRegistryFactory</span><span class="p">;</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Metadata\AggregateRoot\AggregateRootRegistry</span><span class="p">;</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="nv">$aggregateRegistry</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">AttributeEventRegistryFactory</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$paths</span><span class="p">);</span>
 </code></pre></div>
 
               

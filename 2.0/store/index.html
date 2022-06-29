@@ -434,6 +434,40 @@
     Transaction
   </a>
   
+    <nav class="md-nav" aria-label="Transaction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#begin-transaction" class="md-nav__link">
+    Begin transaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit-transaction" class="md-nav__link">
+    Commit transaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rollback-transaction" class="md-nav__link">
+    Rollback transaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transactional-function" class="md-nav__link">
+    Transactional function
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -860,6 +894,40 @@
     Transaction
   </a>
   
+    <nav class="md-nav" aria-label="Transaction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#begin-transaction" class="md-nav__link">
+    Begin transaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit-transaction" class="md-nav__link">
+    Commit transaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rollback-transaction" class="md-nav__link">
+    Rollback transaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transactional-function" class="md-nav__link">
+    Transactional function
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -915,8 +983,8 @@
 
 
 <h1 id="store">Store</h1>
-<p>In the end, the events/messages have to be saved somewhere. 
-The library is based on <a href="https://www.doctrine-project.org/projects/dbal.html">doctrine dbal</a> 
+<p>In the end, the events/messages have to be saved somewhere.
+The library is based on <a href="https://www.doctrine-project.org/projects/dbal.html">doctrine dbal</a>
 and offers two different store strategies.</p>
 <p>But it is also possible to develop your own store by implementing the <code>Store</code> interface.</p>
 <h2 id="create-dbal-connection">Create DBAL connection</h2>
@@ -935,8 +1003,8 @@ and offers two different store strategies.</p>
 <h2 id="store-types">Store types</h2>
 <p>We offer two store strategies that you can choose as you like.</p>
 <h3 id="single-table-store">Single Table Store</h3>
-<p>With the <code>SingleTableStore</code> everything is saved in one table. 
-The dbal connection is needed, a mapping of the aggregate class and aggregate name 
+<p>With the <code>SingleTableStore</code> everything is saved in one table.
+The dbal connection is needed, a mapping of the aggregate class and aggregate name
 and, last but not least, the table name.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Metadata\AggregateRoot\AggregateRootRegistry</span><span class="p">;</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\DefaultEventSerializer</span><span class="p">;</span>
@@ -956,9 +1024,9 @@ and, last but not least, the table name.</p>
 <p>You can switch between strategies using the <a href="../pipeline/">pipeline</a>.</p>
 </div>
 <h3 id="multi-table-store">Multi Table Store</h3>
-<p>With the <code>MultiTableStore</code> a separate table is created for each aggregate type. 
-In addition, a meta table is created by referencing all events in the correct order. 
-The dbal connection is needed, a mapping of the aggregate class and table name 
+<p>With the <code>MultiTableStore</code> a separate table is created for each aggregate type.
+In addition, a meta table is created by referencing all events in the correct order.
+The dbal connection is needed, a mapping of the aggregate class and table name
 and, last but not least, the table name for the metadata.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Metadata\AggregateRoot\AggregateRootRegistry</span><span class="p">;</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\DefaultEventSerializer</span><span class="p">;</span>
@@ -978,7 +1046,37 @@ and, last but not least, the table name for the metadata.</p>
 <p>You can switch between strategies using the <a href="../pipeline/">pipeline</a>.</p>
 </div>
 <h2 id="transaction">Transaction</h2>
-<p>// TODO</p>
+<p>Our stores also implement the <code>TransactionStore</code> interface.
+This allows you to combine several aggregate interactions in one transaction
+and thus ensure that everything is saved together or none of it.</p>
+<p>Since the library is based on doctrine dbal, our implementation is just a proxy.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can find more about dbal transaction <a href="https://www.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/transactions.html">here</a>.</p>
+</div>
+<h3 id="begin-transaction">Begin transaction</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nv">$store</span><span class="o">-&gt;</span><span class="na">transactionBegin</span><span class="p">();</span>
+</code></pre></div>
+<h3 id="commit-transaction">Commit transaction</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nv">$store</span><span class="o">-&gt;</span><span class="na">transactionCommit</span><span class="p">();</span>
+</code></pre></div>
+<h3 id="rollback-transaction">Rollback transaction</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nv">$store</span><span class="o">-&gt;</span><span class="na">transactionRollback</span><span class="p">();</span>
+</code></pre></div>
+<h3 id="transactional-function">Transactional function</h3>
+<p>There is also the possibility of executing a function in a transaction. 
+Then dbal takes care of starting a transaction, committing it and then possibly rollback it again.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nv">$store</span><span class="o">-&gt;</span><span class="na">transactional</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$command</span><span class="p">,</span> <span class="nv">$bankAccountRepository</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="nv">$accountFrom</span> <span class="o">=</span> <span class="nv">$bankAccountRepository</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$command</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">());</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="nv">$accountTo</span> <span class="o">=</span> <span class="nv">$bankAccountRepository</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$command</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">());</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="nv">$accountFrom</span><span class="o">-&gt;</span><span class="na">transferMoney</span><span class="p">(</span><span class="nv">$command</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">(),</span> <span class="nv">$command</span><span class="o">-&gt;</span><span class="na">amount</span><span class="p">());</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="nv">$accountTo</span><span class="o">-&gt;</span><span class="na">receiveMoney</span><span class="p">(</span><span class="nv">$command</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(),</span> <span class="nv">$command</span><span class="o">-&gt;</span><span class="na">amount</span><span class="p">());</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="nv">$bankAccountRepository</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$accountFrom</span><span class="p">);</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="nv">$bankAccountRepository</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$accountTo</span><span class="p">);</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="p">});</span>
+</code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>To ensure that all listeners are executed for the released events 
@@ -992,19 +1090,19 @@ you can use the <a href="../outbox/">outbox</a> pattern for it.</p>
 <p>You can also use doctrine <a href="../migration/">migration</a> to create and keep your schema in sync.</p>
 </div>
 <h3 id="create-schema">Create schema</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaManager</span><span class="p">;</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">(</span><span class="k">new</span> <span class="nx">SchemaManager</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$store</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaManager</span><span class="p">;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">(</span><span class="k">new</span> <span class="nx">SchemaManager</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$store</span><span class="p">);</span>
 </code></pre></div>
 <h3 id="update-schema">Update schema</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaManager</span><span class="p">;</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">(</span><span class="k">new</span> <span class="nx">SchemaManager</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="nv">$store</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaManager</span><span class="p">;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">(</span><span class="k">new</span> <span class="nx">SchemaManager</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="nv">$store</span><span class="p">);</span>
 </code></pre></div>
 <h3 id="drop-schema">Drop schema</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaManager</span><span class="p">;</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">(</span><span class="k">new</span> <span class="nx">SchemaManager</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">drop</span><span class="p">(</span><span class="nv">$store</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaManager</span><span class="p">;</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="p">(</span><span class="k">new</span> <span class="nx">SchemaManager</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">drop</span><span class="p">(</span><span class="nv">$store</span><span class="p">);</span>
 </code></pre></div>
 
               

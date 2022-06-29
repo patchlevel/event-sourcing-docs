@@ -849,9 +849,9 @@
 <h1 id="projections">Projections</h1>
 <p>With <code>projections</code> you can create your data optimized for reading.
 projections can be adjusted, deleted or rebuilt at any time.
-This is possible because the source of truth remains untouched 
+This is possible because the source of truth remains untouched
 and everything can always be reproduced from the events.</p>
-<p>The target of a projection can be anything. 
+<p>The target of a projection can be anything.
 Either a file, a relational database, a no-sql database like mongodb or an elasticsearch.</p>
 <h2 id="define-projection">Define Projection</h2>
 <p>In this example we always create a new data set in a relational database when a profile is created:</p>
@@ -903,11 +903,16 @@ Either a file, a relational database, a no-sql database like mongodb or an elast
 <p>You should not execute any actions with projections, 
 otherwise these will be executed again if you rebuild the projection!</p>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you are using psalm then you can install the event sourcing <a href="https://github.com/patchlevel/event-sourcing-psalm-plugin">plugin</a> 
+to make the event method return the correct type.</p>
+</div>
 <p>Projections have a <code>create</code> and a <code>drop</code> method that is executed when the projection is created or deleted.
 In some cases it may be that no schema has to be created for the projection, as the target does it automatically.</p>
-<p>In order for the projection to know which method is responsible for which event, 
+<p>In order for the projection to know which method is responsible for which event,
 the methods must be given the <code>Handle</code> attribute with the respective event class name.</p>
-<p>As soon as the event has been dispatched, the appropriate methods are then executed. 
+<p>As soon as the event has been dispatched, the appropriate methods are then executed.
 Several projections can also listen to the same event.</p>
 <h2 id="register-projections">Register projections</h2>
 <p>So that the projections are known and also executed, you have to add them to the <code>ProjectionHandler</code>.
@@ -931,8 +936,8 @@ Then add this to the event bus using the <code>ProjectionListener</code>.</p>
 <p>You can find out more about the event bus <a href="../event_bus/">here</a>.</p>
 </div>
 <h2 id="setup-projection">Setup Projection</h2>
-<p>A projection schama or database usually has to be created beforehand. 
-And with a rebuild, the projection has to be deleted. 
+<p>A projection schama or database usually has to be created beforehand.
+And with a rebuild, the projection has to be deleted.
 To make this possible, projections have two methods <code>create</code> and <code>drop</code> that can be defined and executed.</p>
 <h3 id="create-projection-schema">Create Projection Schema</h3>
 <p>Or for all projections in the <code>MetadataAwareProjectionHandler</code>:</p>
