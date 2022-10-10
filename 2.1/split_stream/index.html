@@ -8,21 +8,21 @@
       
       
       
-        <link rel="canonical" href="https://patchlevel.de/2.1/">
+        <link rel="canonical" href="https://patchlevel.de/2.1/split_stream/">
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.3">
     
     
       
-        <title>Event Sourcing</title>
+        <title>Split Stream - Event Sourcing</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.e8d9bf0c.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.e8d9bf0c.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.e6a45f82.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
         
       
     
@@ -36,9 +36,9 @@
       
     
     
-      <link rel="stylesheet" href="stylesheets/extra.css">
+      <link rel="stylesheet" href="../stylesheets/extra.css">
     
-    <script>__md_scope=new URL(".",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#event-sourcing" class="md-skip">
+        <a href="#splitting-the-eventstream" class="md-skip">
           Skip to content
         </a>
       
@@ -93,7 +93,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Event Sourcing" class="md-header__button md-logo" aria-label="Event Sourcing" data-md-component="logo">
+    <a href=".." title="Event Sourcing" class="md-header__button md-logo" aria-label="Event Sourcing" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Introduction
+              Split Stream
             
           </span>
         </div>
@@ -213,7 +213,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Event Sourcing" class="md-nav__button md-logo" aria-label="Event Sourcing" data-md-component="logo">
+    <a href=".." title="Event Sourcing" class="md-nav__button md-logo" aria-label="Event Sourcing" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -242,66 +242,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Introduction
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
         Introduction
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
-    Features
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    Installation
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integration" class="md-nav__link">
-    Integration
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -314,7 +259,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting_started/" class="md-nav__link">
+      <a href="../getting_started/" class="md-nav__link">
         Getting Started
       </a>
     </li>
@@ -373,7 +318,7 @@
   
   
     <li class="md-nav__item">
-      <a href="aggregate/" class="md-nav__link">
+      <a href="../aggregate/" class="md-nav__link">
         Aggregate
       </a>
     </li>
@@ -387,7 +332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="events/" class="md-nav__link">
+      <a href="../events/" class="md-nav__link">
         Events
       </a>
     </li>
@@ -401,7 +346,7 @@
   
   
     <li class="md-nav__item">
-      <a href="repository/" class="md-nav__link">
+      <a href="../repository/" class="md-nav__link">
         Repository
       </a>
     </li>
@@ -415,7 +360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="store/" class="md-nav__link">
+      <a href="../store/" class="md-nav__link">
         Store
       </a>
     </li>
@@ -429,7 +374,7 @@
   
   
     <li class="md-nav__item">
-      <a href="event_bus/" class="md-nav__link">
+      <a href="../event_bus/" class="md-nav__link">
         Event Bus
       </a>
     </li>
@@ -443,7 +388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="processor/" class="md-nav__link">
+      <a href="../processor/" class="md-nav__link">
         Processor
       </a>
     </li>
@@ -457,7 +402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="projection/" class="md-nav__link">
+      <a href="../projection/" class="md-nav__link">
         Projection
       </a>
     </li>
@@ -477,14 +422,16 @@
 
   
   
+    
+  
   
     
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
       
       
       
@@ -525,7 +472,7 @@
   
   
     <li class="md-nav__item">
-      <a href="normalizer/" class="md-nav__link">
+      <a href="../normalizer/" class="md-nav__link">
         Normalizer
       </a>
     </li>
@@ -539,7 +486,7 @@
   
   
     <li class="md-nav__item">
-      <a href="snapshots/" class="md-nav__link">
+      <a href="../snapshots/" class="md-nav__link">
         Snapshots
       </a>
     </li>
@@ -553,7 +500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="upcasting/" class="md-nav__link">
+      <a href="../upcasting/" class="md-nav__link">
         Upcasting
       </a>
     </li>
@@ -567,7 +514,7 @@
   
   
     <li class="md-nav__item">
-      <a href="outbox/" class="md-nav__link">
+      <a href="../outbox/" class="md-nav__link">
         Outbox
       </a>
     </li>
@@ -581,7 +528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pipeline/" class="md-nav__link">
+      <a href="../pipeline/" class="md-nav__link">
         Pipeline
       </a>
     </li>
@@ -595,7 +542,7 @@
   
   
     <li class="md-nav__item">
-      <a href="message_decorator/" class="md-nav__link">
+      <a href="../message_decorator/" class="md-nav__link">
         Message Decorator
       </a>
     </li>
@@ -607,11 +554,52 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="split_stream/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Split Stream
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Split Stream
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#flagging-an-event-to-split-the-stream" class="md-nav__link">
+    Flagging an event to split the stream
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -623,7 +611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="clock/" class="md-nav__link">
+      <a href="../clock/" class="md-nav__link">
         Time / Clock
       </a>
     </li>
@@ -685,7 +673,7 @@
   
   
     <li class="md-nav__item">
-      <a href="uuid/" class="md-nav__link">
+      <a href="../uuid/" class="md-nav__link">
         UUID
       </a>
     </li>
@@ -699,7 +687,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cli/" class="md-nav__link">
+      <a href="../cli/" class="md-nav__link">
         CLI
       </a>
     </li>
@@ -713,7 +701,7 @@
   
   
     <li class="md-nav__item">
-      <a href="migration/" class="md-nav__link">
+      <a href="../migration/" class="md-nav__link">
         Schema Migration
       </a>
     </li>
@@ -727,7 +715,7 @@
   
   
     <li class="md-nav__item">
-      <a href="watch_server/" class="md-nav__link">
+      <a href="../watch_server/" class="md-nav__link">
         Watch Server
       </a>
     </li>
@@ -741,7 +729,7 @@
   
   
     <li class="md-nav__item">
-      <a href="tests/" class="md-nav__link">
+      <a href="../tests/" class="md-nav__link">
         Tests
       </a>
     </li>
@@ -782,22 +770,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
-    Features
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    Installation
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#integration" class="md-nav__link">
-    Integration
+  <a href="#flagging-an-event-to-split-the-stream" class="md-nav__link">
+    Flagging an event to split the stream
   </a>
   
 </li>
@@ -814,33 +788,47 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/patchlevel/event-sourcing/edit/2.0.x/docs/pages/index.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/patchlevel/event-sourcing/edit/2.0.x/docs/pages/split_stream.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
 
-<h1 id="event-sourcing">Event-Sourcing</h1>
-<p>A lightweight but also all-inclusive event sourcing library with a focus on developer experience.</p>
-<h2 id="features">Features</h2>
-<ul>
-<li>Everything is included in the package for event sourcing</li>
-<li>Based on <a href="https://github.com/doctrine/dbal">doctrine dbal</a> and their ecosystem</li>
-<li>Developer experience oriented and fully typed</li>
-<li><a href="snapshots/">Snapshots</a> system to quickly rebuild the aggregates</li>
-<li><a href="pipeline/">Pipeline</a> to build new <a href="projection/">projections</a> or to migrate events</li>
-<li><a href="store/">Scheme management</a> and <a href="store/">doctrine migration</a> support</li>
-<li>Dev <a href="watch_server/">tools</a> such as a realtime event watcher</li>
-<li>Built in <a href="cli/">cli commands</a> with <a href="https://symfony.com/">symfony</a></li>
-</ul>
-<h2 id="installation">Installation</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>composer require patchlevel/event-sourcing
+<h1 id="splitting-the-eventstream">Splitting the eventstream</h1>
+<p>In some cases the business has rules which implies an restart of the event stream for an aggregate since the past events
+are not relevant for the current state. For example a user decides to end his active subscription and the business rules
+says if the user start a new subscription all past events should not be considered anymore. Another case could be a
+banking scenario. There the business decides to save the current state every quarter for each banking account.</p>
+<p>Not only that some businesses requires such an action it also increases the performance for aggregate which would have a
+really long event stream. </p>
+<h2 id="flagging-an-event-to-split-the-stream">Flagging an event to split the stream</h2>
+<p>To use this feature you need to add the <code>SplitStreamDecorator</code>. You will also need events which will trigger this
+action. For that you can use the <code>#[SplitStream]</code> attribute. We decided that we are not literallty splitting the stream, 
+instead we are marking all past events as archived as soon as this event is saved. Then the past events will not be 
+loaded anymore for building the aggregate. This means that all needed data has to be present in these events which 
+should trigger the event split.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">#[Event(&#39;bank_account.month_passed&#39;)]</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1">#[SplitStream]</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">MonthPassed</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">{</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="c1">#[Normalize(new AccountIdNormalizer())]</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="k">public</span> <span class="nx">AccountId</span> <span class="nv">$accountId</span><span class="p">,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="k">public</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="k">public</span> <span class="nx">int</span> <span class="nv">$balanceInCents</span><span class="p">,</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="p">}</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">}</span>
 </code></pre></div>
-<h2 id="integration">Integration</h2>
-<ul>
-<li><a href="https://github.com/patchlevel/event-sourcing-bundle">Symfony</a></li>
-<li><a href="https://github.com/patchlevel/event-sourcing-psalm-plugin">Psalm</a></li>
-</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This archive flag only impacts the Store::load method which is used the build the aggregate from the stream.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The event needs all data which is relevant the aggregate to be used since all past event will not be loaded! Keep 
+this in mind if you want to use this feature.</p>
+</div>
 
               
             </article>
@@ -858,15 +846,30 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
+        
+        <a href="../message_decorator/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Message Decorator" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Message Decorator
+            </div>
+          </div>
+        </a>
+      
       
         
-        <a href="getting_started/" class="md-footer__link md-footer__link--next" aria-label="Next: Getting Started" rel="next">
+        <a href="../clock/" class="md-footer__link md-footer__link--next" aria-label="Next: Time / Clock" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Getting Started
+              Time / Clock
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -918,10 +921,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.sections", "navigation.top", "navigation.indexes", "content.code.annotate"], "search": "assets/javascripts/workers/search.bd0b6b67.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.top", "navigation.indexes", "content.code.annotate"], "search": "../assets/javascripts/workers/search.bd0b6b67.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.b88e97c5.min.js"></script>
+      <script src="../assets/javascripts/bundle.b88e97c5.min.js"></script>
       
     
   </body>

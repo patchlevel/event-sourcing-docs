@@ -479,6 +479,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#create-schemadirector" class="md-nav__link">
+    Create SchemaDirector
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#create-schema" class="md-nav__link">
     Create schema
   </a>
@@ -593,6 +600,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_4">
@@ -685,6 +694,20 @@
     <li class="md-nav__item">
       <a href="../message_decorator/" class="md-nav__link">
         Message Decorator
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../split_stream/" class="md-nav__link">
+        Split Stream
       </a>
     </li>
   
@@ -939,6 +962,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#create-schemadirector" class="md-nav__link">
+    Create SchemaDirector
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#create-schema" class="md-nav__link">
     Create schema
   </a>
@@ -1084,25 +1114,27 @@ or that the listeners are not executed if the transaction fails,
 you can use the <a href="../outbox/">outbox</a> pattern for it.</p>
 </div>
 <h2 id="schema-manager">Schema Manager</h2>
-<p>With the help of the <code>SchemaManager</code>, the database structure can be created, updated and deleted.</p>
+<p>With the help of the <code>SchemaDirector</code>, the database structure can be created, updated and deleted.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>You can also use doctrine <a href="../migration/">migration</a> to create and keep your schema in sync.</p>
 </div>
-<h3 id="create-schema">Create schema</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaManager</span><span class="p">;</span>
+<h3 id="create-schemadirector">Create SchemaDirector</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaDirector</span><span class="p">;</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">(</span><span class="k">new</span> <span class="nx">SchemaManager</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$store</span><span class="p">);</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nv">$schemaDirector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineSchemaDirector</span><span class="p">(</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="nv">$store</span><span class="p">,</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="nv">$connection</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">);</span>
+</code></pre></div>
+<h3 id="create-schema">Create schema</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nv">$schemaDirector</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
 </code></pre></div>
 <h3 id="update-schema">Update schema</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaManager</span><span class="p">;</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">(</span><span class="k">new</span> <span class="nx">SchemaManager</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="nv">$store</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nv">$schemaDirector</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">();</span>
 </code></pre></div>
 <h3 id="drop-schema">Drop schema</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaManager</span><span class="p">;</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="p">(</span><span class="k">new</span> <span class="nx">SchemaManager</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">drop</span><span class="p">(</span><span class="nv">$store</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nv">$schemaDirector</span><span class="o">-&gt;</span><span class="na">drop</span><span class="p">();</span>
 </code></pre></div>
 
               
