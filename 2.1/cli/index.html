@@ -450,6 +450,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_4">
@@ -500,6 +502,20 @@
     <li class="md-nav__item">
       <a href="../upcasting/" class="md-nav__link">
         Upcasting
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projectionist/" class="md-nav__link">
+        Projectionist
       </a>
     </li>
   
@@ -701,6 +717,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#projectionist-commands" class="md-nav__link">
+    Projectionist commands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#outbox-commands" class="md-nav__link">
     Outbox commands
   </a>
@@ -819,6 +842,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#projectionist-commands" class="md-nav__link">
+    Projectionist commands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#outbox-commands" class="md-nav__link">
     Outbox commands
   </a>
@@ -883,6 +913,20 @@ see the <a href="../store/">store</a> documentation for this.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The <a href="../pipeline/">pipeline</a> will be used to rebuild the projection.</p>
+</div>
+<h2 id="projectionist-commands">Projectionist commands</h2>
+<p>To manage your projectors there are the following cli commands.</p>
+<ul>
+<li>ProjectionistBootCommand: <code>event-sourcing:projectionist:boot</code></li>
+<li>ProjectionistReactiveCommand: <code>event-sourcing:projectionist:reactive</code></li>
+<li>ProjectionistRemoveCommand: <code>event-sourcing:projectionist:remove</code></li>
+<li>ProjectionistRunCommand: <code>event-sourcing:projectionist:run</code></li>
+<li>ProjectionistStatusCommand: <code>event-sourcing:projectionist:status</code></li>
+<li>ProjectionistTeardownCommand: <code>event-sourcing:projectionist:teardown</code></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can find out more about projectionist <a href="../projectionist/">here</a>.</p>
 </div>
 <h2 id="outbox-commands">Outbox commands</h2>
 <p>Interacting with the outbox store is also possible via the cli.</p>

@@ -540,6 +540,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_4">
@@ -590,6 +592,20 @@
     <li class="md-nav__item">
       <a href="../upcasting/" class="md-nav__link">
         Upcasting
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projectionist/" class="md-nav__link">
+        Projectionist
       </a>
     </li>
   
@@ -1029,9 +1045,9 @@ we need a projection for it.</p>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Drop</span><span class="p">;</span>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Handle</span><span class="p">;</span>
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\Message</span><span class="p">;</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projection</span><span class="p">;</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projector\Projector</span><span class="p">;</span>
 <a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">HotelProjection</span> <span class="k">implements</span> <span class="nx">Projection</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">HotelProjection</span> <span class="k">implements</span> <span class="nx">Projector</span>
 <a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">{</span>
 <a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="k">private</span> <span class="nx">Connection</span> <span class="nv">$db</span><span class="p">;</span>
 <a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
@@ -1040,51 +1056,59 @@ we need a projection for it.</p>
 <a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span> <span class="o">=</span> <span class="nv">$db</span><span class="p">;</span>
 <a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    <span class="p">}</span>
 <a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>
-<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>    <span class="c1">#[Handle(HotelCreated::class)]</span>
-<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">handleHotelCreated</span><span class="p">(</span><span class="nx">Message</span> <span class="nv">$message</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
-<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>    <span class="p">{</span>
-<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>        <span class="nv">$event</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">event</span><span class="p">();</span>
-<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>
-<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span>
-<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>            <span class="s1">&#39;hotel&#39;</span><span class="p">,</span> 
-<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>            <span class="p">[</span>
-<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>                <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">hotelId</span><span class="p">,</span> 
-<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>                <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">hotelName</span><span class="p">,</span>
-<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>                <span class="s1">&#39;guests&#39;</span> <span class="o">=&gt;</span> <span class="mi">0</span>
-<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>            <span class="p">]</span>
-<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>        <span class="p">);</span>
-<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>    <span class="p">}</span>
-<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>
-<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>    <span class="c1">#[Handle(GuestIsCheckedIn::class)]</span>
-<a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">handleGuestIsCheckedIn</span><span class="p">(</span><span class="nx">Message</span> <span class="nv">$message</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
-<a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>    <span class="p">{</span>
-<a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span>
-<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>            <span class="s1">&#39;UPDATE hotel SET guests = guests + 1 WHERE id = ?;&#39;</span><span class="p">,</span>
-<a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>            <span class="p">[</span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">aggregateId</span><span class="p">()]</span>
-<a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a>        <span class="p">);</span>
-<a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a>    <span class="p">}</span>
-<a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a>
-<a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a>    <span class="c1">#[Handle(GuestIsCheckedOut::class)]</span>
-<a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">handleGuestIsCheckedOut</span><span class="p">(</span><span class="nx">Message</span> <span class="nv">$message</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
-<a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a>    <span class="p">{</span>
-<a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span>
-<a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a>            <span class="s1">&#39;UPDATE hotel SET guests = guests - 1 WHERE id = ?;&#39;</span><span class="p">,</span>
-<a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a>            <span class="p">[</span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">aggregateId</span><span class="p">()]</span>
-<a id="__codelineno-4-47" name="__codelineno-4-47" href="#__codelineno-4-47"></a>        <span class="p">);</span>
-<a id="__codelineno-4-48" name="__codelineno-4-48" href="#__codelineno-4-48"></a>    <span class="p">}</span>
-<a id="__codelineno-4-49" name="__codelineno-4-49" href="#__codelineno-4-49"></a>
-<a id="__codelineno-4-50" name="__codelineno-4-50" href="#__codelineno-4-50"></a>    <span class="c1">#[Create]</span>
-<a id="__codelineno-4-51" name="__codelineno-4-51" href="#__codelineno-4-51"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">create</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
-<a id="__codelineno-4-52" name="__codelineno-4-52" href="#__codelineno-4-52"></a>    <span class="p">{</span>
-<a id="__codelineno-4-53" name="__codelineno-4-53" href="#__codelineno-4-53"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span><span class="s1">&#39;CREATE TABLE IF NOT EXISTS hotel (id VARCHAR PRIMARY KEY, name VARCHAR, guests INTEGER);&#39;</span><span class="p">);</span>
-<a id="__codelineno-4-54" name="__codelineno-4-54" href="#__codelineno-4-54"></a>    <span class="p">}</span>
-<a id="__codelineno-4-55" name="__codelineno-4-55" href="#__codelineno-4-55"></a>
-<a id="__codelineno-4-56" name="__codelineno-4-56" href="#__codelineno-4-56"></a>    <span class="c1">#[Drop]</span>
-<a id="__codelineno-4-57" name="__codelineno-4-57" href="#__codelineno-4-57"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">drop</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
-<a id="__codelineno-4-58" name="__codelineno-4-58" href="#__codelineno-4-58"></a>    <span class="p">{</span>
-<a id="__codelineno-4-59" name="__codelineno-4-59" href="#__codelineno-4-59"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span><span class="s1">&#39;DROP TABLE IF EXISTS hotel;&#39;</span><span class="p">);</span>
-<a id="__codelineno-4-60" name="__codelineno-4-60" href="#__codelineno-4-60"></a>    <span class="p">}</span>
-<a id="__codelineno-4-61" name="__codelineno-4-61" href="#__codelineno-4-61"></a><span class="p">}</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>    <span class="sd">/**</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="sd">     * @return list&lt;array{id: string, name: string, guests: int}&gt;</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="sd">     */</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">getHotels</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span> 
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>    <span class="p">{</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">fetchAllAssociative</span><span class="p">(</span><span class="s1">&#39;SELECT id, name, guests FROM hotel;&#39;</span><span class="p">)</span>
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>    <span class="p">}</span>
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>    <span class="c1">#[Handle(HotelCreated::class)]</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">handleHotelCreated</span><span class="p">(</span><span class="nx">Message</span> <span class="nv">$message</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>    <span class="p">{</span>
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>        <span class="nv">$event</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">event</span><span class="p">();</span>
+<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>
+<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span>
+<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>            <span class="s1">&#39;hotel&#39;</span><span class="p">,</span> 
+<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>            <span class="p">[</span>
+<a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>                <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">hotelId</span><span class="p">,</span> 
+<a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>                <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">hotelName</span><span class="p">,</span>
+<a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>                <span class="s1">&#39;guests&#39;</span> <span class="o">=&gt;</span> <span class="mi">0</span>
+<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>            <span class="p">]</span>
+<a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>        <span class="p">);</span>
+<a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a>    <span class="p">}</span>
+<a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a>
+<a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a>    <span class="c1">#[Handle(GuestIsCheckedIn::class)]</span>
+<a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">handleGuestIsCheckedIn</span><span class="p">(</span><span class="nx">Message</span> <span class="nv">$message</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a>    <span class="p">{</span>
+<a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span>
+<a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a>            <span class="s1">&#39;UPDATE hotel SET guests = guests + 1 WHERE id = ?;&#39;</span><span class="p">,</span>
+<a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a>            <span class="p">[</span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">aggregateId</span><span class="p">()]</span>
+<a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a>        <span class="p">);</span>
+<a id="__codelineno-4-47" name="__codelineno-4-47" href="#__codelineno-4-47"></a>    <span class="p">}</span>
+<a id="__codelineno-4-48" name="__codelineno-4-48" href="#__codelineno-4-48"></a>
+<a id="__codelineno-4-49" name="__codelineno-4-49" href="#__codelineno-4-49"></a>    <span class="c1">#[Handle(GuestIsCheckedOut::class)]</span>
+<a id="__codelineno-4-50" name="__codelineno-4-50" href="#__codelineno-4-50"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">handleGuestIsCheckedOut</span><span class="p">(</span><span class="nx">Message</span> <span class="nv">$message</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-4-51" name="__codelineno-4-51" href="#__codelineno-4-51"></a>    <span class="p">{</span>
+<a id="__codelineno-4-52" name="__codelineno-4-52" href="#__codelineno-4-52"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span>
+<a id="__codelineno-4-53" name="__codelineno-4-53" href="#__codelineno-4-53"></a>            <span class="s1">&#39;UPDATE hotel SET guests = guests - 1 WHERE id = ?;&#39;</span><span class="p">,</span>
+<a id="__codelineno-4-54" name="__codelineno-4-54" href="#__codelineno-4-54"></a>            <span class="p">[</span><span class="nv">$message</span><span class="o">-&gt;</span><span class="na">aggregateId</span><span class="p">()]</span>
+<a id="__codelineno-4-55" name="__codelineno-4-55" href="#__codelineno-4-55"></a>        <span class="p">);</span>
+<a id="__codelineno-4-56" name="__codelineno-4-56" href="#__codelineno-4-56"></a>    <span class="p">}</span>
+<a id="__codelineno-4-57" name="__codelineno-4-57" href="#__codelineno-4-57"></a>
+<a id="__codelineno-4-58" name="__codelineno-4-58" href="#__codelineno-4-58"></a>    <span class="c1">#[Create]</span>
+<a id="__codelineno-4-59" name="__codelineno-4-59" href="#__codelineno-4-59"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">create</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-4-60" name="__codelineno-4-60" href="#__codelineno-4-60"></a>    <span class="p">{</span>
+<a id="__codelineno-4-61" name="__codelineno-4-61" href="#__codelineno-4-61"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span><span class="s1">&#39;CREATE TABLE IF NOT EXISTS hotel (id VARCHAR PRIMARY KEY, name VARCHAR, guests INTEGER);&#39;</span><span class="p">);</span>
+<a id="__codelineno-4-62" name="__codelineno-4-62" href="#__codelineno-4-62"></a>    <span class="p">}</span>
+<a id="__codelineno-4-63" name="__codelineno-4-63" href="#__codelineno-4-63"></a>
+<a id="__codelineno-4-64" name="__codelineno-4-64" href="#__codelineno-4-64"></a>    <span class="c1">#[Drop]</span>
+<a id="__codelineno-4-65" name="__codelineno-4-65" href="#__codelineno-4-65"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">drop</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-4-66" name="__codelineno-4-66" href="#__codelineno-4-66"></a>    <span class="p">{</span>
+<a id="__codelineno-4-67" name="__codelineno-4-67" href="#__codelineno-4-67"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span><span class="s1">&#39;DROP TABLE IF EXISTS hotel;&#39;</span><span class="p">);</span>
+<a id="__codelineno-4-68" name="__codelineno-4-68" href="#__codelineno-4-68"></a>    <span class="p">}</span>
+<a id="__codelineno-4-69" name="__codelineno-4-69" href="#__codelineno-4-69"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1128,25 +1152,25 @@ we need a projection for it.</p>
 <p>After we have defined everything, we still have to plug the whole thing together:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\DriverManager</span><span class="p">;</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\DefaultEventBus</span><span class="p">;</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\MetadataAwareProjectionHandler</span><span class="p">;</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\ProjectionListener</span><span class="p">;</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Repository\DefaultRepositoryManager</span><span class="p">;</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\DefaultEventSerializer</span><span class="p">;</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\SingleTableStore</span><span class="p">;</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="nv">$connection</span> <span class="o">=</span> <span class="nx">DriverManager</span><span class="o">::</span><span class="na">getConnection</span><span class="p">([</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="s1">&#39;url&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mysql://user:secret@localhost/app&#39;</span>
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="p">]);</span>
-<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
-<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="nv">$mailer</span> <span class="o">=</span> <span class="cm">/* your own mailer */</span><span class="p">;</span>
-<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
-<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="nv">$hotelProjection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">HotelProjection</span><span class="p">(</span><span class="nv">$connection</span><span class="p">);</span>
-<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="nv">$projectionHandler</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MetadataAwareProjectionHandler</span><span class="p">([</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projector\SyncProjectorListener</span><span class="p">;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Repository\DefaultRepositoryManager</span><span class="p">;</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\DefaultEventSerializer</span><span class="p">;</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\SingleTableStore</span><span class="p">;</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="nv">$connection</span> <span class="o">=</span> <span class="nx">DriverManager</span><span class="o">::</span><span class="na">getConnection</span><span class="p">([</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="s1">&#39;url&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mysql://user:secret@localhost/app&#39;</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="p">]);</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="nv">$mailer</span> <span class="o">=</span> <span class="cm">/* your own mailer */</span><span class="p">;</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="nv">$hotelProjection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">HotelProjection</span><span class="p">(</span><span class="nv">$connection</span><span class="p">);</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="nv">$projectorRepository</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ProjectorRepository</span><span class="p">([</span>
 <a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>    <span class="nv">$hotelProjection</span><span class="p">,</span>
 <a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="p">]);</span>
 <a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>
 <a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="nv">$eventBus</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultEventBus</span><span class="p">();</span>
-<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="nv">$eventBus</span><span class="o">-&gt;</span><span class="na">addListener</span><span class="p">(</span><span class="k">new</span> <span class="nx">ProjectionListener</span><span class="p">(</span><span class="nv">$projectionHandler</span><span class="p">));</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="nv">$eventBus</span><span class="o">-&gt;</span><span class="na">addListener</span><span class="p">(</span><span class="k">new</span> <span class="nx">SyncProjectorListener</span><span class="p">(</span><span class="nv">$projectorRepository</span><span class="p">));</span>
 <a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="nv">$eventBus</span><span class="o">-&gt;</span><span class="na">addListener</span><span class="p">(</span><span class="k">new</span> <span class="nx">SendCheckInEmailListener</span><span class="p">(</span><span class="nv">$mailer</span><span class="p">));</span>
 <a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>
 <a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="nv">$serializer</span> <span class="o">=</span> <span class="nx">DefaultEventSerializer</span><span class="o">::</span><span class="na">createFromPaths</span><span class="p">([</span><span class="s1">&#39;src/Domain/Hotel/Event&#39;</span><span class="p">]);</span>
@@ -1155,17 +1179,16 @@ we need a projection for it.</p>
 <a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="nv">$store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SingleTableStore</span><span class="p">(</span>
 <a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>    <span class="nv">$connection</span><span class="p">,</span>
 <a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a>    <span class="nv">$serializer</span><span class="p">,</span>
-<a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a>    <span class="nv">$aggregateRegistry</span><span class="p">,</span>
-<a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a>    <span class="s1">&#39;eventstore&#39;</span>
-<a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a><span class="p">);</span>
-<a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a>
-<a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a><span class="nv">$repositoryManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultRepositoryManager</span><span class="p">(</span>
-<a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a>    <span class="nv">$aggregateRegistry</span><span class="p">,</span>
-<a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a>    <span class="nv">$store</span><span class="p">,</span>
-<a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a>    <span class="nv">$eventBus</span>
-<a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a><span class="p">);</span>
-<a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a>
-<a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a><span class="nv">$repository</span> <span class="o">=</span> <span class="nv">$repositoryManager</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nx">Hotel</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a>    <span class="nv">$aggregateRegistry</span>
+<a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a><span class="p">);</span>
+<a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a>
+<a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a><span class="nv">$repositoryManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultRepositoryManager</span><span class="p">(</span>
+<a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a>    <span class="nv">$aggregateRegistry</span><span class="p">,</span>
+<a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a>    <span class="nv">$store</span><span class="p">,</span>
+<a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a>    <span class="nv">$eventBus</span>
+<a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a><span class="p">);</span>
+<a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a>
+<a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a><span class="nv">$hotelRepository</span> <span class="o">=</span> <span class="nv">$repositoryManager</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nx">Hotel</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1175,14 +1198,15 @@ we need a projection for it.</p>
 <p>So that we can actually write the data to a database,
 we need the associated schema and databases.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaDirector</span><span class="p">;</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nv">$schemaDirector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineSchemaDirector</span><span class="p">(</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="nv">$store</span><span class="p">,</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="nv">$connection</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">);</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="nv">$schemaDirector</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="nv">$projectionHandler</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projector\ProjectorHelper</span><span class="p">;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nv">$schemaDirector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineSchemaDirector</span><span class="p">(</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="nv">$store</span><span class="p">,</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="nv">$connection</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="p">);</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="nv">$schemaDirector</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="p">(</span><span class="k">new</span> <span class="nx">ProjectorHelper</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">createProjection</span><span class="p">(</span><span class="o">...</span><span class="nv">$projectorRepository</span><span class="o">-&gt;</span><span class="na">projectors</span><span class="p">());</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1190,16 +1214,18 @@ we need the associated schema and databases.</p>
 </div>
 <h2 id="usage">Usage</h2>
 <p>We are now ready to use the Event Sourcing System. We can load, change and save aggregates.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nv">$hotel</span> <span class="o">=</span> <span class="nx">Hotel</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;HOTEL&#39;</span><span class="p">);</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nv">$hotel</span><span class="o">-&gt;</span><span class="na">checkIn</span><span class="p">(</span><span class="s1">&#39;David&#39;</span><span class="p">);</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nv">$hotel</span><span class="o">-&gt;</span><span class="na">checkIn</span><span class="p">(</span><span class="s1">&#39;Daniel&#39;</span><span class="p">);</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="nv">$hotel</span><span class="o">-&gt;</span><span class="na">checkOut</span><span class="p">(</span><span class="s1">&#39;David&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nv">$hotel1</span> <span class="o">=</span> <span class="nx">Hotel</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;HOTEL&#39;</span><span class="p">);</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nv">$hotel1</span><span class="o">-&gt;</span><span class="na">checkIn</span><span class="p">(</span><span class="s1">&#39;David&#39;</span><span class="p">);</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nv">$hotel1</span><span class="o">-&gt;</span><span class="na">checkIn</span><span class="p">(</span><span class="s1">&#39;Daniel&#39;</span><span class="p">);</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="nv">$hotel1</span><span class="o">-&gt;</span><span class="na">checkOut</span><span class="p">(</span><span class="s1">&#39;David&#39;</span><span class="p">);</span>
 <a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="nv">$hotelRepository</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$hotel</span><span class="p">);</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="nv">$hotelRepository</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$hotel1</span><span class="p">);</span>
 <a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
 <a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="nv">$hotel2</span> <span class="o">=</span> <span class="nv">$hotelRepository</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span><span class="s1">&#39;2&#39;</span><span class="p">);</span>
 <a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="nv">$hotel2</span><span class="o">-&gt;</span><span class="na">checkIn</span><span class="p">(</span><span class="s1">&#39;David&#39;</span><span class="p">);</span>
 <a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="nv">$hotelRepository</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$hotel2</span><span class="p">);</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="nv">$hotels</span> <span class="o">=</span> <span class="nv">$hotelProjection</span><span class="o">-&gt;</span><span class="na">getHotels</span><span class="p">();</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
