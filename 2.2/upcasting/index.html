@@ -873,12 +873,9 @@ beforehand so we dont need to maintain two different places.</p>
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>            <span class="k">return</span> <span class="nv">$upcast</span><span class="p">;</span>
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="p">}</span>
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="nv">$payload</span> <span class="o">=</span> <span class="nv">$upcast</span><span class="o">-&gt;</span><span class="na">payload</span><span class="p">;</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        <span class="nv">$payload</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">strtolower</span><span class="p">(</span><span class="nv">$payload</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]);</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>         <span class="k">return</span> <span class="k">new</span> <span class="nx">Upcast</span><span class="p">(</span><span class="nv">$upcast</span><span class="o">-&gt;</span><span class="na">eventName</span><span class="p">,</span> <span class="nv">$payload</span><span class="p">)</span>
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="p">}</span>
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="p">}</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="k">return</span> <span class="nv">$upcast</span><span class="o">-&gt;</span><span class="na">replacePayloadByKey</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="nb">strtolower</span><span class="p">(</span><span class="nv">$upcast</span><span class="o">-&gt;</span><span class="na">payload</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]);</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="p">}</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -900,9 +897,11 @@ the upgrade path.</p>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__invoke</span><span class="p">(</span><span class="nx">Upcast</span> <span class="nv">$upcast</span><span class="p">)</span><span class="o">:</span> <span class="nx">Upcast</span>
 <a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="p">{</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        <span class="k">return</span> <span class="k">new</span> <span class="nx">Upcast</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">eventRegistry</span><span class="o">-&gt;</span><span class="na">eventName</span><span class="p">(</span><span class="nv">$upcast</span><span class="o">-&gt;</span><span class="na">eventName</span><span class="p">),</span> <span class="nv">$upcast</span><span class="o">-&gt;</span><span class="na">payload</span><span class="p">);</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="p">}</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="p">}</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        <span class="k">return</span> <span class="nv">$upcast</span><span class="o">-&gt;</span><span class="na">replaceEventName</span><span class="p">(</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">eventRegistry</span><span class="o">-&gt;</span><span class="na">eventName</span><span class="p">(</span><span class="nv">$upcast</span><span class="o">-&gt;</span><span class="na">eventName</span><span class="p">)</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>        <span class="p">);</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    <span class="p">}</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="p">}</span>
 </code></pre></div>
 <h2 id="use-upcasting">Use upcasting</h2>
 <p>After we have defined the upcasting rules, we also have to pass the whole thing to the serializer. 

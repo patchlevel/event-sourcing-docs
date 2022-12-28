@@ -463,6 +463,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#subscriber" class="md-nav__link">
+    Subscriber
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -886,6 +893,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#subscriber" class="md-nav__link">
+    Subscriber
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -960,7 +974,7 @@ This information is then accessible in the message object and is also stored in 
 </code></pre></div>
 <h2 id="event-bus_1">Event Bus</h2>
 <h3 id="default-event-bus">Default event bus</h3>
-<p>The library also delivers a light-weight event bus. This can only register listener and dispatch events.</p>
+<p>The library also delivers a light-weight event bus for which you can register listeners/subscribers and dispatch events.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\DefaultEventBus</span><span class="p">;</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nv">$eventBus</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultEventBus</span><span class="p">();</span>
@@ -1016,7 +1030,7 @@ This listener is then called for all saved events / messages.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\Listener</span><span class="p">;</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\Message</span><span class="p">;</span>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nv">$listener</span> <span class="o">=</span> <span class="k">new</span> <span class="k">class</span> <span class="nc">implements</span> <span class="nx">Listener</span> 
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">WelcomeListener</span> <span class="k">implements</span> <span class="nx">Listener</span> 
 <a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">{</span>
 <a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__invoke</span><span class="p">(</span><span class="nx">Message</span> <span class="nv">$message</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
 <a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="p">{</span>
@@ -1028,13 +1042,25 @@ This listener is then called for all saved events / messages.</p>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>If you only want to listen to certain messages, then you have to check it in the <code>__invoke</code> method.</p>
+<p>If you only want to listen to certain messages, 
+then you have to check it in the <code>__invoke</code> method or use the subscriber.</p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Basically, listeners can be categorized according to their tasks. 
-We have a <a href="../processor/">processor</a> and <a href="../projection/">projections</a>.</p>
-</div>
+<h2 id="subscriber">Subscriber</h2>
+<p>A <code>Subscriber</code> is a listener, except that it has implemented the invoke method itself. 
+Instead, you can define your own and multiple methods and listen for specific events with the attribute <code>Handle</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Handle</span><span class="p">;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\Listener</span><span class="p">;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\Message</span><span class="p">;</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">WelcomeSubscriber</span> <span class="k">extends</span> <span class="nx">Subscriber</span> 
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">{</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="c1">#[Handle(ProfileCreated::class)]</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">onProfileCreated</span><span class="p">(</span><span class="nx">Message</span> <span class="nv">$message</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    <span class="p">{</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>        <span class="k">echo</span> <span class="s1">&#39;Welcome!&#39;</span><span class="p">;</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>    <span class="p">}</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="p">}</span>
+</code></pre></div>
 
               
             </article>
