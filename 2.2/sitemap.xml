@@ -2,117 +2,117 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://patchlevel.de/2.2/</loc>
-         <lastmod>2023-01-12</lastmod>
+         <lastmod>2023-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.de/2.2/aggregate/</loc>
-         <lastmod>2023-01-12</lastmod>
+         <lastmod>2023-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.de/2.2/cli/</loc>
-         <lastmod>2023-01-12</lastmod>
+         <lastmod>2023-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.de/2.2/clock/</loc>
-         <lastmod>2023-01-12</lastmod>
+         <lastmod>2023-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.de/2.2/event_bus/</loc>
-         <lastmod>2023-01-12</lastmod>
+         <lastmod>2023-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.de/2.2/events/</loc>
-         <lastmod>2023-01-12</lastmod>
+         <lastmod>2023-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.de/2.2/getting_started/</loc>
-         <lastmod>2023-01-12</lastmod>
+         <lastmod>2023-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.de/2.2/message_decorator/</loc>
-         <lastmod>2023-01-12</lastmod>
+         <lastmod>2023-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.de/2.2/migration/</loc>
-         <lastmod>2023-01-12</lastmod>
+         <lastmod>2023-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.de/2.2/normalizer/</loc>
-         <lastmod>2023-01-12</lastmod>
+         <lastmod>2023-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.de/2.2/outbox/</loc>
-         <lastmod>2023-01-12</lastmod>
+         <lastmod>2023-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.de/2.2/pipeline/</loc>
-         <lastmod>2023-01-12</lastmod>
+         <lastmod>2023-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.de/2.2/processor/</loc>
-         <lastmod>2023-01-12</lastmod>
+         <lastmod>2023-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.de/2.2/projection/</loc>
-         <lastmod>2023-01-12</lastmod>
+         <lastmod>2023-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.de/2.2/projectionist/</loc>
-         <lastmod>2023-01-12</lastmod>
+         <lastmod>2023-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.de/2.2/repository/</loc>
-         <lastmod>2023-01-12</lastmod>
+         <lastmod>2023-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.de/2.2/snapshots/</loc>
-         <lastmod>2023-01-12</lastmod>
+         <lastmod>2023-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.de/2.2/split_stream/</loc>
-         <lastmod>2023-01-12</lastmod>
+         <lastmod>2023-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.de/2.2/store/</loc>
-         <lastmod>2023-01-12</lastmod>
+         <lastmod>2023-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.de/2.2/tests/</loc>
-         <lastmod>2023-01-12</lastmod>
+         <lastmod>2023-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.de/2.2/upcasting/</loc>
-         <lastmod>2023-01-12</lastmod>
+         <lastmod>2023-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.de/2.2/uuid/</loc>
-         <lastmod>2023-01-12</lastmod>
+         <lastmod>2023-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.de/2.2/watch_server/</loc>
-         <lastmod>2023-01-12</lastmod>
+         <lastmod>2023-01-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
