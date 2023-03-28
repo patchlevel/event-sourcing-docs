@@ -933,11 +933,11 @@ The events will be added later, but the following is enough to make it executabl
 <p>To register an aggregate you have to set the <code>Aggregate</code> attribute over the class,
 otherwise it will not be recognized as an aggregate.
 There you also have to give the aggregate a name.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateRoot</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1">#[Aggregate(&#39;profile&#39;)]</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">AggregateRoot</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">{</span>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="k">private</span> <span class="nx">string</span> <span class="nv">$id</span><span class="p">;</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
@@ -1013,12 +1013,12 @@ For our aggregate we create the Event <code>ProfileRegistered</code>:</p>
 <p>You can find out more about events <a href="../events/">here</a>.</p>
 </div>
 <p>After we have defined the event, we have to adapt the creation of the profile:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateRoot</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Apply</span><span class="p">;</span>
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
 <a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1">#[Aggregate(&#39;profile&#39;)]</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">AggregateRoot</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
 <a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">{</span>
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="k">private</span> <span class="nx">string</span> <span class="nv">$id</span><span class="p">;</span>
 <a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="k">private</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">;</span>
@@ -1080,12 +1080,12 @@ As example we can add a <code>NameChanged</code> event:</p>
 </div>
 <p>After we have defined the event, we can define a new public method called <code>changeName</code> to change the profile name. 
 This method then creates the event <code>NameChanged</code> and records it:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateRoot</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Apply</span><span class="p">;</span>
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1">#[Aggregate(&#39;profile&#39;)]</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">AggregateRoot</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
 <a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="p">{</span>
 <a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="k">private</span> <span class="nx">string</span> <span class="nv">$id</span><span class="p">;</span>
 <a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="k">private</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">;</span>
@@ -1130,7 +1130,7 @@ This method then creates the event <code>NameChanged</code> and records it:</p>
 <p>We have also defined a new <code>apply</code> method named <code>applyNameChanged</code> 
 where we change the name depending on the value in the event.</p>
 <p>When using it, it can look like this:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateRoot</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Repository\Repository</span><span class="p">;</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ChangeNameHandler</span>
@@ -1166,12 +1166,12 @@ all newly recorded events are then fetched and written to the database.
 In this specific case only the <code>NameChanged</code> changed event.</p>
 <h2 id="multiple-apply-attributes-on-the-same-method">Multiple apply attributes on the same method</h2>
 <p>You can also define several apply attributes with different events using the same method.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateRoot</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Apply</span><span class="p">;</span>
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
 <a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1">#[Aggregate(&#39;profile&#39;)]</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">AggregateRoot</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
 <a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="p">{</span>
 <a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    <span class="k">private</span> <span class="nx">string</span> <span class="nv">$id</span><span class="p">;</span>
 <a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    <span class="k">private</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">;</span>
@@ -1195,14 +1195,14 @@ In this specific case only the <code>NameChanged</code> changed event.</p>
 but are still recorded for the future, to listen on it or to create a projection. 
 So that you are not forced to write an apply method for it, 
 you can suppress the missing apply exceptions these events with the <code>SuppressMissingApply</code> attribute.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateRoot</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Apply</span><span class="p">;</span>
 <a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\SuppressMissingApply</span><span class="p">;</span>
 <a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
 <a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="c1">#[Aggregate(&#39;profile&#39;)]</span>
 <a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1">#[SuppressMissingApply([NameChanged::class])]</span>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">AggregateRoot</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
 <a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="p">{</span>
 <a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>    <span class="k">private</span> <span class="nx">string</span> <span class="nv">$id</span><span class="p">;</span>
 <a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>    <span class="k">private</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">;</span>
@@ -1219,14 +1219,14 @@ you can suppress the missing apply exceptions these events with the <code>Suppre
 </code></pre></div>
 <h2 id="suppress-missing-apply-for-all-methods">Suppress missing apply for all methods</h2>
 <p>You can also completely deactivate the exceptions for missing apply methods.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateRoot</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Apply</span><span class="p">;</span>
 <a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\SuppressMissingApply</span><span class="p">;</span>
 <a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
 <a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="c1">#[Aggregate(&#39;profile&#39;)]</span>
 <a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1">#[SuppressMissingApply(SuppressMissingApply::ALL)]</span>
-<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">AggregateRoot</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
 <a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="p">{</span>
 <a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>    <span class="k">private</span> <span class="nx">string</span> <span class="nv">$id</span><span class="p">;</span>
 <a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>    <span class="k">private</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">;</span>
@@ -1252,12 +1252,12 @@ As soon as an event was recorded, the described thing happened and cannot be und
 <p>A further check in the apply method is also not possible because these events have already happened 
 and were then also saved in the database. </p>
 <p>In the next example we want to make sure that <strong>the name is at least 3 characters long</strong>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateRoot</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Apply</span><span class="p">;</span>
 <a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
 <a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1">#[Aggregate(&#39;profile&#39;)]</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">AggregateRoot</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
 <a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="p">{</span>
 <a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>    <span class="k">private</span> <span class="nx">string</span> <span class="nv">$id</span><span class="p">;</span>
 <a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>    <span class="k">private</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">;</span>
@@ -1313,12 +1313,12 @@ Here we show how we can do it all with a value object:</p>
 <a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="p">}</span>
 </code></pre></div>
 <p>We can now use the value object <code>Name</code> in our aggregate:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateRoot</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
 <a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Apply</span><span class="p">;</span>
 <a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
 <a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="c1">#[Aggregate(&#39;profile&#39;)]</span>
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">AggregateRoot</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
 <a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="p">{</span>
 <a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>    <span class="k">private</span> <span class="nx">string</span> <span class="nv">$id</span><span class="p">;</span>
 <a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>    <span class="k">private</span> <span class="nx">Name</span> <span class="nv">$name</span><span class="p">;</span>
@@ -1378,14 +1378,14 @@ This is not a problem, as the <code>apply</code> methods are always executed imm
 Besides that, we record another event <code>FullyBooked</code>, if the hotel is fully booked with the last booking. 
 With this event we could <a href="../processor/">notify</a> external systems 
 or fill a <a href="../projection/">projection</a> with fully booked hotels.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateRoot</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
 <a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Apply</span><span class="p">;</span>
 <a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\SuppressMissingApply</span><span class="p">;</span>
 <a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>
 <a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="c1">#[Aggregate(&#39;hotel&#39;)]</span>
 <a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="c1">#[SuppressMissingApply([FullyBooked::class])]</span>
-<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Hotel</span> <span class="k">extends</span> <span class="nx">AggregateRoot</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Hotel</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
 <a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="p">{</span>
 <a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>    <span class="k">private</span> <span class="k">const</span> <span class="no">SIZE</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
 <a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>
@@ -1418,12 +1418,12 @@ or fill a <a href="../projection/">projection</a> with fully booked hotels.</p>
 I always get the same result. This also makes testing much easier.</p>
 <p>But that often doesn't seem to be possible, e.g. if you want to save a createAt date. 
 But you can pass this information by yourself.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateRoot</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
 <a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Apply</span><span class="p">;</span>
 <a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
 <a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="c1">#[Aggregate(&#39;profile&#39;)]</span>
-<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">AggregateRoot</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
 <a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="p">{</span>
 <a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>    <span class="k">private</span> <span class="nx">string</span> <span class="nv">$id</span><span class="p">;</span>
 <a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>    <span class="k">private</span> <span class="nx">Name</span> <span class="nv">$name</span><span class="p">;</span>
@@ -1441,13 +1441,13 @@ But you can pass this information by yourself.</p>
 <a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a><span class="p">}</span>
 </code></pre></div>
 <p>But if you still want to make sure that the time is "now" and not in the past or future, you can pass a clock.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateRoot</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
 <a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Apply</span><span class="p">;</span>
 <a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Clock\Clock</span><span class="p">;</span>
 <a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>
 <a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="c1">#[Aggregate(&#39;profile&#39;)]</span>
-<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">AggregateRoot</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
 <a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="p">{</span>
 <a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>    <span class="k">private</span> <span class="nx">string</span> <span class="nv">$id</span><span class="p">;</span>
 <a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>    <span class="k">private</span> <span class="nx">Name</span> <span class="nv">$name</span><span class="p">;</span>

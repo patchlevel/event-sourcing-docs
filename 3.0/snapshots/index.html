@@ -960,13 +960,13 @@ These caches also need a name so that you can determine which aggregates should 
 </div>
 <p>Next we need to tell the Aggregate to take a snapshot of it. We do this using the snapshot attribute. 
 There we also specify where it should be saved.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateRoot</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Snapshot</span><span class="p">;</span>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1">#[Aggregate(&#39;profile&#39;)]</span>
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1">#[Snapshot(&#39;default&#39;)]</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">AggregateRoot</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">{</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="c1">// ...</span>
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="p">}</span>
@@ -976,13 +976,13 @@ When loading, this data is written back to the properties.
 In other words, in the end everything has to be serializable. 
 To ensure this, the same system is used as for the events. 
 You can define normalizers to bring the properties into the correct format.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateRoot</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Snapshot</span><span class="p">;</span>
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
 <a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1">#[Aggregate(&#39;profile&#39;)]</span>
 <a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1">#[Snapshot(&#39;default&#39;)]</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">AggregateRoot</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">{</span>
 <a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$id</span><span class="p">;</span>
 <a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">,</span>
@@ -1010,13 +1010,13 @@ Or the snapshot version needs to be changed so that the previous snapshot is inv
 we do not need to create a snapshot after each event. That would also have a negative impact on performance. 
 Instead, we can also create a snapshot after <code>N</code> events. 
 The remaining events that are not in the snapshot are then loaded from store.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateRoot</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Snapshot</span><span class="p">;</span>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1">#[Aggregate(&#39;profile&#39;)]</span>
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1">#[Snapshot(&#39;default&#39;, batch: 1000)]</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">AggregateRoot</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
 <a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">{</span>
 <a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="c1">// ...</span>
 <a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="p">}</span>
@@ -1028,13 +1028,13 @@ But that can be quickly forgotten. It is much easier to specify a snapshot versi
 This snapshot version is also saved. When loading, the versions are compared and if they do not match, 
 the snapshot is discarded and the aggregate is rebuilt from scratch. 
 The new aggregate is then saved again as a snapshot.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateRoot</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Snapshot</span><span class="p">;</span>
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1">#[Aggregate(&#39;profile&#39;)]</span>
 <a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1">#[Snapshot(&#39;default&#39;, version: &#39;2&#39;)]</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">AggregateRoot</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
 <a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="p">{</span>
 <a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="c1">// ...</span>
 <a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="p">}</span>
