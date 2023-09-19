@@ -2,117 +2,117 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/2.3/</loc>
-         <lastmod>2023-09-14</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/2.3/aggregate/</loc>
-         <lastmod>2023-09-14</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/2.3/cli/</loc>
-         <lastmod>2023-09-14</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/2.3/clock/</loc>
-         <lastmod>2023-09-14</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/2.3/event_bus/</loc>
-         <lastmod>2023-09-14</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/2.3/events/</loc>
-         <lastmod>2023-09-14</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/2.3/getting_started/</loc>
-         <lastmod>2023-09-14</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/2.3/message_decorator/</loc>
-         <lastmod>2023-09-14</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/2.3/migration/</loc>
-         <lastmod>2023-09-14</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/2.3/normalizer/</loc>
-         <lastmod>2023-09-14</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/2.3/outbox/</loc>
-         <lastmod>2023-09-14</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/2.3/pipeline/</loc>
-         <lastmod>2023-09-14</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/2.3/processor/</loc>
-         <lastmod>2023-09-14</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/2.3/projection/</loc>
-         <lastmod>2023-09-14</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/2.3/projectionist/</loc>
-         <lastmod>2023-09-14</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/2.3/repository/</loc>
-         <lastmod>2023-09-14</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/2.3/snapshots/</loc>
-         <lastmod>2023-09-14</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/2.3/split_stream/</loc>
-         <lastmod>2023-09-14</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/2.3/store/</loc>
-         <lastmod>2023-09-14</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/2.3/tests/</loc>
-         <lastmod>2023-09-14</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/2.3/upcasting/</loc>
-         <lastmod>2023-09-14</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/2.3/uuid/</loc>
-         <lastmod>2023-09-14</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/2.3/watch_server/</loc>
-         <lastmod>2023-09-14</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
