@@ -1070,9 +1070,9 @@ new usecase. Normally you would need to create versioned events for this. This c
 event which could lead to some chaos. To prevent this we offer <code>Upcaster</code>, which can operate on the payload before
 denormalizing to an event object. There you can change the event name and adjust the payload of the event.</p>
 <h2 id="adjust-payload">Adjust payload</h2>
-<p>Let's assume the have an <code>ProfileCreated</code> event which holds an email. Now the business needs to have all emails to be in
-lower cast. For that we could adjust the aggregate and the projections to take care of that. Or we can do this
-beforehand so we dont need to maintain two different places.</p>
+<p>Let's assume we have an <code>ProfileCreated</code> event which holds an email. Now the business needs to have all emails to be in
+lower case. For that we could adjust the aggregate and the projections to take care of that. Or we can do this
+beforehand so we don't need to maintain two different places.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\Upcast\Upcast</span><span class="p">;</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\Upcast\Upcaster</span><span class="p">;</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
