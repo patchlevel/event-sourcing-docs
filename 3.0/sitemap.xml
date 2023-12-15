@@ -2,112 +2,112 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/</loc>
-         <lastmod>2023-12-14</lastmod>
+         <lastmod>2023-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/aggregate/</loc>
-         <lastmod>2023-12-14</lastmod>
+         <lastmod>2023-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/cli/</loc>
-         <lastmod>2023-12-14</lastmod>
+         <lastmod>2023-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/clock/</loc>
-         <lastmod>2023-12-14</lastmod>
+         <lastmod>2023-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/event_bus/</loc>
-         <lastmod>2023-12-14</lastmod>
+         <lastmod>2023-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/events/</loc>
-         <lastmod>2023-12-14</lastmod>
+         <lastmod>2023-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/getting_started/</loc>
-         <lastmod>2023-12-14</lastmod>
+         <lastmod>2023-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/message_decorator/</loc>
-         <lastmod>2023-12-14</lastmod>
+         <lastmod>2023-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/migration/</loc>
-         <lastmod>2023-12-14</lastmod>
+         <lastmod>2023-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/normalizer/</loc>
-         <lastmod>2023-12-14</lastmod>
+         <lastmod>2023-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/outbox/</loc>
-         <lastmod>2023-12-14</lastmod>
+         <lastmod>2023-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/pipeline/</loc>
-         <lastmod>2023-12-14</lastmod>
+         <lastmod>2023-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/processor/</loc>
-         <lastmod>2023-12-14</lastmod>
+         <lastmod>2023-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/projection/</loc>
-         <lastmod>2023-12-14</lastmod>
+         <lastmod>2023-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/repository/</loc>
-         <lastmod>2023-12-14</lastmod>
+         <lastmod>2023-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/snapshots/</loc>
-         <lastmod>2023-12-14</lastmod>
+         <lastmod>2023-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/split_stream/</loc>
-         <lastmod>2023-12-14</lastmod>
+         <lastmod>2023-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/store/</loc>
-         <lastmod>2023-12-14</lastmod>
+         <lastmod>2023-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/tests/</loc>
-         <lastmod>2023-12-14</lastmod>
+         <lastmod>2023-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/upcasting/</loc>
-         <lastmod>2023-12-14</lastmod>
+         <lastmod>2023-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/uuid/</loc>
-         <lastmod>2023-12-14</lastmod>
+         <lastmod>2023-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/watch_server/</loc>
-         <lastmod>2023-12-14</lastmod>
+         <lastmod>2023-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
