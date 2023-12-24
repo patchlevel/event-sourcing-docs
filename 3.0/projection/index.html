@@ -1419,7 +1419,7 @@ In this example we always create a new data set in a relational database when a 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\Connection</span><span class="p">;</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Create</span><span class="p">;</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Drop</span><span class="p">;</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Handle</span><span class="p">;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Subscribe</span><span class="p">;</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\Message</span><span class="p">;</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projection\ProjectionId</span><span class="p">;</span>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projector\Projector</span><span class="p">;</span>
@@ -1465,7 +1465,7 @@ In this example we always create a new data set in a relational database when a 
 <a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>        <span class="p">);</span>
 <a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    <span class="p">}</span>
 <a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
-<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    <span class="p">#[</span><span class="nd">Handle</span><span class="p">(</span><span class="nx">ProfileCreated</span><span class="o">::</span><span class="na">class</span><span class="p">)]</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    <span class="p">#[</span><span class="nd">Subscribe</span><span class="p">(</span><span class="nx">ProfileCreated</span><span class="o">::</span><span class="na">class</span><span class="p">)]</span>
 <a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">handleProfileCreated</span><span class="p">(</span><span class="nx">Message</span> <span class="nv">$message</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
 <a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>    <span class="p">{</span>
 <a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>        <span class="nv">$profileCreated</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">event</span><span class="p">();</span>
@@ -1496,8 +1496,8 @@ the version of the projection should flow into the table or collection name.</p>
 <p>Projectors can have one <code>create</code> and <code>drop</code> method that is executed when the projection is created or deleted.
 In some cases it may be that no schema has to be created for the projection, as the target does it automatically.
 To do this, you must add either the <code>Create</code> or <code>Drop</code> attribute to the method. The method name itself doesn't matter.</p>
-<p>Otherwise, a projector can have any number of handle methods that are called for certain defined events.
-In order to say which method is responsible for which event, you need the <code>Handle</code> attribute.
+<p>Otherwise, a projector can subscribe any number of events.
+In order to say which method is responsible for which event, you need the <code>Subscribe</code> attribute.
 As the first parameter, you must pass the event class to which the reaction should then take place.
 The method itself must expect a <code>Message</code>, which then contains the event. The method name itself doesn't matter.</p>
 <p>As soon as the event has been dispatched, the appropriate methods are then executed.
