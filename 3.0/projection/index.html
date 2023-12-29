@@ -545,6 +545,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Versioning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#projector-repository" class="md-nav__link">
     <span class="md-ellipsis">
       Projector Repository
@@ -1191,6 +1200,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Versioning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#projector-repository" class="md-nav__link">
     <span class="md-ellipsis">
       Projector Repository
@@ -1407,9 +1425,9 @@
 
 
 <h1 id="projections">Projections</h1>
-<p>With <code>projections</code> you can create your data optimized for reading.
+<p>With <code>projections</code> you can transform your data optimized for reading.
 projections can be adjusted, deleted or rebuilt at any time.
-This is possible because the source of truth remains untouched
+This is possible because the event store remains untouched
 and everything can always be reproduced from the events.</p>
 <p>A projection can be anything.
 Either a file, a relational database, a no-sql database like mongodb or an elasticsearch.</p>
@@ -1420,82 +1438,77 @@ In this example we always create a new data set in a relational database when a 
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Create</span><span class="p">;</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Drop</span><span class="p">;</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Subscribe</span><span class="p">;</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\Message</span><span class="p">;</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projection\ProjectionId</span><span class="p">;</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projector\Projector</span><span class="p">;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Projection</span><span class="p">;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\Message</span><span class="p">;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projector\ProjectorUtil</span><span class="p">;</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileProjection</span> <span class="k">implements</span> <span class="nx">Projector</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">{</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="k">private</span> <span class="nx">readonly</span> <span class="nx">Connection</span> <span class="nv">$connection</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="p">}</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">targetProjection</span><span class="p">()</span><span class="o">:</span> <span class="nx">ProjectionId</span> 
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="p">{</span>
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        <span class="k">return</span> <span class="k">new</span> <span class="nx">ProjectionId</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="p">}</span>
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="sd">/**</span>
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="sd">     * @return list&lt;array{id: string, name: string}&gt;</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="sd">     */</span>
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">getProfiles</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span> 
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="p">{</span>
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">fetchAllAssociative</span><span class="p">(</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>            <span class="nb">sprintf</span><span class="p">(</span><span class="s1">&#39;SELECT id, name FROM %s;&#39;</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">())</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>        <span class="p">);</span>
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="p">}</span>
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="p">#[</span><span class="nd">Create</span><span class="p">]</span>
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">create</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>    <span class="p">{</span>
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span>
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>            <span class="nb">sprintf</span><span class="p">(</span>
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>                <span class="s1">&#39;CREATE TABLE IF NOT EXISTS %s (id VARCHAR PRIMARY KEY, name VARCHAR NOT NULL);&#39;</span><span class="p">,</span> 
-<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">()</span>
-<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>            <span class="p">)</span>
-<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>        <span class="p">);</span>
-<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="p">}</span>
-<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
-<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="p">#[</span><span class="nd">Drop</span><span class="p">]</span>
-<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">drop</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
-<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>    <span class="p">{</span>
-<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span>
-<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>            <span class="nb">sprintf</span><span class="p">(</span><span class="s1">&#39;DROP TABLE IF EXISTS %s;&#39;</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">())</span>
-<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>        <span class="p">);</span>
-<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    <span class="p">}</span>
-<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
-<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    <span class="p">#[</span><span class="nd">Subscribe</span><span class="p">(</span><span class="nx">ProfileCreated</span><span class="o">::</span><span class="na">class</span><span class="p">)]</span>
-<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">handleProfileCreated</span><span class="p">(</span><span class="nx">Message</span> <span class="nv">$message</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>    <span class="p">{</span>
-<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>        <span class="nv">$profileCreated</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">event</span><span class="p">();</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">#[</span><span class="nd">Projection</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">)]</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileProjector</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">{</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="k">use</span> <span class="nx">ProjectorUtil</span><span class="p">;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        <span class="k">private</span> <span class="nx">readonly</span> <span class="nx">Connection</span> <span class="nv">$connection</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="p">}</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="sd">/**</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="sd">     * @return list&lt;array{id: string, name: string}&gt;</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="sd">     */</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">getProfiles</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span> 
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="p">{</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">fetchAllAssociative</span><span class="p">(</span><span class="s2">&quot;SELECT id, name FROM </span><span class="si">${</span><span class="nv">this-&gt;table()</span><span class="si">}</span><span class="s2">;&quot;</span><span class="p">);</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="p">}</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="p">#[</span><span class="nd">Create</span><span class="p">]</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">create</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="p">{</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>            <span class="s2">&quot;CREATE TABLE IF NOT EXISTS </span><span class="si">${</span><span class="nv">this-&gt;table()</span><span class="si">}</span><span class="s2"> (id VARCHAR PRIMARY KEY, name VARCHAR NOT NULL);&quot;</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>        <span class="p">);</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>    <span class="p">}</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="p">#[</span><span class="nd">Drop</span><span class="p">]</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">drop</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="p">{</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span><span class="s2">&quot;DROP TABLE IF EXISTS </span><span class="si">${</span><span class="nv">this-&gt;table()</span><span class="si">}</span><span class="s2">;&quot;</span><span class="p">);</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="p">}</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="p">#[</span><span class="nd">Subscribe</span><span class="p">(</span><span class="nx">ProfileCreated</span><span class="o">::</span><span class="na">class</span><span class="p">)]</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">handleProfileCreated</span><span class="p">(</span><span class="nx">Message</span> <span class="nv">$message</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="p">{</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>        <span class="nv">$profileCreated</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">event</span><span class="p">();</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>            <span class="s2">&quot;INSERT INTO </span><span class="si">${</span><span class="nv">this-&gt;table()</span><span class="si">}</span><span class="s2"> (id, name) VALUES(?, ?);&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>            <span class="p">[</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>                <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$profileCreated</span><span class="o">-&gt;</span><span class="na">profileId</span><span class="o">-&gt;</span><span class="na">toString</span><span class="p">(),</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>                <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="nv">$profileCreated</span><span class="o">-&gt;</span><span class="na">name</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>            <span class="p">]</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>        <span class="p">);</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>    <span class="p">}</span>
 <a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>
-<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span>
-<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>            <span class="nb">sprintf</span><span class="p">(</span><span class="s1">&#39;INSERT INTO %s (`id`, `name`) VALUES(:id, :name);&#39;</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">()),</span>
-<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>            <span class="p">[</span>
-<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>                <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$profileCreated</span><span class="o">-&gt;</span><span class="na">profileId</span><span class="p">,</span>
-<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>                <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="nv">$profileCreated</span><span class="o">-&gt;</span><span class="na">name</span>
-<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>            <span class="p">]</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="k">private</span> <span class="k">function</span> <span class="nf">table</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span> 
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="p">{</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>        <span class="k">return</span> <span class="nb">sprintf</span><span class="p">(</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>            <span class="s1">&#39;projection_%s_%s&#39;</span><span class="p">,</span> 
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">projectionName</span><span class="p">(),</span> 
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">projectionVersion</span><span class="p">()</span>
 <a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>        <span class="p">);</span>
 <a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="p">}</span>
-<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>
-<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>    <span class="k">private</span> <span class="k">function</span> <span class="nf">table</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span> 
-<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>    <span class="p">{</span>
-<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>        <span class="k">return</span> <span class="nb">sprintf</span><span class="p">(</span>
-<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>            <span class="s1">&#39;projection_%s_%s&#39;</span><span class="p">,</span> 
-<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">targetProjection</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">(),</span> 
-<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">targetProjection</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">version</span><span class="p">()</span>
-<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>        <span class="p">);</span>
-<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>    <span class="p">}</span>
-<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a><span class="p">}</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="p">}</span>
 </code></pre></div>
-<p>Each projector is responsible for a specific projection and version. 
-In order for us to be able to define this, we have to use the <code>targetProjection</code> method to return a ProjectionId.
-So that several versions of the projection can exist,
-the version of the projection should flow into the table or collection name.</p>
+<p>Each projector is responsible for a specific projection and version.
+This combination of information results in the so-called <code>project ID</code>.
+In order for us to be able to define this, we have to use the <code>Projection</code> attribute.
+In our example, the projection is called "profile" and has the version "0" because we did not specify it.
+So that there is no problems with existing projection, 
+both the name of the projection and the version should be part of the table/collection name.
+In our example, we build a <code>table</code> helper method, what creates the following string: "projection_profile_0".</p>
 <p>Projectors can have one <code>create</code> and <code>drop</code> method that is executed when the projection is created or deleted.
-In some cases it may be that no schema has to be created for the projection, as the target does it automatically.
-To do this, you must add either the <code>Create</code> or <code>Drop</code> attribute to the method. The method name itself doesn't matter.</p>
+For this there are the attributes <code>Create</code> and <code>Drop</code>. The method name itself doesn't matter.
+In some cases it may be that no schema has to be created for the projection, 
+as the target does it automatically, so you can skip this.</p>
 <p>Otherwise, a projector can subscribe any number of events.
 In order to say which method is responsible for which event, you need the <code>Subscribe</code> attribute.
 As the first parameter, you must pass the event class to which the reaction should then take place.
@@ -1504,7 +1517,7 @@ The method itself must expect a <code>Message</code>, which then contains the ev
 Several projectors can also listen to the same event.</p>
 <div class="admonition danger">
 <p class="admonition-title">Danger</p>
-<p>You should not execute any actions with projectors, 
+<p>You should not execute any actions like commands with projectors, 
 otherwise these will be executed again if you rebuild the projection!</p>
 </div>
 <div class="admonition tip">
@@ -1512,13 +1525,38 @@ otherwise these will be executed again if you rebuild the projection!</p>
 <p>If you are using psalm then you can install the event sourcing <a href="https://github.com/patchlevel/event-sourcing-psalm-plugin">plugin</a> 
 to make the event method return the correct type.</p>
 </div>
+<h2 id="versioning">Versioning</h2>
+<p>As soon as the structure of a projection changes, the version must be change or increment.
+Otherwise the projectionist will not recognize that the projection has changed and will not rebuild it.
+To do this, you have to change the version in the <code>Projection</code> attribute.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\Connection</span><span class="p">;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Create</span><span class="p">;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Drop</span><span class="p">;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Handle</span><span class="p">;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Projection</span><span class="p">;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\Message</span><span class="p">;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">#[</span><span class="nd">Projection</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">,</span> <span class="nx">version</span><span class="o">:</span> <span class="mi">1</span><span class="p">)]</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileProjector</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">{</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>   <span class="c1">// ...</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="p">}</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you change the version, you must also change the table/collection name.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can also use the <code>ProjectorUtil</code> to build the table/collection name.</p>
+</div>
 <h2 id="projector-repository">Projector Repository</h2>
-<p>The projector repository can hold and make available all projectors.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projector\InMemoryProjectorRepository</span><span class="p">;</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nv">$projectorRepository</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">InMemoryProjectorRepository</span><span class="p">([</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">new</span> <span class="nx">ProfileProjection</span><span class="p">(</span><span class="nv">$connection</span><span class="p">)</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">]);</span>
+<p>The projector repository is responsible for managing the projectors.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projector\InMemoryProjectorRepository</span><span class="p">;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nv">$projectorRepository</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">InMemoryProjectorRepository</span><span class="p">([</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="k">new</span> <span class="nx">ProfileProjection</span><span class="p">(</span><span class="nv">$connection</span><span class="p">)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">]);</span>
 </code></pre></div>
 <h2 id="projectionist">Projectionist</h2>
 <p>The projectionist manages individual projectors and keeps the projections running.
@@ -1536,8 +1574,22 @@ If something breaks, the projectionist marks the individual projections as fault
 </div>
 <h2 id="projection-id">Projection Id</h2>
 <p>A projection id consists of a unique name and a version.
-As soon as the projection changes, such as the structure or the data, the version of the projection must be incremented.
-This tells the projectionist to build an another projection.</p>
+It can be defined using the <code>Projection</code> attribute.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Projection</span><span class="p">;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">#[</span><span class="nd">Projection</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">,</span> <span class="nx">version</span><span class="o">:</span> <span class="mi">1</span><span class="p">)]</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileProjector</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">{</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>   <span class="c1">// ...</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">}</span>
+</code></pre></div>
+<p>As soon as the projection changes, such as the structure or the data, the version of the projection must be incremented.
+This tells the projectionist to build an another projection with this projector.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Most databases have a limit on the length of the table/collection name.
+The limit is usually 64 characters.</p>
+</div>
 <h2 id="projection-position">Projection Position</h2>
 <p>Furthermore, the position in the event stream is noted for each projection.
 So that the projectionist knows where the projection stopped and must continue.</p>
@@ -1557,7 +1609,7 @@ This cycle is tracked by the projectionist.</p>
     Outdated --&gt; Active
     Outdated --&gt; [*]</code></pre>
 <h3 id="new">New</h3>
-<p>A projection gets the status new if there is a projector with an unknown projection id.
+<p>A projection gets the status new if there is a projector with an unknown <code>projection id</code>.
 This can happen when either a new projector has been added, the version has changed
 or the projection has been manually deleted from the projection store.</p>
 <h3 id="booting">Booting</h3>
@@ -1566,14 +1618,14 @@ Then the new projections are built up in a separate process parallel.
 As soon as the projection is built up to the current status, the status changes to active.</p>
 <h3 id="active">Active</h3>
 <p>The active status describes the projections currently being actively managed by the projectionist.
-These projections have a projector, follow the event stream and are up to date.</p>
+These projections have a projector, follow the event stream and should be up-to-date.</p>
 <h3 id="outdated">Outdated</h3>
 <p>If a projection exists in the projection store
 that does not have a projector in the source code with a corresponding projection id,
 then this projection is marked as outdated.
 This happens when either the projector has been deleted
 or the projection id of a projector has changed.
-In the last case there is a new projection.</p>
+In the last case there should be a new projection.</p>
 <p>An outdated projection does not automatically become active again when the projection id exists again.
 This happens, for example, when an old version was deployed again during a rollback.</p>
 <p>There are two options here:</p>
@@ -1593,25 +1645,25 @@ There are two options here:</p>
 <p>In order for the projectionist to be able to do its work, you have to assemble it beforehand.</p>
 <h3 id="projection-store">Projection Store</h3>
 <p>In order for the projectionist to know the status and position of the projections, they must be saved.</p>
-<p>Currently there is only the Doctrine Store.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projection\Store\DoctrineStore</span><span class="p">;</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nv">$projectionStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineStore</span><span class="p">(</span><span class="nv">$connection</span><span class="p">);</span>
+<p>We can use the <code>DoctrineStore</code> for this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projection\Store\DoctrineStore</span><span class="p">;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nv">$projectionStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineStore</span><span class="p">(</span><span class="nv">$connection</span><span class="p">);</span>
 </code></pre></div>
 <p>So that the schema for the projection store can also be created,
 we have to tell the <code>SchemaDirector</code> our schema configuration.
 Using <code>ChainSchemaConfigurator</code> we can add multiple schema configurators.
 In our case they need the <code>SchemaConfigurator</code> from the event store and projection store.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\ChainSchemaConfigurator</span><span class="p">;</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaDirector</span><span class="p">;</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nv">$schemaDirector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineSchemaDirector</span><span class="p">(</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="nv">$connection</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="k">new</span> <span class="nx">ChainSchemaConfigurator</span><span class="p">([</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        <span class="nv">$eventStore</span><span class="p">,</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>        <span class="nv">$projectionStore</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="p">]),</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\ChainSchemaConfigurator</span><span class="p">;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaDirector</span><span class="p">;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nv">$schemaDirector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineSchemaDirector</span><span class="p">(</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="nv">$connection</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="k">new</span> <span class="nx">ChainSchemaConfigurator</span><span class="p">([</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>        <span class="nv">$eventStore</span><span class="p">,</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>        <span class="nv">$projectionStore</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="p">]),</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="p">);</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1619,13 +1671,13 @@ In our case they need the <code>SchemaConfigurator</code> from the event store a
 </div>
 <h3 id="projectionist_1">Projectionist</h3>
 <p>Now we can create the projectionist:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projectionist\DefaultProjectionist</span><span class="p">;</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nv">$projectionist</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultProjectionist</span><span class="p">(</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="nv">$eventStore</span><span class="p">,</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="nv">$projectionStore</span><span class="p">,</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="nv">$projectorRepository</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projectionist\DefaultProjectionist</span><span class="p">;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nv">$projectionist</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultProjectionist</span><span class="p">(</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="nv">$eventStore</span><span class="p">,</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="nv">$projectionStore</span><span class="p">,</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="nv">$projectorRepository</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="p">);</span>
 </code></pre></div>
 <h2 id="usage">Usage</h2>
 <p>The Projectionist has a few methods needed to use it effectively. These are explained here:</p>
@@ -1634,34 +1686,34 @@ In our case they need the <code>SchemaConfigurator</code> from the event store a
 In this step, the structures are created for all new projections.
 The projections then catch up with the current position of the event stream.
 When the projections are finished, they switch to the active state.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">boot</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">boot</span><span class="p">();</span>
 </code></pre></div>
 <h3 id="run">Run</h3>
 <p>All active projections are continued and updated here.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">();</span>
 </code></pre></div>
 <h3 id="teardown">Teardown</h3>
 <p>If projections are outdated, they can be cleaned up here.
 The projectionist also tries to remove the structures created for the projection.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">teardown</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">teardown</span><span class="p">();</span>
 </code></pre></div>
 <h3 id="remove">Remove</h3>
 <p>You can also directly remove a projection regardless of its status.
 An attempt is made to remove the structures, but the entry will still be removed if it doesn't work.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">remove</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">remove</span><span class="p">();</span>
 </code></pre></div>
 <h3 id="reactivate">Reactivate</h3>
 <p>If a projection had an error, you can reactivate it.
 As a result, the projection gets the status active again and is then kept up-to-date again by the projectionist.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">reactivate</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">reactivate</span><span class="p">();</span>
 </code></pre></div>
 <h3 id="status">Status</h3>
 <p>To get the current status of all projections, you can get them using the <code>projections</code> method.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nv">$projections</span> <span class="o">=</span> <span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">projections</span><span class="p">();</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$projections</span> <span class="k">as</span> <span class="nv">$projection</span><span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="k">echo</span> <span class="nv">$projection</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">();</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nv">$projections</span> <span class="o">=</span> <span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">projections</span><span class="p">();</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$projections</span> <span class="k">as</span> <span class="nv">$projection</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="k">echo</span> <span class="nv">$projection</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">();</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
