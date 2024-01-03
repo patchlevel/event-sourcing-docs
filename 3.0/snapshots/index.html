@@ -717,6 +717,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#save" class="md-nav__link">
+    <span class="md-ellipsis">
+      Save
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -918,7 +951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../uuid/" class="md-nav__link">
+      <a href="../uuid.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1124,6 +1157,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#save" class="md-nav__link">
+    <span class="md-ellipsis">
+      Save
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1201,20 +1267,25 @@ In other words, in the end everything has to be serializable.
 To ensure this, the same system is used as for the events. 
 You can define normalizers to bring the properties into the correct format.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Snapshot</span><span class="p">;</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">#[</span><span class="nd">Aggregate</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">)]</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">#[</span><span class="nd">Snapshot</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)]</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">{</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$id</span><span class="p">;</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">,</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="p">#[</span><span class="nd">Normalize</span><span class="p">(</span><span class="k">new</span> <span class="nx">DateTimeImmutableNormalizer</span><span class="p">())]</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="k">public</span> <span class="nx">DateTimeImmutable</span> <span class="nv">$createdAt</span><span class="p">;</span>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    <span class="c1">// ...</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="p">}</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\Uuid</span><span class="p">;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Id</span><span class="p">;</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Snapshot</span><span class="p">;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\Normalizer\IdNormalizer</span><span class="p">;</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">#[</span><span class="nd">Aggregate</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">)]</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="p">#[</span><span class="nd">Snapshot</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)]</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="p">{</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="p">#[</span><span class="nd">Id</span><span class="p">]</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    <span class="p">#[</span><span class="nd">IdNormalizer</span><span class="p">]</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    <span class="k">public</span> <span class="nx">Uuid</span> <span class="nv">$id</span><span class="p">;</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">,</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    <span class="p">#[</span><span class="nd">Normalize</span><span class="p">(</span><span class="k">new</span> <span class="nx">DateTimeImmutableNormalizer</span><span class="p">())]</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    <span class="k">public</span> <span class="nx">DateTimeImmutable</span> <span class="nv">$createdAt</span><span class="p">;</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition danger">
 <p class="admonition-title">Danger</p>
@@ -1223,7 +1294,7 @@ Or the snapshot version needs to be changed so that the previous snapshot is inv
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>In the end it has to be possible to serialize it as json.</p>
+<p>In the end it the complete aggregate must be serializeable as json, also the aggregate Id.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1301,6 +1372,33 @@ Here are a few listed:</p>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nv">$adapter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">InMemorySnapshotAdapter</span><span class="p">();</span>
 </code></pre></div>
+<h2 id="usage">Usage</h2>
+<p>The snapshot store is automatically used by the repository and takes care of saving and loading. 
+But you can also use the snapshot store yourself.</p>
+<h3 id="save">Save</h3>
+<p>This allows you to save the aggregate as a snapshot:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nv">$snapshotStore</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$aggregate</span><span class="p">);</span>
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>If the state of an aggregate is saved as a snapshot without being saved to the event store (database), 
+it can lead to data loss or broken aggregates!</p>
+</div>
+<h3 id="load">Load</h3>
+<p>You can also load an aggregate from the snapshot store:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\Uuid</span><span class="p">;</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nv">$id</span> <span class="o">=</span> <span class="nx">Uuid</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;229286ff-6f95-4df6-bc72-0a239fe7b284&#39;</span><span class="p">);</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="nv">$aggregate</span> <span class="o">=</span> <span class="nv">$snapshotStore</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span><span class="nx">Profile</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>
+</code></pre></div>
+<p>The method returns the Aggregate if it was loaded successfully. 
+If the aggregate was not found, then a <code>SnapshotNotFound</code> is thrown. 
+And if the version is no longer correct and the snapshot is therefore invalid, then a <code>SnapshotVersionInvalid</code> is thrown.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The aggregate may be in an old state as the snapshot may lag behind. 
+You still have to bring the aggregate up to date by loading the missing events from the event store.</p>
+</div>
 
 
 

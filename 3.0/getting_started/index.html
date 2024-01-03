@@ -913,7 +913,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../uuid/" class="md-nav__link">
+      <a href="../uuid.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1140,15 +1140,19 @@ We keep the example small, so we can only create hotels and let guests check in 
 <h2 id="define-some-events">Define some events</h2>
 <p>First we define the events that happen in our system.</p>
 <p>A hotel can be created with a <code>name</code> and a <code>id</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">#[</span><span class="nd">Event</span><span class="p">(</span><span class="s1">&#39;hotel.created&#39;</span><span class="p">)]</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">HotelCreated</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">{</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        <span class="k">public</span> <span class="nx">readonly</span> <span class="nx">string</span> <span class="nv">$hotelId</span><span class="p">,</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="k">public</span> <span class="nx">readonly</span> <span class="nx">string</span> <span class="nv">$hotelName</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="p">}</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\Uuid</span><span class="p">;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\Normalizer\IdNormalizer</span><span class="p">;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">#[</span><span class="nd">Event</span><span class="p">(</span><span class="s1">&#39;hotel.created&#39;</span><span class="p">)]</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">HotelCreated</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">{</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="p">#[</span><span class="nd">IdNormalizer</span><span class="p">(</span><span class="nx">Uuid</span><span class="o">::</span><span class="na">class</span><span class="p">)]</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="k">public</span> <span class="nx">readonly</span> <span class="nx">Uuid</span> <span class="nv">$hotelId</span><span class="p">,</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="k">public</span> <span class="nx">readonly</span> <span class="nx">string</span> <span class="nv">$hotelName</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="p">}</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="p">}</span>
 </code></pre></div>
 <p>A guest can check in by <code>name</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">#[</span><span class="nd">Event</span><span class="p">(</span><span class="s1">&#39;hotel.guest_checked_in&#39;</span><span class="p">)]</span>
@@ -1180,86 +1184,84 @@ We have also defined the <code>create</code>, <code>checkIn</code> and <code>che
 These events are thrown here and the state of the hotel is also changed.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateChanged</span><span class="p">;</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Apply</span><span class="p">;</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">#[</span><span class="nd">Aggregate</span><span class="p">(</span><span class="s1">&#39;hotel&#39;</span><span class="p">)]</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Hotel</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">{</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="k">private</span> <span class="nx">string</span> <span class="nv">$id</span><span class="p">;</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="k">private</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">;</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="sd">/**</span>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="sd">     * @var list&lt;string&gt;</span>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="sd">     */</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    <span class="k">private</span> <span class="k">array</span> <span class="nv">$guests</span><span class="p">;</span>
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">name</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span>
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>    <span class="p">{</span>
-<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
-<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    <span class="p">}</span>
-<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>
-<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">guests</span><span class="p">()</span><span class="o">:</span> <span class="nx">int</span>
-<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>    <span class="p">{</span>
-<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">guests</span><span class="p">;</span>
-<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>    <span class="p">}</span>
-<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>
-<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">create</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$id</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$hotelName</span><span class="p">)</span><span class="o">:</span> <span class="k">static</span>
-<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>    <span class="p">{</span>
-<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>        <span class="nv">$self</span> <span class="o">=</span> <span class="k">new</span> <span class="k">static</span><span class="p">();</span>
-<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>        <span class="nv">$self</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">HotelCreated</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$hotelName</span><span class="p">));</span>
-<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>
-<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>        <span class="k">return</span> <span class="nv">$self</span><span class="p">;</span>
-<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>    <span class="p">}</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\Uuid</span><span class="p">;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Id</span><span class="p">;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Apply</span><span class="p">;</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">#[</span><span class="nd">Aggregate</span><span class="p">(</span><span class="s1">&#39;hotel&#39;</span><span class="p">)]</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Hotel</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="p">{</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="p">#[</span><span class="nd">Id</span><span class="p">]</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="k">private</span> <span class="nx">Uuid</span> <span class="nv">$id</span><span class="p">;</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    <span class="k">private</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">;</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    <span class="sd">/**</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="sd">     * @var list&lt;string&gt;</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="sd">     */</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>    <span class="k">private</span> <span class="k">array</span> <span class="nv">$guests</span><span class="p">;</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">name</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>    <span class="p">{</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>    <span class="p">}</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">guests</span><span class="p">()</span><span class="o">:</span> <span class="nx">int</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>    <span class="p">{</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">guests</span><span class="p">;</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>    <span class="p">}</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">create</span><span class="p">(</span><span class="nx">Uuid</span> <span class="nv">$id</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$hotelName</span><span class="p">)</span><span class="o">:</span> <span class="k">static</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>    <span class="p">{</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>        <span class="nv">$self</span> <span class="o">=</span> <span class="k">new</span> <span class="k">static</span><span class="p">();</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>        <span class="nv">$self</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">HotelCreated</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$hotelName</span><span class="p">));</span>
 <a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>
-<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">checkIn</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$guestName</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
-<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>    <span class="p">{</span>
-<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>        <span class="k">if</span> <span class="p">(</span><span class="nb">in_array</span><span class="p">(</span><span class="nv">$guestName</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">guests</span><span class="p">,</span> <span class="k">true</span><span class="p">))</span> <span class="p">{</span>
-<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>            <span class="k">throw</span> <span class="k">new</span> <span class="nx">GuestHasAlreadyCheckedIn</span><span class="p">(</span><span class="nv">$guestName</span><span class="p">);</span>
-<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>        <span class="p">}</span>
-<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>
-<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">GuestIsCheckedIn</span><span class="p">(</span><span class="nv">$guestName</span><span class="p">));</span>
-<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>    <span class="p">}</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>        <span class="k">return</span> <span class="nv">$self</span><span class="p">;</span>
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>    <span class="p">}</span>
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">checkIn</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$guestName</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>    <span class="p">{</span>
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>        <span class="k">if</span> <span class="p">(</span><span class="nb">in_array</span><span class="p">(</span><span class="nv">$guestName</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">guests</span><span class="p">,</span> <span class="k">true</span><span class="p">))</span> <span class="p">{</span>
+<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>            <span class="k">throw</span> <span class="k">new</span> <span class="nx">GuestHasAlreadyCheckedIn</span><span class="p">(</span><span class="nv">$guestName</span><span class="p">);</span>
+<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>        <span class="p">}</span>
 <a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a>
-<a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">checkOut</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$guestName</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
-<a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a>    <span class="p">{</span>
-<a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">in_array</span><span class="p">(</span><span class="nv">$guestName</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">guests</span><span class="p">,</span> <span class="k">true</span><span class="p">))</span> <span class="p">{</span>
-<a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a>            <span class="k">throw</span> <span class="k">new</span> <span class="nx">IsNotAGuest</span><span class="p">(</span><span class="nv">$guestName</span><span class="p">);</span>
-<a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a>        <span class="p">}</span>
-<a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a>
-<a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">GuestIsCheckedOut</span><span class="p">(</span><span class="nv">$guestName</span><span class="p">));</span>
-<a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a>    <span class="p">}</span>
+<a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">GuestIsCheckedIn</span><span class="p">(</span><span class="nv">$guestName</span><span class="p">));</span>
+<a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a>    <span class="p">}</span>
+<a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a>
+<a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">checkOut</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$guestName</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a>    <span class="p">{</span>
+<a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">in_array</span><span class="p">(</span><span class="nv">$guestName</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">guests</span><span class="p">,</span> <span class="k">true</span><span class="p">))</span> <span class="p">{</span>
+<a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a>            <span class="k">throw</span> <span class="k">new</span> <span class="nx">IsNotAGuest</span><span class="p">(</span><span class="nv">$guestName</span><span class="p">);</span>
+<a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a>        <span class="p">}</span>
 <a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a>
-<a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a>    <span class="p">#[</span><span class="nd">Apply</span><span class="p">]</span>
-<a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">applyHotelCreated</span><span class="p">(</span><span class="nx">HotelCreated</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> 
-<a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a>    <span class="p">{</span>
-<a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">id</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">hotelId</span><span class="p">;</span>
-<a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">hotelName</span><span class="p">;</span>
-<a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">guests</span> <span class="o">=</span> <span class="p">[];</span>    
-<a id="__codelineno-3-59" name="__codelineno-3-59" href="#__codelineno-3-59"></a>    <span class="p">}</span>
-<a id="__codelineno-3-60" name="__codelineno-3-60" href="#__codelineno-3-60"></a>
-<a id="__codelineno-3-61" name="__codelineno-3-61" href="#__codelineno-3-61"></a>    <span class="p">#[</span><span class="nd">Apply</span><span class="p">]</span>
-<a id="__codelineno-3-62" name="__codelineno-3-62" href="#__codelineno-3-62"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">applyGuestIsCheckedIn</span><span class="p">(</span><span class="nx">GuestIsCheckedIn</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> 
-<a id="__codelineno-3-63" name="__codelineno-3-63" href="#__codelineno-3-63"></a>    <span class="p">{</span>
-<a id="__codelineno-3-64" name="__codelineno-3-64" href="#__codelineno-3-64"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">guests</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">guestName</span><span class="p">;</span>
-<a id="__codelineno-3-65" name="__codelineno-3-65" href="#__codelineno-3-65"></a>    <span class="p">}</span>
-<a id="__codelineno-3-66" name="__codelineno-3-66" href="#__codelineno-3-66"></a>
-<a id="__codelineno-3-67" name="__codelineno-3-67" href="#__codelineno-3-67"></a>    <span class="p">#[</span><span class="nd">Apply</span><span class="p">]</span>
-<a id="__codelineno-3-68" name="__codelineno-3-68" href="#__codelineno-3-68"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">applyGuestIsCheckedOut</span><span class="p">(</span><span class="nx">GuestIsCheckedOut</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> 
-<a id="__codelineno-3-69" name="__codelineno-3-69" href="#__codelineno-3-69"></a>    <span class="p">{</span>
-<a id="__codelineno-3-70" name="__codelineno-3-70" href="#__codelineno-3-70"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">guests</span> <span class="o">=</span> <span class="nb">array_values</span><span class="p">(</span>
-<a id="__codelineno-3-71" name="__codelineno-3-71" href="#__codelineno-3-71"></a>            <span class="nb">array_filter</span><span class="p">(</span>
-<a id="__codelineno-3-72" name="__codelineno-3-72" href="#__codelineno-3-72"></a>                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">guests</span><span class="p">,</span>
-<a id="__codelineno-3-73" name="__codelineno-3-73" href="#__codelineno-3-73"></a>                <span class="nx">fn</span> <span class="p">(</span><span class="nv">$name</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nv">$name</span> <span class="o">!==</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">guestName</span><span class="p">;</span>
-<a id="__codelineno-3-74" name="__codelineno-3-74" href="#__codelineno-3-74"></a>            <span class="p">)</span>
-<a id="__codelineno-3-75" name="__codelineno-3-75" href="#__codelineno-3-75"></a>        <span class="p">);</span>
-<a id="__codelineno-3-76" name="__codelineno-3-76" href="#__codelineno-3-76"></a>    <span class="p">}</span>
-<a id="__codelineno-3-77" name="__codelineno-3-77" href="#__codelineno-3-77"></a>
-<a id="__codelineno-3-78" name="__codelineno-3-78" href="#__codelineno-3-78"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">aggregateRootId</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span>
-<a id="__codelineno-3-79" name="__codelineno-3-79" href="#__codelineno-3-79"></a>    <span class="p">{</span>
-<a id="__codelineno-3-80" name="__codelineno-3-80" href="#__codelineno-3-80"></a>        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span>
-<a id="__codelineno-3-81" name="__codelineno-3-81" href="#__codelineno-3-81"></a>    <span class="p">}</span>
-<a id="__codelineno-3-82" name="__codelineno-3-82" href="#__codelineno-3-82"></a><span class="p">}</span>
+<a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">GuestIsCheckedOut</span><span class="p">(</span><span class="nv">$guestName</span><span class="p">));</span>
+<a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a>    <span class="p">}</span>
+<a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a>
+<a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a>    <span class="p">#[</span><span class="nd">Apply</span><span class="p">]</span>
+<a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">applyHotelCreated</span><span class="p">(</span><span class="nx">HotelCreated</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> 
+<a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a>    <span class="p">{</span>
+<a id="__codelineno-3-59" name="__codelineno-3-59" href="#__codelineno-3-59"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">id</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">hotelId</span><span class="p">;</span>
+<a id="__codelineno-3-60" name="__codelineno-3-60" href="#__codelineno-3-60"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">hotelName</span><span class="p">;</span>
+<a id="__codelineno-3-61" name="__codelineno-3-61" href="#__codelineno-3-61"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">guests</span> <span class="o">=</span> <span class="p">[];</span>    
+<a id="__codelineno-3-62" name="__codelineno-3-62" href="#__codelineno-3-62"></a>    <span class="p">}</span>
+<a id="__codelineno-3-63" name="__codelineno-3-63" href="#__codelineno-3-63"></a>
+<a id="__codelineno-3-64" name="__codelineno-3-64" href="#__codelineno-3-64"></a>    <span class="p">#[</span><span class="nd">Apply</span><span class="p">]</span>
+<a id="__codelineno-3-65" name="__codelineno-3-65" href="#__codelineno-3-65"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">applyGuestIsCheckedIn</span><span class="p">(</span><span class="nx">GuestIsCheckedIn</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> 
+<a id="__codelineno-3-66" name="__codelineno-3-66" href="#__codelineno-3-66"></a>    <span class="p">{</span>
+<a id="__codelineno-3-67" name="__codelineno-3-67" href="#__codelineno-3-67"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">guests</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">guestName</span><span class="p">;</span>
+<a id="__codelineno-3-68" name="__codelineno-3-68" href="#__codelineno-3-68"></a>    <span class="p">}</span>
+<a id="__codelineno-3-69" name="__codelineno-3-69" href="#__codelineno-3-69"></a>
+<a id="__codelineno-3-70" name="__codelineno-3-70" href="#__codelineno-3-70"></a>    <span class="p">#[</span><span class="nd">Apply</span><span class="p">]</span>
+<a id="__codelineno-3-71" name="__codelineno-3-71" href="#__codelineno-3-71"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">applyGuestIsCheckedOut</span><span class="p">(</span><span class="nx">GuestIsCheckedOut</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> 
+<a id="__codelineno-3-72" name="__codelineno-3-72" href="#__codelineno-3-72"></a>    <span class="p">{</span>
+<a id="__codelineno-3-73" name="__codelineno-3-73" href="#__codelineno-3-73"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">guests</span> <span class="o">=</span> <span class="nb">array_values</span><span class="p">(</span>
+<a id="__codelineno-3-74" name="__codelineno-3-74" href="#__codelineno-3-74"></a>            <span class="nb">array_filter</span><span class="p">(</span>
+<a id="__codelineno-3-75" name="__codelineno-3-75" href="#__codelineno-3-75"></a>                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">guests</span><span class="p">,</span>
+<a id="__codelineno-3-76" name="__codelineno-3-76" href="#__codelineno-3-76"></a>                <span class="nx">fn</span> <span class="p">(</span><span class="nv">$name</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nv">$name</span> <span class="o">!==</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">guestName</span><span class="p">;</span>
+<a id="__codelineno-3-77" name="__codelineno-3-77" href="#__codelineno-3-77"></a>            <span class="p">)</span>
+<a id="__codelineno-3-78" name="__codelineno-3-78" href="#__codelineno-3-78"></a>        <span class="p">);</span>
+<a id="__codelineno-3-79" name="__codelineno-3-79" href="#__codelineno-3-79"></a>    <span class="p">}</span>
+<a id="__codelineno-3-80" name="__codelineno-3-80" href="#__codelineno-3-80"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1304,7 +1306,7 @@ Each projector is then responsible for a specific projection and version.</p>
 <a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span>
 <a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">(),</span> 
 <a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>            <span class="p">[</span>
-<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>                <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">hotelId</span><span class="p">,</span> 
+<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>                <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">aggregateId</span><span class="p">(),</span> 
 <a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>                <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">hotelName</span><span class="p">,</span>
 <a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a>                <span class="s1">&#39;guests&#39;</span> <span class="o">=&gt;</span> <span class="mi">0</span>
 <a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a>            <span class="p">]</span>
@@ -1464,22 +1466,25 @@ we need the associated schema and databases.</p>
 </div>
 <h2 id="usage">Usage</h2>
 <p>We are now ready to use the Event Sourcing System. We can load, change and save aggregates.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nv">$hotel1</span> <span class="o">=</span> <span class="nx">Hotel</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;HOTEL&#39;</span><span class="p">);</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nv">$hotel1</span><span class="o">-&gt;</span><span class="na">checkIn</span><span class="p">(</span><span class="s1">&#39;David&#39;</span><span class="p">);</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nv">$hotel1</span><span class="o">-&gt;</span><span class="na">checkIn</span><span class="p">(</span><span class="s1">&#39;Daniel&#39;</span><span class="p">);</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="nv">$hotel1</span><span class="o">-&gt;</span><span class="na">checkOut</span><span class="p">(</span><span class="s1">&#39;David&#39;</span><span class="p">);</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="nv">$hotelRepository</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$hotel1</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\Uuid</span><span class="p">;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nv">$hotel1</span> <span class="o">=</span> <span class="nx">Hotel</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="nx">Uuid</span><span class="o">::</span><span class="na">v7</span><span class="p">(),</span> <span class="s1">&#39;HOTEL&#39;</span><span class="p">);</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="nv">$hotel1</span><span class="o">-&gt;</span><span class="na">checkIn</span><span class="p">(</span><span class="s1">&#39;David&#39;</span><span class="p">);</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="nv">$hotel1</span><span class="o">-&gt;</span><span class="na">checkIn</span><span class="p">(</span><span class="s1">&#39;Daniel&#39;</span><span class="p">);</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="nv">$hotel1</span><span class="o">-&gt;</span><span class="na">checkOut</span><span class="p">(</span><span class="s1">&#39;David&#39;</span><span class="p">);</span>
 <a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="nv">$hotel2</span> <span class="o">=</span> <span class="nv">$hotelRepository</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span><span class="s1">&#39;2&#39;</span><span class="p">);</span>
-<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="nv">$hotel2</span><span class="o">-&gt;</span><span class="na">checkIn</span><span class="p">(</span><span class="s1">&#39;David&#39;</span><span class="p">);</span>
-<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="nv">$hotelRepository</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$hotel2</span><span class="p">);</span>
-<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
-<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="nv">$hotels</span> <span class="o">=</span> <span class="nv">$hotelProjection</span><span class="o">-&gt;</span><span class="na">getHotels</span><span class="p">();</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="nv">$hotelRepository</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$hotel1</span><span class="p">);</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="nv">$hotel2</span> <span class="o">=</span> <span class="nv">$hotelRepository</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span><span class="nx">Uuid</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;d0d0d0d0-d0d0-d0d0-d0d0-d0d0d0d0d0d0&#39;</span><span class="p">));</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="nv">$hotel2</span><span class="o">-&gt;</span><span class="na">checkIn</span><span class="p">(</span><span class="s1">&#39;David&#39;</span><span class="p">);</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="nv">$hotelRepository</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$hotel2</span><span class="p">);</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="nv">$hotels</span> <span class="o">=</span> <span class="nv">$hotelProjection</span><span class="o">-&gt;</span><span class="na">getHotels</span><span class="p">();</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>An aggregateId can be an <strong>uuid</strong>, you can find more about this <a href="../uuid/">here</a>.</p>
+<p>You can also use other forms of IDs such as uuid version 6 or a custom format. 
+You can find more about this <a href="../aggregate_id/">here</a>.</p>
 </div>
 <h2 id="result">Result</h2>
 <div class="admonition success">
