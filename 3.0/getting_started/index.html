@@ -1272,15 +1272,15 @@ These events are thrown here and the state of the hotel is also changed.</p>
 we need a projection for it. To create a projection we need a projector. 
 Each projector is then responsible for a specific projection and version.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\Connection</span><span class="p">;</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Create</span><span class="p">;</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Drop</span><span class="p">;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Setup</span><span class="p">;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Teardown</span><span class="p">;</span>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Subscribe</span><span class="p">;</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Projection</span><span class="p">;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Projector</span><span class="p">;</span>
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\Message</span><span class="p">;</span>
 <a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projection\ProjectionId</span><span class="p">;</span>
 <a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projector\ProjectorUtil</span><span class="p">;</span>
 <a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="p">#[</span><span class="nd">Projection</span><span class="p">(</span><span class="s1">&#39;hotel&#39;</span><span class="p">)]</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="p">#[</span><span class="nd">Projector</span><span class="p">(</span><span class="s1">&#39;hotel&#39;</span><span class="p">)]</span>
 <a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">HotelProjector</span>
 <a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="p">{</span>
 <a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    <span class="k">use</span> <span class="nx">ProjectorUtil</span><span class="p">;</span>
@@ -1331,13 +1331,13 @@ Each projector is then responsible for a specific projection and version.</p>
 <a id="__codelineno-4-58" name="__codelineno-4-58" href="#__codelineno-4-58"></a>        <span class="p">);</span>
 <a id="__codelineno-4-59" name="__codelineno-4-59" href="#__codelineno-4-59"></a>    <span class="p">}</span>
 <a id="__codelineno-4-60" name="__codelineno-4-60" href="#__codelineno-4-60"></a>
-<a id="__codelineno-4-61" name="__codelineno-4-61" href="#__codelineno-4-61"></a>    <span class="p">#[</span><span class="nd">Create</span><span class="p">]</span>
+<a id="__codelineno-4-61" name="__codelineno-4-61" href="#__codelineno-4-61"></a>    <span class="p">#[</span><span class="nd">Setup</span><span class="p">]</span>
 <a id="__codelineno-4-62" name="__codelineno-4-62" href="#__codelineno-4-62"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">create</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
 <a id="__codelineno-4-63" name="__codelineno-4-63" href="#__codelineno-4-63"></a>    <span class="p">{</span>
 <a id="__codelineno-4-64" name="__codelineno-4-64" href="#__codelineno-4-64"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span><span class="s2">&quot;CREATE TABLE IF NOT EXISTS </span><span class="si">${</span><span class="nv">this-&gt;table()</span><span class="si">}</span><span class="s2"> (id VARCHAR PRIMARY KEY, name VARCHAR, guests INTEGER);&quot;</span><span class="p">);</span>
 <a id="__codelineno-4-65" name="__codelineno-4-65" href="#__codelineno-4-65"></a>    <span class="p">}</span>
 <a id="__codelineno-4-66" name="__codelineno-4-66" href="#__codelineno-4-66"></a>
-<a id="__codelineno-4-67" name="__codelineno-4-67" href="#__codelineno-4-67"></a>    <span class="p">#[</span><span class="nd">Drop</span><span class="p">]</span>
+<a id="__codelineno-4-67" name="__codelineno-4-67" href="#__codelineno-4-67"></a>    <span class="p">#[</span><span class="nd">Teardown</span><span class="p">]</span>
 <a id="__codelineno-4-68" name="__codelineno-4-68" href="#__codelineno-4-68"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">drop</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
 <a id="__codelineno-4-69" name="__codelineno-4-69" href="#__codelineno-4-69"></a>    <span class="p">{</span>
 <a id="__codelineno-4-70" name="__codelineno-4-70" href="#__codelineno-4-70"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span><span class="s2">&quot;DROP TABLE IF EXISTS </span><span class="si">${</span><span class="nv">this-&gt;table()</span><span class="si">}</span><span class="s2">;&quot;</span><span class="p">);</span>
