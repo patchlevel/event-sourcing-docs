@@ -1179,9 +1179,11 @@ We keep the example small, so we can only create hotels and let guests check in 
 <p>You can find out more about events <a href="../events/">here</a>.    </p>
 </div>
 <h2 id="define-aggregates">Define aggregates</h2>
-<p>Next we need to define the aggregate. So the hotel and how the hotel should behave.
-We have also defined the <code>create</code>, <code>checkIn</code> and <code>checkOut</code> methods accordingly.
-These events are thrown here and the state of the hotel is also changed.</p>
+<p>Next we need to define the hotel aggregate. 
+How you can interact with it, which events happen and what the business rules are.
+For this we create the methods <code>create</code>, <code>checkIn</code> and <code>checkOut</code>.
+In these methods the business checks are made and the events are recorded.
+Last but not least, we need the associated apply methods to change the state.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateChanged</span><span class="p">;</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\Uuid</span><span class="p">;</span>
@@ -1406,10 +1408,10 @@ Each projector is then responsible for a specific projection and version.</p>
 <a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="nv">$serializer</span> <span class="o">=</span> <span class="nx">DefaultEventSerializer</span><span class="o">::</span><span class="na">createFromPaths</span><span class="p">([</span><span class="s1">&#39;src/Domain/Hotel/Event&#39;</span><span class="p">]);</span>
 <a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="nv">$aggregateRegistry</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">AttributeAggregateRootRegistryFactory</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">([</span><span class="s1">&#39;src/Domain/Hotel&#39;</span><span class="p">]);</span>
 <a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>
-<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="nv">$store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineDbalStore</span><span class="p">(</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="nv">$eventStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineDbalStore</span><span class="p">(</span>
 <a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>    <span class="nv">$connection</span><span class="p">,</span>
 <a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>    <span class="nv">$serializer</span><span class="p">,</span>
-<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>    <span class="nv">$aggregateRegistry</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>    <span class="nv">$aggregateRegistry</span><span class="p">,</span>
 <a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="p">);</span>
 <a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>
 <a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="nv">$hotelProjector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">HotelProjector</span><span class="p">(</span><span class="nv">$connection</span><span class="p">);</span>
@@ -1421,28 +1423,25 @@ Each projector is then responsible for a specific projection and version.</p>
 <a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a><span class="nv">$projectionStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineStore</span><span class="p">(</span><span class="nv">$connection</span><span class="p">);</span>
 <a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a>
 <a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a><span class="nv">$projectionist</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultProjectionist</span><span class="p">(</span>
-<a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a>    <span class="nv">$store</span><span class="p">,</span>
+<a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a>    <span class="nv">$eventStore</span><span class="p">,</span>
 <a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a>    <span class="nv">$projectionStore</span><span class="p">,</span>
-<a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a>    <span class="nv">$projectorRepository</span>
+<a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a>    <span class="nv">$projectorRepository</span><span class="p">,</span>
 <a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a><span class="p">);</span>
 <a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a>
 <a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a><span class="nv">$eventBus</span> <span class="o">=</span> <span class="nx">SyncProjectionistEventBusWrapper</span><span class="o">::</span><span class="na">createWithDefaultLockStrategy</span><span class="p">(</span>
 <a id="__codelineno-6-41" name="__codelineno-6-41" href="#__codelineno-6-41"></a>    <span class="nx">DefaultEventBus</span><span class="o">::</span><span class="na">create</span><span class="p">([</span>
-<a id="__codelineno-6-42" name="__codelineno-6-42" href="#__codelineno-6-42"></a>        <span class="k">new</span> <span class="nx">SyncProjectorListener</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
+<a id="__codelineno-6-42" name="__codelineno-6-42" href="#__codelineno-6-42"></a>        <span class="k">new</span> <span class="nx">SendCheckInEmailProcessor</span><span class="p">(</span><span class="nv">$mailer</span><span class="p">),</span>
 <a id="__codelineno-6-43" name="__codelineno-6-43" href="#__codelineno-6-43"></a>    <span class="p">]),</span>
-<a id="__codelineno-6-44" name="__codelineno-6-44" href="#__codelineno-6-44"></a>    <span class="nv">$projectionist</span>
+<a id="__codelineno-6-44" name="__codelineno-6-44" href="#__codelineno-6-44"></a>    <span class="nv">$projectionist</span><span class="p">,</span>
 <a id="__codelineno-6-45" name="__codelineno-6-45" href="#__codelineno-6-45"></a><span class="p">);</span>
 <a id="__codelineno-6-46" name="__codelineno-6-46" href="#__codelineno-6-46"></a>
 <a id="__codelineno-6-47" name="__codelineno-6-47" href="#__codelineno-6-47"></a><span class="nv">$repositoryManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultRepositoryManager</span><span class="p">(</span>
 <a id="__codelineno-6-48" name="__codelineno-6-48" href="#__codelineno-6-48"></a>    <span class="nv">$aggregateRegistry</span><span class="p">,</span>
-<a id="__codelineno-6-49" name="__codelineno-6-49" href="#__codelineno-6-49"></a>    <span class="nv">$store</span><span class="p">,</span>
-<a id="__codelineno-6-50" name="__codelineno-6-50" href="#__codelineno-6-50"></a>    <span class="nx">SyncProjectionistEventBusWrapper</span><span class="o">::</span><span class="na">createWithDefaultLockStrategy</span><span class="p">(</span>
-<a id="__codelineno-6-51" name="__codelineno-6-51" href="#__codelineno-6-51"></a>        <span class="nv">$eventBus</span><span class="p">,</span>
-<a id="__codelineno-6-52" name="__codelineno-6-52" href="#__codelineno-6-52"></a>        <span class="nv">$projectionist</span>
-<a id="__codelineno-6-53" name="__codelineno-6-53" href="#__codelineno-6-53"></a>    <span class="p">)</span>
-<a id="__codelineno-6-54" name="__codelineno-6-54" href="#__codelineno-6-54"></a><span class="p">);</span>
-<a id="__codelineno-6-55" name="__codelineno-6-55" href="#__codelineno-6-55"></a>
-<a id="__codelineno-6-56" name="__codelineno-6-56" href="#__codelineno-6-56"></a><span class="nv">$hotelRepository</span> <span class="o">=</span> <span class="nv">$repositoryManager</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nx">Hotel</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<a id="__codelineno-6-49" name="__codelineno-6-49" href="#__codelineno-6-49"></a>    <span class="nv">$eventStore</span><span class="p">,</span>
+<a id="__codelineno-6-50" name="__codelineno-6-50" href="#__codelineno-6-50"></a>    <span class="nv">$eventBus</span><span class="p">,</span>
+<a id="__codelineno-6-51" name="__codelineno-6-51" href="#__codelineno-6-51"></a><span class="p">);</span>
+<a id="__codelineno-6-52" name="__codelineno-6-52" href="#__codelineno-6-52"></a>
+<a id="__codelineno-6-53" name="__codelineno-6-53" href="#__codelineno-6-53"></a><span class="nv">$hotelRepository</span> <span class="o">=</span> <span class="nv">$repositoryManager</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nx">Hotel</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1457,7 +1456,7 @@ we need the associated schema and databases.</p>
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nv">$schemaDirector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineSchemaDirector</span><span class="p">(</span>
 <a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="nv">$connection</span><span class="p">,</span>
 <a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="k">new</span> <span class="nx">ChainSchemaConfigurator</span><span class="p">([</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>        <span class="nv">$store</span><span class="p">,</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>        <span class="nv">$eventStore</span><span class="p">,</span>
 <a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>        <span class="nv">$projectionStore</span>
 <a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    <span class="p">])</span>
 <a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="p">);</span>
