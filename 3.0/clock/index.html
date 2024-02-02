@@ -14,7 +14,7 @@
         <link rel="prev" href="../split_stream/">
       
       
-        <link rel="next" href="../cli/">
+        <link rel="next" href="../testing/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -536,6 +536,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -568,6 +572,27 @@
             Advanced
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aggregate_id/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Aggregate ID
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -786,10 +811,40 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#learn-more" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learn more
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -810,10 +865,6 @@
   
     
     
-      
-        
-      
-        
       
         
       
@@ -853,27 +904,6 @@
             Other / Tools
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../uuid.md" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    UUID
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -938,27 +968,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../tests/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Tests
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -1010,6 +1019,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#learn-more" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learn more
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1029,12 +1047,12 @@
 
 
 <h1 id="clock">Clock</h1>
-<p>We are using the clock to get the current datetime. This is needed to create the <code>recorded_on</code> datetime for the events.
+<p>We are using the clock to get the current datetime. This is needed to create the <code>recorded_on</code> datetime for the event stream.
 We have two implementations of the clock, one for the production and one for the tests.
 But you can also create your own implementation that is PSR-20 compatible.
 For more information see <a href="https://github.com/php-fig/fig-standards/blob/master/proposed/clock.md">here</a>.</p>
 <h2 id="systemclock">SystemClock</h2>
-<p>This uses the native system clock to return the DateTimeImmutable instance - in this case <code>new DateTimeImmutable()</code>.</p>
+<p>This uses the native system clock to return the <code>DateTimeImmutable</code> instance.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Clock\SystemClock</span><span class="p">;</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nv">$clock</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SystemClock</span><span class="p">();</span>
@@ -1083,6 +1101,13 @@ deterministic tests.</p>
 <p class="admonition-title">Note</p>
 <p>The instance of the frozen datetime will be cloned internally, so the it's not the same instance but equals.</p>
 </div>
+<h2 id="learn-more">Learn more</h2>
+<ul>
+<li><a href="../testing/">How to test with datetime</a></li>
+<li><a href="../normalizer/">How to normalize datetime</a></li>
+<li><a href="../event_bus/">How to use messages</a></li>
+<li><a href="../message_decorator/">How to decorate messages</a></li>
+</ul>
 
 
 

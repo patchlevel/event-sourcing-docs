@@ -487,6 +487,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#learn-more" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learn more
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -654,6 +663,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -686,6 +699,27 @@
             Advanced
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aggregate_id/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Aggregate ID
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -855,6 +889,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -870,10 +925,6 @@
   
     
     
-      
-        
-      
-        
       
         
       
@@ -913,27 +964,6 @@
             Other / Tools
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../uuid.md" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    UUID
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -989,27 +1019,6 @@
   
   <span class="md-ellipsis">
     Watch Server
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../tests/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Tests
   </span>
   
 
@@ -1130,6 +1139,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#learn-more" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learn more
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1150,8 +1168,8 @@
 
 <h1 id="aggregate">Aggregate</h1>
 <p>The linchpin of event-sourcing is the aggregate. These aggregates can be imagined like entities in ORM. 
-One main difference is that we don't save the current state, but only the individual events that led to the state. 
-This means it is always possible to build the state again from the events.</p>
+One main difference is that we don't save the current state, but only the individual events that led to the state.
+This means it is always possible to build the current state again from the events.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The term aggregate itself comes from DDD and has nothing to do with event sourcing and can be used independently as a pattern. 
@@ -1251,7 +1269,8 @@ We also give the event a unique name using the <code>Event</code> attribute.</p>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>You can find out more about events <a href="../events/">here</a>.</p>
+<p>You can find out more about events <a href="../events/">here</a>.
+And for normalizer <a href="../normalizer/">here</a>.</p>
 </div>
 <p>After we have defined the event, we have to adapt the profile aggregate:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
@@ -1391,6 +1410,10 @@ where we change the name depending on the value in the event.</p>
 <a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>    <span class="p">}</span>
 <a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="p">}</span>
 </code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Our aggregate can now be changed and saved.</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You can read more about Repository <a href="../repository/">here</a>.</p>
@@ -1720,6 +1743,14 @@ and the <code>AggregateRootRegistry</code> is built up.</p>
 <a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
 <a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="nv">$aggregateRegistry</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">AttributeEventRegistryFactory</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$paths</span><span class="p">);</span>
 </code></pre></div>
+<h2 id="learn-more">Learn more</h2>
+<ul>
+<li><a href="../aggregate_id/">How to create own aggregate id</a></li>
+<li><a href="../repository/">How to store and load aggregates</a></li>
+<li><a href="../snapshots/">How to snapshot aggregates</a></li>
+<li><a href="../projection/">How to create Projections</a></li>
+<li><a href="../split_stream/">How to split streams</a></li>
+</ul>
 
 
 
