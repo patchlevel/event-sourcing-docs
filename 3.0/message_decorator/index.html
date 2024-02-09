@@ -1162,14 +1162,14 @@ which will then pass it to all Repositories.</p>
 </div>
 <h2 id="create-own-decorator">Create own decorator</h2>
 <p>You can also use this feature to add your own metadata to your events. For this the have an extra methods on <code>Message</code>
-to add data <code>withCustomHeader</code> and to read this data later on <code>customHeader</code>.</p>
+to add data <code>withHeader</code> and to read this data later on <code>header</code>.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\Message</span><span class="p">;</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">OnSystemRecordedDecorator</span> <span class="k">implements</span> <span class="nx">MessageDecorator</span>
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">{</span>
 <a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__invoke</span><span class="p">(</span><span class="nx">Message</span> <span class="nv">$message</span><span class="p">)</span><span class="o">:</span> <span class="nx">Message</span>
 <a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="p">{</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        <span class="k">return</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">withCustomHeader</span><span class="p">(</span><span class="s1">&#39;system&#39;</span><span class="p">,</span> <span class="s1">&#39;accounting_system&#39;</span><span class="p">);</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        <span class="k">return</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">withHeader</span><span class="p">(</span><span class="s1">&#39;system&#39;</span><span class="p">,</span> <span class="s1">&#39;accounting_system&#39;</span><span class="p">);</span>
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="p">}</span>
 <a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="p">}</span> 
 </code></pre></div>
@@ -1179,7 +1179,7 @@ to add data <code>withCustomHeader</code> and to read this data later on <code>c
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>You can also set multiple headers with <code>withCustomHeaders</code> which expects an hashmap.</p>
+<p>You can also set multiple headers with <code>withHeaders</code> which expects an hashmap.</p>
 </div>
 <h2 id="learn-more">Learn more</h2>
 <ul>
