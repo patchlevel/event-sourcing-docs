@@ -1442,7 +1442,7 @@ In this example we always create a new data set in a relational database when a 
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\Message</span><span class="p">;</span>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projector\ProjectorUtil</span><span class="p">;</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">#[</span><span class="nd">Projector</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">)]</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">#[</span><span class="nd">Projector</span><span class="p">(</span><span class="s1">&#39;profile_1&#39;</span><span class="p">)]</span>
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileProjector</span>
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">{</span>
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="k">use</span> <span class="nx">ProjectorUtil</span><span class="p">;</span>
@@ -1490,21 +1490,20 @@ In this example we always create a new data set in a relational database when a 
 <a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>
 <a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="k">private</span> <span class="k">function</span> <span class="nf">table</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span> 
 <a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="p">{</span>
-<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>        <span class="k">return</span> <span class="nb">sprintf</span><span class="p">(</span>
-<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>            <span class="s1">&#39;projection_%s_%s&#39;</span><span class="p">,</span> 
-<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">projectionName</span><span class="p">(),</span> 
-<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">projectionVersion</span><span class="p">()</span>
-<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>        <span class="p">);</span>
-<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="p">}</span>
-<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="p">}</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>        <span class="k">return</span> <span class="s1">&#39;projection_&#39;</span> <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">projectionId</span><span class="p">();</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    <span class="p">}</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="p">}</span>
 </code></pre></div>
-<p>Each projector is responsible for a specific projection and version.
-This combination of information results in the so-called <code>project ID</code>.
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Add a version as suffix to the <code>projectorId</code>, so you can increment it when the projection changes.</p>
+</div>
+<p>Each projector has an unique ID and is responsible for a specific projection.
 In order for us to be able to define this, we have to use the <code>Projector</code> attribute.
-In our example, the projection is called "profile" and has the version "0" because we did not specify it.
+In our example, the projection is called "profile".
 So that there is no problems with existing projection, 
-both the name of the projection and the version should be part of the table/collection name.
-In our example, we build a <code>table</code> helper method, what creates the following string: "projection_profile_0".</p>
+the name of the projection should be part of the table/collection name.
+In our example, we build a <code>table</code> helper method, what creates the following string: "projection_profile".</p>
 <p>Projectors can have one <code>setup</code> and <code>teardown</code> method that is executed when the projection is created or deleted.
 For this there are the attributes <code>Setup</code> and <code>Teardown</code>. The method name itself doesn't matter.
 In some cases it may be that no schema has to be created for the projection, 
@@ -1526,9 +1525,10 @@ otherwise these will be executed again if you rebuild the projection!</p>
 to make the event method return the correct type.</p>
 </div>
 <h2 id="versioning">Versioning</h2>
-<p>As soon as the structure of a projection changes, the version must be change or increment.
-Otherwise the projectionist will not recognize that the projection has changed and will not rebuild it.
-To do this, you have to change the version in the <code>Projector</code> attribute.</p>
+<p>As soon as the structure of a projection changes or the or you need other events from the past, 
+the <code>projectorId</code> must be change or increment.</p>
+<p>Otherwise the projectionist will not recognize that the projection has changed and will not rebuild it.
+To do this, you can add a version to the <code>projectorId</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\Connection</span><span class="p">;</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Setup</span><span class="p">;</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Teardown</span><span class="p">;</span>
@@ -1536,7 +1536,7 @@ To do this, you have to change the version in the <code>Projector</code> attribu
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Projector</span><span class="p">;</span>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\Message</span><span class="p">;</span>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">#[</span><span class="nd">Projector</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">,</span> <span class="nx">version</span><span class="o">:</span> <span class="mi">1</span><span class="p">)]</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">#[</span><span class="nd">Projector</span><span class="p">(</span><span class="s1">&#39;profile_1&#39;</span><span class="p">)]</span>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileProjector</span>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">{</span>
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>   <span class="c1">// ...</span>
@@ -1544,7 +1544,7 @@ To do this, you have to change the version in the <code>Projector</code> attribu
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>If you change the version, you must also change the table/collection name.</p>
+<p>If you change the ID, you must also change the table/collection name.</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -1573,17 +1573,16 @@ If something breaks, the projectionist marks the individual projections as fault
 </ul>
 </div>
 <h2 id="projection-id">Projection Id</h2>
-<p>A projection id consists of a unique name and a version.
-It can be defined using the <code>Projector</code> attribute.</p>
+<p>A projection id is unique and can be defined using the <code>Projector</code> attribute.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Projector</span><span class="p">;</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">#[</span><span class="nd">Projector</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">,</span> <span class="nx">version</span><span class="o">:</span> <span class="mi">1</span><span class="p">)]</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">#[</span><span class="nd">Projector</span><span class="p">(</span><span class="s1">&#39;profile_1&#39;</span><span class="p">)]</span>
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileProjector</span>
 <a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">{</span>
 <a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>   <span class="c1">// ...</span>
 <a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">}</span>
 </code></pre></div>
-<p>As soon as the projection changes, such as the structure or the data, the version of the projection must be incremented.
+<p>As soon as the projection changes, such as the structure or the data, the id of the projection must be changed.
 This tells the projectionist to build an another projection with this projector.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1610,7 +1609,7 @@ This cycle is tracked by the projectionist.</p>
     Outdated --&gt; [*]</code></pre>
 <h3 id="new">New</h3>
 <p>A projection gets the status new if there is a projector with an unknown <code>projection id</code>.
-This can happen when either a new projector has been added, the version has changed
+This can happen when either a new projector has been added, the <code>projector id</code> has changed
 or the projection has been manually deleted from the projection store.</p>
 <h3 id="booting">Booting</h3>
 <p>Booting status is reached when the boot process is invoked.
