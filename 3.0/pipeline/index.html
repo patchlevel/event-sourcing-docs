@@ -792,18 +792,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#projector" class="md-nav__link">
+  <a href="#consumer" class="md-nav__link">
     <span class="md-ellipsis">
-      Projector
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#projector-repository" class="md-nav__link">
-    <span class="md-ellipsis">
-      Projector Repository
+      Consumer
     </span>
   </a>
   
@@ -1243,18 +1234,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#projector" class="md-nav__link">
+  <a href="#consumer" class="md-nav__link">
     <span class="md-ellipsis">
-      Projector
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#projector-repository" class="md-nav__link">
-    <span class="md-ellipsis">
-      Projector Repository
+      Consumer
     </span>
   </a>
   
@@ -1440,11 +1422,11 @@ Otherwise the store will be broken afterwards!</p>
 <p>The pipeline can also be used to create or rebuild a projection:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Pipeline</span><span class="p">;</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Source\StoreSource</span><span class="p">;</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Target\ProjectionTarget</span><span class="p">;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Target\ConsumerTarget</span><span class="p">;</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nv">$pipeline</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Pipeline</span><span class="p">(</span>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="k">new</span> <span class="nx">StoreSource</span><span class="p">(</span><span class="nv">$store</span><span class="p">),</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">new</span> <span class="nx">ProjectionTarget</span><span class="p">(</span><span class="nv">$projection</span><span class="p">)</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="nx">ConsumerTarget</span><span class="o">::</span><span class="na">create</span><span class="p">([</span><span class="nv">$projection</span><span class="p">]),</span>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">);</span>
 </code></pre></div>
 <p>The principle remains the same. 
@@ -1518,60 +1500,49 @@ Otherwise the store will be broken afterwards!</p>
 <p>It does not matter whether the previous store was a SingleTable or a MultiTable.
 You can switch back and forth between both store types using the pipeline.</p>
 </div>
-<h3 id="projector">Projector</h3>
-<p>A projector can also be used as a target.
-For example, to set up a new projection or to build a new projection.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Target\ProjectorTarget</span><span class="p">;</span>
+<h3 id="consumer">Consumer</h3>
+<p>A consumer can also be used as a target.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Target\ConsumerTarget</span><span class="p">;</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nv">$target</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ProjectorTarget</span><span class="p">(</span><span class="nv">$projector</span><span class="p">);</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nv">$target</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ConsumerTarget</span><span class="p">(</span><span class="nv">$consumer</span><span class="p">);</span>
 </code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This is only recommended for exceptional cases. 
-By default, projections should only be created using the projectionist.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can also use it to build a new projection from scratch.</p>
 </div>
-<h3 id="projector-repository">Projector Repository</h3>
-<p>If you want to build or create all projections from scratch,
-then you can also use the ProjectorRepositoryTarget.
-In this, the individual projectors are iterated and the events are then passed on.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Target\ProjectorRepositoryTarget</span><span class="p">;</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nv">$target</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ProjectorRepositoryTarget</span><span class="p">(</span><span class="nv">$projectorRepository</span><span class="p">);</span>
-</code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This is only recommended for exceptional cases. 
-By default, projections should only be created using the projectionist.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>More about the consumer can be found <a href="../event_bus/">here</a>.</p>
 </div>
 <h3 id="in-memory_1">In Memory</h3>
 <p>There is also an in-memory variant for the target. This target can also be used for tests.
 With the <code>messages</code> method you get all <code>Messages</code> that have reached the target.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Target\InMemoryTarget</span><span class="p">;</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nv">$target</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">InMemoryTarget</span><span class="p">();</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1">// run pipeline</span>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="nv">$messages</span> <span class="o">=</span> <span class="nv">$target</span><span class="o">-&gt;</span><span class="na">messages</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Target\InMemoryTarget</span><span class="p">;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nv">$target</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">InMemoryTarget</span><span class="p">();</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1">// run pipeline</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="nv">$messages</span> <span class="o">=</span> <span class="nv">$target</span><span class="o">-&gt;</span><span class="na">messages</span><span class="p">();</span>
 </code></pre></div>
 <h3 id="custom-target">Custom Target</h3>
 <p>You can also define your own target. To do this, you need to implement the <code>Target</code> interface.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\Message</span><span class="p">;</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">OtherStoreTarget</span> <span class="k">implements</span> <span class="nx">Target</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="p">{</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="k">private</span> <span class="nx">OtherStore</span> <span class="nv">$store</span><span class="p">;</span>
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
-<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">OtherStore</span> <span class="nv">$store</span><span class="p">)</span>
-<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>    <span class="p">{</span>
-<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">store</span> <span class="o">=</span> <span class="nv">$store</span><span class="p">;</span>
-<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>    <span class="p">}</span>
-<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>
-<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">save</span><span class="p">(</span><span class="nx">Message</span> <span class="nv">$message</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
-<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>    <span class="p">{</span>
-<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">store</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
-<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>    <span class="p">}</span>
-<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\Message</span><span class="p">;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">OtherStoreTarget</span> <span class="k">implements</span> <span class="nx">Target</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="p">{</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="k">private</span> <span class="nx">OtherStore</span> <span class="nv">$store</span><span class="p">;</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">OtherStore</span> <span class="nv">$store</span><span class="p">)</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span class="p">{</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">store</span> <span class="o">=</span> <span class="nv">$store</span><span class="p">;</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>    <span class="p">}</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">save</span><span class="p">(</span><span class="nx">Message</span> <span class="nv">$message</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>    <span class="p">{</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">store</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>    <span class="p">}</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="p">}</span>
 </code></pre></div>
 <h2 id="middlewares">Middlewares</h2>
 <p>Middelwares can be used to manipulate, delete or expand messages or events during the process.</p>
@@ -1583,9 +1554,9 @@ A corresponding note is supplied with every middleware.</p>
 </div>
 <h3 id="exclude">Exclude</h3>
 <p>With this middleware you can exclude certain events.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\ExcludeEventMiddleware</span><span class="p">;</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ExcludeEventMiddleware</span><span class="p">([</span><span class="nx">EmailChanged</span><span class="o">::</span><span class="na">class</span><span class="p">]);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\ExcludeEventMiddleware</span><span class="p">;</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ExcludeEventMiddleware</span><span class="p">([</span><span class="nx">EmailChanged</span><span class="o">::</span><span class="na">class</span><span class="p">]);</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -1593,9 +1564,9 @@ A corresponding note is supplied with every middleware.</p>
 </div>
 <h3 id="include">Include</h3>
 <p>With this middleware you can only allow certain events.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\IncludeEventMiddleware</span><span class="p">;</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">IncludeEventMiddleware</span><span class="p">([</span><span class="nx">ProfileCreated</span><span class="o">::</span><span class="na">class</span><span class="p">]);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\IncludeEventMiddleware</span><span class="p">;</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">IncludeEventMiddleware</span><span class="p">([</span><span class="nx">ProfileCreated</span><span class="o">::</span><span class="na">class</span><span class="p">]);</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -1605,16 +1576,16 @@ A corresponding note is supplied with every middleware.</p>
 <p>If the middlewares <code>ExcludeEventMiddleware</code> and <code>IncludeEventMiddleware</code> are not sufficient, 
 you can also write your own filter. 
 This middleware expects a callback that returns either true to allow events or false to not allow them.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateChanged</span><span class="p">;</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\FilterEventMiddleware</span><span class="p">;</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FilterEventMiddleware</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">AggregateChanged</span> <span class="nv">$event</span><span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$event</span> <span class="nx">instanceof</span> <span class="nx">ProfileCreated</span><span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>    <span class="p">}</span>
-<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
-<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>    <span class="k">return</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">allowNewsletter</span><span class="p">();</span>
-<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="p">});</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateChanged</span><span class="p">;</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\FilterEventMiddleware</span><span class="p">;</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FilterEventMiddleware</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">AggregateChanged</span> <span class="nv">$event</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$event</span> <span class="nx">instanceof</span> <span class="nx">ProfileCreated</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    <span class="p">}</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>    <span class="k">return</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">allowNewsletter</span><span class="p">();</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="p">});</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -1622,9 +1593,9 @@ This middleware expects a callback that returns either true to allow events or f
 </div>
 <h3 id="exclude-archived-events">Exclude Archived Events</h3>
 <p>With this middleware you can exclude archived events.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\ExcludeArchivedEventMiddleware</span><span class="p">;</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ExcludeArchivedEventMiddleware</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\ExcludeArchivedEventMiddleware</span><span class="p">;</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ExcludeArchivedEventMiddleware</span><span class="p">();</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -1632,9 +1603,9 @@ This middleware expects a callback that returns either true to allow events or f
 </div>
 <h3 id="only-archived-events">Only Archived Events</h3>
 <p>With this middleware you can only allow archived events.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\OnlyArchivedEventMiddleware</span><span class="p">;</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OnlyArchivedEventMiddleware</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\OnlyArchivedEventMiddleware</span><span class="p">;</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OnlyArchivedEventMiddleware</span><span class="p">();</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -1644,11 +1615,11 @@ This middleware expects a callback that returns either true to allow events or f
 <p>If you want to replace an event, you can use the <code>ReplaceEventMiddleware</code>.
 The first parameter you have to define is the event class that you want to replace.
 And as a second parameter a callback, that the old event awaits and a new event returns.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\ReplaceEventMiddleware</span><span class="p">;</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ReplaceEventMiddleware</span><span class="p">(</span><span class="nx">OldVisited</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="k">static</span> <span class="k">function</span> <span class="p">(</span><span class="nx">OldVisited</span> <span class="nv">$oldVisited</span><span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    <span class="k">return</span> <span class="k">new</span> <span class="nx">NewVisited</span><span class="p">(</span><span class="nv">$oldVisited</span><span class="o">-&gt;</span><span class="na">profileId</span><span class="p">());</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="p">});</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\ReplaceEventMiddleware</span><span class="p">;</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ReplaceEventMiddleware</span><span class="p">(</span><span class="nx">OldVisited</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="k">static</span> <span class="k">function</span> <span class="p">(</span><span class="nx">OldVisited</span> <span class="nv">$oldVisited</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="k">return</span> <span class="k">new</span> <span class="nx">NewVisited</span><span class="p">(</span><span class="nv">$oldVisited</span><span class="o">-&gt;</span><span class="na">profileId</span><span class="p">());</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="p">});</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1657,9 +1628,9 @@ And as a second parameter a callback, that the old event awaits and a new event 
 <h3 id="until">Until</h3>
 <p>A use case could also be that you want to look at the projection from a previous point in time.
 You can use the <code>UntilEventMiddleware</code> to only allow events that were <code>recorded</code> before this point in time.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\ClassRenameMiddleware</span><span class="p">;</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">UntilEventMiddleware</span><span class="p">(</span><span class="k">new</span> <span class="nx">DateTimeImmutable</span><span class="p">(</span><span class="s1">&#39;2020-01-01 12:00:00&#39;</span><span class="p">));</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\ClassRenameMiddleware</span><span class="p">;</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">UntilEventMiddleware</span><span class="p">(</span><span class="k">new</span> <span class="nx">DateTimeImmutable</span><span class="p">(</span><span class="s1">&#39;2020-01-01 12:00:00&#39;</span><span class="p">));</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -1669,9 +1640,9 @@ You can use the <code>UntilEventMiddleware</code> to only allow events that were
 <p>This middleware can be used to recalculate the playhead.
 The playhead must always be in ascending order so that the data is valid. 
 Some middleware can break this order and the middleware <code>RecalculatePlayheadMiddleware</code> can fix this problem.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\RecalculatePlayheadMiddleware</span><span class="p">;</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">RecalculatePlayheadMiddleware</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\RecalculatePlayheadMiddleware</span><span class="p">;</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">RecalculatePlayheadMiddleware</span><span class="p">();</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1679,14 +1650,14 @@ Some middleware can break this order and the middleware <code>RecalculatePlayhea
 </div>
 <h3 id="chain">Chain</h3>
 <p>If you want to group your middleware, you can use one or more <code>ChainMiddleware</code>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\ChainMiddleware</span><span class="p">;</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\ExcludeEventMiddleware</span><span class="p">;</span>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\RecalculatePlayheadMiddleware</span><span class="p">;</span>
-<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>
-<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ChainMiddleware</span><span class="p">([</span>
-<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>    <span class="k">new</span> <span class="nx">ExcludeEventMiddleware</span><span class="p">([</span><span class="nx">EmailChanged</span><span class="o">::</span><span class="na">class</span><span class="p">]),</span>
-<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>    <span class="k">new</span> <span class="nx">RecalculatePlayheadMiddleware</span><span class="p">()</span>
-<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="p">]);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\ChainMiddleware</span><span class="p">;</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\ExcludeEventMiddleware</span><span class="p">;</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\RecalculatePlayheadMiddleware</span><span class="p">;</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ChainMiddleware</span><span class="p">([</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>    <span class="k">new</span> <span class="nx">ExcludeEventMiddleware</span><span class="p">([</span><span class="nx">EmailChanged</span><span class="o">::</span><span class="na">class</span><span class="p">]),</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>    <span class="k">new</span> <span class="nx">RecalculatePlayheadMiddleware</span><span class="p">()</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="p">]);</span>
 </code></pre></div>
 <h3 id="custom-middleware">Custom middleware</h3>
 <p>You can also write a custom middleware. The middleware gets a message and can return <code>N</code> messages. 
@@ -1701,32 +1672,32 @@ There are the following possibilities:</p>
 In the beginning we had a <code>ProfileCreated</code> event that just created a profile. 
 Now we have a <code>ProfileRegistered</code> and a <code>ProfileActivated</code> event, 
 which should replace the <code>ProfileCreated</code> event.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\Message</span><span class="p">;</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\Middleware</span><span class="p">;</span>
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
-<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">SplitProfileCreatedMiddleware</span> <span class="k">implements</span> <span class="nx">Middleware</span>
-<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="p">{</span>
-<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__invoke</span><span class="p">(</span><span class="nx">Message</span> <span class="nv">$message</span><span class="p">)</span><span class="o">:</span> <span class="k">array</span>
-<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>    <span class="p">{</span>
-<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>        <span class="nv">$event</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">event</span><span class="p">();</span>
-<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>
-<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$event</span> <span class="nx">instanceof</span> <span class="nx">ProfileCreated</span><span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>            <span class="k">return</span> <span class="p">[</span><span class="nv">$message</span><span class="p">];</span>
-<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>        <span class="p">}</span>
-<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>
-<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>        <span class="nv">$profileRegisteredMessage</span> <span class="o">=</span> <span class="nx">Message</span><span class="o">::</span><span class="na">createWithHeaders</span><span class="p">(</span>
-<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>            <span class="k">new</span> <span class="nx">ProfileRegistered</span><span class="p">(</span><span class="nv">$event</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">(),</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">()),</span> 
-<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>            <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">headers</span><span class="p">()</span>
-<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>        <span class="p">);</span>
-<a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>
-<a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>        <span class="nv">$profileActivatedMessage</span> <span class="o">=</span> <span class="nx">Message</span><span class="o">::</span><span class="na">createWithHeaders</span><span class="p">(</span>
-<a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>            <span class="k">new</span> <span class="nx">ProfileActivated</span><span class="p">(</span><span class="nv">$event</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">()),</span> 
-<a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>            <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">headers</span><span class="p">()</span>
-<a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>        <span class="p">);</span>
-<a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a>
-<a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a>        <span class="k">return</span> <span class="p">[</span><span class="nv">$profileRegisteredMessage</span><span class="p">,</span> <span class="nv">$profileActivatedMessage</span><span class="p">];</span>
-<a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a>    <span class="p">}</span>    
-<a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\Message</span><span class="p">;</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\Middleware</span><span class="p">;</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">SplitProfileCreatedMiddleware</span> <span class="k">implements</span> <span class="nx">Middleware</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="p">{</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__invoke</span><span class="p">(</span><span class="nx">Message</span> <span class="nv">$message</span><span class="p">)</span><span class="o">:</span> <span class="k">array</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>    <span class="p">{</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>        <span class="nv">$event</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">event</span><span class="p">();</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$event</span> <span class="nx">instanceof</span> <span class="nx">ProfileCreated</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>            <span class="k">return</span> <span class="p">[</span><span class="nv">$message</span><span class="p">];</span>
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>        <span class="p">}</span>
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>        <span class="nv">$profileRegisteredMessage</span> <span class="o">=</span> <span class="nx">Message</span><span class="o">::</span><span class="na">createWithHeaders</span><span class="p">(</span>
+<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>            <span class="k">new</span> <span class="nx">ProfileRegistered</span><span class="p">(</span><span class="nv">$event</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">(),</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">()),</span> 
+<a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>            <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">headers</span><span class="p">()</span>
+<a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>        <span class="p">);</span>
+<a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a>
+<a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a>        <span class="nv">$profileActivatedMessage</span> <span class="o">=</span> <span class="nx">Message</span><span class="o">::</span><span class="na">createWithHeaders</span><span class="p">(</span>
+<a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a>            <span class="k">new</span> <span class="nx">ProfileActivated</span><span class="p">(</span><span class="nv">$event</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">()),</span> 
+<a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a>            <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">headers</span><span class="p">()</span>
+<a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a>        <span class="p">);</span>
+<a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a>
+<a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a>        <span class="k">return</span> <span class="p">[</span><span class="nv">$profileRegisteredMessage</span><span class="p">,</span> <span class="nv">$profileActivatedMessage</span><span class="p">];</span>
+<a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a>    <span class="p">}</span>    
+<a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
