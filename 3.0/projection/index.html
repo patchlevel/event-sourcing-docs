@@ -554,9 +554,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#projector-repository" class="md-nav__link">
+  <a href="#from-now" class="md-nav__link">
     <span class="md-ellipsis">
-      Projector Repository
+      From Now
     </span>
   </a>
   
@@ -1209,9 +1209,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#projector-repository" class="md-nav__link">
+  <a href="#from-now" class="md-nav__link">
     <span class="md-ellipsis">
-      Projector Repository
+      From Now
     </span>
   </a>
   
@@ -1529,18 +1529,13 @@ to make the event method return the correct type.</p>
 the <code>projectorId</code> must be change or increment.</p>
 <p>Otherwise the projectionist will not recognize that the projection has changed and will not rebuild it.
 To do this, you can add a version to the <code>projectorId</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\Connection</span><span class="p">;</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Setup</span><span class="p">;</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Teardown</span><span class="p">;</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Handle</span><span class="p">;</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Projector</span><span class="p">;</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\Message</span><span class="p">;</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">#[</span><span class="nd">Projector</span><span class="p">(</span><span class="s1">&#39;profile_1&#39;</span><span class="p">)]</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileProjector</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">{</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>   <span class="c1">// ...</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Projector</span><span class="p">;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="p">#[</span><span class="nd">Projector</span><span class="p">(</span><span class="s1">&#39;profile_1&#39;</span><span class="p">)]</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileProjector</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">{</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>   <span class="c1">// ...</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -1550,13 +1545,17 @@ To do this, you can add a version to the <code>projectorId</code>:</p>
 <p class="admonition-title">Tip</p>
 <p>You can also use the <code>ProjectorUtil</code> to build the table/collection name.</p>
 </div>
-<h2 id="projector-repository">Projector Repository</h2>
-<p>The projector repository is responsible for managing the projectors.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projector\InMemoryProjectorRepository</span><span class="p">;</span>
+<h2 id="from-now">From Now</h2>
+<p>Certain projectors operate exclusively on post-release events, disregarding historical data. 
+Consider, for instance, the scenario of launching a fresh email service. 
+Its primary function is to dispatch welcome emails to newly registered users triggered by a <code>ProfileCreated</code> event. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Projector</span><span class="p">;</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nv">$projectorRepository</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">InMemoryProjectorRepository</span><span class="p">([</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="k">new</span> <span class="nx">ProfileProjection</span><span class="p">(</span><span class="nv">$connection</span><span class="p">)</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">]);</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">#[</span><span class="nd">Projector</span><span class="p">(</span><span class="s1">&#39;profile_1&#39;</span><span class="p">,</span> <span class="nx">fromNow</span><span class="o">:</span> <span class="k">true</span><span class="p">)]</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">WelcomeEmailProjector</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">{</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>   <span class="c1">// ...</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">}</span>
 </code></pre></div>
 <h2 id="projectionist">Projectionist</h2>
 <p>The projectionist manages individual projectors and keeps the projections running.
@@ -1675,7 +1674,7 @@ In our case they need the <code>SchemaConfigurator</code> from the event store a
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nv">$projectionist</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultProjectionist</span><span class="p">(</span>
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="nv">$eventStore</span><span class="p">,</span>
 <a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="nv">$projectionStore</span><span class="p">,</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="nv">$projectorRepository</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="p">[</span><span class="nv">$projector1</span><span class="p">,</span> <span class="nv">$projector2</span><span class="p">,</span> <span class="nv">$projector3</span><span class="p">]</span>
 <a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="p">);</span>
 </code></pre></div>
 <h2 id="usage">Usage</h2>
