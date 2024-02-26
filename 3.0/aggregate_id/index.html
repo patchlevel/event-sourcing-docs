@@ -1002,7 +1002,7 @@ For this, we have the <code>Uuid</code> class, which is a simple wrapper for the
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">{</span>
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="p">#[</span><span class="nd">Id</span><span class="p">]</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="p">#[</span><span class="nd">IdNormalizer</span><span class="p">(</span><span class="nx">Uuid</span><span class="o">::</span><span class="na">class</span><span class="p">)]</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="p">#[</span><span class="nd">IdNormalizer</span><span class="p">]</span>
 <a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="k">private</span> <span class="nx">Uuid</span> <span class="nv">$id</span><span class="p">;</span>
 <a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">}</span>
 </code></pre></div>
@@ -1037,7 +1037,7 @@ This is a value object that holds any string.</p>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="p">{</span>
 <a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="p">#[</span><span class="nd">Id</span><span class="p">]</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="p">#[</span><span class="nd">IdNormalizer</span><span class="p">(</span><span class="nx">CustomId</span><span class="o">::</span><span class="na">class</span><span class="p">)]</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="p">#[</span><span class="nd">IdNormalizer</span><span class="p">]</span>
 <a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="k">private</span> <span class="nx">CustomId</span> <span class="nv">$id</span><span class="p">;</span>
 <a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="p">}</span>
 </code></pre></div>
@@ -1086,7 +1086,7 @@ The whole thing looks like this:</p>
 <a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
 <a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="p">{</span>
 <a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="p">#[</span><span class="nd">Id</span><span class="p">]</span>
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    <span class="p">#[</span><span class="nd">IdNormalizer</span><span class="p">(</span><span class="nx">ProfileId</span><span class="o">::</span><span class="na">class</span><span class="p">)]</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    <span class="p">#[</span><span class="nd">IdNormalizer</span><span class="p">]</span>
 <a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    <span class="k">private</span> <span class="nx">ProfileId</span> <span class="nv">$id</span><span class="p">;</span>
 <a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="p">}</span>
 </code></pre></div>
