@@ -1063,6 +1063,7 @@
 <p>To manage your projectors there are the following cli commands.</p>
 <ul>
 <li>ProjectionBootCommand: <code>event-sourcing:projection:boot</code></li>
+<li>ProjectionPauseCommand: <code>event-sourcing:projection:pause</code></li>
 <li>ProjectionReactiveCommand: <code>event-sourcing:projection:reactive</code></li>
 <li>ProjectionRebuildCommand: <code>event-sourcing:projection:rebuild</code></li>
 <li>ProjectionRemoveCommand: <code>event-sourcing:projection:remove</code></li>
@@ -1111,18 +1112,19 @@
 <a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="k">new</span> <span class="nx">Command\DatabaseCreateCommand</span><span class="p">(</span><span class="nv">$store</span><span class="p">,</span> <span class="nv">$doctrineHelper</span><span class="p">),</span>
 <a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="k">new</span> <span class="nx">Command\DatabaseDropCommand</span><span class="p">(</span><span class="nv">$store</span><span class="p">,</span> <span class="nv">$doctrineHelper</span><span class="p">),</span>
 <a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="k">new</span> <span class="nx">Command\ProjectionBootCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="k">new</span> <span class="nx">Command\ProjectionRunCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="k">new</span> <span class="nx">Command\ProjectionTeardownCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="k">new</span> <span class="nx">Command\ProjectionRemoveCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="k">new</span> <span class="nx">Command\ProjectionReactivateCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="k">new</span> <span class="nx">Command\ProjectionRebuildCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="k">new</span> <span class="nx">Command\ProjectionStatusCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="k">new</span> <span class="nx">Command\SchemaCreateCommand</span><span class="p">(</span><span class="nv">$store</span><span class="p">,</span> <span class="nv">$schemaManager</span><span class="p">),</span>
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="k">new</span> <span class="nx">Command\SchemaDropCommand</span><span class="p">(</span><span class="nv">$store</span><span class="p">,</span> <span class="nv">$schemaManager</span><span class="p">),</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="k">new</span> <span class="nx">Command\SchemaUpdateCommand</span><span class="p">(</span><span class="nv">$store</span><span class="p">,</span> <span class="nv">$schemaManager</span><span class="p">),</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="p">));</span>
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="nv">$cli</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">();</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="k">new</span> <span class="nx">Command\ProjectionPauseCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="k">new</span> <span class="nx">Command\ProjectionRunCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="k">new</span> <span class="nx">Command\ProjectionTeardownCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="k">new</span> <span class="nx">Command\ProjectionRemoveCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="k">new</span> <span class="nx">Command\ProjectionReactivateCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="k">new</span> <span class="nx">Command\ProjectionRebuildCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="k">new</span> <span class="nx">Command\ProjectionStatusCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="k">new</span> <span class="nx">Command\SchemaCreateCommand</span><span class="p">(</span><span class="nv">$store</span><span class="p">,</span> <span class="nv">$schemaManager</span><span class="p">),</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="k">new</span> <span class="nx">Command\SchemaDropCommand</span><span class="p">(</span><span class="nv">$store</span><span class="p">,</span> <span class="nv">$schemaManager</span><span class="p">),</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="k">new</span> <span class="nx">Command\SchemaUpdateCommand</span><span class="p">(</span><span class="nv">$store</span><span class="p">,</span> <span class="nv">$schemaManager</span><span class="p">),</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="p">));</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="nv">$cli</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">();</span>
 </code></pre></div>
 <h3 id="doctrine-migrations">Doctrine Migrations</h3>
 <p>If you want to use doctrine migrations, you can register the commands like this:</p>

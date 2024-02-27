@@ -701,6 +701,21 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paused" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paused
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paused">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#finished" class="md-nav__link">
     <span class="md-ellipsis">
@@ -825,6 +840,15 @@
   <a href="#reactivate" class="md-nav__link">
     <span class="md-ellipsis">
       Reactivate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pause" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pause
     </span>
   </a>
   
@@ -1363,6 +1387,21 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paused" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paused
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paused">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#finished" class="md-nav__link">
     <span class="md-ellipsis">
@@ -1487,6 +1526,15 @@
   <a href="#reactivate" class="md-nav__link">
     <span class="md-ellipsis">
       Reactivate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pause" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pause
     </span>
   </a>
   
@@ -1809,16 +1857,24 @@ This cycle is tracked by the projectionist.</p>
     New --&gt; Booting
     New --&gt; Error
     Booting --&gt; Active
+    Booting --&gt; Paused
     Booting --&gt; Finished
     Booting --&gt; Error
+    Active --&gt; Paused
     Active --&gt; Finished
     Active --&gt; Outdated
     Active --&gt; Error
+    Paused --&gt; New
+    Paused --&gt; Booting
+    Paused --&gt; Active
+    Paused --&gt; Outdated
+    Paused --&gt; [*]
     Finished --&gt; Active
     Finished --&gt; Outdated
     Error --&gt; New
     Error --&gt; Booting
     Error --&gt; Active
+    Error --&gt; Paused
     Error --&gt; [*]
     Outdated --&gt; Active
     Outdated --&gt; [*]</code></pre>
@@ -1834,6 +1890,10 @@ When the process is finished, the projection is set to active.</p>
 <h3 id="active">Active</h3>
 <p>The active status describes the projections currently being actively managed by the projectionist.
 These projections have a projector, follow the event stream and should be up-to-date.</p>
+<h2 id="paused">Paused</h2>
+<p>A projection can manually be paused. It will then no longer be updated by the projectionist.
+This can be useful if you want to pause a projection for a certain period of time.
+You can also reactivate the projection if you want so that it continues.</p>
 <h3 id="finished">Finished</h3>
 <p>A projection is finished if the projector has the mode <code>RunMode::Once</code>.
 This means that the projection is only run once and then set to finished if it reaches the end of the event stream.
@@ -1965,13 +2025,19 @@ An attempt is made to remove the structures, but the entry will still be removed
 As a result, the projection gets the status active again and is then kept up-to-date again by the projectionist.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">reactivate</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
 </code></pre></div>
+<h3 id="pause">Pause</h3>
+<p>Pausing a projection is also possible.
+The projection will then no longer be updated by the projectionist.
+You can reactivate the projection if you want so that it continues.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">pause</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
+</code></pre></div>
 <h3 id="status">Status</h3>
 <p>To get the current status of all projections, you can get them using the <code>projections</code> method.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nv">$projections</span> <span class="o">=</span> <span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">projections</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$projections</span> <span class="k">as</span> <span class="nv">$projection</span><span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>    <span class="k">echo</span> <span class="nv">$projection</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">();</span>
-<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nv">$projections</span> <span class="o">=</span> <span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">projections</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$projections</span> <span class="k">as</span> <span class="nv">$projection</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>    <span class="k">echo</span> <span class="nv">$projection</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">();</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="p">}</span>
 </code></pre></div>
 <h2 id="learn-more">Learn more</h2>
 <ul>
