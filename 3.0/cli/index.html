@@ -318,8 +318,6 @@
       
         
       
-        
-      
     
     
     
@@ -465,32 +463,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../processor/" class="md-nav__link">
+      <a href="../subscription/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Processor
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../projection/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Projection
+    Subscription
   </span>
   
 
@@ -854,9 +831,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#projection-commands" class="md-nav__link">
+  <a href="#subscription-commands" class="md-nav__link">
     <span class="md-ellipsis">
-      Projection commands
+      Subscription commands
     </span>
   </a>
   
@@ -956,9 +933,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#projection-commands" class="md-nav__link">
+  <a href="#subscription-commands" class="md-nav__link">
     <span class="md-ellipsis">
-      Projection commands
+      Subscription commands
     </span>
   </a>
   
@@ -1021,7 +998,7 @@
 <ul>
 <li>Create and delete <code>databases</code></li>
 <li>Create, update and delete <code>schemas</code></li>
-<li>Manage <code>projections</code></li>
+<li>Manage <code>subscriptions</code></li>
 </ul>
 <h2 id="database-commands">Database commands</h2>
 <p>There are two commands for creating and deleting a database.</p>
@@ -1040,21 +1017,20 @@
 <p class="admonition-title">Note</p>
 <p>You can also register doctrine migration commands.</p>
 </div>
-<h2 id="projection-commands">Projection commands</h2>
-<p>To manage your projectors there are the following cli commands.</p>
+<h2 id="subscription-commands">Subscription commands</h2>
+<p>To manage your subscriptions there are the following cli commands.</p>
 <ul>
-<li>ProjectionBootCommand: <code>event-sourcing:projection:boot</code></li>
-<li>ProjectionPauseCommand: <code>event-sourcing:projection:pause</code></li>
-<li>ProjectionReactiveCommand: <code>event-sourcing:projection:reactive</code></li>
-<li>ProjectionRebuildCommand: <code>event-sourcing:projection:rebuild</code></li>
-<li>ProjectionRemoveCommand: <code>event-sourcing:projection:remove</code></li>
-<li>ProjectionRunCommand: <code>event-sourcing:projection:run</code></li>
-<li>ProjectionStatusCommand: <code>event-sourcing:projection:status</code></li>
-<li>ProjectionTeardownCommand: <code>event-sourcing:projection:teardown</code></li>
+<li>SubscriptionBootCommand: <code>event-sourcing:subscription:boot</code></li>
+<li>SubscriptionPauseCommand: <code>event-sourcing:subscription:pause</code></li>
+<li>SubscriptionReactiveCommand: <code>event-sourcing:subscription:reactive</code></li>
+<li>SubscriptionRemoveCommand: <code>event-sourcing:subscription:remove</code></li>
+<li>SubscriptionRunCommand: <code>event-sourcing:subscription:run</code></li>
+<li>SubscriptionStatusCommand: <code>event-sourcing:subscription:status</code></li>
+<li>SubscriptionTeardownCommand: <code>event-sourcing:subscription:teardown</code></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>You can find out more about projections <a href="../projection/">here</a>.</p>
+<p>You can find out more about subscriptions <a href="../subscription/">here</a>.</p>
 </div>
 <h2 id="inspector-commands">Inspector commands</h2>
 <p>The inspector is a tool to inspect the event streams.</p>
@@ -1082,14 +1058,14 @@
 <a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="nv">$cli</span><span class="o">-&gt;</span><span class="na">addCommands</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
 <a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="k">new</span> <span class="nx">Command\DatabaseCreateCommand</span><span class="p">(</span><span class="nv">$store</span><span class="p">,</span> <span class="nv">$doctrineHelper</span><span class="p">),</span>
 <a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="k">new</span> <span class="nx">Command\DatabaseDropCommand</span><span class="p">(</span><span class="nv">$store</span><span class="p">,</span> <span class="nv">$doctrineHelper</span><span class="p">),</span>
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="k">new</span> <span class="nx">Command\ProjectionBootCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="k">new</span> <span class="nx">Command\ProjectionPauseCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="k">new</span> <span class="nx">Command\ProjectionRunCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="k">new</span> <span class="nx">Command\ProjectionTeardownCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="k">new</span> <span class="nx">Command\ProjectionRemoveCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="k">new</span> <span class="nx">Command\ProjectionReactivateCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="k">new</span> <span class="nx">Command\ProjectionRebuildCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="k">new</span> <span class="nx">Command\ProjectionStatusCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="k">new</span> <span class="nx">Command\SubscriptionBootCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="k">new</span> <span class="nx">Command\SubscriptionPauseCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="k">new</span> <span class="nx">Command\SubscriptionRunCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="k">new</span> <span class="nx">Command\SubscriptionTeardownCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="k">new</span> <span class="nx">Command\SubscriptionRemoveCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="k">new</span> <span class="nx">Command\SubscriptionReactivateCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="k">new</span> <span class="nx">Command\SubscriptionRebuildCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="k">new</span> <span class="nx">Command\SubscriptionStatusCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
 <a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="k">new</span> <span class="nx">Command\SchemaCreateCommand</span><span class="p">(</span><span class="nv">$store</span><span class="p">,</span> <span class="nv">$schemaManager</span><span class="p">),</span>
 <a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="k">new</span> <span class="nx">Command\SchemaDropCommand</span><span class="p">(</span><span class="nv">$store</span><span class="p">,</span> <span class="nv">$schemaManager</span><span class="p">),</span>
 <a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="k">new</span> <span class="nx">Command\SchemaUpdateCommand</span><span class="p">(</span><span class="nv">$store</span><span class="p">,</span> <span class="nv">$schemaManager</span><span class="p">),</span>

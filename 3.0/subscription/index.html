@@ -8,10 +8,10 @@
       
       
       
-        <link rel="canonical" href="https://patchlevel.github.io/event-sourcing-docs/3.0/projection/">
+        <link rel="canonical" href="https://patchlevel.github.io/event-sourcing-docs/3.0/subscription/">
       
       
-        <link rel="prev" href="../processor/">
+        <link rel="prev" href="../event_bus/">
       
       
         <link rel="next" href="../aggregate_id/">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Projection - Event Sourcing</title>
+        <title>Subscription - Event Sourcing</title>
       
     
     
@@ -83,7 +83,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#projections" class="md-skip">
+        <a href="#subscriptions" class="md-skip">
           Skip to content
         </a>
       
@@ -123,7 +123,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Projection
+              Subscription
             
           </span>
         </div>
@@ -322,8 +322,6 @@
       
         
       
-        
-      
     
     
     
@@ -466,27 +464,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../processor/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Processor
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -503,7 +480,7 @@
           
   
   <span class="md-ellipsis">
-    Projection
+    Subscription
   </span>
   
 
@@ -514,7 +491,7 @@
         
   
   <span class="md-ellipsis">
-    Projection
+    Subscription
   </span>
   
 
@@ -536,13 +513,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#projector" class="md-nav__link">
+  <a href="#subscriber" class="md-nav__link">
     <span class="md-ellipsis">
-      Projector
+      Subscriber
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Projector">
+    <nav class="md-nav" aria-label="Subscriber">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -638,40 +615,40 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#projectionist" class="md-nav__link">
+  <a href="#subscription-engine" class="md-nav__link">
     <span class="md-ellipsis">
-      Projectionist
+      Subscription Engine
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#projection-id" class="md-nav__link">
+  <a href="#subscription-id" class="md-nav__link">
     <span class="md-ellipsis">
-      Projection ID
+      Subscription ID
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#projection-position" class="md-nav__link">
+  <a href="#subscription-position" class="md-nav__link">
     <span class="md-ellipsis">
-      Projection Position
+      Subscription Position
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#projection-status" class="md-nav__link">
+  <a href="#subscription-status" class="md-nav__link">
     <span class="md-ellipsis">
-      Projection Status
+      Subscription Status
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Projection Status">
+    <nav class="md-nav" aria-label="Subscription Status">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -759,9 +736,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#projection-store" class="md-nav__link">
+  <a href="#subscription-store" class="md-nav__link">
     <span class="md-ellipsis">
-      Projection Store
+      Subscription Store
     </span>
   </a>
   
@@ -777,18 +754,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#projector-accessor" class="md-nav__link">
+  <a href="#subscriber-accessor" class="md-nav__link">
     <span class="md-ellipsis">
-      Projector Accessor
+      Subscriber Accessor
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#projectionist_1" class="md-nav__link">
+  <a href="#subscription-engine_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Projectionist
+      Subscription Engine
     </span>
   </a>
   
@@ -1231,13 +1208,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#projector" class="md-nav__link">
+  <a href="#subscriber" class="md-nav__link">
     <span class="md-ellipsis">
-      Projector
+      Subscriber
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Projector">
+    <nav class="md-nav" aria-label="Subscriber">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1333,40 +1310,40 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#projectionist" class="md-nav__link">
+  <a href="#subscription-engine" class="md-nav__link">
     <span class="md-ellipsis">
-      Projectionist
+      Subscription Engine
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#projection-id" class="md-nav__link">
+  <a href="#subscription-id" class="md-nav__link">
     <span class="md-ellipsis">
-      Projection ID
+      Subscription ID
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#projection-position" class="md-nav__link">
+  <a href="#subscription-position" class="md-nav__link">
     <span class="md-ellipsis">
-      Projection Position
+      Subscription Position
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#projection-status" class="md-nav__link">
+  <a href="#subscription-status" class="md-nav__link">
     <span class="md-ellipsis">
-      Projection Status
+      Subscription Status
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Projection Status">
+    <nav class="md-nav" aria-label="Subscription Status">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1454,9 +1431,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#projection-store" class="md-nav__link">
+  <a href="#subscription-store" class="md-nav__link">
     <span class="md-ellipsis">
-      Projection Store
+      Subscription Store
     </span>
   </a>
   
@@ -1472,18 +1449,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#projector-accessor" class="md-nav__link">
+  <a href="#subscriber-accessor" class="md-nav__link">
     <span class="md-ellipsis">
-      Projector Accessor
+      Subscriber Accessor
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#projectionist_1" class="md-nav__link">
+  <a href="#subscription-engine_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Projectionist
+      Subscription Engine
     </span>
   </a>
   
@@ -1599,25 +1576,25 @@
   
 
 
-<h1 id="projections">Projections</h1>
-<p>With <code>projections</code> you can transform your data optimized for reading.
-projections can be adjusted, deleted or rebuilt at any time.
+<h1 id="subscriptions">Subscriptions</h1>
+<p>With <code>subscriptions</code> you can transform your data optimized for reading.
+Subscriptions can be adjusted, deleted or rebuilt at any time.
 This is possible because the event store remains untouched
 and everything can always be reproduced from the events.</p>
-<p>A projection can be anything.
+<p>A subscription can be anything.
 Either a file, a relational database, a no-sql database like mongodb or an elasticsearch.</p>
-<h2 id="projector">Projector</h2>
-<p>To create a projection you need a projector with a unique ID named <code>projectorId</code>.
-This projector is responsible for a specific projection.
-To do this, you can use the <code>Projector</code> attribute.</p>
+<h2 id="subscriber">Subscriber</h2>
+<p>To create a subscription you need a subscriber with a unique ID named <code>subscriberId</code>.
+This subscriber is responsible for a specific subscription.
+To do this, you can use the <code>Subscriber</code> attribute.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\Connection</span><span class="p">;</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Projector</span><span class="p">;</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projector\ProjectorUtil</span><span class="p">;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Subscriber</span><span class="p">;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Subscriber\SubscriberUtil</span><span class="p">;</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">#[</span><span class="nd">Projector</span><span class="p">(</span><span class="s1">&#39;profile_1&#39;</span><span class="p">)]</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileProjector</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">#[</span><span class="nd">Subscriber</span><span class="p">(</span><span class="s1">&#39;profile_1&#39;</span><span class="p">)]</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileSubscriber</span>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">{</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">use</span> <span class="nx">ProjectorUtil</span><span class="p">;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">use</span> <span class="nx">SubscriberUtil</span><span class="p">;</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="k">private</span> <span class="nx">readonly</span> <span class="nx">Connection</span> <span class="nv">$connection</span>
@@ -1627,30 +1604,30 @@ To do this, you can use the <code>Projector</code> attribute.</p>
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Add a version as suffix to the <code>projectorId</code>, 
-so you can increment it when the projection changes.
+<p>Add a version as suffix to the <code>subscriberId</code>, 
+so you can increment it when the subscription changes.
 Like <code>profile_1</code> to <code>profile_2</code>.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>MySQL and MariaDB don't support transactions for DDL statements.
-So you must use a different database connection for your projections.</p>
+So you must use a different database connection for your subscriptions.</p>
 </div>
 <h3 id="subscribe">Subscribe</h3>
-<p>A projector can subscribe any number of events.
+<p>A subscriber can subscribe any number of events.
 In order to say which method is responsible for which event, you need the <code>Subscribe</code> attribute.
 There you can pass the event class to which the reaction should then take place.
 The method itself must expect a <code>Message</code>, which then contains the event. 
 The method name itself doesn't matter.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Subscribe</span><span class="p">;</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Projector</span><span class="p">;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Subscriber</span><span class="p">;</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\Message</span><span class="p">;</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projector\ProjectorUtil</span><span class="p">;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Subscriber\SubscriberUtil</span><span class="p">;</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">#[</span><span class="nd">Projector</span><span class="p">(</span><span class="s1">&#39;profile_1&#39;</span><span class="p">)]</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileProjector</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">#[</span><span class="nd">Subscriber</span><span class="p">(</span><span class="s1">&#39;profile_1&#39;</span><span class="p">)]</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileSubscriber</span>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">{</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="k">use</span> <span class="nx">ProjectorUtil</span><span class="p">;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="k">use</span> <span class="nx">SubscriberUtil</span><span class="p">;</span>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="c1">// ...</span>
 <a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
@@ -1670,14 +1647,14 @@ The method name itself doesn't matter.</p>
 <a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>
 <a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>    <span class="k">private</span> <span class="k">function</span> <span class="nf">table</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span> 
 <a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>    <span class="p">{</span>
-<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>        <span class="k">return</span> <span class="s1">&#39;projection_&#39;</span> <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">projectionId</span><span class="p">();</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>        <span class="k">return</span> <span class="s1">&#39;subscription_&#39;</span> <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">subscriptionId</span><span class="p">();</span>
 <a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>    <span class="p">}</span>
 <a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>You have to be careful with actions because in default it will be executed from the start of the event stream.
-Even if you change the ProjectionId, it will run again from the start.</p>
+Even if you change the SubscriptionId, it will run again from the start.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1690,19 +1667,19 @@ More about this can be found <a href="../event_bus/#listener">here</a>.</p>
 to make the event method return the correct type.</p>
 </div>
 <h3 id="setup-and-teardown">Setup and Teardown</h3>
-<p>Projectors can have one <code>setup</code> and <code>teardown</code> method that is executed when the projection is created or deleted.
+<p>Subscribers can have one <code>setup</code> and <code>teardown</code> method that is executed when the subscription is created or deleted.
 For this there are the attributes <code>Setup</code> and <code>Teardown</code>. The method name itself doesn't matter.
-In some cases it may be that no schema has to be created for the projection,
+In some cases it may be that no schema has to be created for the subscription,
 as the target does it automatically, so you can skip this.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Setup</span><span class="p">;</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Teardown</span><span class="p">;</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Projector</span><span class="p">;</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projector\ProjectorUtil</span><span class="p">;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Subscriber</span><span class="p">;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Subscriber\SubscriberUtil</span><span class="p">;</span>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">#[</span><span class="nd">Projector</span><span class="p">(</span><span class="s1">&#39;profile_1&#39;</span><span class="p">)]</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileProjector</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">#[</span><span class="nd">Subscriber</span><span class="p">(</span><span class="s1">&#39;profile_1&#39;</span><span class="p">)]</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileSubscriber</span>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">{</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="k">use</span> <span class="nx">ProjectorUtil</span><span class="p">;</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="k">use</span> <span class="nx">SubscriberUtil</span><span class="p">;</span>
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
 <a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="c1">// ...</span>
 <a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
@@ -1722,14 +1699,14 @@ as the target does it automatically, so you can skip this.</p>
 <a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>
 <a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>    <span class="k">private</span> <span class="k">function</span> <span class="nf">table</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span> 
 <a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>    <span class="p">{</span>
-<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>        <span class="k">return</span> <span class="s1">&#39;projection_&#39;</span> <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">projectionId</span><span class="p">();</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>        <span class="k">return</span> <span class="s1">&#39;subscription_&#39;</span> <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">subscriptionId</span><span class="p">();</span>
 <a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>    <span class="p">}</span>
 <a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>If you change the <code>projectorID</code>, you must also change the table/collection name.
-Otherwise the table/collection will conflict with the old projection.</p>
+<p>If you change the <code>subscriberID</code>, you must also change the table/collection name.
+Otherwise the table/collection will conflict with the old subscription.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1738,18 +1715,18 @@ The limit is usually 64 characters.</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>You can also use the <code>ProjectorUtil</code> to build the table/collection name.</p>
+<p>You can also use the <code>SubscriberUtil</code> to build the table/collection name.</p>
 </div>
 <h3 id="read-model">Read Model</h3>
 <p>You can also implement your read model here. 
 You can offer methods that then read the data and put it into a specific format.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Projector</span><span class="p">;</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projector\ProjectorUtil</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Subscriber</span><span class="p">;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Subscriber\SubscriberUtil</span><span class="p">;</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">#[</span><span class="nd">Projector</span><span class="p">(</span><span class="s1">&#39;profile_1&#39;</span><span class="p">)]</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileProjector</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">#[</span><span class="nd">Subscriber</span><span class="p">(</span><span class="s1">&#39;profile_1&#39;</span><span class="p">)]</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileSubscriber</span>
 <a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">{</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="k">use</span> <span class="nx">ProjectorUtil</span><span class="p">;</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="k">use</span> <span class="nx">SubscriberUtil</span><span class="p">;</span>
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
 <a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="c1">// ...</span>
 <a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
@@ -1763,112 +1740,109 @@ You can offer methods that then read the data and put it into a specific format.
 <a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>
 <a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>    <span class="k">private</span> <span class="k">function</span> <span class="nf">table</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span> 
 <a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    <span class="p">{</span>
-<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>        <span class="k">return</span> <span class="s1">&#39;projection_&#39;</span> <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">projectionId</span><span class="p">();</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>        <span class="k">return</span> <span class="s1">&#39;subscription_&#39;</span> <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">subscriptionId</span><span class="p">();</span>
 <a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>    <span class="p">}</span>
 <a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>You can also use the <code>ProjectorUtil</code> to build the table/collection name.</p>
+<p>You can also use the <code>SubscriberUtil</code> to build the table/collection name.</p>
 </div>
 <h3 id="versioning">Versioning</h3>
-<p>As soon as the structure of a projection changes, or you need other events from the past,
-the <code>projectorId</code> must be change or increment.</p>
-<p>Otherwise, the projectionist will not recognize that the projection has changed and will not rebuild it.
-To do this, you can add a version to the <code>projectorId</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Projector</span><span class="p">;</span>
+<p>As soon as the structure of a subscription changes, or you need other events from the past,
+the <code>subscriberId</code> must be change or increment.</p>
+<p>Otherwise, the subscription engine will not recognize that the subscription has changed and will not rebuild it.
+To do this, you can add a version to the <code>subscriberId</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Subscriber</span><span class="p">;</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">#[</span><span class="nd">Projector</span><span class="p">(</span><span class="s1">&#39;profile_2&#39;</span><span class="p">)]</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileProjector</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">#[</span><span class="nd">Subscriber</span><span class="p">(</span><span class="s1">&#39;profile_2&#39;</span><span class="p">)]</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileSubscriber</span>
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">{</span>
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>   <span class="c1">// ...</span>
 <a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>If you change the <code>projectorID</code>, you must also change the table/collection name.
-Otherwise the table/collection will conflict with the old projection.</p>
+<p>If you change the <code>subscriberID</code>, you must also change the table/collection name.
+Otherwise the table/collection will conflict with the old subscription.</p>
 </div>
 <h3 id="grouping">Grouping</h3>
-<p>You can also group projectors and address these to the projectionist.
-This is useful if you want to run projectors in different processes or on different servers.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Projector</span><span class="p">;</span>
+<p>You can also group subscribers and address these to the subscription engine.
+This is useful if you want to run subscribers in different processes or on different servers.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Subscriber</span><span class="p">;</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">#[</span><span class="nd">Projector</span><span class="p">(</span><span class="s1">&#39;profile_1&#39;</span><span class="p">,</span> <span class="nx">group</span><span class="o">:</span> <span class="s1">&#39;a&#39;</span><span class="p">)]</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileProjector</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">#[</span><span class="nd">Subscriber</span><span class="p">(</span><span class="s1">&#39;profile_1&#39;</span><span class="p">,</span> <span class="nx">group</span><span class="o">:</span> <span class="s1">&#39;a&#39;</span><span class="p">)]</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileSubscriber</span>
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">{</span>
 <a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>   <span class="c1">// ...</span>
 <a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The default group is <code>default</code> and the projectionist takes all groups if none are given to him.</p>
+<p>The default group is <code>default</code> and the subscription engine takes all groups if none are given to him.</p>
 </div>
 <h3 id="run-mode">Run Mode</h3>
-<p>The run mode determines how the projector should behave when it is booted.
+<p>The run mode determines how the subscriber should behave when it is booted.
 There are three different modes:</p>
 <h4 id="from-beginning">From Beginning</h4>
 <p>This is the default mode. 
-The projector will start from the beginning of the event stream and process all events.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Projector</span><span class="p">;</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projection\RunMode</span><span class="p">;</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">#[</span><span class="nd">Projector</span><span class="p">(</span><span class="s1">&#39;welcome_email&#39;</span><span class="p">,</span> <span class="nx">runMode</span><span class="o">:</span> <span class="nx">RunMode</span><span class="o">::</span><span class="na">FromBeginning</span><span class="p">)]</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">WelcomeEmailProjector</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">{</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>   <span class="c1">// ...</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="p">}</span>
+The subscriber will start from the beginning of the event stream and process all events.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Subscriber</span><span class="p">;</span><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\RunMode</span><span class="p">;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">#[</span><span class="nd">Subscriber</span><span class="p">(</span><span class="s1">&#39;welcome_email&#39;</span><span class="p">,</span> <span class="nx">runMode</span><span class="o">:</span> <span class="nx">RunMode</span><span class="o">::</span><span class="na">FromBeginning</span><span class="p">)]</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">WelcomeEmailSubscriber</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">{</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>   <span class="c1">// ...</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="p">}</span>
 </code></pre></div>
 <h4 id="from-now">From Now</h4>
-<p>Certain projectors operate exclusively on post-release events, disregarding historical data.
-This is useful for projectors that are only interested in events that occur after a certain point in time.
-As example, a welcome email projector that only wants to send emails to new users.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Projector</span><span class="p">;</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projection\RunMode</span><span class="p">;</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">#[</span><span class="nd">Projector</span><span class="p">(</span><span class="s1">&#39;welcome_email&#39;</span><span class="p">,</span> <span class="nx">runMode</span><span class="o">:</span> <span class="nx">RunMode</span><span class="o">::</span><span class="na">FromNow</span><span class="p">)]</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">WelcomeEmailProjector</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">{</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>   <span class="c1">// ...</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="p">}</span>
+<p>Certain subscribers operate exclusively on post-release events, disregarding historical data.
+This is useful for subscribers that are only interested in events that occur after a certain point in time.
+As example, a welcome email subscriber that only wants to send emails to new users.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Subscriber</span><span class="p">;</span><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\RunMode</span><span class="p">;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">#[</span><span class="nd">Subscriber</span><span class="p">(</span><span class="s1">&#39;welcome_email&#39;</span><span class="p">,</span> <span class="nx">runMode</span><span class="o">:</span> <span class="nx">RunMode</span><span class="o">::</span><span class="na">FromNow</span><span class="p">)]</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">WelcomeEmailSubscriber</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">{</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>   <span class="c1">// ...</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="p">}</span>
 </code></pre></div>
 <h4 id="once">Once</h4>
-<p>This mode is useful for projectors that only need to run once.
-This is useful for projectors to create reports or to migrate data.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Projector</span><span class="p">;</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projection\RunMode</span><span class="p">;</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="p">#[</span><span class="nd">Projector</span><span class="p">(</span><span class="s1">&#39;migration&#39;</span><span class="p">,</span> <span class="nx">runMode</span><span class="o">:</span> <span class="nx">RunMode</span><span class="o">::</span><span class="na">Once</span><span class="p">)]</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">MigrationProjector</span>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">{</span>
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>   <span class="c1">// ...</span>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="p">}</span>
+<p>This mode is useful for subscribers that only need to run once.
+This is useful for subscribers to create reports or to migrate data.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Subscriber</span><span class="p">;</span><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\RunMode</span><span class="p">;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">#[</span><span class="nd">Subscriber</span><span class="p">(</span><span class="s1">&#39;migration&#39;</span><span class="p">,</span> <span class="nx">runMode</span><span class="o">:</span> <span class="nx">RunMode</span><span class="o">::</span><span class="na">Once</span><span class="p">)]</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">MigrationSubscriber</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="p">{</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>   <span class="c1">// ...</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="p">}</span>
 </code></pre></div>
-<h2 id="projectionist">Projectionist</h2>
-<p>The projectionist manages individual projectors and keeps the projections running.
-Internally, the projectionist does this by tracking where each projector is in the event stream
-and keeping all projections up to date.
-He also takes care that new projectors are booted and old ones are removed again.
-If something breaks, the projectionist marks the individual projections as faulty.</p>
+<h2 id="subscription-engine">Subscription Engine</h2>
+<p>The subscription engine manages individual subscribers and keeps the subscriptions running.
+Internally, the subscription engine does this by tracking where each subscriber is in the event stream
+and keeping all subscriptions up to date.
+He also takes care that new subscribers are booted and old ones are removed again.
+If something breaks, the subscription engine marks the individual subscriptions as faulty.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>The Projectionist was inspired by the following two blog posts:</p>
+<p>The Subscription Engine was inspired by the following two blog posts:</p>
 <ul>
 <li><a href="https://barryosull.com/blog/projection-building-blocks-what-you-ll-need-to-build-projections/">Projection Building Blocks: What you'll need to build projections</a></li>
 <li><a href="https://barryosull.com/blog/managing-projectors-is-harder-than-you-think/">Managing projectors is harder than you think</a></li>
 </ul>
 </div>
-<h2 id="projection-id">Projection ID</h2>
-<p>The projection ID is taken from the associated projector and corresponds to the projector ID.
-Unlike the projector ID, the projection ID can no longer change.
-If the Projector ID is changed, a new projection will be created with this new projector ID.
-So there are two projections, one with the old projector ID and one with the new projector ID.</p>
-<h2 id="projection-position">Projection Position</h2>
-<p>Furthermore, the position in the event stream is stored for each projection.
-So that the projectionist knows where the projection stopped and must continue.</p>
-<h2 id="projection-status">Projection Status</h2>
-<p>There is a lifecycle for each projection.
-This cycle is tracked by the projectionist.</p>
+<h2 id="subscription-id">Subscription ID</h2>
+<p>The subscription ID is taken from the associated subscriber and corresponds to the subscriber ID.
+Unlike the subscriber ID, the subscription ID can no longer change.
+If the Subscriber ID is changed, a new subscription will be created with this new subscriber ID.
+So there are two subscriptions, one with the old subscriber ID and one with the new subscriber ID.</p>
+<h2 id="subscription-position">Subscription Position</h2>
+<p>Furthermore, the position in the event stream is stored for each subscription.
+So that the subscription engine knows where the subscription stopped and must continue.</p>
+<h2 id="subscription-status">Subscription Status</h2>
+<p>There is a lifecycle for each subscription.
+This cycle is tracked by the subscription engine.</p>
 <pre class="mermaid"><code>stateDiagram-v2
     direction LR
     [*] --&gt; New
@@ -1897,64 +1871,64 @@ This cycle is tracked by the projectionist.</p>
     Outdated --&gt; Active
     Outdated --&gt; [*]</code></pre>
 <h3 id="new">New</h3>
-<p>A projection is created and "new" if a projector exists with an ID that is not yet tracked.
-This can happen when either a new projector has been added, the <code>projector id</code> has changed
-or the projection has been manually deleted from the projection store.</p>
+<p>A subscription is created and "new" if a subscriber exists with an ID that is not yet tracked.
+This can happen when either a new subscriber has been added, the <code>subscriber id</code> has changed
+or the subscription has been manually deleted from the subscription store.</p>
 <h3 id="booting">Booting</h3>
 <p>Booting status is reached when the boot process is invoked.
-In this step, the "setup" method is called on the projection, if available.
-And the projection is brought up to date, depending on the mode.
-When the process is finished, the projection is set to active.</p>
+In this step, the "setup" method is called on the subscription, if available.
+And the subscription is brought up to date, depending on the mode.
+When the process is finished, the subscription is set to active.</p>
 <h3 id="active">Active</h3>
-<p>The active status describes the projections currently being actively managed by the projectionist.
-These projections have a projector, follow the event stream and should be up-to-date.</p>
+<p>The active status describes the subscriptions currently being actively managed by the subscription engine.
+These subscriptions have a subscriber, follow the event stream and should be up-to-date.</p>
 <h2 id="paused">Paused</h2>
-<p>A projection can manually be paused. It will then no longer be updated by the projectionist.
-This can be useful if you want to pause a projection for a certain period of time.
-You can also reactivate the projection if you want so that it continues.</p>
+<p>A subscription can manually be paused. It will then no longer be updated by the subscription engine.
+This can be useful if you want to pause a subscription for a certain period of time.
+You can also reactivate the subscription if you want so that it continues.</p>
 <h3 id="finished">Finished</h3>
-<p>A projection is finished if the projector has the mode <code>RunMode::Once</code>.
-This means that the projection is only run once and then set to finished if it reaches the end of the event stream.
-You can also reactivate the projection if you want so that it continues.</p>
+<p>A subscription is finished if the subscriber has the mode <code>RunMode::Once</code>.
+This means that the subscription is only run once and then set to finished if it reaches the end of the event stream.
+You can also reactivate the subscription if you want so that it continues.</p>
 <h3 id="outdated">Outdated</h3>
-<p>If an active or finished projection exists in the projection store
-that does not have a projector in the source code with a corresponding projector ID,
-then this projection is marked as outdated.
-This happens when either the projector has been deleted
-or the projector ID of a projector has changed.
-In the last case there should be a new projection with the new projector ID.</p>
-<p>An outdated projection does not automatically become active again when the projector exists again.
+<p>If an active or finished subscription exists in the subscription store
+that does not have a subscriber in the source code with a corresponding subscriber ID,
+then this subscription is marked as outdated.
+This happens when either the subscriber has been deleted
+or the subscriber ID of a subscriber has changed.
+In the last case there should be a new subscription with the new subscriber ID.</p>
+<p>An outdated subscription does not automatically become active again when the subscriber exists again.
 This happens, for example, when an old version was deployed again during a rollback.</p>
-<p>There are two options to reactivate the projection:</p>
+<p>There are two options to reactivate the subscription:</p>
 <ul>
-<li>Reactivate the projection, so that the projection is active again.</li>
-<li>Remove the projection and rebuild it from scratch.</li>
+<li>Reactivate the subscription, so that the subscription is active again.</li>
+<li>Remove the subscription and rebuild it from scratch.</li>
 </ul>
 <h3 id="error">Error</h3>
-<p>If an error occurs in a projector, then the target projection is set to Error.
+<p>If an error occurs in a subscriber, then the target subscription is set to Error.
 This can happen in the create process, in the boot process or in the run process.
-This projection will then no longer boot/run until the projection is reactivate or retried.</p>
-<p>The projectionist has a retry strategy to retry projections that have failed.
-It tries to reactivate the projection after a certain time and a certain number of attempts.
-If this does not work, the projection is set to error and must be manually reactivated.</p>
+This subscription will then no longer boot/run until the subscription is reactivate or retried.</p>
+<p>The subscription engine has a retry strategy to retry subscriptions that have failed.
+It tries to reactivate the subscription after a certain time and a certain number of attempts.
+If this does not work, the subscription is set to error and must be manually reactivated.</p>
 <p>There are two options here:</p>
 <ul>
-<li>Reactivate the projection, so that the projection is in the previous state again.</li>
-<li>Remove the projection and rebuild it from scratch.</li>
+<li>Reactivate the subscription, so that the subscription is in the previous state again.</li>
+<li>Remove the subscription and rebuild it from scratch.</li>
 </ul>
 <h2 id="setup">Setup</h2>
-<p>In order for the projectionist to be able to do its work, you have to assemble it beforehand.</p>
-<h3 id="projection-store">Projection Store</h3>
-<p>The Projectionist uses a projection store to store the status of each projection.
+<p>In order for the subscription engine to be able to do its work, you have to assemble it beforehand.</p>
+<h3 id="subscription-store">Subscription Store</h3>
+<p>The Subscription Engine uses a subscription store to store the status of each subscription.
 We provide a Doctrine implementation of this by default.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projection\Store\DoctrineStore</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Store\DoctrineSubscriptionStore</span><span class="p">;</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nv">$projectionStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineStore</span><span class="p">(</span><span class="nv">$connection</span><span class="p">);</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nv">$subscriptionStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineSubscriptionStore</span><span class="p">(</span><span class="nv">$connection</span><span class="p">);</span>
 </code></pre></div>
-<p>So that the schema for the projection store can also be created,
+<p>So that the schema for the subscription store can also be created,
 we have to tell the <code>SchemaDirector</code> our schema configuration.
 Using <code>ChainSchemaConfigurator</code> we can add multiple schema configurators.
-In our case they need the <code>SchemaConfigurator</code> from the event store and projection store.</p>
+In our case they need the <code>SchemaConfigurator</code> from the event store and subscription store.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\ChainDoctrineSchemaConfigurator</span><span class="p">;</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaDirector</span><span class="p">;</span>
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
@@ -1962,7 +1936,7 @@ In our case they need the <code>SchemaConfigurator</code> from the event store a
 <a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    <span class="nv">$connection</span>
 <a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>    <span class="k">new</span> <span class="nx">ChainDoctrineSchemaConfigurator</span><span class="p">([</span>
 <a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>        <span class="nv">$eventStore</span><span class="p">,</span>
-<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>        <span class="nv">$projectionStore</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>        <span class="nv">$subscriptionStore</span>
 <a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>    <span class="p">]),</span>
 <a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="p">);</span>
 </code></pre></div>
@@ -1971,14 +1945,14 @@ In our case they need the <code>SchemaConfigurator</code> from the event store a
 <p>You can find more about schema configurator <a href="../store/">here</a> </p>
 </div>
 <h3 id="retry-strategy">Retry Strategy</h3>
-<p>The projectionist uses a retry strategy to retry projections that have failed.
+<p>The subscription engine uses a retry strategy to retry subscriptions that have failed.
 Our default strategy can be configured with the following parameters:</p>
 <ul>
 <li><code>baseDelay</code> - The base delay in seconds.</li>
 <li><code>delayFactor</code> - The factor by which the delay is multiplied after each attempt.</li>
 <li><code>maxAttempts</code> - The maximum number of attempts.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\RetryStrategy\ClockBasedRetryStrategy</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\RetryStrategy\ClockBasedRetryStrategy</span><span class="p">;</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nv">$retryStrategy</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ClockBasedRetryStrategy</span><span class="p">(</span>
 <a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="nx">baseDelay</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
@@ -1988,34 +1962,34 @@ Our default strategy can be configured with the following parameters:</p>
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>You can reactivate the projection manually or remove it and rebuild it from scratch.</p>
+<p>You can reactivate the subscription manually or remove it and rebuild it from scratch.</p>
 </div>
-<h3 id="projector-accessor">Projector Accessor</h3>
-<p>The projector accessor is responsible for providing the projectors to the projectionist.
-We provide a metadata projector accessor repository by default.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projector\MetadataProjectorAccessorRepository</span><span class="p">;</span>
+<h3 id="subscriber-accessor">Subscriber Accessor</h3>
+<p>The subscriber accessor is responsible for providing the subscribers to the subscription engine.
+We provide a metadata subscriber accessor repository by default.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Subscriber\MetadataSubscriberAccessorRepository</span><span class="p">;</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nv">$projectorAccessorRepository</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MetadataProjectorAccessorRepository</span><span class="p">([</span><span class="nv">$projector1</span><span class="p">,</span> <span class="nv">$projector2</span><span class="p">,</span> <span class="nv">$projector3</span><span class="p">]);</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nv">$subscriberAccessorRepository</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MetadataSubscriberAccessorRepository</span><span class="p">([</span><span class="nv">$subscriber1</span><span class="p">,</span> <span class="nv">$subscriber2</span><span class="p">,</span> <span class="nv">$subscriber3</span><span class="p">]);</span>
 </code></pre></div>
-<h3 id="projectionist_1">Projectionist</h3>
-<p>Now we can create the projectionist and plug together the necessary services.
-The event store is needed to load the events, the Projection Store to store the projection state 
-and the respective projectors. Optionally, we can also pass a retry strategy.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projectionist\DefaultProjectionist</span><span class="p">;</span>
+<h3 id="subscription-engine_1">Subscription Engine</h3>
+<p>Now we can create the subscription engine and plug together the necessary services.
+The event store is needed to load the events, the Subscription Store to store the subscription state 
+and the respective subscribers. Optionally, we can also pass a retry strategy.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\DefaultSubscriptionEngine</span><span class="p">;</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nv">$projectionist</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultProjectionist</span><span class="p">(</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nv">$subscriptionEngine</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultSubscriptionEngine</span><span class="p">(</span>
 <a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    <span class="nv">$eventStore</span><span class="p">,</span>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>    <span class="nv">$projectionStore</span><span class="p">,</span>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>    <span class="nv">$projectorAccessorRepository</span><span class="p">,</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>    <span class="nv">$subscriptionStore</span><span class="p">,</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>    <span class="nv">$subscriberAccessorRepository</span><span class="p">,</span>
 <a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>    <span class="nv">$retryStrategy</span><span class="p">,</span>
 <a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="p">);</span>
 </code></pre></div>
 <h2 id="usage">Usage</h2>
-<p>The Projectionist has a few methods needed to use it effectively.
-A <code>ProjectionistCriteria</code> can be passed to all of these methods to filter the respective projectors.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projectionist\ProjectionistCriteria</span><span class="p">;</span>
+<p>The Subscription Engine has a few methods needed to use it effectively.
+A <code>SubscriptionEngineCriteria</code> can be passed to all of these methods to filter the respective subscribers.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nv">$criteria</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ProjectionistCriteria</span><span class="p">(</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nv">$criteria</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">(</span>
 <a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="nx">ids</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;profile_1&#39;</span><span class="p">,</span> <span class="s1">&#39;welcome_email&#39;</span><span class="p">],</span>
 <a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>    <span class="nx">groups</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;default&#39;</span><span class="p">]</span>
 <a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="p">);</span>
@@ -2025,43 +1999,43 @@ A <code>ProjectionistCriteria</code> can be passed to all of these methods to fi
 <p>An <code>OR</code> check is made for the respective criteria and all criteria are checked with an <code>AND</code>.</p>
 </div>
 <h3 id="boot">Boot</h3>
-<p>So that the projectionist can manage the projections, they must be booted.
-In this step, the structures are created for all new projections.
-The projections then catch up with the current position of the event stream.
-When the projections are finished, they switch to the active state.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">boot</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
+<p>So that the subscription engine can manage the subscriptions, they must be booted.
+In this step, the structures are created for all new subscriptions.
+The subscriptions then catch up with the current position of the event stream.
+When the subscriptions are finished, they switch to the active state.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">boot</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
 </code></pre></div>
 <h3 id="run">Run</h3>
-<p>All active projections are continued and updated here.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
+<p>All active subscriptions are continued and updated here.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
 </code></pre></div>
 <h3 id="teardown">Teardown</h3>
-<p>If projections are outdated, they can be cleaned up here.
-The projectionist also tries to remove the structures created for the projection.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">teardown</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
+<p>If subscriptions are outdated, they can be cleaned up here.
+The subscription engine also tries to remove the structures created for the subscription.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">teardown</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
 </code></pre></div>
 <h3 id="remove">Remove</h3>
-<p>You can also directly remove a projection regardless of its status.
+<p>You can also directly remove a subscription regardless of its status.
 An attempt is made to remove the structures, but the entry will still be removed if it doesn't work.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">remove</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">remove</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
 </code></pre></div>
 <h3 id="reactivate">Reactivate</h3>
-<p>If a projection had an error, you can reactivate it.
-As a result, the projection gets the status active again and is then kept up-to-date again by the projectionist.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">reactivate</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
+<p>If a subscription had an error, you can reactivate it.
+As a result, the subscription gets the status active again and is then kept up-to-date again by the subscription engine.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">reactivate</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
 </code></pre></div>
 <h3 id="pause">Pause</h3>
-<p>Pausing a projection is also possible.
-The projection will then no longer be updated by the projectionist.
-You can reactivate the projection if you want so that it continues.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">pause</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
+<p>Pausing a subscription is also possible.
+The subscription will then no longer be updated by the subscription engine.
+You can reactivate the subscription if you want so that it continues.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">pause</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
 </code></pre></div>
 <h3 id="status">Status</h3>
-<p>To get the current status of all projections, you can get them using the <code>projections</code> method.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nv">$projections</span> <span class="o">=</span> <span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">projections</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
+<p>To get the current status of all subscriptions, you can get them using the <code>subscriptions</code> method.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nv">$subscriptions</span> <span class="o">=</span> <span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">subscriptions</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
-<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$projections</span> <span class="k">as</span> <span class="nv">$projection</span><span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>    <span class="k">echo</span> <span class="nv">$projection</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">();</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$subscriptions</span> <span class="k">as</span> <span class="nv">$subscription</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>    <span class="k">echo</span> <span class="nv">$subscription</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">();</span>
 <a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="p">}</span>
 </code></pre></div>
 <h2 id="learn-more">Learn more</h2>

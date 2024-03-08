@@ -61,16 +61,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/processor/</loc>
-         <lastmod>2024-03-08</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/projection/</loc>
-         <lastmod>2024-03-08</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/repository/</loc>
          <lastmod>2024-03-08</lastmod>
          <changefreq>daily</changefreq>
@@ -87,6 +77,11 @@
     </url>
     <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/store/</loc>
+         <lastmod>2024-03-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/subscription/</loc>
          <lastmod>2024-03-08</lastmod>
          <changefreq>daily</changefreq>
     </url>

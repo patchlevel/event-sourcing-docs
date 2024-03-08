@@ -322,8 +322,6 @@
       
         
       
-        
-      
     
     
     
@@ -596,32 +594,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../processor/" class="md-nav__link">
+      <a href="../subscription/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Processor
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../projection/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Projection
+    Subscription
   </span>
   
 
@@ -1357,7 +1334,7 @@ In this specific case only the <code>NameChanged</code> changed event.</p>
 </code></pre></div>
 <h2 id="suppress-missing-apply-methods">Suppress missing apply methods</h2>
 <p>Sometimes you have events that do not change the state of the aggregate itself, 
-but are still recorded for the future, to listen on it or to create a projection. 
+but are still recorded for the future or to subscribe for processor and projection. 
 So that you are not forced to write an apply method for it, 
 you can suppress the missing apply exceptions these events with the <code>SuppressMissingApply</code> attribute.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
@@ -1530,8 +1507,8 @@ Sometimes also from states, which were changed in the same method.
 This is not a problem, as the <code>apply</code> methods are always executed immediately.</p>
 <p>In the next case we throw an exception if the hotel is already overbooked.
 Besides that, we record another event <code>FullyBooked</code>, if the hotel is fully booked with the last booking. 
-With this event we could <a href="../processor/">notify</a> external systems 
-or fill a <a href="../projection/">projection</a> with fully booked hotels.</p>
+With this event we could <a href="../subscription/">notify</a> external systems 
+or fill a <a href="../subscription/">projection</a> with fully booked hotels.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
 <a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Apply</span><span class="p">;</span>
@@ -1653,7 +1630,7 @@ and the <code>AggregateRootRegistry</code> is built up.</p>
 <li><a href="../aggregate_id/">How to create own aggregate id</a></li>
 <li><a href="../repository/">How to store and load aggregates</a></li>
 <li><a href="../snapshots/">How to snapshot aggregates</a></li>
-<li><a href="../projection/">How to create Projections</a></li>
+<li><a href="../subscription/">How to create Projections</a></li>
 <li><a href="../split_stream/">How to split streams</a></li>
 </ul>
 
