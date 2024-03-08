@@ -777,6 +777,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#projector-accessor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Projector Accessor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#projectionist_1" class="md-nav__link">
     <span class="md-ellipsis">
       Projectionist
@@ -1463,6 +1472,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#projector-accessor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Projector Accessor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#projectionist_1" class="md-nav__link">
     <span class="md-ellipsis">
       Projectionist
@@ -1972,28 +1990,35 @@ Our default strategy can be configured with the following parameters:</p>
 <p class="admonition-title">Tip</p>
 <p>You can reactivate the projection manually or remove it and rebuild it from scratch.</p>
 </div>
+<h3 id="projector-accessor">Projector Accessor</h3>
+<p>The projector accessor is responsible for providing the projectors to the projectionist.
+We provide a metadata projector accessor repository by default.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projector\MetadataProjectorAccessorRepository</span><span class="p">;</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nv">$projectorAccessorRepository</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MetadataProjectorAccessorRepository</span><span class="p">([</span><span class="nv">$projector1</span><span class="p">,</span> <span class="nv">$projector2</span><span class="p">,</span> <span class="nv">$projector3</span><span class="p">]);</span>
+</code></pre></div>
 <h3 id="projectionist_1">Projectionist</h3>
 <p>Now we can create the projectionist and plug together the necessary services.
 The event store is needed to load the events, the Projection Store to store the projection state 
 and the respective projectors. Optionally, we can also pass a retry strategy.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projectionist\DefaultProjectionist</span><span class="p">;</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nv">$projectionist</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultProjectionist</span><span class="p">(</span>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="nv">$eventStore</span><span class="p">,</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    <span class="nv">$projectionStore</span><span class="p">,</span>
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    <span class="p">[</span><span class="nv">$projector1</span><span class="p">,</span> <span class="nv">$projector2</span><span class="p">,</span> <span class="nv">$projector3</span><span class="p">],</span>
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>    <span class="nv">$retryStrategy</span><span class="p">,</span>
-<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projectionist\DefaultProjectionist</span><span class="p">;</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nv">$projectionist</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultProjectionist</span><span class="p">(</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    <span class="nv">$eventStore</span><span class="p">,</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>    <span class="nv">$projectionStore</span><span class="p">,</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>    <span class="nv">$projectorAccessorRepository</span><span class="p">,</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>    <span class="nv">$retryStrategy</span><span class="p">,</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="p">);</span>
 </code></pre></div>
 <h2 id="usage">Usage</h2>
 <p>The Projectionist has a few methods needed to use it effectively.
 A <code>ProjectionistCriteria</code> can be passed to all of these methods to filter the respective projectors.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projectionist\ProjectionistCriteria</span><span class="p">;</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nv">$criteria</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ProjectionistCriteria</span><span class="p">(</span>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    <span class="nx">ids</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;profile_1&#39;</span><span class="p">,</span> <span class="s1">&#39;welcome_email&#39;</span><span class="p">],</span>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>    <span class="nx">groups</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;default&#39;</span><span class="p">]</span>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projectionist\ProjectionistCriteria</span><span class="p">;</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nv">$criteria</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ProjectionistCriteria</span><span class="p">(</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="nx">ids</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;profile_1&#39;</span><span class="p">,</span> <span class="s1">&#39;welcome_email&#39;</span><span class="p">],</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>    <span class="nx">groups</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;default&#39;</span><span class="p">]</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="p">);</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2004,40 +2029,40 @@ A <code>ProjectionistCriteria</code> can be passed to all of these methods to fi
 In this step, the structures are created for all new projections.
 The projections then catch up with the current position of the event stream.
 When the projections are finished, they switch to the active state.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">boot</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">boot</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
 </code></pre></div>
 <h3 id="run">Run</h3>
 <p>All active projections are continued and updated here.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
 </code></pre></div>
 <h3 id="teardown">Teardown</h3>
 <p>If projections are outdated, they can be cleaned up here.
 The projectionist also tries to remove the structures created for the projection.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">teardown</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">teardown</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
 </code></pre></div>
 <h3 id="remove">Remove</h3>
 <p>You can also directly remove a projection regardless of its status.
 An attempt is made to remove the structures, but the entry will still be removed if it doesn't work.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">remove</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">remove</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
 </code></pre></div>
 <h3 id="reactivate">Reactivate</h3>
 <p>If a projection had an error, you can reactivate it.
 As a result, the projection gets the status active again and is then kept up-to-date again by the projectionist.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">reactivate</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">reactivate</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
 </code></pre></div>
 <h3 id="pause">Pause</h3>
 <p>Pausing a projection is also possible.
 The projection will then no longer be updated by the projectionist.
 You can reactivate the projection if you want so that it continues.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">pause</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">pause</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
 </code></pre></div>
 <h3 id="status">Status</h3>
 <p>To get the current status of all projections, you can get them using the <code>projections</code> method.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nv">$projections</span> <span class="o">=</span> <span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">projections</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$projections</span> <span class="k">as</span> <span class="nv">$projection</span><span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>    <span class="k">echo</span> <span class="nv">$projection</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">();</span>
-<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nv">$projections</span> <span class="o">=</span> <span class="nv">$projectionist</span><span class="o">-&gt;</span><span class="na">projections</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$projections</span> <span class="k">as</span> <span class="nv">$projection</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>    <span class="k">echo</span> <span class="nv">$projection</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">();</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="p">}</span>
 </code></pre></div>
 <h2 id="learn-more">Learn more</h2>
 <ul>
