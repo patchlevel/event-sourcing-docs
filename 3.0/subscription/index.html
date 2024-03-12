@@ -712,9 +712,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#outdated" class="md-nav__link">
+  <a href="#detached" class="md-nav__link">
     <span class="md-ellipsis">
-      Outdated
+      Detached
     </span>
   </a>
   
@@ -1425,9 +1425,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#outdated" class="md-nav__link">
+  <a href="#detached" class="md-nav__link">
     <span class="md-ellipsis">
-      Outdated
+      Detached
     </span>
   </a>
   
@@ -1942,21 +1942,20 @@ This cycle is tracked by the subscription engine.</p>
     Booting --&gt; Error
     Active --&gt; Paused
     Active --&gt; Finished
-    Active --&gt; Outdated
+    Active --&gt; Detached
     Active --&gt; Error
-    Paused --&gt; New
     Paused --&gt; Booting
     Paused --&gt; Active
-    Paused --&gt; Outdated
+    Paused --&gt; Detached
     Finished --&gt; Active
-    Finished --&gt; Outdated
+    Finished --&gt; Detached
     Error --&gt; New
     Error --&gt; Booting
     Error --&gt; Active
     Error --&gt; Paused
     Error --&gt; [*]
-    Outdated --&gt; Active
-    Outdated --&gt; [*]</code></pre>
+    Detached --&gt; Active
+    Detached --&gt; [*]</code></pre>
 <h3 id="new">New</h3>
 <p>A subscription is created and "new" if a subscriber exists with an ID that is not yet tracked.
 This can happen when either a new subscriber has been added, the subscriber ID has changed
@@ -1978,14 +1977,14 @@ You can also reactivate the subscription if you want so that it continues.</p>
 <p>A subscription is finished if the subscriber has the mode <code>RunMode::Once</code>.
 This means that the subscription is only run once and then set to finished if it reaches the end of the event stream.
 You can also reactivate the subscription if you want so that it continues.</p>
-<h3 id="outdated">Outdated</h3>
+<h3 id="detached">Detached</h3>
 <p>If an active or finished subscription exists in the subscription store
 that does not have a subscriber in the source code with a corresponding subscriber ID,
-then this subscription is marked as outdated.
+then this subscription is marked as detached.
 This happens when either the subscriber has been deleted
 or the subscriber ID of a subscriber has changed.
 In the last case there should be a new subscription with the new subscriber ID.</p>
-<p>An outdated subscription does not automatically become active again when the subscriber exists again.
+<p>A detached subscription does not automatically become active again when the subscriber exists again.
 This happens, for example, when an old version was deployed again during a rollback.</p>
 <p>There are two options to reactivate the subscription:</p>
 <ul>
@@ -2107,7 +2106,7 @@ After the boot process, the subscription is set to active or finished.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
 </code></pre></div>
 <h3 id="teardown">Teardown</h3>
-<p>If subscriptions are outdated, they can be cleaned up here.
+<p>If subscriptions are detached, they can be cleaned up here.
 The subscription engine also tries to call the <code>teardown</code> method if available.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">teardown</span><span class="p">(</span><span class="nv">$criteria</span><span class="p">);</span>
 </code></pre></div>
