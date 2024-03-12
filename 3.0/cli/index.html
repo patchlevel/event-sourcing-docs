@@ -1025,6 +1025,7 @@
 <li>SubscriptionReactiveCommand: <code>event-sourcing:subscription:reactive</code></li>
 <li>SubscriptionRemoveCommand: <code>event-sourcing:subscription:remove</code></li>
 <li>SubscriptionRunCommand: <code>event-sourcing:subscription:run</code></li>
+<li>SubscriptionSetupCommand: <code>event-sourcing:subscription:setup</code></li>
 <li>SubscriptionStatusCommand: <code>event-sourcing:subscription:status</code></li>
 <li>SubscriptionTeardownCommand: <code>event-sourcing:subscription:teardown</code></li>
 </ul>
@@ -1065,13 +1066,14 @@
 <a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="k">new</span> <span class="nx">Command\SubscriptionRemoveCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
 <a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="k">new</span> <span class="nx">Command\SubscriptionReactivateCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
 <a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="k">new</span> <span class="nx">Command\SubscriptionRebuildCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="k">new</span> <span class="nx">Command\SubscriptionStatusCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="k">new</span> <span class="nx">Command\SchemaCreateCommand</span><span class="p">(</span><span class="nv">$store</span><span class="p">,</span> <span class="nv">$schemaManager</span><span class="p">),</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="k">new</span> <span class="nx">Command\SchemaDropCommand</span><span class="p">(</span><span class="nv">$store</span><span class="p">,</span> <span class="nv">$schemaManager</span><span class="p">),</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="k">new</span> <span class="nx">Command\SchemaUpdateCommand</span><span class="p">(</span><span class="nv">$store</span><span class="p">,</span> <span class="nv">$schemaManager</span><span class="p">),</span>
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="p">));</span>
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="nv">$cli</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">();</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="k">new</span> <span class="nx">Command\SubscriptionSetupCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="k">new</span> <span class="nx">Command\SubscriptionStatusCommand</span><span class="p">(</span><span class="nv">$projectionist</span><span class="p">),</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="k">new</span> <span class="nx">Command\SchemaCreateCommand</span><span class="p">(</span><span class="nv">$store</span><span class="p">,</span> <span class="nv">$schemaManager</span><span class="p">),</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="k">new</span> <span class="nx">Command\SchemaDropCommand</span><span class="p">(</span><span class="nv">$store</span><span class="p">,</span> <span class="nv">$schemaManager</span><span class="p">),</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="k">new</span> <span class="nx">Command\SchemaUpdateCommand</span><span class="p">(</span><span class="nv">$store</span><span class="p">,</span> <span class="nv">$schemaManager</span><span class="p">),</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="p">));</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="nv">$cli</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">();</span>
 </code></pre></div>
 <h3 id="doctrine-migrations">Doctrine Migrations</h3>
 <p>If you want to use doctrine migrations, you can register the commands like this:</p>
