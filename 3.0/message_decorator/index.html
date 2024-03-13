@@ -1045,7 +1045,7 @@ which will then pass it to all Repositories.</p>
 <h2 id="create-own-decorator">Create own decorator</h2>
 <p>You can also use this feature to add your own metadata to your events. For this the have an extra methods on <code>Message</code>
 to add data <code>withHeader</code> and to read this data later on <code>header</code>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\Message</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Message\Message</span><span class="p">;</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Repository\MessageDecorator\MessageDecorator</span><span class="p">;</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">OnSystemRecordedDecorator</span> <span class="k">implements</span> <span class="nx">MessageDecorator</span>
