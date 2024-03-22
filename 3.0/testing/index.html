@@ -837,8 +837,8 @@
 
 
 <h1 id="tests">Tests</h1>
-<p>The aggregates can also be tested very well. 
-You can test whether certain events have been thrown 
+<p>The aggregates can also be tested very well.
+You can test whether certain events have been thrown
 or whether the state is set up correctly when the aggregate is set up again via the events.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> <span class="nx">PHPUnit\Framework\TestCase</span><span class="p">;</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
@@ -850,10 +850,10 @@ or whether the state is set up correctly when the aggregate is set up again via 
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="nv">$profile</span> <span class="o">=</span> <span class="nx">Profile</span><span class="o">::</span><span class="na">createProfile</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nx">Email</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;foo@email.com&#39;</span><span class="p">));</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="nx">self</span><span class="o">::</span><span class="na">assertEquals</span><span class="p">(</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>            <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">releaseEvents</span><span class="p">(),</span> 
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>            <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">releaseEvents</span><span class="p">(),</span>
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>            <span class="p">[</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>                <span class="k">new</span> <span class="nx">ProfileCreated</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nx">Email</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;foo@email.com&#39;</span><span class="p">)),</span>        
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>            <span class="p">]</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>                <span class="k">new</span> <span class="nx">ProfileCreated</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nx">Email</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;foo@email.com&#39;</span><span class="p">)),</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>            <span class="p">],</span>
 <a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        <span class="p">);</span>
 <a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
 <a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="nx">self</span><span class="o">::</span><span class="na">assertEquals</span><span class="p">(</span><span class="s1">&#39;foo@email.com&#39;</span><span class="p">,</span> <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">toString</span><span class="p">());</span>
@@ -870,10 +870,10 @@ or whether the state is set up correctly when the aggregate is set up again via 
 <a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>        <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">changeEmail</span><span class="p">(</span><span class="nx">Email</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;bar@email.com&#39;</span><span class="p">));</span>
 <a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
 <a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>        <span class="nx">self</span><span class="o">::</span><span class="na">assertEquals</span><span class="p">(</span>
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>            <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">releaseEvents</span><span class="p">(),</span> 
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>            <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">releaseEvents</span><span class="p">(),</span>
 <a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>            <span class="p">[</span>
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>                <span class="k">new</span> <span class="nx">EmailChanged</span><span class="p">(</span><span class="nx">Email</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;bar@email.com&#39;</span><span class="p">)),</span>        
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>            <span class="p">]</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>                <span class="k">new</span> <span class="nx">EmailChanged</span><span class="p">(</span><span class="nx">Email</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;bar@email.com&#39;</span><span class="p">)),</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>            <span class="p">],</span>
 <a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>        <span class="p">);</span>
 <a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
 <a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>        <span class="nx">self</span><span class="o">::</span><span class="na">assertEquals</span><span class="p">(</span><span class="s1">&#39;bar@email.com&#39;</span><span class="p">,</span> <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">toString</span><span class="p">());</span>
