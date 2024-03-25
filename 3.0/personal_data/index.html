@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://patchlevel.github.io/event-sourcing-docs/3.0/snapshots/">
+        <link rel="canonical" href="https://patchlevel.github.io/event-sourcing-docs/3.0/personal_data/">
       
       
-        <link rel="prev" href="../normalizer/">
+        <link rel="prev" href="../snapshots/">
       
       
-        <link rel="next" href="../personal_data/">
+        <link rel="next" href="../upcasting/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Snapshots - Event Sourcing</title>
+        <title>Personal Data - Event Sourcing</title>
       
     
     
@@ -83,7 +83,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#snapshots" class="md-skip">
+        <a href="#personal-data-gdpr" class="md-skip">
           Skip to content
         </a>
       
@@ -123,7 +123,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Snapshots
+              Personal Data
             
           </span>
         </div>
@@ -600,6 +600,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../snapshots/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Snapshots
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -616,7 +637,7 @@
           
   
   <span class="md-ellipsis">
-    Snapshots
+    Personal Data
   </span>
   
 
@@ -627,7 +648,7 @@
         
   
   <span class="md-ellipsis">
-    Snapshots
+    Personal Data
   </span>
   
 
@@ -659,18 +680,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#snapshot-batching" class="md-nav__link">
+  <a href="#personaldata" class="md-nav__link">
     <span class="md-ellipsis">
-      Snapshot batching
+      PersonalData
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#snapshot-versioning" class="md-nav__link">
+  <a href="#datasubjectid" class="md-nav__link">
     <span class="md-ellipsis">
-      Snapshot versioning
+      DataSubjectId
     </span>
   </a>
   
@@ -682,37 +703,55 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#adapter" class="md-nav__link">
+  <a href="#setup" class="md-nav__link">
     <span class="md-ellipsis">
-      Adapter
+      Setup
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Adapter">
+    <nav class="md-nav" aria-label="Setup">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#psr6" class="md-nav__link">
+  <a href="#cipher-key-factory" class="md-nav__link">
     <span class="md-ellipsis">
-      psr6
+      Cipher Key Factory
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#psr16" class="md-nav__link">
+  <a href="#cipher-key-store" class="md-nav__link">
     <span class="md-ellipsis">
-      psr16
+      Cipher Key Store
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#in-memory" class="md-nav__link">
+  <a href="#cipher" class="md-nav__link">
     <span class="md-ellipsis">
-      in memory
+      Cipher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-payload-cryptographer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Event Payload Cryptographer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration
     </span>
   </a>
   
@@ -724,35 +763,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
+  <a href="#remove-personal-data" class="md-nav__link">
     <span class="md-ellipsis">
-      Usage
+      Remove personal data
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Usage">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#save" class="md-nav__link">
-    <span class="md-ellipsis">
-      Save
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#load" class="md-nav__link">
-    <span class="md-ellipsis">
-      Load
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -760,27 +775,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../personal_data/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Personal Data
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -998,18 +992,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#snapshot-batching" class="md-nav__link">
+  <a href="#personaldata" class="md-nav__link">
     <span class="md-ellipsis">
-      Snapshot batching
+      PersonalData
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#snapshot-versioning" class="md-nav__link">
+  <a href="#datasubjectid" class="md-nav__link">
     <span class="md-ellipsis">
-      Snapshot versioning
+      DataSubjectId
     </span>
   </a>
   
@@ -1021,37 +1015,55 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#adapter" class="md-nav__link">
+  <a href="#setup" class="md-nav__link">
     <span class="md-ellipsis">
-      Adapter
+      Setup
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Adapter">
+    <nav class="md-nav" aria-label="Setup">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#psr6" class="md-nav__link">
+  <a href="#cipher-key-factory" class="md-nav__link">
     <span class="md-ellipsis">
-      psr6
+      Cipher Key Factory
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#psr16" class="md-nav__link">
+  <a href="#cipher-key-store" class="md-nav__link">
     <span class="md-ellipsis">
-      psr16
+      Cipher Key Store
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#in-memory" class="md-nav__link">
+  <a href="#cipher" class="md-nav__link">
     <span class="md-ellipsis">
-      in memory
+      Cipher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-payload-cryptographer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Event Payload Cryptographer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration
     </span>
   </a>
   
@@ -1063,35 +1075,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
+  <a href="#remove-personal-data" class="md-nav__link">
     <span class="md-ellipsis">
-      Usage
+      Remove personal data
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Usage">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#save" class="md-nav__link">
-    <span class="md-ellipsis">
-      Save
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#load" class="md-nav__link">
-    <span class="md-ellipsis">
-      Load
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1113,217 +1101,194 @@
   
 
 
-<h1 id="snapshots">Snapshots</h1>
-<p>Some aggregates can have a large number of events.
-This is not a problem if there are a few hundred.
-But if the number gets bigger at some point, then loading and rebuilding can become slow.
-The <code>snapshot</code> system can be used to control this.</p>
-<p>Normally, the events are all executed again on the aggregate in order to rebuild the current state.
-With a <code>snapshot</code>, we can shorten the way in which we temporarily save the current state of the aggregate.
-When loading it is checked whether the snapshot exists.
-If a hit exists, the aggregate is built up with the help of the snapshot.
-A check is then made to see whether further events have existed since the snapshot
-and these are then also executed on the aggregate.
-Here, however, only the last events are loaded from the database and not all.</p>
+<h1 id="personal-data-gdpr">Personal Data (GDPR)</h1>
+<p>According to GDPR, personal data must be able to be deleted upon request.
+But here we have the problem that our events are immutable and we cannot easily manipulate the event store.</p>
+<p>The first solution is not to save the personal data in the Event Store at all
+and use something different for this, for example a separate table or an ORM.</p>
+<p>The other option the library offers is crypto shredding.
+In this process, the personal data is encrypted with a key that is assigned to a subject (person).
+When saving and reading the events, this key is then used to convert the data.
+This key with the subject is saved in a database.</p>
+<p>As soon as a request for data deletion comes,
+you can simply delete the key and the personal data can no longer be decrypted.</p>
 <h2 id="configuration">Configuration</h2>
-<p>First of all you have to define a snapshot store. This store may have multiple adapters for different caches.
-These caches also need a name so that you can determine which aggregates should be stored in which cache.</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Snapshot\Adapter\Psr16SnapshotAdapter</span><span class="p">;</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Snapshot\DefaultSnapshotStore</span><span class="p">;</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nv">$snapshotStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultSnapshotStore</span><span class="p">([</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">Psr16SnapshotAdapter</span><span class="p">(</span><span class="nv">$defaultCache</span><span class="p">),</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="s1">&#39;other_cache&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">Psr16SnapshotAdapter</span><span class="p">(</span><span class="nv">$otherCache</span><span class="p">),</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">]);</span>
+<p>Encrypting and decrypting is handled by the library.
+You just have to configure the events accordingly.</p>
+<h3 id="personaldata">PersonalData</h3>
+<p>First of all, we have to mark the fields that contain personal data.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\PersonalData</span><span class="p">;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">EmailChanged</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">{</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="p">#[</span><span class="nd">PersonalData</span><span class="p">]</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="k">public</span> <span class="nx">readonly</span> <span class="nx">string</span><span class="o">|</span><span class="k">null</span> <span class="nv">$email</span><span class="p">,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="p">}</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">}</span>
 </code></pre></div>
-After creating the snapshot store, you need to pass that store to the DefaultRepositoryManager.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Metadata\AggregateRoot\AggregateRootRegistry</span><span class="p">;</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Repository\DefaultRepositoryManager</span><span class="p">;</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Snapshot\SnapshotStore</span><span class="p">;</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="sd">/**</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="sd"> * @var AggregateRootRegistry $aggregateRootRegistry</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="sd"> * @var Store $store</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="sd"> * @var SnapshotStore $snapshotStore</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="sd"> */</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="nv">$repositoryManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultRepositoryManager</span><span class="p">(</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="nv">$aggregateRootRegistry</span><span class="p">,</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="nv">$store</span><span class="p">,</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="k">null</span><span class="p">,</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="nv">$snapshotStore</span><span class="p">,</span>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="p">);</span>
-</code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You can read more about Repository <a href="../repository/">here</a>.</p>
-</div>
-<p>Next we need to tell the Aggregate to take a snapshot of it. We do this using the snapshot attribute.
-There we also specify where it should be saved.</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Snapshot</span><span class="p">;</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">#[</span><span class="nd">Aggregate</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">)]</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">#[</span><span class="nd">Snapshot</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)]</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">{</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="c1">// ...</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="p">}</span>
-</code></pre></div>
-When taking a snapshot, all properties are extracted and saved.
-When loading, this data is written back to the properties.
-In other words, in the end everything has to be serializable.
-To ensure this, the same system is used as for the events.
-You can define normalizers to bring the properties into the correct format.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\Uuid</span><span class="p">;</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Id</span><span class="p">;</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Snapshot</span><span class="p">;</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\Normalizer\IdNormalizer</span><span class="p">;</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">use</span> <span class="nx">Patchlevel\Hydrator\Normalizer\DateTimeImmutableNormalizer</span><span class="p">;</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="p">#[</span><span class="nd">Aggregate</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">)]</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="p">#[</span><span class="nd">Snapshot</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)]</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="p">{</span>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    <span class="p">#[</span><span class="nd">Id</span><span class="p">]</span>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    <span class="p">#[</span><span class="nd">IdNormalizer</span><span class="p">]</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    <span class="k">public</span> <span class="nx">Uuid</span> <span class="nv">$id</span><span class="p">;</span>
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">;</span>
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    <span class="p">#[</span><span class="nd">DateTimeImmutableNormalizer</span><span class="p">]</span>
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>    <span class="k">public</span> <span class="nx">DateTimeImmutable</span> <span class="nv">$createdAt</span><span class="p">;</span>
-<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>
-<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    <span class="c1">// ...</span>
-<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="p">}</span>
+If the information could not be decrypted, then a fallback value is inserted.
+The default fallback value is <code>null</code>.
+You can change this by setting the <code>fallback</code> parameter.
+In this case <code>unknown</code> is added:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\PersonalData</span><span class="p">;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">EmailChanged</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">{</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="p">#[</span><span class="nd">PersonalData</span><span class="p">(</span><span class="nx">fallback</span><span class="o">:</span> <span class="s1">&#39;unknown&#39;</span><span class="p">)]</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="k">public</span> <span class="nx">readonly</span> <span class="nx">string</span><span class="o">|</span><span class="k">null</span> <span class="nv">$email</span><span class="p">,</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="p">}</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition danger">
 <p class="admonition-title">Danger</p>
-<p>If anything changes in the properties of the aggregate, then the cache must be cleared.
-Or the snapshot version needs to be changed so that the previous snapshot is invalid.</p>
+<p>You have to deal with this case in your business logic such as aggregates and subscriptions.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>In the end it the complete aggregate must be serializeable as json, also the aggregate Id.</p>
+<p>You need to define a subject ID to use the personal data attribute.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>You can find more about normalizer <a href="../normalizer/">here</a>.</p>
+<p>The normalized data is encrypted. This means that this happens after the 'extract' or before the 'hydrate'.</p>
 </div>
-<h3 id="snapshot-batching">Snapshot batching</h3>
-<p>Since the loading of events in itself is quite fast and only becomes noticeably slower with thousands of events,
-we do not need to create a snapshot after each event. That would also have a negative impact on performance.
-Instead, we can also create a snapshot after <code>N</code> events.
-The remaining events that are not in the snapshot are then loaded from store.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Snapshot</span><span class="p">;</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">#[</span><span class="nd">Aggregate</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">)]</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">#[</span><span class="nd">Snapshot</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="nx">batch</span><span class="o">:</span> <span class="mi">1000</span><span class="p">)]</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">{</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="c1">// ...</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="snapshot-versioning">Snapshot versioning</h3>
-<p>Whenever something changes on the aggregate, the previous snapshot must be discarded.
-You can do this by removing the entire snapshot cache when deploying.
-But that can be quickly forgotten. It is much easier to specify a snapshot version.
-This snapshot version is also saved. When loading, the versions are compared and if they do not match,
-the snapshot is discarded and the aggregate is rebuilt from scratch.
-The new aggregate is then saved again as a snapshot.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Snapshot</span><span class="p">;</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">#[</span><span class="nd">Aggregate</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">)]</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">#[</span><span class="nd">Snapshot</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="nx">version</span><span class="o">:</span> <span class="s1">&#39;2&#39;</span><span class="p">)]</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="p">{</span>
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="c1">// ...</span>
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="p">}</span>
+<h3 id="datasubjectid">DataSubjectId</h3>
+<p>In order for the correct key to be used, a subject ID must be defined.
+Without Subject Id, no personal data can be encrypted or decrypted.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\DataSubjectId</span><span class="p">;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\PersonalData</span><span class="p">;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">EmailChanged</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">{</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="p">#[</span><span class="nd">DataSubjectId</span><span class="p">]</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="k">public</span> <span class="nx">readonly</span> <span class="nx">string</span> <span class="nv">$personId</span><span class="p">,</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        <span class="p">#[</span><span class="nd">PersonalData</span><span class="p">(</span><span class="nx">fallback</span><span class="o">:</span> <span class="s1">&#39;unknown&#39;</span><span class="p">)]</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="k">public</span> <span class="nx">readonly</span> <span class="nx">string</span><span class="o">|</span><span class="k">null</span> <span class="nv">$email</span><span class="p">,</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="p">}</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>If the snapshots are discarded, a load peak can occur since the aggregates have to be rebuilt.</p>
+<p>A subject ID can not be a personal data.</p>
 </div>
+<h2 id="setup">Setup</h2>
+<p>In order for the system to work, a few things have to be done.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>You can also use uuids for the snapshot version.</p>
+<p>You can use named constructor <code>DefaultEventPayloadCryptographer::createWithOpenssl</code> to skip some necessary setups.</p>
 </div>
-<h2 id="adapter">Adapter</h2>
-<p>We offer a few <code>SnapshotAdapter</code> implementations that you can use.
-But not a direct implementation of a cache.
-There are many good libraries out there that address this problem,
-and before we reinvent the wheel, choose one of them.
-Since there is a psr-6 and psr-16 standard, there are plenty of libraries.
-Here are a few listed:</p>
-<ul>
-<li><a href="https://symfony.com/doc/current/components/cache.html">symfony cache</a></li>
-<li><a href="https://docs.laminas.dev/laminas-cache/">laminas cache</a></li>
-<li><a href="https://www.scrapbook.cash/">scrapbook</a></li>
-</ul>
-<h3 id="psr6">psr6</h3>
-<p>A <code>Psr6SnapshotAdapter</code>, the associated documentation can be found <a href="https://www.php-fig.org/psr/psr-6/">here</a>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Snapshot\Adapter\Psr6SnapshotAdapter</span><span class="p">;</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">use</span> <span class="nx">Psr\Cache\CacheItemPoolInterface</span><span class="p">;</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="sd">/** @var CacheItemPoolInterface $cache */</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nv">$adapter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Psr6SnapshotAdapter</span><span class="p">(</span><span class="nv">$cache</span><span class="p">);</span>
+<h3 id="cipher-key-factory">Cipher Key Factory</h3>
+<p>We need a factory to generate keys. We provide an openssl implementation by default.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Cryptography\Cipher\OpensslCipherKeyFactory</span><span class="p">;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nv">$cipherKeyFactory</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OpensslCipherKeyFactory</span><span class="p">();</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nv">$cipherKey</span> <span class="o">=</span> <span class="nv">$cipherKeyFactory</span><span class="p">();</span>
 </code></pre></div>
-<h3 id="psr16">psr16</h3>
-<p>A <code>Psr16SnapshotAdapter</code>, the associated documentation can be found <a href="https://www.php-fig.org/psr/psr-16/">here</a>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Snapshot\Adapter\Psr16SnapshotAdapter</span><span class="p">;</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">use</span> <span class="nx">Psr\SimpleCache\CacheInterface</span><span class="p">;</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="sd">/** @var CacheInterface $cache */</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="nv">$adapter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Psr16SnapshotAdapter</span><span class="p">(</span><span class="nv">$cache</span><span class="p">);</span>
+You can change the algorithm by passing it as a parameter.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Cryptography\Cipher\OpensslCipherKeyFactory</span><span class="p">;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nv">$cipherKeyFactory</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OpensslCipherKeyFactory</span><span class="p">(</span><span class="s1">&#39;aes256&#39;</span><span class="p">);</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nv">$cipherKey</span> <span class="o">=</span> <span class="nv">$cipherKeyFactory</span><span class="p">();</span>
 </code></pre></div>
-<h3 id="in-memory">in memory</h3>
-<p>A <code>InMemorySnapshotAdapter</code> that can be used for test purposes.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Snapshot\Adapter\InMemorySnapshotAdapter</span><span class="p">;</span>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>With <code>OpensslCipherKeyFactory::supportedMethods()</code> you can get a list of all available algorithms.</p>
+</div>
+<h3 id="cipher-key-store">Cipher Key Store</h3>
+<p>The keys must be stored somewhere. For this we provide a doctrine implementation.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Cryptography\Store\DoctrineCipherKeyStore</span><span class="p">;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nv">$cipherKeyStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineCipherKeyStore</span><span class="p">(</span><span class="nv">$dbalConnection</span><span class="p">);</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nv">$cipherKeyStore</span><span class="o">-&gt;</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;personId&#39;</span><span class="p">,</span> <span class="nv">$cipherKey</span><span class="p">);</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="nv">$cipherKey</span> <span class="o">=</span> <span class="nv">$cipherKeyStore</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;personId&#39;</span><span class="p">);</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="nv">$cipherKeyStore</span><span class="o">-&gt;</span><span class="na">remove</span><span class="p">(</span><span class="s1">&#39;personId&#39;</span><span class="p">);</span>
+</code></pre></div>
+To use the <code>DoctrineCipherKeyStore</code> you need to register this service in Doctrine Schema Director.
+Then the table will be added automatically.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nv">$schemaDirector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineSchemaDirector</span><span class="p">(</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="nv">$dbalConnection</span><span class="p">,</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="k">new</span> <span class="nx">ChainDoctrineSchemaConfigurator</span><span class="p">([</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>        <span class="nv">$store</span><span class="p">,</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        <span class="nv">$cipherKeyStore</span><span class="p">,</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="p">]),</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="p">);</span>
+</code></pre></div>
+<h3 id="cipher">Cipher</h3>
+<p>The encryption and decryption is handled by the <code>Cipher</code>.
+We offer an openssl implementation by default.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Cryptography\Cipher\OpensslCipher</span><span class="p">;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nv">$cipher</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OpensslCipher</span><span class="p">();</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="nv">$encrypted</span> <span class="o">=</span> <span class="nv">$cipher</span><span class="o">-&gt;</span><span class="na">encrypt</span><span class="p">(</span><span class="nv">$cipherKey</span><span class="p">,</span> <span class="nv">$value</span><span class="p">);</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="nv">$value</span> <span class="o">=</span> <span class="nv">$cipher</span><span class="o">-&gt;</span><span class="na">decrypt</span><span class="p">(</span><span class="nv">$cipherKey</span><span class="p">,</span> <span class="nv">$encrypted</span><span class="p">);</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the encryption or decryption fails, an exception <code>EncryptionFailed</code> or <code>DecryptionFailed</code> is thrown.</p>
+</div>
+<h3 id="event-payload-cryptographer">Event Payload Cryptographer</h3>
+<p>Now we have to put the whole thing together in an Event Payload Cryptographer.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Cryptography\DefaultEventPayloadCryptographer</span><span class="p">;</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nv">$adapter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">InMemorySnapshotAdapter</span><span class="p">();</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nv">$cryptographer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultEventPayloadCryptographer</span><span class="p">(</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="nv">$eventMetadataFactory</span><span class="p">,</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="nv">$cipherKeyStore</span><span class="p">,</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="nv">$cipherKeyFactory</span><span class="p">,</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="nv">$cipher</span><span class="p">,</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="p">);</span>
 </code></pre></div>
-<h2 id="usage">Usage</h2>
-<p>The snapshot store is automatically used by the repository and takes care of saving and loading.
-But you can also use the snapshot store yourself.</p>
-<h3 id="save">Save</h3>
-<p>This allows you to save the aggregate as a snapshot:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateRoot</span><span class="p">;</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Snapshot\SnapshotStore</span><span class="p">;</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="sd">/**</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="sd"> * @var SnapshotStore $snapshotStore</span>
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="sd"> * @var AggregateRoot $aggregate</span>
-<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="sd"> */</span>
-<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="nv">$snapshotStore</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$aggregate</span><span class="p">);</span>
+You can also use the shortcut with openssl.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Cryptography\DefaultEventPayloadCryptographer</span><span class="p">;</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nv">$cryptographer</span> <span class="o">=</span> <span class="nx">DefaultEventPayloadCryptographer</span><span class="o">::</span><span class="na">createWithOpenssl</span><span class="p">(</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="nv">$eventMetadataFactory</span><span class="p">,</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="nv">$cipherKeyStore</span><span class="p">,</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="p">);</span>
 </code></pre></div>
-<div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p>If the state of an aggregate is saved as a snapshot without being saved to the event store (database), 
-it can lead to data loss or broken aggregates!</p>
+<h3 id="integration">Integration</h3>
+<p>The last step is to integrate the cryptographer into the event store.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\DefaultEventSerializer</span><span class="p">;</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nx">DefaultEventSerializer</span><span class="o">::</span><span class="na">createFromPaths</span><span class="p">(</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="p">[</span><span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/Events&#39;</span><span class="p">],</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    <span class="nx">cryptographer</span><span class="o">:</span> <span class="nv">$cryptographer</span><span class="p">,</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="p">);</span>
+</code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Now you can save and read events with personal data.</p>
 </div>
-<h3 id="load">Load</h3>
-<p>You can also load an aggregate from the snapshot store:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\Uuid</span><span class="p">;</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Snapshot\SnapshotStore</span><span class="p">;</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="nv">$id</span> <span class="o">=</span> <span class="nx">Uuid</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;229286ff-6f95-4df6-bc72-0a239fe7b284&#39;</span><span class="p">);</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="sd">/** @var SnapshotStore $snapshotStore */</span>
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="nv">$aggregate</span> <span class="o">=</span> <span class="nv">$snapshotStore</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span><span class="nx">Profile</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nv">$id</span><span class="p">);</span>
+<h2 id="remove-personal-data">Remove personal data</h2>
+<p>To remove personal data, you can either remove the key manually or do it with a processor.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Processor</span><span class="p">;</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Subscribe</span><span class="p">;</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Cryptography\Store\CipherKeyStore</span><span class="p">;</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Message\Message</span><span class="p">;</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="p">#[</span><span class="nd">Processor</span><span class="p">(</span><span class="s1">&#39;delete_personal_data&#39;</span><span class="p">)]</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">DeletePersonalDataProcessor</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="p">{</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>        <span class="k">private</span> <span class="nx">readonly</span> <span class="nx">CipherKeyStore</span> <span class="nv">$cipherKeyStore</span><span class="p">,</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>    <span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>    <span class="p">}</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>    <span class="p">#[</span><span class="nd">Subscribe</span><span class="p">(</span><span class="nx">UserHasRequestedDeletion</span><span class="o">::</span><span class="na">class</span><span class="p">)]</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">handleUserHasRequestedDeletion</span><span class="p">(</span><span class="nx">Message</span> <span class="nv">$message</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>    <span class="p">{</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>        <span class="nv">$event</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">event</span><span class="p">();</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cipherKeyStore</span><span class="o">-&gt;</span><span class="na">remove</span><span class="p">(</span><span class="nv">$event</span><span class="o">-&gt;</span><span class="na">personId</span><span class="p">);</span>
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>    <span class="p">}</span>
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="p">}</span>
 </code></pre></div>
-The method returns the Aggregate if it was loaded successfully.
-If the aggregate was not found, then a <code>SnapshotNotFound</code> is thrown.
-And if the version is no longer correct and the snapshot is therefore invalid, then a <code>SnapshotVersionInvalid</code> is thrown.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The aggregate may be in an old state as the snapshot may lag behind. 
-You still have to bring the aggregate up to date by loading the missing events from the event store.</p>
-</div>
 
 
 
