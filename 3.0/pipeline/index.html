@@ -1493,9 +1493,9 @@ This middleware expects a callback that returns either true to allow events or f
 </div>
 <h3 id="exclude-archived-events">Exclude Archived Events</h3>
 <p>With this middleware you can exclude archived events.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Message\Translator\ExcludeArchivedEventTranslator</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Message\Translator\ExcludeEventWithHeaderTranslator</span><span class="p">;</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ExcludeArchivedEventTranslator</span><span class="p">();</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ExcludeEventWithHeaderTranslator</span><span class="p">();</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -1503,9 +1503,9 @@ This middleware expects a callback that returns either true to allow events or f
 </div>
 <h3 id="only-archived-events">Only Archived Events</h3>
 <p>With this middleware you can only allow archived events.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Message\Translator\OnlyArchivedEventTranslator</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Message\Translator\IncludeEventWithHeaderTranslator</span><span class="p">;</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OnlyArchivedEventTranslator</span><span class="p">();</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nv">$middleware</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">IncludeEventWithHeaderTranslator</span><span class="p">();</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
