@@ -441,6 +441,8 @@
       
         
       
+        
+      
     
     
     
@@ -544,6 +546,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../message/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Message
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../store/" class="md-nav__link">
         
   
@@ -615,8 +638,6 @@
   
     
     
-      
-        
       
         
       
@@ -790,27 +811,6 @@
   
   <span class="md-ellipsis">
     Outbox
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../pipeline/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Pipeline
   </span>
   
 
@@ -1343,7 +1343,7 @@ Each projector is then responsible for a specific projection.</p>
 <a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a>
 <a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a><span class="nv">$projectionStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineSubscriptionStore</span><span class="p">(</span><span class="nv">$connection</span><span class="p">);</span>
 <a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a>
-<a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a><span class="nv">$projectionist</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultSubscriptionEngine</span><span class="p">(</span>
+<a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a><span class="nv">$engine</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultSubscriptionEngine</span><span class="p">(</span>
 <a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a>    <span class="nv">$eventStore</span><span class="p">,</span>
 <a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a>    <span class="nv">$projectionStore</span><span class="p">,</span>
 <a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a>    <span class="nv">$projectorRepository</span><span class="p">,</span>
@@ -1417,7 +1417,7 @@ we need the associated schema and databases.</p>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>You need to run the projectionist to update the projections.</p>
+<p>You need to run the subscription engine to update the projections.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
