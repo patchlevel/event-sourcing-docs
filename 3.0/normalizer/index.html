@@ -467,11 +467,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../event_bus/" class="md-nav__link">
+      <a href="../subscription/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Event Bus
+    Subscription
   </span>
   
 
@@ -488,11 +488,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../subscription/" class="md-nav__link">
+      <a href="../event_bus/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Subscription
+    Event Bus
   </span>
   
 
@@ -519,8 +519,6 @@
   
     
     
-      
-        
       
         
       
@@ -874,27 +872,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../outbox/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Outbox
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../message_decorator/" class="md-nav__link">
         
   
@@ -1223,6 +1200,10 @@ The whole thing also works with property promotion and readonly properties.</p>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="p">}</span>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">}</span>
 </code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you have personal data, you can use <a href="../personal_data/">crypto-shredding</a>.</p>
+</div>
 <h3 id="event">Event</h3>
 <p>For the event, the properties are normalized to a payload and saved in the DB at the end.
 The whole thing is then loaded again from the DB and denormalized in the properties.</p>
@@ -1513,9 +1494,9 @@ if you have backwards compatibility break in the property name</p>
 <ul>
 <li><a href="https://github.com/patchlevel/hydrator">How to use the Hydrator</a></li>
 <li><a href="../aggregate/">How to define aggregates</a></li>
-<li><a href="../snapshots/">How to snapshot aggregates</a></li>
-<li><a href="../aggregate_id/">How to create own aggregate id</a></li>
 <li><a href="../events/">How to define events</a></li>
+<li><a href="../snapshots/">How to snapshot aggregates</a></li>
+<li><a href="../personal_data/">How to work with personal data</a></li>
 </ul>
 
 

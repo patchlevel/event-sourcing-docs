@@ -588,11 +588,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../event_bus/" class="md-nav__link">
+      <a href="../subscription/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Event Bus
+    Subscription
   </span>
   
 
@@ -609,11 +609,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../subscription/" class="md-nav__link">
+      <a href="../event_bus/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Subscription
+    Event Bus
   </span>
   
 
@@ -638,8 +638,6 @@
   
     
     
-      
-        
       
         
       
@@ -790,27 +788,6 @@
   
   <span class="md-ellipsis">
     Upcasting
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../outbox/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Outbox
   </span>
   
 
@@ -1332,17 +1309,17 @@ Each projector is then responsible for a specific projection.</p>
 <a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>
 <a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="nv">$hotelProjector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">HotelProjector</span><span class="p">(</span><span class="nv">$projectionConnection</span><span class="p">);</span>
 <a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>
-<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="nv">$projectorRepository</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MetadataSubscriberAccessorRepository</span><span class="p">([</span>
+<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="nv">$subscriberRepository</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MetadataSubscriberAccessorRepository</span><span class="p">([</span>
 <a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>    <span class="nv">$hotelProjector</span><span class="p">,</span>
 <a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a>    <span class="k">new</span> <span class="nx">SendCheckInEmailProcessor</span><span class="p">(</span><span class="nv">$mailer</span><span class="p">),</span>
 <a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a><span class="p">]);</span>
 <a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a>
-<a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a><span class="nv">$projectionStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineSubscriptionStore</span><span class="p">(</span><span class="nv">$connection</span><span class="p">);</span>
+<a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a><span class="nv">$subscriptionStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineSubscriptionStore</span><span class="p">(</span><span class="nv">$connection</span><span class="p">);</span>
 <a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a>
 <a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a><span class="nv">$engine</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultSubscriptionEngine</span><span class="p">(</span>
 <a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a>    <span class="nv">$eventStore</span><span class="p">,</span>
-<a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a>    <span class="nv">$projectionStore</span><span class="p">,</span>
-<a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a>    <span class="nv">$projectorRepository</span><span class="p">,</span>
+<a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a>    <span class="nv">$subscriptionStore</span><span class="p">,</span>
+<a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a>    <span class="nv">$subscriberRepository</span><span class="p">,</span>
 <a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a><span class="p">);</span>
 <a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a>
 <a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a><span class="nv">$repositoryManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultRepositoryManager</span><span class="p">(</span>
@@ -1413,7 +1390,7 @@ we need the associated schema and databases.</p>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>You need to run the subscription engine to update the projections.</p>
+<p>You need to run the subscription engine to update the projections and execute the processors.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1432,8 +1409,7 @@ If there are still open questions, create a ticket on Github and we will try to 
 <li><a href="../aggregate/">How to create an aggregate</a></li>
 <li><a href="../events/">How to create an event</a></li>
 <li><a href="../repository/">How to store aggregates</a></li>
-<li><a href="../subscription/">How to process events</a></li>
-<li><a href="../subscription/">How to create a projection</a></li>
+<li><a href="../subscription/">How to create a projection and processors</a></li>
 <li><a href="../store/">How to setup the database</a></li>
 </ul>
 

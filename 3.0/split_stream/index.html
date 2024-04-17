@@ -83,7 +83,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#splitting-the-eventstream" class="md-skip">
+        <a href="#split-stream" class="md-skip">
           Skip to content
         </a>
       
@@ -467,11 +467,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../event_bus/" class="md-nav__link">
+      <a href="../subscription/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Event Bus
+    Subscription
   </span>
   
 
@@ -488,11 +488,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../subscription/" class="md-nav__link">
+      <a href="../event_bus/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Subscription
+    Event Bus
   </span>
   
 
@@ -519,8 +519,6 @@
   
     
     
-      
-        
       
         
       
@@ -687,27 +685,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../outbox/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Outbox
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../message_decorator/" class="md-nav__link">
         
   
@@ -775,9 +752,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#flagging-an-event-to-split-the-stream" class="md-nav__link">
+  <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Flagging an event to split the stream
+      Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learn-more" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learn more
     </span>
   </a>
   
@@ -889,9 +884,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#flagging-an-event-to-split-the-stream" class="md-nav__link">
+  <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Flagging an event to split the stream
+      Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learn-more" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learn more
     </span>
   </a>
   
@@ -915,45 +928,90 @@
   
 
 
-<h1 id="splitting-the-eventstream">Splitting the eventstream</h1>
-<p>In some cases the business has rules which implies an restart of the event stream for an aggregate since the past events
-are not relevant for the current state. For example a user decides to end his active subscription and the business rules
-says if the user start a new subscription all past events should not be considered anymore. Another case could be a
-banking scenario. There the business decides to save the current state every quarter for each banking account.</p>
-<p>Not only that some businesses requires such an action it also increases the performance for aggregate which would have a
-really long event stream.</p>
-<h2 id="flagging-an-event-to-split-the-stream">Flagging an event to split the stream</h2>
-<p>To use this feature you need to add the <code>SplitStreamDecorator</code>. You will also need events which will trigger this
-action. For that you can use the <code>#[SplitStream]</code> attribute. We decided that we are not literallty splitting the stream,
-instead we are marking all past events as archived as soon as this event is saved. Then the past events will not be
-loaded anymore for building the aggregate. This means that all needed data has to be present in these events which
-should trigger the event split.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Event</span><span class="p">;</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\SplitStream</span><span class="p">;</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\Normalizer\IdNormalizer</span><span class="p">;</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">#[</span><span class="nd">Event</span><span class="p">(</span><span class="s1">&#39;bank_account.month_passed&#39;</span><span class="p">)]</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">#[</span><span class="nd">SplitStream</span><span class="p">]</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">MonthPassed</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">{</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="p">#[</span><span class="nd">IdNormalizer</span><span class="p">]</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="k">public</span> <span class="nx">AccountId</span> <span class="nv">$accountId</span><span class="p">,</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="k">public</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">,</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="k">public</span> <span class="nx">int</span> <span class="nv">$balanceInCents</span><span class="p">,</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="p">}</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="p">}</span>
+<h1 id="split-stream">Split Stream</h1>
+<p>In some cases the business has rules which implies a restart of the event stream for an aggregate
+since the past events are not relevant for the current state.
+A bank is often used as an example. A bank account has hundreds of transactions,
+but every bank makes a balance report at the end of the year.
+In this step the current account balance is persisted.
+This event is perfect to split the stream and start aggregating from this point.</p>
+<p>Not only that some businesses requires such an action
+it also increases the performance for aggregate which would have a really long event stream.</p>
+<p>In the background the library will mark all past events as archived
+and will not load them anymore for building the aggregate.
+It will only load the events from the split event and onwards.
+But subscriptions will still receive all events.
+So you can create projections which are based on the full event stream.</p>
+<h2 id="configuration">Configuration</h2>
+<p>To use this feature you need to add the <code>SplitStreamDecorator</code> in the repository manager.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Metadata\AggregateRoot\AggregateRootRegistry</span><span class="p">;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Metadata\Event\EventMetadataFactory</span><span class="p">;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Repository\DefaultRepositoryManager</span><span class="p">;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Repository\MessageDecorator\SplitStreamDecorator</span><span class="p">;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="sd">/**</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="sd"> * @var AggregateRootRegistry $aggregateRootRegistry</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="sd"> * @var Store $store</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="sd"> * @var EventMetadataFactory $eventMetadataFactory</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="sd"> */</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="nv">$repositoryManager</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultRepositoryManager</span><span class="p">(</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="nv">$aggregateRootRegistry</span><span class="p">,</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="nv">$store</span><span class="p">,</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="k">null</span><span class="p">,</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="k">null</span><span class="p">,</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="k">new</span> <span class="nx">SplitStreamDecorator</span><span class="p">(</span><span class="nv">$eventMetadataFactory</span><span class="p">),</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="p">);</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can find out more about decorator <a href="../message_decorator/">here</a>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can use multiple decorators with the <code>ChainMessageDecorator</code>.</p>
+</div>
+<h2 id="usage">Usage</h2>
+<p>To use this feature you need to mark the event which should split the stream.
+For that you can use the <code>#[SplitStream]</code> attribute.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Event</span><span class="p">;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\SplitStream</span><span class="p">;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\Normalizer\IdNormalizer</span><span class="p">;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">#[</span><span class="nd">Event</span><span class="p">(</span><span class="s1">&#39;bank_account.balance_reported&#39;</span><span class="p">)]</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">#[</span><span class="nd">SplitStream</span><span class="p">]</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">BalanceReported</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">{</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        <span class="p">#[</span><span class="nd">IdNormalizer</span><span class="p">]</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        <span class="k">public</span> <span class="nx">BankAccountId</span> <span class="nv">$bankAccountId</span><span class="p">,</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        <span class="k">public</span> <span class="nx">int</span> <span class="nv">$year</span><span class="p">,</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        <span class="k">public</span> <span class="nx">int</span> <span class="nv">$balanceInCents</span><span class="p">,</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="p">}</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>The event needs all data which is relevant the aggregate to be used since all past event will not be loaded! Keep 
-this in mind if you want to use this feature.</p>
+<p>The event needs all data which is relevant the aggregate to be used since all past event will not be loaded! 
+Keep this in mind if you want to use this feature.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This archive flag only impacts the Store::load method which is used the build the aggregate from the stream.</p>
+<p>This impacts only the aggregate loaded by the repository. Subscriptions will still receive all events.</p>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can combine this feature with the snapshot feature to increase the performance even more.</p>
+</div>
+<h2 id="learn-more">Learn more</h2>
+<ul>
+<li><a href="../message_decorator/">How to use message decorator</a></li>
+<li><a href="../events/">How to define events</a></li>
+<li><a href="../aggregate/">How to define aggregates</a></li>
+<li><a href="../repository/">How to store and load aggregates</a></li>
+<li><a href="../snapshots/">How to use snapshots</a></li>
+</ul>
 
 
 

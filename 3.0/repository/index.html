@@ -544,6 +544,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#learn-more" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learn more
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -602,11 +611,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../event_bus/" class="md-nav__link">
+      <a href="../subscription/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Event Bus
+    Subscription
   </span>
   
 
@@ -623,11 +632,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../subscription/" class="md-nav__link">
+      <a href="../event_bus/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Subscription
+    Event Bus
   </span>
   
 
@@ -652,8 +661,6 @@
   
     
     
-      
-        
       
         
       
@@ -804,27 +811,6 @@
   
   <span class="md-ellipsis">
     Upcasting
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../outbox/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Outbox
   </span>
   
 
@@ -1065,6 +1051,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#learn-more" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learn more
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1085,7 +1080,7 @@
 
 <h1 id="repository">Repository</h1>
 <p>A <code>repository</code> takes care of storing and loading the <code>aggregates</code>.
-He is also responsible for building <a href="../event_bus/">messages</a> from the events
+He is also responsible for building <a href="../message/">messages</a> from the events
 and optionally dispatching them to the event bus.</p>
 <h2 id="create-a-repository">Create a repository</h2>
 <p>The best way to create a repository is to use the <code>DefaultRepositoryManager</code>.
@@ -1138,7 +1133,7 @@ This is useful if you want to react to events in the same transaction.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>If you use the event bus, you should be aware that the events are dispatched synchronously.
-You may encounter "at least once" problems.</p>
+You may encounter <a href="https://softwaremill.com/message-delivery-and-deduplication-strategies/">at least once</a> problems.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1206,6 +1201,10 @@ You can have thousands of events in the database that load in a few milliseconds
 <p class="admonition-title">Note</p>
 <p>You can find out more about message decorator <a href="../message_decorator/">here</a>.</p>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you have multiple decorators, you can use the <code>ChainMessageDecorator</code> to chain them.</p>
+</div>
 <h2 id="use-the-repository">Use the repository</h2>
 <p>Each <code>repository</code> has three methods that are responsible for loading an <code>aggregate</code>,
 saving it or checking whether it exists.</p>
@@ -1222,9 +1221,17 @@ These events are then also append to the database.</p>
 <a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="sd">/** @var Repository $repository */</span>
 <a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="nv">$repository</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$profile</span><span class="p">);</span>
 </code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>All events are written to the database with one transaction in order to ensure data consistency.
+If an exception occurs during the save process, 
+the transaction is rolled back and the aggregate is not valid anymore.
+You can not save the aggregate again and you need to load it again.</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>All events are written to the database with one transaction in order to ensure data consistency.</p>
+<p>Due to the nature of the aggregate having a playhead, 
+we have a unique constraint that ensures that no race condition happens here.</p>
 </div>
 <h3 id="load-an-aggregate">Load an aggregate</h3>
 <p>An <code>aggregate</code> can be loaded using the <code>load</code> method.
@@ -1301,6 +1308,16 @@ This also gives you more type security.</p>
 <a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a>    <span class="p">}</span>
 <a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a><span class="p">}</span>
 </code></pre></div>
+<h2 id="learn-more">Learn more</h2>
+<ul>
+<li><a href="../aggregate/">How to create an aggregate</a></li>
+<li><a href="../events/">How to create an event</a></li>
+<li><a href="../store/">How to work with the store</a></li>
+<li><a href="../snapshots/">How to use snapshots</a></li>
+<li><a href="../split_stream/">How to split streams</a></li>
+<li><a href="../event_bus/">How to use the event bus</a></li>
+<li><a href="../message/">How to create messages</a></li>
+</ul>
 
 
 

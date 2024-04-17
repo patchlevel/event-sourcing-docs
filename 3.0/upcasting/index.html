@@ -14,7 +14,7 @@
         <link rel="prev" href="../personal_data/">
       
       
-        <link rel="next" href="../outbox/">
+        <link rel="next" href="../message_decorator/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -467,11 +467,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../event_bus/" class="md-nav__link">
+      <a href="../subscription/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Event Bus
+    Subscription
   </span>
   
 
@@ -488,11 +488,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../subscription/" class="md-nav__link">
+      <a href="../event_bus/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Subscription
+    Event Bus
   </span>
   
 
@@ -519,8 +519,6 @@
   
     
     
-      
-        
       
         
       
@@ -730,18 +728,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-upcasting" class="md-nav__link">
+  <a href="#configure" class="md-nav__link">
     <span class="md-ellipsis">
-      Use upcasting
+      Configure
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#update-event-stream" class="md-nav__link">
+  <a href="#learn-more" class="md-nav__link">
     <span class="md-ellipsis">
-      Update event stream
+      Learn more
     </span>
   </a>
   
@@ -751,27 +749,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../outbox/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Outbox
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -934,18 +911,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-upcasting" class="md-nav__link">
+  <a href="#configure" class="md-nav__link">
     <span class="md-ellipsis">
-      Use upcasting
+      Configure
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#update-event-stream" class="md-nav__link">
+  <a href="#learn-more" class="md-nav__link">
     <span class="md-ellipsis">
-      Update event stream
+      Learn more
     </span>
   </a>
   
@@ -970,14 +947,16 @@
 
 
 <h1 id="upcasting">Upcasting</h1>
-<p>There are cases where the already have events in our stream but there is data missing or not in the right format for our
-new usecase. Normally you would need to create versioned events for this. This can lead to many versions of the same
-event which could lead to some chaos. To prevent this we offer <code>Upcaster</code>, which can operate on the payload before
-denormalizing to an event object. There you can change the event name and adjust the payload of the event.</p>
+<p>There are cases where the already have events in our stream but there is data missing
+or not in the right format for our new usecase. Normally you would need to create versioned events for this.
+This can lead to many versions of the same event which could lead to some chaos.
+To prevent this we offer <code>Upcaster</code>, which can operate on the payload before denormalizing to an event object.
+There you can change the event name and adjust the payload of the event.</p>
 <h2 id="adjust-payload">Adjust payload</h2>
-<p>Let's assume we have an <code>ProfileCreated</code> event which holds an email. Now the business needs to have all emails to be in
-lower case. For that we could adjust the aggregate and the projections to take care of that. Or we can do this
-beforehand so we don't need to maintain two different places.</p>
+<p>Let's assume we have an <code>ProfileCreated</code> event which holds an email.
+Now the business needs to have all emails to be in lower case.
+For that we could adjust the aggregate and the projections to take care of that.
+Or we can do this beforehand so we don't need to maintain two different places.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\Upcast\Upcast</span><span class="p">;</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\Upcast\Upcaster</span><span class="p">;</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
@@ -986,7 +965,7 @@ beforehand so we don't need to maintain two different places.</p>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__invoke</span><span class="p">(</span><span class="nx">Upcast</span> <span class="nv">$upcast</span><span class="p">)</span><span class="o">:</span> <span class="nx">Upcast</span>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="p">{</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="c1">// ignore if other event is processed</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="k">if</span> <span class="p">(</span><span class="nv">$upcast</span><span class="o">-&gt;</span><span class="na">eventName</span> <span class="o">!==</span> <span class="s1">&#39;profile_created&#39;</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="k">if</span> <span class="p">(</span><span class="nv">$upcast</span><span class="o">-&gt;</span><span class="na">eventName</span> <span class="o">!==</span> <span class="s1">&#39;profile.created&#39;</span><span class="p">)</span> <span class="p">{</span>
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>            <span class="k">return</span> <span class="nv">$upcast</span><span class="p">;</span>
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="p">}</span>
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
@@ -1003,13 +982,12 @@ beforehand so we don't need to maintain two different places.</p>
 <p>You need to consider that other events are passed to the Upcaster. So and early out is here endorsed.</p>
 </div>
 <h2 id="adjust-event-name">Adjust event name</h2>
-<p>For the upgrade to 2.0.0 this feature is also really handy since we adjusted the event value from FQCN to an unique
-name which the user needs to choose. This opens up for moving or renaming the events at code level. Here an example for
-the upgrade path.</p>
+<p>Sometimes your event name was not the best choice and you want to change it.
+For this we can use the <code>Upcaster</code> to change the event name.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\Upcast\Upcast</span><span class="p">;</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\Upcast\Upcaster</span><span class="p">;</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">LegacyEventNameUpaster</span> <span class="k">implements</span> <span class="nx">Upcaster</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">EventNameRenameUpcaster</span> <span class="k">implements</span> <span class="nx">Upcaster</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">{</span>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="sd">/** @param array&lt;string, string&gt; $eventNameMap */</span>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
@@ -1027,7 +1005,7 @@ the upgrade path.</p>
 <a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    <span class="p">}</span>
 <a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="p">}</span>
 </code></pre></div>
-<h2 id="use-upcasting">Use upcasting</h2>
+<h2 id="configure">Configure</h2>
 <p>After we have defined the upcasting rules, we also have to pass the whole thing to the serializer.
 Since we have multiple upcasters, we use a chain here.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Metadata\Event\EventRegistry</span><span class="p">;</span>
@@ -1037,7 +1015,7 @@ Since we have multiple upcasters, we use a chain here.</p>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="sd">/** @var EventRegistry $eventRegistry */</span>
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nv">$upcaster</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">UpcasterChain</span><span class="p">([</span>
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="k">new</span> <span class="nx">ProfileCreatedEmailLowerCastUpcaster</span><span class="p">(),</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="k">new</span> <span class="nx">LegacyEventNameUpaster</span><span class="p">([</span><span class="s1">&#39;old_event_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;new_event_name&#39;</span><span class="p">]),</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="k">new</span> <span class="nx">EventNameRenameUpcaster</span><span class="p">([</span><span class="s1">&#39;old_event_name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;new_event_name&#39;</span><span class="p">]),</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">]);</span>
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
 <a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="nv">$serializer</span> <span class="o">=</span> <span class="nx">DefaultEventSerializer</span><span class="o">::</span><span class="na">createFromPaths</span><span class="p">(</span>
@@ -1045,54 +1023,12 @@ Since we have multiple upcasters, we use a chain here.</p>
 <a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="nv">$upcaster</span><span class="p">,</span>
 <a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="p">);</span>
 </code></pre></div>
-<h2 id="update-event-stream">Update event stream</h2>
-<p>But what if we need it also in our stream because some other applications has also access on it? Or want to cleanup our
-Upcasters since we have collected alot of them over the time? Then we can use our pipeline feature without any
-middlewares to achive a complete rebuild of our stream with adjusted event data.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Pipeline</span><span class="p">;</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Source\StoreSource</span><span class="p">;</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Target\StoreTarget</span><span class="p">;</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">use</span> <span class="nx">Symfony\Component\Console\Attribute\AsCommand</span><span class="p">;</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="k">use</span> <span class="nx">Symfony\Component\Console\Command\Command</span><span class="p">;</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">use</span> <span class="nx">Symfony\Component\Console\Input\InputInterface</span><span class="p">;</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="k">use</span> <span class="nx">Symfony\Component\Console\Output\OutputInterface</span><span class="p">;</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="p">#[</span><span class="nd">AsCommand</span><span class="p">(</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;event-stream:cleanup&#39;</span><span class="p">,</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="nx">description</span><span class="o">:</span> <span class="s1">&#39;rebuild event stream&#39;</span><span class="p">,</span>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="p">)]</span>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">EventStreamCleanupCommand</span> <span class="k">extends</span> <span class="nx">Command</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="p">{</span>
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>        <span class="k">private</span> <span class="nx">readonly</span> <span class="nx">Store</span> <span class="nv">$sourceStore</span><span class="p">,</span>
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>        <span class="k">private</span> <span class="nx">readonly</span> <span class="nx">Store</span> <span class="nv">$targetStore</span><span class="p">,</span>
-<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>    <span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>        <span class="k">parent</span><span class="o">::</span><span class="na">__construct</span><span class="p">();</span>
-<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>    <span class="p">}</span>
-<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>
-<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">execute</span><span class="p">(</span><span class="nx">InputInterface</span> <span class="nv">$input</span><span class="p">,</span> <span class="nx">OutputInterface</span> <span class="nv">$output</span><span class="p">)</span><span class="o">:</span> <span class="nx">int</span>
-<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>    <span class="p">{</span>
-<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>        <span class="nv">$pipeline</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Pipeline</span><span class="p">(</span>
-<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>            <span class="k">new</span> <span class="nx">StoreSource</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sourceStore</span><span class="p">),</span>
-<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>            <span class="k">new</span> <span class="nx">StoreTarget</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">targetStore</span><span class="p">),</span>
-<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>        <span class="p">);</span>
-<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>
-<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>        <span class="nv">$pipeline</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">();</span>
-<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>
-<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>        <span class="k">return</span> <span class="nx">Command</span><span class="o">::</span><span class="na">SUCCESS</span><span class="p">;</span>
-<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>    <span class="p">}</span>
-<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="p">}</span>
-</code></pre></div>
-<div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p>Under no circumstances may the same store be used that is used for the source. 
-Otherwise the store will be broken afterwards!</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You can find out more about the pipeline <a href="pipeline.md">here</a>.</p>
-</div>
+<h2 id="learn-more">Learn more</h2>
+<ul>
+<li><a href="../message/">How to create messages</a></li>
+<li><a href="../events/">How to define events</a></li>
+<li><a href="../store/">How to configure store</a></li>
+</ul>
 
 
 
