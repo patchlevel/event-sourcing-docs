@@ -964,6 +964,12 @@ It is used to identify the aggregate in the event store.
 The <code>aggregate</code> does not care how the id is generated,
 since only an aggregate-wide unique string is expected in the store.</p>
 <p>This library provides you with a few options for generating the id.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Performance reasons, the default configuration of the store require an uuid string for <code>aggregate id</code>.
+But technically, for the library, it can be any string.
+If you want to use a custom id, you have to change the <code>aggregate_id_type</code> in the <a href="../store/">store</a> configuration.</p>
+</div>
 <h2 id="uuid">Uuid</h2>
 <p>The easiest way is to use an <code>uuid</code> as an aggregate ID.
 For this, we have the <code>Uuid</code> class, which is a simple wrapper for the <a href="https://github.com/ramsey/uuid">ramsey/uuid</a> library.</p>
@@ -1016,6 +1022,12 @@ This is a value object that holds any string.</p>
 <a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="k">private</span> <span class="nx">CustomId</span> <span class="nv">$id</span><span class="p">;</span>
 <a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="p">}</span>
 </code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you want to use a custom id that is not an uuid, 
+you need to change the <code>aggregate_id_type</code> to <code>string</code> in the store configuration.
+More information can be found <a href="../store/">here</a>.</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If you want to use snapshots, then you have to make sure that the aggregate id are normalized. 
