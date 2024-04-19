@@ -1413,7 +1413,8 @@ and were then also saved in the database.</p>
 </code></pre></div>
 <div class="admonition danger">
 <p class="admonition-title">Danger</p>
-<p>Validations during "apply" can brake the rebuilding of the aggregate.</p>
+<p>Validations during "apply" should not happen, they will break the rebuilding of the aggregate!
+Instead validate the data <em>before</em> the event will be recorded.</p>
 </div>
 <p>We have now ensured that this rule takes effect when a name is changed with the method <code>changeName</code>.
 But when we create a new profile this rule does not currently apply.</p>
