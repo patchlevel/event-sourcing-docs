@@ -849,9 +849,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#catchup-subscription-engine" class="md-nav__link">
+  <a href="#catch-up-subscription-engine" class="md-nav__link">
     <span class="md-ellipsis">
-      Catchup Subscription Engine
+      Catch up Subscription Engine
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#throw-by-error-subscription-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      Throw by error Subscription Engine
     </span>
   </a>
   
@@ -1635,9 +1644,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#catchup-subscription-engine" class="md-nav__link">
+  <a href="#catch-up-subscription-engine" class="md-nav__link">
     <span class="md-ellipsis">
-      Catchup Subscription Engine
+      Catch up Subscription Engine
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#throw-by-error-subscription-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      Throw by error Subscription Engine
     </span>
   </a>
   
@@ -2331,31 +2349,45 @@ and we need the subscriber accessor repository. Optionally, we can also pass a r
 <a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a>    <span class="nv">$retryStrategy</span><span class="p">,</span>
 <a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a><span class="p">);</span>
 </code></pre></div>
-<h3 id="catchup-subscription-engine">Catchup Subscription Engine</h3>
+<h3 id="catch-up-subscription-engine">Catch up Subscription Engine</h3>
 <p>If aggregates are used in the processors and new events are generated there,
 then they are not part of the current subscription engine run and will only be processed during the next run or boot.
 This is usually not a problem in dev or prod environment because a worker is used
 and these events will be processed at some point. But in testing it is not so easy.
-For this reason, we have the <code>CatchupSubscriptionEngine</code>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\CatchupSubscriptionEngine</span><span class="p">;</span>
+For this reason, we have the <code>CatchUpSubscriptionEngine</code> decorator.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\CatchUpSubscriptionEngine</span><span class="p">;</span>
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
 <a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
 <a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionStore */</span>
-<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="nv">$catchupSubscriptionEngine</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CatchupSubscriptionEngine</span><span class="p">(</span><span class="nv">$subscriptionEngine</span><span class="p">);</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="nv">$catchupSubscriptionEngine</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CatchUpSubscriptionEngine</span><span class="p">(</span><span class="nv">$subscriptionEngine</span><span class="p">);</span>
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>You can use the <code>CatchupSubscriptionEngine</code> in your tests to process the events immediately.</p>
+<p>You can use the <code>CatchUpSubscriptionEngine</code> in your tests to process the events immediately.</p>
+</div>
+<h3 id="throw-by-error-subscription-engine">Throw by error Subscription Engine</h3>
+<p>This is another decorator for the subscription engine. It throws an exception if a subscription is in error state.
+This is useful for testing or development to get directly feedback if something is wrong.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\ThrowOnErrorSubscriptionEngine</span><span class="p">;</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionStore */</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="nv">$throwByErrorSubscriptionEngine</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ThrowOnErrorSubscriptionEngine</span><span class="p">(</span><span class="nv">$subscriptionEngine</span><span class="p">);</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is only for testing or development. Don't use it in production.
+The subscription engine has an build in retry strategy to retry subscriptions that have failed.</p>
 </div>
 <h2 id="usage">Usage</h2>
 <p>The Subscription Engine has a few methods needed to use it effectively.
 A <code>SubscriptionEngineCriteria</code> can be passed to all of these methods to filter the respective subscriptions.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
-<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="nv">$criteria</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">(</span>
-<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>    <span class="nx">ids</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;profile_1&#39;</span><span class="p">,</span> <span class="s1">&#39;welcome_email&#39;</span><span class="p">],</span>
-<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>    <span class="nx">groups</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;default&#39;</span><span class="p">],</span>
-<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="nv">$criteria</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">(</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>    <span class="nx">ids</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;profile_1&#39;</span><span class="p">,</span> <span class="s1">&#39;welcome_email&#39;</span><span class="p">],</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>    <span class="nx">groups</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;default&#39;</span><span class="p">],</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="p">);</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2365,11 +2397,11 @@ A <code>SubscriptionEngineCriteria</code> can be passed to all of these methods 
 <p>New subscriptions need to be set up before they can be used.
 In this step, the subscription engine also tries to call the <code>setup</code> method if available.
 After the setup process, the subscription is set to booting or active.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
-<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>
-<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
-<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">setup</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">setup</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -2379,69 +2411,69 @@ After the setup process, the subscription is set to booting or active.</p>
 <p>You can boot the subscriptions with the <code>boot</code> method.
 All booting subscriptions will catch up to the current event stream.
 After the boot process, the subscription is set to active or finished.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
-<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
-<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
-<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">boot</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
-</code></pre></div>
-<h3 id="run">Run</h3>
-<p>All active subscriptions are continued and updated here.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
 <a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
 <a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>
 <a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
-<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">boot</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
 </code></pre></div>
-<h3 id="teardown">Teardown</h3>
-<p>If subscriptions are detached, they can be cleaned up here.
-The subscription engine also tries to call the <code>teardown</code> method if available.</p>
+<h3 id="run">Run</h3>
+<p>All active subscriptions are continued and updated here.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
 <a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
 <a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>
 <a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
-<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">teardown</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
+</code></pre></div>
+<h3 id="teardown">Teardown</h3>
+<p>If subscriptions are detached, they can be cleaned up here.
+The subscription engine also tries to call the <code>teardown</code> method if available.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">teardown</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
 </code></pre></div>
 <h3 id="remove">Remove</h3>
 <p>You can also directly remove a subscription regardless of its status.
 An attempt is made to call the <code>teardown</code> method if available.
 But the entry will still be removed if it doesn't work.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
-<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
-<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>
-<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
-<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">remove</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
-</code></pre></div>
-<h3 id="reactivate">Reactivate</h3>
-<p>If a subscription had an error or is outdated, you can reactivate it.
-As a result, the subscription gets in the last status again.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
 <a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
 <a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>
 <a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
-<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">reactivate</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">remove</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
+</code></pre></div>
+<h3 id="reactivate">Reactivate</h3>
+<p>If a subscription had an error or is outdated, you can reactivate it.
+As a result, the subscription gets in the last status again.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">reactivate</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
 </code></pre></div>
 <h3 id="pause">Pause</h3>
 <p>Pausing a subscription is also possible.
 The subscription will then no longer be managed by the subscription engine.
 You can reactivate the subscription if you want so that it continues.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
-<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
-<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>
-<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
-<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">pause</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
-</code></pre></div>
-<h3 id="status">Status</h3>
-<p>To get the current status of all subscriptions, you can get them using the <code>subscriptions</code> method.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
 <a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
 <a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>
 <a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
-<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="nv">$subscriptions</span> <span class="o">=</span> <span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">subscriptions</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
-<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>
-<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$subscriptions</span> <span class="k">as</span> <span class="nv">$subscription</span><span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a>    <span class="k">echo</span> <span class="nv">$subscription</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span>
-<a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a><span class="p">}</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">pause</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
+</code></pre></div>
+<h3 id="status">Status</h3>
+<p>To get the current status of all subscriptions, you can get them using the <code>subscriptions</code> method.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="nv">$subscriptions</span> <span class="o">=</span> <span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">subscriptions</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
+<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>
+<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$subscriptions</span> <span class="k">as</span> <span class="nv">$subscription</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a>    <span class="k">echo</span> <span class="nv">$subscription</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span>
+<a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a><span class="p">}</span>
 </code></pre></div>
 <h2 id="learn-more">Learn more</h2>
 <ul>
