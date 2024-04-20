@@ -757,6 +757,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Testing
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -766,6 +777,52 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#aggregate-unit-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aggregate Unit Tests
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tests-with-datetime" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tests with DateTime
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tests-with-uuid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tests with UUID
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -820,6 +877,41 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#aggregate-unit-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aggregate Unit Tests
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tests-with-datetime" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tests with DateTime
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tests-with-uuid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tests with UUID
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -837,10 +929,14 @@
 
 
 <h1 id="tests">Tests</h1>
+<p>The library is designed to be easily testable.
+We provide you with a few helpers to make testing easier
+and some tips on how to test your application.</p>
+<h2 id="aggregate-unit-tests">Aggregate Unit Tests</h2>
 <p>The aggregates can also be tested very well.
-You can test whether certain events have been thrown
+You can test whether certain events have been recorded
 or whether the state is set up correctly when the aggregate is set up again via the events.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> <span class="nx">PHPUnit\Framework\TestCase</span><span class="p">;</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> <span class="nx">PHPUnit\Framework\TestCase</span><span class="p">;</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileTest</span> <span class="k">extends</span> <span class="nx">TestCase</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">{</span>
@@ -858,28 +954,94 @@ or whether the state is set up correctly when the aggregate is set up again via 
 <a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
 <a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="nx">self</span><span class="o">::</span><span class="na">assertEquals</span><span class="p">(</span><span class="s1">&#39;foo@email.com&#39;</span><span class="p">,</span> <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">toString</span><span class="p">());</span>
 <a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="p">}</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testChangeName</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="p">{</span>
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>        <span class="nv">$id</span> <span class="o">=</span> <span class="nx">ProfileId</span><span class="o">::</span><span class="na">generate</span><span class="p">();</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>        <span class="nv">$profile</span> <span class="o">=</span> <span class="nx">Profile</span><span class="o">::</span><span class="na">createFromEvents</span><span class="p">([</span>
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>            <span class="k">new</span> <span class="nx">ProfileCreated</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nx">Email</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;foo@email.com&#39;</span><span class="p">)),</span>
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>        <span class="p">]);</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>        <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">changeEmail</span><span class="p">(</span><span class="nx">Email</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;bar@email.com&#39;</span><span class="p">));</span>
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>        <span class="nx">self</span><span class="o">::</span><span class="na">assertEquals</span><span class="p">(</span>
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>            <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">releaseEvents</span><span class="p">(),</span>
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>            <span class="p">[</span>
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>                <span class="k">new</span> <span class="nx">EmailChanged</span><span class="p">(</span><span class="nx">Email</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;bar@email.com&#39;</span><span class="p">)),</span>
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>            <span class="p">],</span>
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>        <span class="p">);</span>
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
-<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>        <span class="nx">self</span><span class="o">::</span><span class="na">assertEquals</span><span class="p">(</span><span class="s1">&#39;bar@email.com&#39;</span><span class="p">,</span> <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">toString</span><span class="p">());</span>
-<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="p">}</span>
-<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="p">}</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="p">}</span>
 </code></pre></div>
+You can also prepare the aggregate with events to a specific state.
+And then test whether the aggregate behaves as expected.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">PHPUnit\Framework\TestCase</span><span class="p">;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileTest</span> <span class="k">extends</span> <span class="nx">TestCase</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">{</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testChangeName</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="p">{</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="nv">$id</span> <span class="o">=</span> <span class="nx">ProfileId</span><span class="o">::</span><span class="na">generate</span><span class="p">();</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        <span class="nv">$profile</span> <span class="o">=</span> <span class="nx">Profile</span><span class="o">::</span><span class="na">createFromEvents</span><span class="p">([</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>            <span class="k">new</span> <span class="nx">ProfileCreated</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nx">Email</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;foo@email.com&#39;</span><span class="p">)),</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        <span class="p">]);</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">changeEmail</span><span class="p">(</span><span class="nx">Email</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;bar@email.com&#39;</span><span class="p">));</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>        <span class="nx">self</span><span class="o">::</span><span class="na">assertEquals</span><span class="p">(</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>            <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">releaseEvents</span><span class="p">(),</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>            <span class="p">[</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>                <span class="k">new</span> <span class="nx">EmailChanged</span><span class="p">(</span><span class="nx">Email</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;bar@email.com&#39;</span><span class="p">)),</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>            <span class="p">],</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>        <span class="p">);</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>        <span class="nx">self</span><span class="o">::</span><span class="na">assertEquals</span><span class="p">(</span><span class="s1">&#39;bar@email.com&#39;</span><span class="p">,</span> <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">toString</span><span class="p">());</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>    <span class="p">}</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="tests-with-datetime">Tests with DateTime</h2>
+<p>You should not instantiate the <code>DateTimeImmutable</code> directly in the aggregate.
+Instead, you should pass a <code>Clock</code> to the aggregate and use this to get the current time.
+This allows you to test the aggregate with a fixed time.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Clock\FrozenClock</span><span class="p">;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">use</span> <span class="nx">PHPUnit\Framework\TestCase</span><span class="p">;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileTest</span> <span class="k">extends</span> <span class="nx">TestCase</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">{</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testCreateProfile</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="p">{</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="nv">$clock</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FrozenClock</span><span class="p">(</span><span class="k">new</span> <span class="nx">DateTimeImmutable</span><span class="p">(</span><span class="s1">&#39;2021-01-01 00:00:00&#39;</span><span class="p">));</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="nv">$profile</span> <span class="o">=</span> <span class="nx">Profile</span><span class="o">::</span><span class="na">createProfile</span><span class="p">(</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>            <span class="nx">ProfileId</span><span class="o">::</span><span class="na">generate</span><span class="p">(),</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>            <span class="nx">Email</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;info@patchlevel.de&#39;</span><span class="p">),</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>            <span class="nv">$clock</span><span class="p">,</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        <span class="p">);</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>        <span class="nv">$clock</span><span class="o">-&gt;</span><span class="na">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>        <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">changeEmail</span><span class="p">(</span><span class="nx">Email</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;info@patchlevel.de&#39;</span><span class="p">));</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    <span class="p">}</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="p">}</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can find out more about the clock <a href="clock">here</a>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can use the FreezeClock in you integration tests to test the time-based behavior of your application.</p>
+</div>
+<h2 id="tests-with-uuid">Tests with UUID</h2>
+<p>Uuids are randomly generated and can be a problem in tests.
+If you want deterministic tests, you can use the <code>IncrementalRamseyUuidFactory</code> from the library.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Test\IncrementalRamseyUuidFactory</span><span class="p">;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">use</span> <span class="nx">PHPUnit\Framework\TestCase</span><span class="p">;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">use</span> <span class="nx">Ramsey\Uuid\Uuid</span><span class="p">;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileTest</span> <span class="k">extends</span> <span class="nx">TestCase</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">{</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">setUp</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="p">{</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        <span class="nx">Uuid</span><span class="o">::</span><span class="na">setFactory</span><span class="p">(</span><span class="k">new</span> <span class="nx">IncrementalRamseyUuidFactory</span><span class="p">());</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="p">}</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">testCreateProfile</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    <span class="p">{</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        <span class="nv">$id1</span> <span class="o">=</span> <span class="nx">ProfileId</span><span class="o">::</span><span class="na">generate</span><span class="p">();</span> <span class="c1">// 10000000-7000-0000-0000-000000000001</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>        <span class="nv">$id2</span> <span class="o">=</span> <span class="nx">ProfileId</span><span class="o">::</span><span class="na">generate</span><span class="p">();</span> <span class="c1">// 10000000-7000-0000-0000-000000000002</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    <span class="p">}</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="p">}</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <code>IncrementalRamseyUuidFactory</code> is only for testing purposes
+and supports only the version 7 what is used by the library.</p>
+</div>
 
 
 

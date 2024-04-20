@@ -1215,7 +1215,7 @@ These events are then also append to the database.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\Uuid</span><span class="p">;</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Repository\Repository</span><span class="p">;</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nv">$id</span> <span class="o">=</span> <span class="nx">Uuid</span><span class="o">::</span><span class="na">v7</span><span class="p">();</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nv">$id</span> <span class="o">=</span> <span class="nx">Uuid</span><span class="o">::</span><span class="na">generate</span><span class="p">();</span>
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nv">$profile</span> <span class="o">=</span> <span class="nx">Profile</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="s1">&#39;david.badura@patchlevel.de&#39;</span><span class="p">);</span>
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
 <a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="sd">/** @var Repository $repository */</span>

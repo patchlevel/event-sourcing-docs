@@ -996,13 +996,12 @@ You can find how to do this <a href="../normalizer/">here</a>.</p>
 <p>You have multiple options for generating an uuid:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\Uuid</span><span class="p">;</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nv">$uuid</span> <span class="o">=</span> <span class="nx">Uuid</span><span class="o">::</span><span class="na">v6</span><span class="p">();</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nv">$uuid</span> <span class="o">=</span> <span class="nx">Uuid</span><span class="o">::</span><span class="na">v7</span><span class="p">();</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nv">$uuid</span> <span class="o">=</span> <span class="nx">Uuid</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;d6e8d7a0-4b0b-4e6a-8a9a-3a0b2d9d0e4e&#39;</span><span class="p">);</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nv">$uuid</span> <span class="o">=</span> <span class="nx">Uuid</span><span class="o">::</span><span class="na">generate</span><span class="p">();</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nv">$uuid</span> <span class="o">=</span> <span class="nx">Uuid</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;d6e8d7a0-4b0b-4e6a-8a9a-3a0b2d9d0e4e&#39;</span><span class="p">);</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>We offer you the uuid versions 6 and 7, because they are the most suitable for event sourcing.
+<p>We implemented the version 7 of the uuid, because it is most suitable for event sourcing.
 More information about uuid versions can be found <a href="https://uuid.ramsey.dev/en/stable/rfc4122.html">here</a>.</p>
 </div>
 <h2 id="custom-id">Custom ID</h2>
@@ -1084,11 +1083,11 @@ You can find how to do this <a href="../normalizer/">here</a>.</p>
 <p>We also offer you some traits, so that you don't have to implement the <code>AggregateRootId</code> interface yourself.
 Here for the uuid:</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateRootId</span><span class="p">;</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\RamseyUuidBehaviour</span><span class="p">;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\RamseyUuidV7Behaviour</span><span class="p">;</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">class</span> <span class="nc">ProfileId</span> <span class="k">implements</span> <span class="nx">AggregateRootId</span>
 <a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">{</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="k">use</span> <span class="nx">RamseyUuidBehaviour</span><span class="p">;</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="k">use</span> <span class="nx">RamseyUuidV7Behaviour</span><span class="p">;</span>
 <a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="p">}</span>
 </code></pre></div>
 Or for the custom id:</p>
