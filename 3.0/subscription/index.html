@@ -753,20 +753,14 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#paused" class="md-nav__link">
     <span class="md-ellipsis">
       Paused
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Paused">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#finished" class="md-nav__link">
@@ -1290,6 +1284,147 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Links
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Links
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://patchlevel.github.io/event-sourcing-bundle-docs/latest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Symfony Bundle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/patchlevel/event-sourcing-admin-bundle" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Admin Bundle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/patchlevel/event-sourcing-psalm-plugin" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Psalm Plugin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/patchlevel/hydrator" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hydrator
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1557,20 +1692,14 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#paused" class="md-nav__link">
     <span class="md-ellipsis">
       Paused
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Paused">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#finished" class="md-nav__link">
@@ -2230,7 +2359,7 @@ When the process is finished, the subscription is set to active or finished.</p>
 <h3 id="active">Active</h3>
 <p>The active status describes the subscriptions currently being actively managed by the subscription engine.
 These subscriptions have a subscriber, follow the event stream and should be up-to-date.</p>
-<h2 id="paused">Paused</h2>
+<h3 id="paused">Paused</h3>
 <p>A subscription can manually be paused. It will then no longer be updated by the subscription engine.
 This can be useful if you want to pause a subscription for a certain period of time.
 You can also reactivate the subscription if you want so that it continues.</p>
