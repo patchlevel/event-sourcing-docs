@@ -6,6 +6,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/UPGRADE-3.0/</loc>
+         <lastmod>2024-04-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://patchlevel.github.io/event-sourcing-docs/3.0/aggregate/</loc>
          <lastmod>2024-04-26</lastmod>
          <changefreq>daily</changefreq>
