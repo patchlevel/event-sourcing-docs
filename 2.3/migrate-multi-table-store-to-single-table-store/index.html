@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://patchlevel.github.io/event-sourcing-docs/2.3/projection/">
+        <link rel="canonical" href="https://patchlevel.github.io/event-sourcing-docs/2.3/migrate-multi-table-store-to-single-table-store/">
       
       
-        <link rel="prev" href="../processor/">
+        <link rel="prev" href="../clock/">
       
       
-        <link rel="next" href="../normalizer/">
+        <link rel="next" href="../uuid/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Projection - Event Sourcing</title>
+        <title>Migrate from MultiTable to SingleTable - Event Sourcing</title>
       
     
     
@@ -83,7 +83,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#projections" class="md-skip">
+        <a href="#migrating-from-multitablestore-to-singletablestore" class="md-skip">
           Skip to content
         </a>
       
@@ -123,7 +123,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Projection
+              Migrate from MultiTable to SingleTable
             
           </span>
         </div>
@@ -303,10 +303,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -332,11 +330,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
@@ -350,7 +348,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Basics
@@ -487,30 +485,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Projection
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../projection/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -519,95 +497,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#projector" class="md-nav__link">
-    <span class="md-ellipsis">
-      Projector
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#projector-repository" class="md-nav__link">
-    <span class="md-ellipsis">
-      Projector Repository
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#setup-projection" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setup Projection
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Setup Projection">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#create-projection-schema" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create Projection Schema
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#drop-projection-schema" class="md-nav__link">
-    <span class="md-ellipsis">
-      Drop Projection Schema
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#handle-message" class="md-nav__link">
-    <span class="md-ellipsis">
-      Handle Message
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sync-projector-listener" class="md-nav__link">
-    <span class="md-ellipsis">
-      Sync Projector Listener
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -880,10 +769,30 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../migrate-multi-table-store-to-single-table-store/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Migrate from MultiTable to SingleTable
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -892,6 +801,110 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-should-i-migrate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why should I migrate?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rationale
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migration path
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Migration path">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#notice" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notice
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-the-database-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create the database table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migrating" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migrating
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cleanup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1107,46 +1120,74 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#projector" class="md-nav__link">
+  <a href="#why-should-i-migrate" class="md-nav__link">
     <span class="md-ellipsis">
-      Projector
+      Why should I migrate?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#projector-repository" class="md-nav__link">
+  <a href="#rationale" class="md-nav__link">
     <span class="md-ellipsis">
-      Projector Repository
+      Rationale
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#setup-projection" class="md-nav__link">
+  <a href="#migration-path" class="md-nav__link">
     <span class="md-ellipsis">
-      Setup Projection
+      Migration path
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Setup Projection">
+    <nav class="md-nav" aria-label="Migration path">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#create-projection-schema" class="md-nav__link">
+  <a href="#notice" class="md-nav__link">
     <span class="md-ellipsis">
-      Create Projection Schema
+      Notice
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#drop-projection-schema" class="md-nav__link">
+  <a href="#setup" class="md-nav__link">
     <span class="md-ellipsis">
-      Drop Projection Schema
+      Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-the-database-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create the database table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migrating" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migrating
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cleanup
     </span>
   </a>
   
@@ -1156,22 +1197,9 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#handle-message" class="md-nav__link">
-    <span class="md-ellipsis">
-      Handle Message
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sync-projector-listener" class="md-nav__link">
-    <span class="md-ellipsis">
-      Sync Projector Listener
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1193,135 +1221,164 @@
   
 
 
-<h1 id="projections">Projections</h1>
-<p>With <code>projections</code> you can create your data optimized for reading.
-projections can be adjusted, deleted or rebuilt at any time.
-This is possible because the source of truth remains untouched
-and everything can always be reproduced from the events.</p>
-<p>The target of a projection can be anything.
-Either a file, a relational database, a no-sql database like mongodb or an elasticsearch.</p>
-<h2 id="projector">Projector</h2>
-<p>To create a projection you need a projector.
-In this example we always create a new data set in a relational database when a profile is created:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\Connection</span><span class="p">;</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Create</span><span class="p">;</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Drop</span><span class="p">;</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Handle</span><span class="p">;</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\EventBus\Message</span><span class="p">;</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projector\Projector</span><span class="p">;</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileProjection</span> <span class="k">implements</span> <span class="nx">Projector</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">{</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="k">private</span> <span class="nx">readonly</span> <span class="nx">Connection</span> <span class="nv">$connection</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="p">}</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="sd">/**</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="sd">     * @return list&lt;array{id: string, name: string}&gt;</span>
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="sd">     */</span>
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">getProfiles</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span> 
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="p">{</span>
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">fetchAllAssociative</span><span class="p">(</span><span class="s1">&#39;SELECT id, name FROM projection_profile;&#39;</span><span class="p">);</span>
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="p">}</span>
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="p">#[</span><span class="nd">Create</span><span class="p">]</span>
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">create</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="p">{</span>
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span><span class="s1">&#39;CREATE TABLE IF NOT EXISTS projection_profile (id VARCHAR PRIMARY KEY, name VARCHAR NOT NULL);&#39;</span><span class="p">);</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="p">}</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="p">#[</span><span class="nd">Drop</span><span class="p">]</span>
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">drop</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="p">{</span>
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span><span class="s1">&#39;DROP TABLE IF EXISTS projection_profile;&#39;</span><span class="p">);</span>
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>    <span class="p">}</span>
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="p">#[</span><span class="nd">Handle</span><span class="p">(</span><span class="nx">ProfileCreated</span><span class="o">::</span><span class="na">class</span><span class="p">)]</span>
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">handleProfileCreated</span><span class="p">(</span><span class="nx">Message</span> <span class="nv">$message</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
-<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="p">{</span>
-<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>        <span class="nv">$profileCreated</span> <span class="o">=</span> <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">event</span><span class="p">();</span>
-<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
-<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span>
-<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>            <span class="s1">&#39;INSERT INTO projection_profile (`id`, `name`) VALUES(:id, :name);&#39;</span><span class="p">,</span>
-<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>            <span class="p">[</span>
-<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>                <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$profileCreated</span><span class="o">-&gt;</span><span class="na">profileId</span><span class="p">,</span>
-<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>                <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="nv">$profileCreated</span><span class="o">-&gt;</span><span class="na">name</span>
-<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>            <span class="p">]</span>
-<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>        <span class="p">);</span>
-<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>    <span class="p">}</span>
-<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="p">}</span>
+<h1 id="migrating-from-multitablestore-to-singletablestore">Migrating from MultiTableStore to SingleTableStore</h1>
+<h2 id="why-should-i-migrate">Why should I migrate?</h2>
+<p>We removed the <code>MultiTableStore</code> without any replacement in version 3. To upgrade you need to migrate.</p>
+<h2 id="rationale">Rationale</h2>
+<p>We removed the <code>MultiTableStore</code> because it does not bring any benefit for the user besides some more confidence due to 
+be a little more similar to the "standard" ORM based databases which is the only reason we could think of why choosing 
+it.</p>
+<p>But there are some big disadvantages when using the <code>MultiTableStore</code>:</p>
+<ol>
+<li>We need a meta table so we can ensure the right order of events published in the different tables. Because of that 
+   writes are alot slower due to writing in at least 2 different tables.</li>
+<li>To be able to filter for the projections e.g. we need to duplicate every field into the meta table which we want to 
+   filter on. So the meta table will grow and grow in columns and nearly duplicate all data besides the event payload 
+   itself which leads to a massive data duplication.</li>
+</ol>
+<p>Besides that, databases already to this kind of partition itself based on the indexes we set on the <code>eventstore</code>. So 
+technically there is no real reason to keep the <code>MultiTableStore</code>.</p>
+<p>To increase the developer experience even more and to compensate the lost convenience of the <code>MultiTableStore</code> we are 
+in the progress of introducing <a href="https://github.com/patchlevel/event-sourcing-admin-bundle">a symfony bundle</a> which will 
+provide a UI for a great overview and visualize all aspects of the event sourced application.</p>
+<p>If you are interested in the changes, the removal was done in this 
+<a href="https://github.com/patchlevel/event-sourcing/pull/373">PR</a>. Also you can also find some more discussion/information in
+<a href="https://github.com/patchlevel/event-sourcing-bundle/issues/158#issuecomment-1888037198">this comment on GitHub</a></p>
+<h2 id="migration-path">Migration path</h2>
+<h3 id="notice">Notice</h3>
+<p>This migration would need a downtime depending how big your eventstore already is. But you can test this all locally 
+beforehand.</p>
+<h3 id="setup">Setup</h3>
+<p>Please install the newest version of <code>patchlevel/event-sourcing:^2.x</code> first, this will ensure that everything is working 
+as expected.</p>
+<h4 id="create-the-database-table">Create the database table</h4>
+<p>First we need to create the new eventstore table. For that we can change the configuration for store to the 
+<code>SingleTableStore</code> and create a migration with <code>bin/console event-sourcing:migrations:diff</code> then. Remove from the 
+migration all SQL statements which would drop tables or indexes for now.</p>
+<p>If you are using the 
+<a href="https://github.com/patchlevel/event-sourcing-bundle">bundle</a> you can change the yaml configuration as follows to change 
+the configuration:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>patchlevel_event_sourcing:
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w"> </span>   store:
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gd">-       type: multi_table</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="gi">+       type: single_table</span>
+</code></pre></div></p>
+<p>Also you would need to update the table name then since the bundle changed the default name of the meta table to 
+<code>eventstore</code> instead of <code>eventstore_metadata</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>patchlevel_event_sourcing:
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w"> </span>   store:
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="gd">-       type: multi_table</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="gi">+       type: single_table</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="gi">+       options:</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="gi">+           table_name: new_eventstore</span>
 </code></pre></div>
-<p>Projectors can also have one <code>create</code> and <code>drop</code> method that is executed when the projection is created or deleted.
-In some cases it may be that no schema has to be created for the projection, as the target does it automatically.
-To do this, you must add either the <code>Create</code> or <code>Drop</code> attribute to the method. The method name itself doesn't matter.</p>
-<p>Otherwise, a projector can have any number of handle methods that are called for certain defined events.
-In order to say which method is responsible for which event, you need the <code>Handle</code> attribute.
-As the first parameter, you must pass the event class to which the reaction should then take place.
-The method itself must expect a <code>Message</code>, which then contains the event. The method name itself doesn't matter.</p>
-<p>As soon as the event has been dispatched, the appropriate methods are then executed.
-Several projectors can also listen to the same event.</p>
-<div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p>You should not execute any actions with projectors, 
-otherwise these will be executed again if you rebuild the projection!</p>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>If you are using psalm then you can install the event sourcing <a href="https://github.com/patchlevel/event-sourcing-psalm-plugin">plugin</a> 
-to make the event method return the correct type.</p>
-</div>
-<h2 id="projector-repository">Projector Repository</h2>
-<p>The projector repository can hold and make available all projectors.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projector\InMemoryProjectorRepository</span><span class="p">;</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nv">$projectorRepository</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">InMemoryProjectorRepository</span><span class="p">([</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">new</span> <span class="nx">ProfileProjection</span><span class="p">(</span><span class="nv">$connection</span><span class="p">)</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">]);</span>
-</code></pre></div>
-<h2 id="setup-projection">Setup Projection</h2>
-<p>A projection schama or database usually has to be created beforehand.
-And with a rebuild, the projection has to be deleted.
-The Projector Helper can help with this:</p>
-<h3 id="create-projection-schema">Create Projection Schema</h3>
-<p>With this you can prepare the projection:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projector\ProjectorHelper</span><span class="p">;</span>
+<p>The migration file should look like this here:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">(</span><span class="k">new</span> <span class="nx">ProjectorHelper</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">createProjection</span><span class="p">(</span><span class="k">new</span> <span class="nx">ProfileProjection</span><span class="p">(</span><span class="nv">$connection</span><span class="p">));</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">(</span><span class="k">new</span> <span class="nx">ProjectorHelper</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">createProjection</span><span class="p">(</span><span class="o">...</span><span class="nv">$projectionRepository</span><span class="o">-&gt;</span><span class="na">projectors</span><span class="p">());</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">namespace</span> <span class="nx">EventSourcingMigrations</span><span class="p">;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\Schema\Schema</span><span class="p">;</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">use</span> <span class="nx">Doctrine\Migrations\AbstractMigration</span><span class="p">;</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Version20240420145037</span> <span class="k">extends</span> <span class="nx">AbstractMigration</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="p">{</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">getDescription</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="p">{</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        <span class="k">return</span> <span class="s1">&#39;Create SingleTableStore table&#39;</span><span class="p">;</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    <span class="p">}</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">(</span><span class="nx">Schema</span> <span class="nv">$schema</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    <span class="p">{</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>        <span class="c1">// this up() migration is auto-generated, please modify it to your needs</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addSql</span><span class="p">(</span><span class="s1">&#39;CREATE TABLE event_store (id BIGSERIAL NOT NULL, aggregate VARCHAR(255) NOT NULL, aggregate_id VARCHAR(255) NOT NULL, playhead INT NOT NULL, event VARCHAR(255) NOT NULL, payload JSON NOT NULL, recorded_on TIMESTAMP(0) WITH TIME ZONE DEFAULT NULL, new_stream_start BOOLEAN DEFAULT false NOT NULL, archived BOOLEAN DEFAULT false NOT NULL, custom_headers JSON NOT NULL, PRIMARY KEY(id))&#39;</span><span class="p">);</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addSql</span><span class="p">(</span><span class="s1">&#39;CREATE UNIQUE INDEX UNIQ_BE4CE95BB77949FFD0BBCCBE34B91FA9 ON event_store (aggregate, aggregate_id, playhead)&#39;</span><span class="p">);</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addSql</span><span class="p">(</span><span class="s1">&#39;CREATE INDEX IDX_BE4CE95BB77949FFD0BBCCBE34B91FA961B169FE ON event_store (aggregate, aggregate_id, playhead, archived)&#39;</span><span class="p">);</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addSql</span><span class="p">(</span><span class="s1">&#39;COMMENT ON COLUMN event_store.recorded_on IS \&#39;(DC2Type:datetimetz_immutable)\&#39;&#39;</span><span class="p">);</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>    <span class="p">}</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">down</span><span class="p">(</span><span class="nx">Schema</span> <span class="nv">$schema</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>    <span class="p">{</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>        <span class="c1">// this should not be needed</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>    <span class="p">}</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="p">}</span>
 </code></pre></div>
-<h3 id="drop-projection-schema">Drop Projection Schema</h3>
-<p>The projection can also be removed again:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projector\ProjectorHelper</span><span class="p">;</span>
+<p>You could also just use this migration file here to be sure. You would still need to adjust the configuration to use the
+<code>SingleTableStore</code> though and also sync the table name you chose. In our example here it is <code>event_store</code>.</p>
+<h4 id="migrating">Migrating</h4>
+<p>Now we create a command to execute the migration. For that, we are using the <code>Pipeline</code> feature. So we need now the new 
+<code>SingleTableStore</code> and also the old <code>MultiTableStore</code> and configure the <code>Pipeline</code> properly. The old <code>MultiTableStore</code> 
+will be the <code>SourceStore</code> for the <code>Pipeline</code> and the new <code>SingleTableStore</code> will be the <code>TargetStore</code>. We can also use 
+this occasion to clean up the eventstream and remove some old events which are not used anymore. For that you could add 
+some <code>Middlewares</code> to the <code>Pipeline</code> but you don't need to do so.</p>
+<p>Here we will show an example using a command made with <code>symfony/console</code> and using dependency injection for the 
+<code>SingleTableStore</code> (since we already updated the configuration before), <code>EventSerializer</code> and <code>AggregateRootRegistry</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">(</span><span class="k">new</span> <span class="nx">ProjectorHelper</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">dropProjection</span><span class="p">(</span><span class="k">new</span> <span class="nx">ProfileProjection</span><span class="p">(</span><span class="nv">$connection</span><span class="p">));</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">(</span><span class="k">new</span> <span class="nx">ProjectorHelper</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">dropProjection</span><span class="p">(</span><span class="o">...</span><span class="nv">$projectionRepository</span><span class="o">-&gt;</span><span class="na">projectors</span><span class="p">());</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">namespace</span> <span class="nx">App\Infrastructure\Command</span><span class="p">;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\Connection</span><span class="p">;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Metadata\AggregateRoot\AggregateRootRegistry</span><span class="p">;</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\EventSerializer</span><span class="p">;</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\MultiTableStore</span><span class="p">;</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\ExcludeEventMiddleware</span><span class="p">;</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Middleware\RecalculatePlayheadMiddleware</span><span class="p">;</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Pipeline</span><span class="p">;</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Source\StoreSource</span><span class="p">;</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Pipeline\Target\StoreTarget</span><span class="p">;</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="k">use</span> <span class="nx">Symfony\Component\Console\Attribute\AsCommand</span><span class="p">;</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="k">use</span> <span class="nx">Symfony\Component\Console\Command\Command</span><span class="p">;</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="k">use</span> <span class="nx">Symfony\Component\Console\Input\InputInterface</span><span class="p">;</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="k">use</span> <span class="nx">Symfony\Component\Console\Output\OutputInterface</span><span class="p">;</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="p">#[</span><span class="nd">AsCommand</span><span class="p">(</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;app:migrate-to-single-table-store&#39;</span><span class="p">,</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>    <span class="nx">description</span><span class="o">:</span> <span class="s1">&#39;Migrate structure from multi table to single table store.&#39;</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="p">)]</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="k">class</span> <span class="nc">MigrateToSingleTableStoreCommand</span> <span class="k">extends</span> <span class="nx">Command</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="p">{</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>        <span class="k">private</span> <span class="nx">readonly</span> <span class="nx">Store</span> <span class="nv">$newSingleTableStore</span><span class="p">,</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>        <span class="k">private</span> <span class="nx">readonly</span> <span class="nx">Connection</span> <span class="nv">$eventstoreConnection</span><span class="p">,</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>        <span class="k">private</span> <span class="nx">readonly</span> <span class="nx">EventSerializer</span> <span class="nv">$serializer</span><span class="p">,</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>        <span class="k">private</span> <span class="nx">readonly</span> <span class="nx">AggregateRootRegistry</span> <span class="nv">$aggregateRootRegistry</span><span class="p">,</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>    <span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>        <span class="k">parent</span><span class="o">::</span><span class="na">__construct</span><span class="p">();</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>    <span class="p">}</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">execute</span><span class="p">(</span><span class="nx">InputInterface</span> <span class="nv">$input</span><span class="p">,</span> <span class="nx">OutputInterface</span> <span class="nv">$output</span><span class="p">)</span><span class="o">:</span> <span class="nx">int</span>
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>    <span class="p">{</span>
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>        <span class="nv">$oldMultiTableStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MultiTableStore</span><span class="p">(</span>
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">eventstoreConnection</span><span class="p">,</span> <span class="c1">// connection to the old table, this must not be the same as the new one</span>
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">serializer</span><span class="p">,</span>
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">aggregateRootRegistry</span><span class="p">,</span>
+<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>            <span class="c1">// &#39;eventstore&#39; // here comes the name of the metadata table</span>
+<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>        <span class="p">);</span>
+<a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a>
+<a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a>        <span class="nv">$pipeline</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Pipeline</span><span class="p">(</span>
+<a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a>            <span class="k">new</span> <span class="nx">StoreSource</span><span class="p">(</span><span class="nv">$oldMultiTableStore</span><span class="p">),</span>
+<a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a>            <span class="k">new</span> <span class="nx">StoreTarget</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">newSingleTableStore</span><span class="p">),</span>
+<a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a>            <span class="p">[</span>
+<a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a>                <span class="k">new</span> <span class="nx">ExcludeEventMiddleware</span><span class="p">([</span>
+<a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a>                    <span class="cm">/* add Events here that are maybe not needed anymore */</span>
+<a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a>                <span class="p">]),</span>
+<a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a>                <span class="k">new</span> <span class="nx">RecalculatePlayheadMiddleware</span><span class="p">(),</span> <span class="c1">// this is only needed if you are dropping events, but you can also just keep it regardless</span>
+<a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a>            <span class="p">]</span>
+<a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a>        <span class="p">);</span>
+<a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a>        <span class="nv">$pipeline</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">();</span>
+<a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a>
+<a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a>        <span class="k">return</span> <span class="nx">Command</span><span class="o">::</span><span class="na">SUCCESS</span><span class="p">;</span>
+<a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a>    <span class="p">}</span>
+<a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a><span class="p">}</span>
 </code></pre></div>
-<h2 id="handle-message">Handle Message</h2>
-<p>The helper also offers methods to process messages:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projector\ProjectorHelper</span><span class="p">;</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">(</span><span class="k">new</span> <span class="nx">ProjectorHelper</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">handleMessage</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="k">new</span> <span class="nx">ProfileProjection</span><span class="p">(</span><span class="nv">$connection</span><span class="p">));</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">(</span><span class="k">new</span> <span class="nx">ProjectorHelper</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">handleMessage</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="o">...</span><span class="nv">$projectionRepository</span><span class="o">-&gt;</span><span class="na">projectors</span><span class="p">());</span>
-</code></pre></div>
-<h2 id="sync-projector-listener">Sync Projector Listener</h2>
-<p>The simplest configuration is to run the projectors synchronously.
-Says that you listen to the event bus and update the projections directly.
-Here you can use the <code>SyncProjectorListener</code>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Projection\Projector\SyncProjectorListener</span><span class="p">;</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nv">$eventBus</span><span class="o">-&gt;</span><span class="na">addListener</span><span class="p">(</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="k">new</span> <span class="nx">SyncProjectorListener</span><span class="p">(</span><span class="nv">$projectorRepository</span><span class="p">)</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">);</span>
-</code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You can find out more about the event bus <a href="../event_bus/">here</a>.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In order to exploit the full potential, the <a href="../projectionist/">projectionist</a> should be used in production.</p>
-</div>
+<p>We can now execute this command which will then read all passed evens from the old store and push them into the new one.</p>
+<h4 id="cleanup">Cleanup</h4>
+<p>After the command successfully ran, you can now use the application like you did before and if everything looks fine
+remove the old tables. For that, you can create again a migration file with <code>bin/console event-sourcing:migrations:diff</code> 
+and now keep all the SQL statements we removed before. These statements should now only consist of dropping the tables 
+from the <code>MultiTableStore</code> and indexes.</p>
 
 
 
