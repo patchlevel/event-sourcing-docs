@@ -1131,26 +1131,19 @@ If you want to use a custom id, you have to change the <code>aggregate_id_type</
 <p>The easiest way is to use an <code>uuid</code> as an aggregate ID.
 For this, we have the <code>Uuid</code> class, which is a simple wrapper for the <a href="https://github.com/ramsey/uuid">ramsey/uuid</a> library.</p>
 <p>You can use it like this:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\Uuid</span><span class="p">;</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Id</span><span class="p">;</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\Normalizer\IdNormalizer</span><span class="p">;</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">#[</span><span class="nd">Aggregate</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">)]</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">{</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="p">#[</span><span class="nd">Id</span><span class="p">]</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="p">#[</span><span class="nd">IdNormalizer</span><span class="p">]</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="k">private</span> <span class="nx">Uuid</span> <span class="nv">$id</span><span class="p">;</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="p">}</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">#[</span><span class="nd">Aggregate</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">)]</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">{</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="p">#[</span><span class="nd">Id</span><span class="p">]</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="k">private</span> <span class="nx">Uuid</span> <span class="nv">$id</span><span class="p">;</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">}</span>
 </code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you want to use snapshots, then you have to make sure that the aggregate id are normalized. 
-You can find how to do this <a href="../normalizer/">here</a>.</p>
-</div>
-<p>You have multiple options for generating an uuid:</p>
+You have multiple options for generating an uuid:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\Uuid</span><span class="p">;</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nv">$uuid</span> <span class="o">=</span> <span class="nx">Uuid</span><span class="o">::</span><span class="na">generate</span><span class="p">();</span>
@@ -1168,26 +1161,19 @@ This is a value object that holds any string.</p>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\CustomId</span><span class="p">;</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Id</span><span class="p">;</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\Normalizer\IdNormalizer</span><span class="p">;</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">#[</span><span class="nd">Aggregate</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">)]</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">{</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="p">#[</span><span class="nd">Id</span><span class="p">]</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="p">#[</span><span class="nd">IdNormalizer</span><span class="p">]</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="k">private</span> <span class="nx">CustomId</span> <span class="nv">$id</span><span class="p">;</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="p">}</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">#[</span><span class="nd">Aggregate</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">)]</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">{</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="p">#[</span><span class="nd">Id</span><span class="p">]</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="k">private</span> <span class="nx">CustomId</span> <span class="nv">$id</span><span class="p">;</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>If you want to use a custom id that is not an uuid, 
 you need to change the <code>aggregate_id_type</code> to <code>string</code> in the store configuration.
 More information can be found <a href="../store/">here</a>.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you want to use snapshots, then you have to make sure that the aggregate id are normalized. 
-You can find how to do this <a href="../normalizer/">here</a>.</p>
 </div>
 <p>So you can use any string as an id:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\CustomId</span><span class="p">;</span>
@@ -1219,25 +1205,18 @@ The whole thing looks like this:</p>
 <a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="p">}</span>
 </code></pre></div>
 So you can use it like this:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Id</span><span class="p">;</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\Normalizer\IdNormalizer</span><span class="p">;</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">#[</span><span class="nd">Aggregate</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">)]</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="p">{</span>
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="p">#[</span><span class="nd">Id</span><span class="p">]</span>
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="p">#[</span><span class="nd">IdNormalizer</span><span class="p">]</span>
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    <span class="k">private</span> <span class="nx">ProfileId</span> <span class="nv">$id</span><span class="p">;</span>
-<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="p">}</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">#[</span><span class="nd">Aggregate</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">)]</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="p">{</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="p">#[</span><span class="nd">Id</span><span class="p">]</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="k">private</span> <span class="nx">ProfileId</span> <span class="nv">$id</span><span class="p">;</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="p">}</span>
 </code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you want to use snapshots, then you have to make sure that the aggregate id are normalized. 
-You can find how to do this <a href="../normalizer/">here</a>.</p>
-</div>
-<p>We also offer you some traits, so that you don't have to implement the <code>AggregateRootId</code> interface yourself.
+We also offer you some traits, so that you don't have to implement the <code>AggregateRootId</code> interface yourself.
 Here for the uuid:</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\AggregateRootId</span><span class="p">;</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\RamseyUuidV7Behaviour</span><span class="p">;</span>
@@ -1261,7 +1240,6 @@ Or for the custom id:</p>
 <li><a href="../aggregate/">How to create an aggregate</a></li>
 <li><a href="../events/">How to create an event</a></li>
 <li><a href="../testing/">How to test an aggregate</a></li>
-<li><a href="../normalizer/">How to normalize value objects</a></li>
 </ul>
 
 

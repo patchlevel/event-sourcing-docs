@@ -1290,28 +1290,23 @@ The interaction can also easily take place in a controller or service.</p>
 <h2 id="create-a-new-aggregate">Create a new aggregate</h2>
 <p>In order that an aggregate is actually saved, at least one event must exist in the DB.
 For our aggregate we create the Event <code>ProfileRegistered</code> with an ID and a name.
-Since the ID is a complex data type and cannot be easily serialized, we need to define a normalizer for the ID.
-We do this with the <code>IdNormalizer</code> attribute.
 We also give the event a unique name using the <code>Event</code> attribute.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\Uuid</span><span class="p">;</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Event</span><span class="p">;</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\Normalizer\IdNormalizer</span><span class="p">;</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">#[</span><span class="nd">Event</span><span class="p">(</span><span class="s1">&#39;profile.registered&#39;</span><span class="p">)]</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileRegistered</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">{</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        <span class="p">#[</span><span class="nd">IdNormalizer</span><span class="p">]</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="k">public</span> <span class="nx">readonly</span> <span class="nx">Uuid</span> <span class="nv">$profileId</span><span class="p">,</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>        <span class="k">public</span> <span class="nx">readonly</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">,</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="p">}</span>
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="p">}</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">#[</span><span class="nd">Event</span><span class="p">(</span><span class="s1">&#39;profile.registered&#39;</span><span class="p">)]</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileRegistered</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">{</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="k">public</span> <span class="nx">readonly</span> <span class="nx">Uuid</span> <span class="nv">$profileId</span><span class="p">,</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        <span class="k">public</span> <span class="nx">readonly</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">,</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="p">}</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>You can find out more about events <a href="../events/">here</a>.
-And for normalizer <a href="../normalizer/">here</a>.</p>
+<p>You can find out more about events <a href="../events/">here</a>.</p>
 </div>
 <p>After we have defined the event, we have to adapt the profile aggregate:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
@@ -1649,7 +1644,8 @@ since we only expected a string before but now passed a <code>Name</code> value 
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>The payload must be serializable and unserializable as json.</p>
+<p>You need to create a normalizer for the <code>Name</code> value object.
+So the payload must be serializable and unserializable as json.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
