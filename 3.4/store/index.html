@@ -505,6 +505,30 @@ You're not viewing the latest version.
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Configure Store">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#doctrinedbalstore" class="md-nav__link">
+    <span class="md-ellipsis">
+      DoctrineDbalStore
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streamdoctrinedbalstore" class="md-nav__link">
+    <span class="md-ellipsis">
+      StreamDoctrineDbalStore
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -635,9 +659,27 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
-  <a href="#delete-update" class="md-nav__link">
+  <a href="#update" class="md-nav__link">
     <span class="md-ellipsis">
-      Delete &amp; Update
+      Update
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove" class="md-nav__link">
+    <span class="md-ellipsis">
+      Remove
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-streams" class="md-nav__link">
+    <span class="md-ellipsis">
+      List Streams
     </span>
   </a>
   
@@ -1206,6 +1248,30 @@ You're not viewing the latest version.
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Configure Store">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#doctrinedbalstore" class="md-nav__link">
+    <span class="md-ellipsis">
+      DoctrineDbalStore
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streamdoctrinedbalstore" class="md-nav__link">
+    <span class="md-ellipsis">
+      StreamDoctrineDbalStore
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1336,9 +1402,27 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
-  <a href="#delete-update" class="md-nav__link">
+  <a href="#update" class="md-nav__link">
     <span class="md-ellipsis">
-      Delete &amp; Update
+      Update
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove" class="md-nav__link">
+    <span class="md-ellipsis">
+      Remove
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-streams" class="md-nav__link">
+    <span class="md-ellipsis">
+      List Streams
     </span>
   </a>
   
@@ -1392,8 +1476,7 @@ Each message contains an event and the associated headers.</p>
 <p class="admonition-title">Note</p>
 <p>More information about the message can be found <a href="../message/">here</a>.</p>
 </div>
-<p>The store is optimized to efficiently store and load events for aggregates.
-We currently only offer one <a href="https://www.doctrine-project.org/projects/dbal.html">doctrine dbal</a> store.</p>
+<p>The store is optimized to efficiently store and load events for aggregates.</p>
 <h2 id="create-dbal-connection">Create DBAL connection</h2>
 <p>The first thing we need for our store is a DBAL connection:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\DriverManager</span><span class="p">;</span>
@@ -1409,8 +1492,12 @@ We currently only offer one <a href="https://www.doctrine-project.org/projects/d
 <a href="https://www.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html">here</a></p>
 </div>
 <h2 id="configure-store">Configure Store</h2>
-<p>You can create a store with the <code>DoctrineDbalStore</code> class.
-The store needs a dbal connection, an event serializer, an aggregate registry and some options.</p>
+<p>We currently offer two stores, both based on the <a href="https://www.doctrine-project.org/projects/dbal.html">doctrine dbal</a> library.
+The default store is the <code>DoctrineDbalStore</code> and the new experimental store is the <code>StreamDoctrineDbalStore</code>.</p>
+<h3 id="doctrinedbalstore">DoctrineDbalStore</h3>
+<p>This is the current default store for event sourcing.
+You can create a store with the <code>DoctrineDbalStore</code> class.
+The store needs a dbal connection, an event serializer and has some optional parameters like options.</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\Connection</span><span class="p">;</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\DefaultEventSerializer</span><span class="p">;</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\DoctrineDbalStore</span><span class="p">;</span>
@@ -1419,9 +1506,7 @@ The store needs a dbal connection, an event serializer, an aggregate registry an
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nv">$store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineDbalStore</span><span class="p">(</span>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="nv">$connection</span><span class="p">,</span>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="nx">DefaultEventSerializer</span><span class="o">::</span><span class="na">createFromPaths</span><span class="p">([</span><span class="s1">&#39;src/Event&#39;</span><span class="p">]),</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="k">null</span><span class="p">,</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="p">[</span><span class="sd">/** options */</span><span class="p">],</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">);</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">);</span>
 </code></pre></div>
 Following options are available in <code>DoctrineDbalStore</code>:</p>
 <table>
@@ -1442,9 +1527,9 @@ Following options are available in <code>DoctrineDbalStore</code>:</p>
 </tr>
 <tr>
 <td>aggregate_id_type</td>
-<td>"uuid"</td>
-<td>"string"</td>
+<td>"uuid"/"string"</td>
 <td>uuid</td>
+<td>The type of the <code>aggregate_id</code> column</td>
 </tr>
 <tr>
 <td>locking</td>
@@ -1466,7 +1551,6 @@ Following options are available in <code>DoctrineDbalStore</code>:</p>
 </tr>
 </tbody>
 </table>
-<h2 id="schema">Schema</h2>
 <p>The table structure of the <code>DoctrineDbalStore</code> looks like this:</p>
 <table>
 <thead>
@@ -1529,12 +1613,124 @@ Following options are available in <code>DoctrineDbalStore</code>:</p>
 </tr>
 </tbody>
 </table>
-<p>With the help of the <code>SchemaDirector</code>, the database structure can be created, updated and deleted.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The default type of the <code>aggregate_id</code> column is <code>uuid</code> if the database supports it and <code>string</code> if not.
 You can change the type with the <code>aggregate_id_type</code> to <code>string</code> if you want use custom id.</p>
 </div>
+<h3 id="streamdoctrinedbalstore">StreamDoctrineDbalStore</h3>
+<p>We offer a new experimental store called <code>StreamDoctrineDbalStore</code>.
+This store is decoupled from the aggregate and can be used to store events from other sources.
+The difference to the <code>DoctrineDbalStore</code> is that the <code>StreamDoctrineDbalStore</code> merge the aggregate id
+and the aggregate name into one column named <code>stream</code>. Additionally, the column <code>playhead</code> is nullable.
+This store introduces two new methods <code>streams</code> and <code>remove</code>.</p>
+<p>The store needs a dbal connection, an event serializer and has some optional parameters like options.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\Connection</span><span class="p">;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Serializer\DefaultEventSerializer</span><span class="p">;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\StreamDoctrineDbalStore</span><span class="p">;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="sd">/** @var Connection $connection */</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nv">$store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">StreamDoctrineDbalStore</span><span class="p">(</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="nv">$connection</span><span class="p">,</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="nx">DefaultEventSerializer</span><span class="o">::</span><span class="na">createFromPaths</span><span class="p">([</span><span class="s1">&#39;src/Event&#39;</span><span class="p">]),</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">);</span>
+</code></pre></div>
+Following options are available in <code>StreamDoctrineDbalStore</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>table_name</td>
+<td>string</td>
+<td>event_store</td>
+<td>The name of the table in the database</td>
+</tr>
+<tr>
+<td>locking</td>
+<td>bool</td>
+<td>true</td>
+<td>If the store should use locking for writing</td>
+</tr>
+<tr>
+<td>lock_id</td>
+<td>int</td>
+<td>133742</td>
+<td>The id of the lock</td>
+</tr>
+<tr>
+<td>lock_timeout</td>
+<td>int</td>
+<td>-1</td>
+<td>The timeout of the lock. -1 means no timeout</td>
+</tr>
+</tbody>
+</table>
+<p>The table structure of the <code>StreamDoctrineDbalStore</code> looks like this:</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>bigint</td>
+<td>The index of the whole stream (autoincrement)</td>
+</tr>
+<tr>
+<td>stream</td>
+<td>string</td>
+<td>The name of the stream</td>
+</tr>
+<tr>
+<td>playhead</td>
+<td>?int</td>
+<td>The current playhead of the aggregate</td>
+</tr>
+<tr>
+<td>event</td>
+<td>string</td>
+<td>The name of the event</td>
+</tr>
+<tr>
+<td>payload</td>
+<td>json</td>
+<td>The payload of the event</td>
+</tr>
+<tr>
+<td>recorded_on</td>
+<td>datetime</td>
+<td>The date when the event was recorded</td>
+</tr>
+<tr>
+<td>new_stream_start</td>
+<td>bool</td>
+<td>If the event is the first event of the aggregate</td>
+</tr>
+<tr>
+<td>archived</td>
+<td>bool</td>
+<td>If the event is archived</td>
+</tr>
+<tr>
+<td>custom_headers</td>
+<td>json</td>
+<td>Custom headers for the event</td>
+</tr>
+</tbody>
+</table>
+<h2 id="schema">Schema</h2>
+<p>With the help of the <code>SchemaDirector</code>, the database structure can be created, updated and deleted.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>You can also use doctrine migration to create and keep your schema in sync.</p>
@@ -1543,18 +1739,18 @@ You can change the type with the <code>aggregate_id_type</code> to <code>string<
 <p>The <code>SchemaDirector</code> is responsible for creating, updating and deleting the database schema.
 The <code>DoctrineSchemaDirector</code> is a concrete implementation of the <code>SchemaDirector</code> for doctrine dbal.
 Additionally, it implements the <code>DryRunSchemaDirector</code> interface, to show the sql statements that would be executed.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\Connection</span><span class="p">;</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaDirector</span><span class="p">;</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\DoctrineDbalStore</span><span class="p">;</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="sd">/**</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="sd"> * @var Connection $connection</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="sd"> * @var DoctrineDbalStore $store</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="sd"> */</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="nv">$schemaDirector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineSchemaDirector</span><span class="p">(</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="nv">$connection</span><span class="p">,</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="nv">$store</span><span class="p">,</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\Connection</span><span class="p">;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaDirector</span><span class="p">;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="sd">/**</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="sd"> * @var Connection $connection</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="sd"> * @var Store $store</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="sd"> */</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="nv">$schemaDirector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineSchemaDirector</span><span class="p">(</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="nv">$connection</span><span class="p">,</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="nv">$store</span><span class="p">,</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="p">);</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1562,44 +1758,44 @@ Additionally, it implements the <code>DryRunSchemaDirector</code> interface, to 
 </div>
 <h4 id="create-schema">Create schema</h4>
 <p>You can create the table from scratch using the <code>create</code> method.</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaDirector</span><span class="p">;</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="sd">/** @var DoctrineSchemaDirector $schemaDirector */</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nv">$schemaDirector</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaDirector</span><span class="p">;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="sd">/** @var DoctrineSchemaDirector $schemaDirector */</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nv">$schemaDirector</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
 </code></pre></div>
 Or can give you back which SQL statements would be necessary for this.
 Either for a dry run, or to define your own migrations.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaDirector</span><span class="p">;</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="sd">/** @var DoctrineSchemaDirector $schemaDirector */</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$schemaDirector</span><span class="o">-&gt;</span><span class="na">dryRunCreate</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaDirector</span><span class="p">;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="sd">/** @var DoctrineSchemaDirector $schemaDirector */</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$schemaDirector</span><span class="o">-&gt;</span><span class="na">dryRunCreate</span><span class="p">();</span>
 </code></pre></div>
 <h4 id="update-schema">Update schema</h4>
 <p>The update method compares the current state in the database and how the table should be structured.
 As a result, the diff is executed to bring the table to the desired state.</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaDirector</span><span class="p">;</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="sd">/** @var DoctrineSchemaDirector $schemaDirector */</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nv">$schemaDirector</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">();</span>
-</code></pre></div>
-Or can give you back which SQL statements would be necessary for this.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaDirector</span><span class="p">;</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaDirector</span><span class="p">;</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="sd">/** @var DoctrineSchemaDirector $schemaDirector */</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$schemaDirector</span><span class="o">-&gt;</span><span class="na">dryRunUpdate</span><span class="p">();</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nv">$schemaDirector</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">();</span>
+</code></pre></div>
+Or can give you back which SQL statements would be necessary for this.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaDirector</span><span class="p">;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="sd">/** @var DoctrineSchemaDirector $schemaDirector */</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$schemaDirector</span><span class="o">-&gt;</span><span class="na">dryRunUpdate</span><span class="p">();</span>
 </code></pre></div>
 <h4 id="drop-schema">Drop schema</h4>
 <p>You can also delete the table with the <code>drop</code> method.</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaDirector</span><span class="p">;</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="sd">/** @var DoctrineSchemaDirector $schemaDirector */</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nv">$schemaDirector</span><span class="o">-&gt;</span><span class="na">drop</span><span class="p">();</span>
-</code></pre></div>
-Or can give you back which SQL statements would be necessary for this.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaDirector</span><span class="p">;</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaDirector</span><span class="p">;</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="sd">/** @var DoctrineSchemaDirector $schemaDirector */</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$schemaDirector</span><span class="o">-&gt;</span><span class="na">dryRunDrop</span><span class="p">();</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="nv">$schemaDirector</span><span class="o">-&gt;</span><span class="na">drop</span><span class="p">();</span>
+</code></pre></div>
+Or can give you back which SQL statements would be necessary for this.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaDirector</span><span class="p">;</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="sd">/** @var DoctrineSchemaDirector $schemaDirector */</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nv">$sql</span> <span class="o">=</span> <span class="nv">$schemaDirector</span><span class="o">-&gt;</span><span class="na">dryRunDrop</span><span class="p">();</span>
 </code></pre></div>
 <h3 id="doctrine-migrations">Doctrine Migrations</h3>
 <p>You can use <a href="https://www.doctrine-project.org/projects/migrations.html">doctrine migration</a>,
@@ -1607,40 +1803,40 @@ which is known from <a href="https://www.doctrine-project.org/projects/orm.html"
 to create your schema and keep it in sync.
 We have added a <code>DoctrineMigrationSchemaProvider</code> for doctrine migrations so that you just have to plug the whole thing
 together.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\Connection</span><span class="p">;</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">use</span> <span class="nx">Doctrine\Migrations\Configuration\Connection\ExistingConnection</span><span class="p">;</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">use</span> <span class="nx">Doctrine\Migrations\Configuration\Migration\ConfigurationLoader</span><span class="p">;</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="k">use</span> <span class="nx">Doctrine\Migrations\DependencyFactory</span><span class="p">;</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="k">use</span> <span class="nx">Doctrine\Migrations\Provider\SchemaProvider</span><span class="p">;</span>
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineMigrationSchemaProvider</span><span class="p">;</span>
-<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaDirector</span><span class="p">;</span>
-<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\DoctrineDbalStore</span><span class="p">;</span>
-<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
-<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="c1">// event sourcing schema director configuration</span>
-<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>
-<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="sd">/**</span>
-<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="sd"> * @var Connection $connection</span>
-<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="sd"> * @var DoctrineDbalStore $store</span>
-<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="sd"> */</span>
-<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="nv">$schemaDirector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineSchemaDirector</span><span class="p">(</span>
-<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>    <span class="nv">$connection</span><span class="p">,</span>
-<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>    <span class="nv">$store</span><span class="p">,</span>
-<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="p">);</span>
-<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>
-<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="nv">$schemaProvider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineMigrationSchemaProvider</span><span class="p">(</span><span class="nv">$schemaDirector</span><span class="p">);</span>
-<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a>
-<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="c1">// doctrine migration configuration</span>
-<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a>
-<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a><span class="sd">/** @var ConfigurationLoader $configLoader */</span>
-<a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a><span class="nv">$dependencyFactory</span> <span class="o">=</span> <span class="nx">DependencyFactory</span><span class="o">::</span><span class="na">fromConnection</span><span class="p">(</span>
-<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a>    <span class="nv">$configLoader</span><span class="p">,</span>
-<a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a>    <span class="k">new</span> <span class="nx">ExistingConnection</span><span class="p">(</span><span class="nv">$connection</span><span class="p">),</span>
-<a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a><span class="p">);</span>
-<a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a>
-<a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a><span class="nv">$dependencyFactory</span><span class="o">-&gt;</span><span class="na">setService</span><span class="p">(</span>
-<a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a>    <span class="nx">SchemaProvider</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
-<a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a>    <span class="nv">$schemaProvider</span><span class="p">,</span>
-<a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\Connection</span><span class="p">;</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">use</span> <span class="nx">Doctrine\Migrations\Configuration\Connection\ExistingConnection</span><span class="p">;</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="k">use</span> <span class="nx">Doctrine\Migrations\Configuration\Migration\ConfigurationLoader</span><span class="p">;</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="k">use</span> <span class="nx">Doctrine\Migrations\DependencyFactory</span><span class="p">;</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="k">use</span> <span class="nx">Doctrine\Migrations\Provider\SchemaProvider</span><span class="p">;</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineMigrationSchemaProvider</span><span class="p">;</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaDirector</span><span class="p">;</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="c1">// event sourcing schema director configuration</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="sd">/**</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="sd"> * @var Connection $connection</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="sd"> * @var Store $store</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="sd"> */</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="nv">$schemaDirector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineSchemaDirector</span><span class="p">(</span>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>    <span class="nv">$connection</span><span class="p">,</span>
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>    <span class="nv">$store</span><span class="p">,</span>
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="p">);</span>
+<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>
+<a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="nv">$schemaProvider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineMigrationSchemaProvider</span><span class="p">(</span><span class="nv">$schemaDirector</span><span class="p">);</span>
+<a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a>
+<a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a><span class="c1">// doctrine migration configuration</span>
+<a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a>
+<a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="sd">/** @var ConfigurationLoader $configLoader */</span>
+<a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a><span class="nv">$dependencyFactory</span> <span class="o">=</span> <span class="nx">DependencyFactory</span><span class="o">::</span><span class="na">fromConnection</span><span class="p">(</span>
+<a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a>    <span class="nv">$configLoader</span><span class="p">,</span>
+<a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a>    <span class="k">new</span> <span class="nx">ExistingConnection</span><span class="p">(</span><span class="nv">$connection</span><span class="p">),</span>
+<a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a><span class="p">);</span>
+<a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a>
+<a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a><span class="nv">$dependencyFactory</span><span class="o">-&gt;</span><span class="na">setService</span><span class="p">(</span>
+<a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a>    <span class="nx">SchemaProvider</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+<a id="__codelineno-10-33" name="__codelineno-10-33" href="#__codelineno-10-33"></a>    <span class="nv">$schemaProvider</span><span class="p">,</span>
+<a id="__codelineno-10-34" name="__codelineno-10-34" href="#__codelineno-10-34"></a><span class="p">);</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1656,65 +1852,65 @@ together.</p>
 <h3 id="load">Load</h3>
 <p>You can load all events from an aggregate with the <code>load</code> method.
 This method returns a <code>Stream</code> object, which is a collection of events.</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="sd">/** @var Store $store */</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="nv">$stream</span> <span class="o">=</span> <span class="nv">$store</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">();</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="sd">/** @var Store $store */</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="nv">$stream</span> <span class="o">=</span> <span class="nv">$store</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">();</span>
 </code></pre></div>
 The load method also has a few parameters to filter, limit and sort the events.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Criteria\Criteria</span><span class="p">;</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="sd">/** @var Store $store */</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="nv">$stream</span> <span class="o">=</span> <span class="nv">$store</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="k">new</span> <span class="nx">Criteria</span><span class="p">(),</span> <span class="c1">// filter criteria</span>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    <span class="mi">100</span><span class="p">,</span> <span class="c1">// limit</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>    <span class="mi">50</span><span class="p">,</span> <span class="c1">// offset</span>
-<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>    <span class="k">true</span><span class="p">,</span>  <span class="c1">// latest first</span>
-<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Criteria\Criteria</span><span class="p">;</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="sd">/** @var Store $store */</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="nv">$stream</span> <span class="o">=</span> <span class="nv">$store</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    <span class="k">new</span> <span class="nx">Criteria</span><span class="p">(),</span> <span class="c1">// filter criteria</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>    <span class="mi">100</span><span class="p">,</span> <span class="c1">// limit</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>    <span class="mi">50</span><span class="p">,</span> <span class="c1">// offset</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>    <span class="k">true</span><span class="p">,</span>  <span class="c1">// latest first</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="p">);</span>
 </code></pre></div>
 <h4 id="criteria">Criteria</h4>
 <p>The <code>Criteria</code> object is used to filter the events.</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Criteria\AggregateIdCriterion</span><span class="p">;</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Criteria\AggregateNameCriterion</span><span class="p">;</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Criteria\ArchivedCriterion</span><span class="p">;</span>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Criteria\Criteria</span><span class="p">;</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Criteria\FromIndexCriterion</span><span class="p">;</span>
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="nv">$criteria</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Criteria</span><span class="p">(</span>
-<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>    <span class="k">new</span> <span class="nx">AggregateNameCriterion</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">),</span>
-<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>    <span class="k">new</span> <span class="nx">AggregateIdCriterion</span><span class="p">(</span><span class="s1">&#39;e3e3e3e3-3e3e-3e3e-3e3e-3e3e3e3e3e3e&#39;</span><span class="p">),</span>
-<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>    <span class="k">new</span> <span class="nx">FromPlayheadCriterion</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
-<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>    <span class="k">new</span> <span class="nx">FromIndexCriterion</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
-<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>    <span class="k">new</span> <span class="nx">ArchivedCriterion</span><span class="p">(</span><span class="k">true</span><span class="p">),</span>
-<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="p">);</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Criteria\AggregateIdCriterion</span><span class="p">;</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Criteria\AggregateNameCriterion</span><span class="p">;</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Criteria\ArchivedCriterion</span><span class="p">;</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Criteria\Criteria</span><span class="p">;</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Criteria\FromIndexCriterion</span><span class="p">;</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="nv">$criteria</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Criteria</span><span class="p">(</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>    <span class="k">new</span> <span class="nx">AggregateNameCriterion</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">),</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>    <span class="k">new</span> <span class="nx">AggregateIdCriterion</span><span class="p">(</span><span class="s1">&#39;e3e3e3e3-3e3e-3e3e-3e3e-3e3e3e3e3e3e&#39;</span><span class="p">),</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>    <span class="k">new</span> <span class="nx">FromPlayheadCriterion</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>    <span class="k">new</span> <span class="nx">FromIndexCriterion</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>    <span class="k">new</span> <span class="nx">ArchivedCriterion</span><span class="p">(</span><span class="k">true</span><span class="p">),</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="p">);</span>
 </code></pre></div>
 Or you can the criteria builder to create the criteria.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Criteria\CriteriaBuilder</span><span class="p">;</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nv">$criteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">CriteriaBuilder</span><span class="p">())</span>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    <span class="o">-&gt;</span><span class="na">aggregateName</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">)</span>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>    <span class="o">-&gt;</span><span class="na">aggregateId</span><span class="p">(</span><span class="s1">&#39;e3e3e3e3-3e3e-3e3e-3e3e-3e3e3e3e3e3e&#39;</span><span class="p">)</span>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>    <span class="o">-&gt;</span><span class="na">fromPlayhead</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>    <span class="o">-&gt;</span><span class="na">fromIndex</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>    <span class="o">-&gt;</span><span class="na">archived</span><span class="p">(</span><span class="k">true</span><span class="p">)</span>
-<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>    <span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Criteria\CriteriaBuilder</span><span class="p">;</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nv">$criteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">CriteriaBuilder</span><span class="p">())</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="o">-&gt;</span><span class="na">aggregateName</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">)</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>    <span class="o">-&gt;</span><span class="na">aggregateId</span><span class="p">(</span><span class="s1">&#39;e3e3e3e3-3e3e-3e3e-3e3e-3e3e3e3e3e3e&#39;</span><span class="p">)</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>    <span class="o">-&gt;</span><span class="na">fromPlayhead</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>    <span class="o">-&gt;</span><span class="na">fromIndex</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>    <span class="o">-&gt;</span><span class="na">archived</span><span class="p">(</span><span class="k">true</span><span class="p">)</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>    <span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
 </code></pre></div>
 <h4 id="stream">Stream</h4>
 <p>The load method returns a <code>Stream</code> object and is a generator.
 This means that the messages are only loaded when they are needed.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Stream</span><span class="p">;</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="sd">/** @var Stream $stream */</span>
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="nv">$stream</span><span class="o">-&gt;</span><span class="na">index</span><span class="p">();</span> <span class="c1">// get the index of the stream</span>
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="nv">$stream</span><span class="o">-&gt;</span><span class="na">position</span><span class="p">();</span> <span class="c1">// get the current position of the stream</span>
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="nv">$stream</span><span class="o">-&gt;</span><span class="na">current</span><span class="p">();</span> <span class="c1">// get the current event</span>
-<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="nv">$stream</span><span class="o">-&gt;</span><span class="na">next</span><span class="p">();</span> <span class="c1">// move to the next event</span>
-<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="nv">$stream</span><span class="o">-&gt;</span><span class="na">end</span><span class="p">();</span> <span class="c1">// check if the stream is at the end</span>
-<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>
-<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$stream</span> <span class="k">as</span> <span class="nv">$message</span><span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>    <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">event</span><span class="p">();</span> <span class="c1">// get the event</span>
-<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Stream</span><span class="p">;</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="sd">/** @var Stream $stream */</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="nv">$stream</span><span class="o">-&gt;</span><span class="na">index</span><span class="p">();</span> <span class="c1">// get the index of the stream</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="nv">$stream</span><span class="o">-&gt;</span><span class="na">position</span><span class="p">();</span> <span class="c1">// get the current position of the stream</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="nv">$stream</span><span class="o">-&gt;</span><span class="na">current</span><span class="p">();</span> <span class="c1">// get the current event</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="nv">$stream</span><span class="o">-&gt;</span><span class="na">next</span><span class="p">();</span> <span class="c1">// move to the next event</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="nv">$stream</span><span class="o">-&gt;</span><span class="na">end</span><span class="p">();</span> <span class="c1">// check if the stream is at the end</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$stream</span> <span class="k">as</span> <span class="nv">$message</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>    <span class="nv">$message</span><span class="o">-&gt;</span><span class="na">event</span><span class="p">();</span> <span class="c1">// get the event</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1727,36 +1923,36 @@ If you want to iterate over it again, you have to call the <code>load</code> met
 </div>
 <h3 id="count">Count</h3>
 <p>You can count the number of events in the store with the <code>count</code> method.</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="sd">/** @var Store $store */</span>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="nv">$count</span> <span class="o">=</span> <span class="nv">$store</span><span class="o">-&gt;</span><span class="na">count</span><span class="p">();</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="sd">/** @var Store $store */</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="nv">$count</span> <span class="o">=</span> <span class="nv">$store</span><span class="o">-&gt;</span><span class="na">count</span><span class="p">();</span>
 </code></pre></div>
 The count method also has the possibility to filter the events.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Criteria\Criteria</span><span class="p">;</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="sd">/** @var Store $store */</span>
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="nv">$count</span> <span class="o">=</span> <span class="nv">$store</span><span class="o">-&gt;</span><span class="na">count</span><span class="p">(</span>
-<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>    <span class="k">new</span> <span class="nx">Criteria</span><span class="p">(),</span> <span class="c1">// filter criteria</span>
-<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Criteria\Criteria</span><span class="p">;</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="sd">/** @var Store $store */</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="nv">$count</span> <span class="o">=</span> <span class="nv">$store</span><span class="o">-&gt;</span><span class="na">count</span><span class="p">(</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>    <span class="k">new</span> <span class="nx">Criteria</span><span class="p">(),</span> <span class="c1">// filter criteria</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="p">);</span>
 </code></pre></div>
 <h3 id="save">Save</h3>
 <p>You can save a message with the <code>save</code> method.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Message\Message</span><span class="p">;</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="sd">/**</span>
-<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="sd"> * @var Store $store</span>
-<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="sd"> * @var Message $message</span>
-<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="sd"> * @var Message $message1</span>
-<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="sd"> * @var Message $message2</span>
-<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="sd"> * @var Message $message3</span>
-<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="sd"> * @var list&lt;Message&gt; $messages</span>
-<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="sd"> */</span>
-<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="nv">$store</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
-<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="nv">$store</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$message1</span><span class="p">,</span> <span class="nv">$message2</span><span class="p">,</span> <span class="nv">$message3</span><span class="p">);</span>
-<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="nv">$store</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="o">...</span><span class="nv">$messages</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Message\Message</span><span class="p">;</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="sd">/**</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="sd"> * @var Store $store</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="sd"> * @var Message $message</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="sd"> * @var Message $message1</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="sd"> * @var Message $message2</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="sd"> * @var Message $message3</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="sd"> * @var list&lt;Message&gt; $messages</span>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="sd"> */</span>
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="nv">$store</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="nv">$store</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$message1</span><span class="p">,</span> <span class="nv">$message2</span><span class="p">,</span> <span class="nv">$message3</span><span class="p">);</span>
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="nv">$store</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="o">...</span><span class="nv">$messages</span><span class="p">);</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1767,25 +1963,47 @@ The store lock the table for writing during each save by default.</p>
 <p class="admonition-title">Tip</p>
 <p>Use transactional method if you want call multiple save methods in a transaction.</p>
 </div>
-<h3 id="delete-update">Delete &amp; Update</h3>
-<p>It is not possible to delete or update events.
+<h3 id="update">Update</h3>
+<p>It is not possible to update events.
 In event sourcing, the events are immutable.</p>
+<h3 id="remove">Remove</h3>
+<p>You can remove a stream with the <code>remove</code> method.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\StreamStore</span><span class="p">;</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="sd">/** @var StreamStore $store */</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="nv">$store</span><span class="o">-&gt;</span><span class="na">remove</span><span class="p">(</span><span class="s1">&#39;profile-*&#39;</span><span class="p">);</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The method is only available in the <code>StreamStore</code> like <code>StreamDoctrineDbalStore</code>.</p>
+</div>
+<h3 id="list-streams">List Streams</h3>
+<p>You can list all streams with the <code>streams</code> method.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\StreamStore</span><span class="p">;</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="sd">/** @var StreamStore $store */</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="nv">$streams</span> <span class="o">=</span> <span class="nv">$store</span><span class="o">-&gt;</span><span class="na">streams</span><span class="p">();</span> <span class="c1">// [&#39;profile-1&#39;, &#39;profile-2&#39;, &#39;profile-3&#39;]</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The method is only available in the <code>StreamStore</code> like <code>StreamDoctrineDbalStore</code>.</p>
+</div>
 <h3 id="transaction">Transaction</h3>
 <p>There is also the possibility of executing a function in a transaction.
 The store takes care of starting a transaction, committing it and then possibly rollback it again.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="sd">/** @var Store $store */</span>
-<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="nv">$store</span><span class="o">-&gt;</span><span class="na">transactional</span><span class="p">(</span><span class="k">static</span> <span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$command</span><span class="p">,</span> <span class="nv">$bankAccountRepository</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
-<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>    <span class="nv">$accountFrom</span> <span class="o">=</span> <span class="nv">$bankAccountRepository</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$command</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">());</span>
-<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>    <span class="nv">$accountTo</span> <span class="o">=</span> <span class="nv">$bankAccountRepository</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$command</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">());</span>
-<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>
-<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>    <span class="nv">$accountFrom</span><span class="o">-&gt;</span><span class="na">transferMoney</span><span class="p">(</span><span class="nv">$command</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">(),</span> <span class="nv">$command</span><span class="o">-&gt;</span><span class="na">amount</span><span class="p">());</span>
-<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>    <span class="nv">$accountTo</span><span class="o">-&gt;</span><span class="na">receiveMoney</span><span class="p">(</span><span class="nv">$command</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(),</span> <span class="nv">$command</span><span class="o">-&gt;</span><span class="na">amount</span><span class="p">());</span>
-<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>
-<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>    <span class="nv">$bankAccountRepository</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$accountFrom</span><span class="p">);</span>
-<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>    <span class="nv">$bankAccountRepository</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$accountTo</span><span class="p">);</span>
-<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="p">});</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="sd">/** @var Store $store */</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="nv">$store</span><span class="o">-&gt;</span><span class="na">transactional</span><span class="p">(</span><span class="k">static</span> <span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$command</span><span class="p">,</span> <span class="nv">$bankAccountRepository</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>    <span class="nv">$accountFrom</span> <span class="o">=</span> <span class="nv">$bankAccountRepository</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$command</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">());</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>    <span class="nv">$accountTo</span> <span class="o">=</span> <span class="nv">$bankAccountRepository</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$command</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">());</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>    <span class="nv">$accountFrom</span><span class="o">-&gt;</span><span class="na">transferMoney</span><span class="p">(</span><span class="nv">$command</span><span class="o">-&gt;</span><span class="na">to</span><span class="p">(),</span> <span class="nv">$command</span><span class="o">-&gt;</span><span class="na">amount</span><span class="p">());</span>
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>    <span class="nv">$accountTo</span><span class="o">-&gt;</span><span class="na">receiveMoney</span><span class="p">(</span><span class="nv">$command</span><span class="o">-&gt;</span><span class="na">from</span><span class="p">(),</span> <span class="nv">$command</span><span class="o">-&gt;</span><span class="na">amount</span><span class="p">());</span>
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>    <span class="nv">$bankAccountRepository</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$accountFrom</span><span class="p">);</span>
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>    <span class="nv">$bankAccountRepository</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$accountTo</span><span class="p">);</span>
+<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="p">});</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
