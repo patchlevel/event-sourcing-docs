@@ -2,82 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://event-sourcing.patchlevel.io/latest/</loc>
-         <lastmod>2024-09-26</lastmod>
+         <lastmod>2024-09-30</lastmod>
     </url>
     <url>
          <loc>https://event-sourcing.patchlevel.io/latest/UPGRADE-3.0/</loc>
-         <lastmod>2024-09-26</lastmod>
+         <lastmod>2024-09-30</lastmod>
     </url>
     <url>
          <loc>https://event-sourcing.patchlevel.io/latest/aggregate/</loc>
-         <lastmod>2024-09-26</lastmod>
+         <lastmod>2024-09-30</lastmod>
     </url>
     <url>
          <loc>https://event-sourcing.patchlevel.io/latest/aggregate_id/</loc>
-         <lastmod>2024-09-26</lastmod>
+         <lastmod>2024-09-30</lastmod>
     </url>
     <url>
          <loc>https://event-sourcing.patchlevel.io/latest/cli/</loc>
-         <lastmod>2024-09-26</lastmod>
+         <lastmod>2024-09-30</lastmod>
     </url>
     <url>
          <loc>https://event-sourcing.patchlevel.io/latest/clock/</loc>
-         <lastmod>2024-09-26</lastmod>
+         <lastmod>2024-09-30</lastmod>
     </url>
     <url>
          <loc>https://event-sourcing.patchlevel.io/latest/event_bus/</loc>
-         <lastmod>2024-09-26</lastmod>
+         <lastmod>2024-09-30</lastmod>
     </url>
     <url>
          <loc>https://event-sourcing.patchlevel.io/latest/events/</loc>
-         <lastmod>2024-09-26</lastmod>
+         <lastmod>2024-09-30</lastmod>
     </url>
     <url>
          <loc>https://event-sourcing.patchlevel.io/latest/getting_started/</loc>
-         <lastmod>2024-09-26</lastmod>
+         <lastmod>2024-09-30</lastmod>
     </url>
     <url>
          <loc>https://event-sourcing.patchlevel.io/latest/message/</loc>
-         <lastmod>2024-09-26</lastmod>
+         <lastmod>2024-09-30</lastmod>
     </url>
     <url>
          <loc>https://event-sourcing.patchlevel.io/latest/message_decorator/</loc>
-         <lastmod>2024-09-26</lastmod>
+         <lastmod>2024-09-30</lastmod>
     </url>
     <url>
          <loc>https://event-sourcing.patchlevel.io/latest/normalizer/</loc>
-         <lastmod>2024-09-26</lastmod>
+         <lastmod>2024-09-30</lastmod>
     </url>
     <url>
          <loc>https://event-sourcing.patchlevel.io/latest/personal_data/</loc>
-         <lastmod>2024-09-26</lastmod>
+         <lastmod>2024-09-30</lastmod>
     </url>
     <url>
          <loc>https://event-sourcing.patchlevel.io/latest/repository/</loc>
-         <lastmod>2024-09-26</lastmod>
+         <lastmod>2024-09-30</lastmod>
     </url>
     <url>
          <loc>https://event-sourcing.patchlevel.io/latest/snapshots/</loc>
-         <lastmod>2024-09-26</lastmod>
+         <lastmod>2024-09-30</lastmod>
     </url>
     <url>
          <loc>https://event-sourcing.patchlevel.io/latest/split_stream/</loc>
-         <lastmod>2024-09-26</lastmod>
+         <lastmod>2024-09-30</lastmod>
     </url>
     <url>
          <loc>https://event-sourcing.patchlevel.io/latest/store/</loc>
-         <lastmod>2024-09-26</lastmod>
+         <lastmod>2024-09-30</lastmod>
     </url>
     <url>
          <loc>https://event-sourcing.patchlevel.io/latest/subscription/</loc>
-         <lastmod>2024-09-26</lastmod>
+         <lastmod>2024-09-30</lastmod>
     </url>
     <url>
          <loc>https://event-sourcing.patchlevel.io/latest/testing/</loc>
-         <lastmod>2024-09-26</lastmod>
+         <lastmod>2024-09-30</lastmod>
     </url>
     <url>
          <loc>https://event-sourcing.patchlevel.io/latest/upcasting/</loc>
-         <lastmod>2024-09-26</lastmod>
+         <lastmod>2024-09-30</lastmod>
     </url>
 </urlset>
