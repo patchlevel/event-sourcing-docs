@@ -1,6 +1,6 @@
 {
-  "short_name": "patchlevel",
-  "name": "patchlevel",
+  "short_name": "event-sourcing",
+  "name": "php event-soucing patchlevel",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
