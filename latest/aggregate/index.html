@@ -1441,16 +1441,18 @@ In there we then change the state of the aggregate by filling the properties wit
 <h3 id="modify-an-aggregate">Modify an aggregate</h3>
 <p>In order to change the state of the aggregates afterwards, only further events have to be defined.
 As example we can add a <code>NameChanged</code> event:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Event</span><span class="p">;</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">#[</span><span class="nd">Event</span><span class="p">(</span><span class="s1">&#39;profile.name_changed&#39;</span><span class="p">)]</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">NameChanged</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">{</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>        <span class="k">public</span> <span class="nx">readonly</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">,</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="p">}</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\Uuid</span><span class="p">;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Event</span><span class="p">;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">#[</span><span class="nd">Event</span><span class="p">(</span><span class="s1">&#39;profile.name_changed&#39;</span><span class="p">)]</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">NameChanged</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">{</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>        <span class="k">public</span> <span class="nx">readonly</span> <span class="nx">Uuid</span> <span class="nv">$profileId</span><span class="p">,</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>        <span class="k">public</span> <span class="nx">readonly</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">,</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="p">}</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1486,7 +1488,7 @@ This method then creates the event <code>NameChanged</code> and records it:</p>
 <a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>
 <a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">changeName</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$name</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
 <a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>    <span class="p">{</span>
-<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">NameChanged</span><span class="p">(</span><span class="nv">$name</span><span class="p">));</span>
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">NameChanged</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span> <span class="nv">$name</span><span class="p">));</span>
 <a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>    <span class="p">}</span>
 <a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>
 <a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>    <span class="p">#[</span><span class="nd">Apply</span><span class="p">]</span>
@@ -1775,7 +1777,7 @@ We can now use the value object <code>Name</code> in our aggregate:</p>
 <a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a>
 <a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">changeName</span><span class="p">(</span><span class="nx">Name</span> <span class="nv">$name</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
 <a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a>    <span class="p">{</span>
-<a id="__codelineno-14-31" name="__codelineno-14-31" href="#__codelineno-14-31"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">NameChanged</span><span class="p">(</span><span class="nv">$name</span><span class="p">));</span>
+<a id="__codelineno-14-31" name="__codelineno-14-31" href="#__codelineno-14-31"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">NameChanged</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span> <span class="nv">$name</span><span class="p">));</span>
 <a id="__codelineno-14-32" name="__codelineno-14-32" href="#__codelineno-14-32"></a>    <span class="p">}</span>
 <a id="__codelineno-14-33" name="__codelineno-14-33" href="#__codelineno-14-33"></a>
 <a id="__codelineno-14-34" name="__codelineno-14-34" href="#__codelineno-14-34"></a>    <span class="p">#[</span><span class="nd">Apply</span><span class="p">]</span>
@@ -1787,17 +1789,19 @@ We can now use the value object <code>Name</code> in our aggregate:</p>
 </code></pre></div>
 In order for the whole thing to work, we still have to adapt our <code>NameChanged</code> event,
 since we only expected a string before but now passed a <code>Name</code> value object.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Event</span><span class="p">;</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">#[</span><span class="nd">Event</span><span class="p">(</span><span class="s1">&#39;profile.name_changed&#39;</span><span class="p">)]</span>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">NameChanged</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="p">{</span>
-<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
-<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>        <span class="p">#[</span><span class="nd">NameNormalizer</span><span class="p">]</span>
-<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>        <span class="k">public</span> <span class="nx">readonly</span> <span class="nx">Name</span> <span class="nv">$name</span><span class="p">,</span>
-<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>    <span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>    <span class="p">}</span>
-<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\Uuid</span><span class="p">;</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Event</span><span class="p">;</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="p">#[</span><span class="nd">Event</span><span class="p">(</span><span class="s1">&#39;profile.name_changed&#39;</span><span class="p">)]</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">NameChanged</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="p">{</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>        <span class="k">public</span> <span class="nx">readonly</span> <span class="nx">Uuid</span> <span class="nv">$profileId</span><span class="p">,</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>        <span class="p">#[</span><span class="nd">NameNormalizer</span><span class="p">]</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>        <span class="k">public</span> <span class="nx">readonly</span> <span class="nx">Name</span> <span class="nv">$name</span><span class="p">,</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>    <span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>    <span class="p">}</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -1836,17 +1840,17 @@ or fill a <a href="../subscription/">projection</a> with fully booked hotels.</p
 <a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a>            <span class="nd">throw</span> <span class="nd">new</span> <span class="nd">NoPlaceException</span><span class="p">(</span><span class="nv">$name</span><span class="p">);</span>
 <a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a>        <span class="p">}</span>
 <a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a>
-<a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">RoomBocked</span><span class="p">(</span><span class="nv">$name</span><span class="p">));</span>
+<a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">RoomBocked</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span> <span class="nv">$name</span><span class="p">));</span>
 <a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a>
 <a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a>        <span class="nd">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">people</span> <span class="o">!==</span> <span class="nx">self</span><span class="o">::</span><span class="na">SIZE</span><span class="p">)</span> <span class="p">{</span>
 <a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a>            <span class="nd">return</span><span class="p">;</span>
 <a id="__codelineno-16-26" name="__codelineno-16-26" href="#__codelineno-16-26"></a>        <span class="p">}</span>
 <a id="__codelineno-16-27" name="__codelineno-16-27" href="#__codelineno-16-27"></a>
-<a id="__codelineno-16-28" name="__codelineno-16-28" href="#__codelineno-16-28"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">FullyBooked</span><span class="p">());</span>
+<a id="__codelineno-16-28" name="__codelineno-16-28" href="#__codelineno-16-28"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">FullyBooked</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">));</span>
 <a id="__codelineno-16-29" name="__codelineno-16-29" href="#__codelineno-16-29"></a>    <span class="p">}</span>
 <a id="__codelineno-16-30" name="__codelineno-16-30" href="#__codelineno-16-30"></a>
 <a id="__codelineno-16-31" name="__codelineno-16-31" href="#__codelineno-16-31"></a>    <span class="p">#[</span><span class="nd">Apply</span><span class="p">]</span>
-<a id="__codelineno-16-32" name="__codelineno-16-32" href="#__codelineno-16-32"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">applyRoomBocked</span><span class="p">(</span><span class="nx">RoomBocked</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nd">void</span>
+<a id="__codelineno-16-32" name="__codelineno-16-32" href="#__codelineno-16-32"></a>    <span class="nd">protected</span> <span class="nd">function</span> <span class="nd">applyRoomBocked</span><span class="p">(</span><span class="nx">RoomBocked</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nd">void</span>
 <a id="__codelineno-16-33" name="__codelineno-16-33" href="#__codelineno-16-33"></a>    <span class="p">{</span>
 <a id="__codelineno-16-34" name="__codelineno-16-34" href="#__codelineno-16-34"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">people</span><span class="o">++</span><span class="p">;</span>
 <a id="__codelineno-16-35" name="__codelineno-16-35" href="#__codelineno-16-35"></a>    <span class="p">}</span>

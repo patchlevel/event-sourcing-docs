@@ -2459,7 +2459,7 @@ Alternatively, if the subscriber explicitly indicates using the <code>forceCommi
 At this step, you must process all the data.</p>
 <p>The <code>rollbackBatch</code> method is called when an error occurs and the batching needs to be aborted.
 Here, you can respond to the error and potentially perform a database rollback.</p>
-<p>The method <code>forceCommit</code> is called after each handled event, 
+<p>The method <code>forceCommit</code> is called after each handled event,
 and you can decide whether the batch commit process should start now.
 This helps to determine the batch size and thus avoid memory overflow.</p>
 <div class="admonition danger">
