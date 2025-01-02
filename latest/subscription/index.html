@@ -836,6 +836,15 @@ You're not viewing the latest version.
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#failed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Failed
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1900,6 +1909,15 @@ You're not viewing the latest version.
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#failed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Failed
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2631,7 +2649,11 @@ This cycle is tracked by the subscription engine.</p>
     Error --&gt; Booting
     Error --&gt; Active
     Error --&gt; Paused
-    Error --&gt; [*]
+    Error --&gt; Failed
+    Failed --&gt; New
+    Failed --&gt; Booting
+    Failed --&gt; Active
+    Failed --&gt; [*]
     Detached --&gt; Active
     Detached --&gt; [*]</code></pre>
 <h3 id="new">New</h3>
@@ -2673,9 +2695,13 @@ This happens, for example, when an old version was deployed again during a rollb
 <p>If an error occurs in a subscriber, then the subscription is set to Error.
 This can happen in the create process, in the boot process or in the run process.
 This subscription will then no longer boot/run until the subscription is reactivate or retried.</p>
-<p>The subscription engine has a retry strategy to retry subscriptions that have failed.
+<p>The subscription engine has a retry strategy to retry subscriptions that have an error.
 It tries to reactivate the subscription after a certain time and a certain number of attempts.
-If this does not work, the subscription is set to error and must be manually reactivated.</p>
+If this does not work, the subscription changes the status to failed.</p>
+<h3 id="failed">Failed</h3>
+<p>If the retry strategy says that the subscription should not be retried anymore,
+e.g. the maximum number of retry attempts has been reached, then the subscription is set to failed.
+The subscription will be now ignored by the subscription engine in all future runs.</p>
 <p>There are two options here:</p>
 <ul>
 <li>Reactivate the subscription, so that the subscription is in the previous state again.</li>
