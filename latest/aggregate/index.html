@@ -1719,6 +1719,15 @@ you can suppress the missing apply exceptions these events with the <code>Suppre
 <p>When all events are suppressed, debugging becomes more difficult if you forget an apply method.</p>
 </div>
 <h2 id="stream-name">Stream Name</h2>
+<details class="example">
+<summary>Experimental</summary>
+<p>This feature is still experimental and may change in the future.
+Use it with caution.</p>
+</details>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <code>stream name</code> works only with the experimental <a href="../store/#streamdoctrinedbalstore">StreamDoctrineDbalStore</a>.</p>
+</div>
 <p>The stream name is the name of the stream in the event store.
 By default, the stream name has the format <code>aggregateName-aggregateId</code>.
 But you can also define your own stream name with the <code>Stream</code> attribute.
@@ -1982,6 +1991,15 @@ Or for test purposes the <code>FrozenClock</code>, which always returns the same
 This can be the case if the aggregate becomes too large or if the aggregate is used in different contexts.
 We currently support two patterns for this: Micro Aggregates and Child Aggregates (experimental).</p>
 <h3 id="micro-aggregates">Micro Aggregates</h3>
+<details class="example">
+<summary>Experimental</summary>
+<p>This feature is still experimental and may change in the future.
+Use it with caution.</p>
+</details>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This feature works only with the experimental <a href="../store/#streamdoctrinedbalstore">StreamDoctrineDbalStore</a>.</p>
+</div>
 <p>Micro Aggregates are a pattern to split an aggregate into several smaller aggregates.
 Each of these aggregates is saved in the same stream.
 This gives the Micro Aggregates the ability to independently manage their state and trigger their events,
