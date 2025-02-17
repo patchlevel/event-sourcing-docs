@@ -1977,12 +1977,12 @@ Additionally, it implements the <code>DryRunSchemaDirector</code> interface, to 
 </div>
 <h4 id="create-schema">Create schema</h4>
 <p>You can create the table from scratch using the <code>create</code> method.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\SchemaDirector</span><span class="p">;</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\SchemaDirector</span><span class="p">;</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="sd">/** @var SchemaDirector $schemaDirector */</span>
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nv">$schemaDirector</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
 </code></pre></div>
-<p>Or can give you back which SQL statements would be necessary for this.
+Or can give you back which SQL statements would be necessary for this.
 Either for a dry run, or to define your own migrations.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DryRunSchemaDirector</span><span class="p">;</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
@@ -1992,12 +1992,12 @@ Either for a dry run, or to define your own migrations.</p>
 <h4 id="update-schema">Update schema</h4>
 <p>The update method compares the current state in the database and how the table should be structured.
 As a result, the diff is executed to bring the table to the desired state.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\SchemaDirector</span><span class="p">;</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\SchemaDirector</span><span class="p">;</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="sd">/** @var SchemaDirector $schemaDirector */</span>
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nv">$schemaDirector</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">();</span>
 </code></pre></div>
-<p>Or can give you back which SQL statements would be necessary for this.</p>
+Or can give you back which SQL statements would be necessary for this.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DryRunSchemaDirector</span><span class="p">;</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="sd">/** @var DryRunSchemaDirector $schemaDirector */</span>
@@ -2005,12 +2005,12 @@ As a result, the diff is executed to bring the table to the desired state.</p>
 </code></pre></div>
 <h4 id="drop-schema">Drop schema</h4>
 <p>You can also delete the table with the <code>drop</code> method.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\SchemaDirector</span><span class="p">;</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\SchemaDirector</span><span class="p">;</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="sd">/** @var SchemaDirector $schemaDirector */</span>
 <a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nv">$schemaDirector</span><span class="o">-&gt;</span><span class="na">drop</span><span class="p">();</span>
 </code></pre></div>
-<p>Or can give you back which SQL statements would be necessary for this.</p>
+Or can give you back which SQL statements would be necessary for this.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DryRunSchemaDirector</span><span class="p">;</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="sd">/** @var DryRunSchemaDirector $schemaDirector */</span>
@@ -2071,12 +2071,12 @@ together.</p>
 <h3 id="load">Load</h3>
 <p>You can load all events from an aggregate with the <code>load</code> method.
 This method returns a <code>Stream</code> object, which is a collection of events.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
 <a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="sd">/** @var Store $store */</span>
 <a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="nv">$stream</span> <span class="o">=</span> <span class="nv">$store</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">();</span>
 </code></pre></div>
-<p>The load method also has a few parameters to filter, limit and sort the events.</p>
+The load method also has a few parameters to filter, limit and sort the events.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Criteria\Criteria</span><span class="p">;</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
 <a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
@@ -2090,7 +2090,7 @@ This method returns a <code>Stream</code> object, which is a collection of event
 </code></pre></div>
 <h4 id="criteria">Criteria</h4>
 <p>The <code>Criteria</code> object is used to filter the events.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Criteria\AggregateIdCriterion</span><span class="p">;</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Criteria\AggregateIdCriterion</span><span class="p">;</span>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Criteria\AggregateNameCriterion</span><span class="p">;</span>
 <a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Criteria\ArchivedCriterion</span><span class="p">;</span>
 <a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Criteria\Criteria</span><span class="p">;</span>
@@ -2106,7 +2106,7 @@ This method returns a <code>Stream</code> object, which is a collection of event
 <a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>    <span class="k">new</span> <span class="nx">EventsCriterion</span><span class="p">([</span><span class="s1">&#39;profile.created&#39;</span><span class="p">,</span> <span class="s1">&#39;profile.name_changed&#39;</span><span class="p">]),</span>
 <a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a><span class="p">);</span>
 </code></pre></div>
-<p>Or you can the criteria builder to create the criteria.</p>
+Or you can the criteria builder to create the criteria.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Criteria\CriteriaBuilder</span><span class="p">;</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
 <a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="nv">$criteria</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">CriteriaBuilder</span><span class="p">())</span>
@@ -2145,12 +2145,12 @@ If you want to iterate over it again, you have to call the <code>load</code> met
 </div>
 <h3 id="count">Count</h3>
 <p>You can count the number of events in the store with the <code>count</code> method.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
 <a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="sd">/** @var Store $store */</span>
 <a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="nv">$count</span> <span class="o">=</span> <span class="nv">$store</span><span class="o">-&gt;</span><span class="na">count</span><span class="p">();</span>
 </code></pre></div>
-<p>The count method also has the possibility to filter the events.</p>
+The count method also has the possibility to filter the events.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Criteria\Criteria</span><span class="p">;</span>
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
 <a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
