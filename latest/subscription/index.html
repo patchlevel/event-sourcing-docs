@@ -22,7 +22,7 @@
       
       
       <link rel="icon" href="/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.2">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
     
     
       
@@ -30,7 +30,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.d7758b05.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
@@ -647,15 +647,6 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
-  <a href="#aggregate-id-resolver" class="md-nav__link">
-    <span class="md-ellipsis">
-      Aggregate Id Resolver
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#recorded-on-resolver" class="md-nav__link">
     <span class="md-ellipsis">
       Recorded On Resolver
@@ -678,6 +669,15 @@ You're not viewing the latest version.
   <a href="#setup-and-teardown" class="md-nav__link">
     <span class="md-ellipsis">
       Setup and Teardown
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-failed" class="md-nav__link">
+    <span class="md-ellipsis">
+      On Failed
     </span>
   </a>
   
@@ -740,6 +740,15 @@ You're not viewing the latest version.
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select-retry-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Select Retry Strategy
+    </span>
+  </a>
   
 </li>
         
@@ -929,6 +938,39 @@ You're not viewing the latest version.
       Retry Strategy
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Retry Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clock-based-retry-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clock Based Retry Strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-retry-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Non Retry Strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retry-strategy-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retry Strategy Repository
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1772,15 +1814,6 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
-  <a href="#aggregate-id-resolver" class="md-nav__link">
-    <span class="md-ellipsis">
-      Aggregate Id Resolver
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#recorded-on-resolver" class="md-nav__link">
     <span class="md-ellipsis">
       Recorded On Resolver
@@ -1803,6 +1836,15 @@ You're not viewing the latest version.
   <a href="#setup-and-teardown" class="md-nav__link">
     <span class="md-ellipsis">
       Setup and Teardown
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-failed" class="md-nav__link">
+    <span class="md-ellipsis">
+      On Failed
     </span>
   </a>
   
@@ -1865,6 +1907,15 @@ You're not viewing the latest version.
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select-retry-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Select Retry Strategy
+    </span>
+  </a>
   
 </li>
         
@@ -2054,6 +2105,39 @@ You're not viewing the latest version.
       Retry Strategy
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Retry Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clock-based-retry-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clock Based Retry Strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-retry-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Non Retry Strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retry-strategy-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retry Strategy Repository
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2359,14 +2443,15 @@ to make the event method return the correct type.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Subscribe</span><span class="p">;</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Message\Message</span><span class="p">;</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">WelcomeSubscriber</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">{</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="p">#[</span><span class="nd">Subscribe</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">)]</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">onProfileCreated</span><span class="p">(</span><span class="nx">Message</span> <span class="nv">$message</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="p">{</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>        <span class="k">echo</span> <span class="s1">&#39;Welcome!&#39;</span><span class="p">;</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="p">}</span>
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="p">}</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">#[</span><span class="nd">Subscriber</span><span class="p">(</span><span class="s1">&#39;welcome_email&#39;</span><span class="p">,</span> <span class="nx">RunMode</span><span class="o">::</span><span class="na">FromNow</span><span class="p">)]</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">WelcomeSubscriber</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">{</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="p">#[</span><span class="nd">Subscribe</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">)]</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">onProfileCreated</span><span class="p">(</span><span class="nx">Message</span> <span class="nv">$message</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="p">{</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>        <span class="k">echo</span> <span class="s1">&#39;Welcome!&#39;</span><span class="p">;</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="p">}</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="p">}</span>
 </code></pre></div>
 <h4 id="argument-resolver">Argument Resolver</h4>
 <p>The library analyses the method signature and tries to resolve the arguments.
@@ -2462,9 +2547,9 @@ Here is an example how you can use it in a projector.</p>
 <p class="admonition-title">Note</p>
 <p>More about reducers you can find <a href="../message/#reducer">here</a></p>
 </div>
-<h5 id="aggregate-id-resolver">Aggregate Id Resolver</h5>
-<p>The aggregate id resolver resolves the aggregate id.
-It looks for a parameter with the instance of the <code>AggregateRootId</code>.</p>
+<h5 id="recorded-on-resolver">Recorded On Resolver</h5>
+<p>The recorded on resolver resolves the recorded on date.
+It looks for a parameter with the instance of the <code>DateTimeImmutable</code>.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Subscribe</span><span class="p">;</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Subscriber</span><span class="p">;</span>
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\RunMode</span><span class="p">;</span>
@@ -2473,70 +2558,48 @@ It looks for a parameter with the instance of the <code>AggregateRootId</code>.<
 <a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">DoStuffSubscriber</span>
 <a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="p">{</span>
 <a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>    <span class="p">#[</span><span class="nd">Subscribe</span><span class="p">(</span><span class="nx">ProfileCreated</span><span class="o">::</span><span class="na">class</span><span class="p">)]</span>
-<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">onProfileCreated</span><span class="p">(</span><span class="nx">ProfileId</span> <span class="nv">$profileId</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">onProfileCreated</span><span class="p">(</span><span class="nx">DateTimeImmutable</span> <span class="nv">$recordedOn</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
 <a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>    <span class="p">{</span>
 <a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>        <span class="c1">// do something</span>
 <a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>    <span class="p">}</span>
 <a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="p">}</span>
 </code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The resolver argument doesn't know if you're using the correct aggregate id class and doesn't check it. 
-It gets the Aggregate ID as a string, takes the class and instantiates it with the method <code>fromString</code>.</p>
-</div>
-<h5 id="recorded-on-resolver">Recorded On Resolver</h5>
-<p>The recorded on resolver resolves the recorded on date.
-It looks for a parameter with the instance of the <code>DateTimeImmutable</code>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Subscribe</span><span class="p">;</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Subscriber</span><span class="p">;</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\RunMode</span><span class="p">;</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="p">#[</span><span class="nd">Subscriber</span><span class="p">(</span><span class="s1">&#39;do_stuff&#39;</span><span class="p">,</span> <span class="nx">RunMode</span><span class="o">::</span><span class="na">Once</span><span class="p">)]</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">DoStuffSubscriber</span>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="p">{</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>    <span class="p">#[</span><span class="nd">Subscribe</span><span class="p">(</span><span class="nx">ProfileCreated</span><span class="o">::</span><span class="na">class</span><span class="p">)]</span>
-<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">onProfileCreated</span><span class="p">(</span><span class="nx">DateTimeImmutable</span> <span class="nv">$recordedOn</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
-<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>    <span class="p">{</span>
-<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>        <span class="c1">// do something</span>
-<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>    <span class="p">}</span>
-<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="p">}</span>
-</code></pre></div>
 <h3 id="setup-and-teardown">Setup and Teardown</h3>
 <p>Subscribers can have one <code>setup</code> and <code>teardown</code> method that is executed when the subscription is created or deleted.
 For this there are the attributes <code>Setup</code> and <code>Teardown</code>. The method name itself doesn't matter.
 This is especially helpful for projectors, as they can create the necessary structures for the projection here.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\Connection</span><span class="p">;</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Projector</span><span class="p">;</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Setup</span><span class="p">;</span>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Teardown</span><span class="p">;</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Subscriber\SubscriberUtil</span><span class="p">;</span>
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="p">#[</span><span class="nd">Projector</span><span class="p">(</span><span class="s1">&#39;profile_1&#39;</span><span class="p">)]</span>
-<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileProjector</span>
-<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="p">{</span>
-<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>    <span class="k">use</span> <span class="nx">SubscriberUtil</span><span class="p">;</span>
-<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>
-<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>    <span class="k">private</span> <span class="nx">Connection</span> <span class="nv">$connection</span><span class="p">;</span>
-<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>
-<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>    <span class="p">#[</span><span class="nd">Setup</span><span class="p">]</span>
-<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">create</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
-<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>    <span class="p">{</span>
-<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span>
-<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>            <span class="s2">&quot;CREATE TABLE IF NOT EXISTS </span><span class="si">{</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">()</span><span class="si">}</span><span class="s2"> (id VARCHAR PRIMARY KEY, name VARCHAR NOT NULL);&quot;</span><span class="p">,</span>
-<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a>        <span class="p">);</span>
-<a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>    <span class="p">}</span>
-<a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a>
-<a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a>    <span class="p">#[</span><span class="nd">Teardown</span><span class="p">]</span>
-<a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">drop</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
-<a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a>    <span class="p">{</span>
-<a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span><span class="s2">&quot;DROP TABLE IF EXISTS </span><span class="si">{</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">()</span><span class="si">}</span><span class="s2">;&quot;</span><span class="p">);</span>
-<a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a>    <span class="p">}</span>
-<a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a>
-<a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a>    <span class="k">private</span> <span class="k">function</span> <span class="nf">table</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span>
-<a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a>    <span class="p">{</span>
-<a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a>        <span class="k">return</span> <span class="s1">&#39;projection_&#39;</span> <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">subscriberId</span><span class="p">();</span>
-<a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a>    <span class="p">}</span>
-<a id="__codelineno-12-32" name="__codelineno-12-32" href="#__codelineno-12-32"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\Connection</span><span class="p">;</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Projector</span><span class="p">;</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Setup</span><span class="p">;</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Teardown</span><span class="p">;</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Subscriber\SubscriberUtil</span><span class="p">;</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="p">#[</span><span class="nd">Projector</span><span class="p">(</span><span class="s1">&#39;profile_1&#39;</span><span class="p">)]</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">ProfileProjector</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="p">{</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>    <span class="k">use</span> <span class="nx">SubscriberUtil</span><span class="p">;</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>    <span class="k">private</span> <span class="nx">Connection</span> <span class="nv">$connection</span><span class="p">;</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>    <span class="p">#[</span><span class="nd">Setup</span><span class="p">]</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">create</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>    <span class="p">{</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>            <span class="s2">&quot;CREATE TABLE IF NOT EXISTS </span><span class="si">{</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">()</span><span class="si">}</span><span class="s2"> (id VARCHAR PRIMARY KEY, name VARCHAR NOT NULL);&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>        <span class="p">);</span>
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>    <span class="p">}</span>
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>    <span class="p">#[</span><span class="nd">Teardown</span><span class="p">]</span>
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">drop</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a>    <span class="p">{</span>
+<a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span><span class="s2">&quot;DROP TABLE IF EXISTS </span><span class="si">{</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">()</span><span class="si">}</span><span class="s2">;&quot;</span><span class="p">);</span>
+<a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a>    <span class="p">}</span>
+<a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a>
+<a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a>    <span class="k">private</span> <span class="k">function</span> <span class="nf">table</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span>
+<a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a>    <span class="p">{</span>
+<a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a>        <span class="k">return</span> <span class="s1">&#39;projection_&#39;</span> <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">subscriberId</span><span class="p">();</span>
+<a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a>    <span class="p">}</span>
+<a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition danger">
 <p class="admonition-title">Danger</p>
@@ -2555,6 +2618,42 @@ You can use the <code>SubscriberUtil</code> to build the table/collection name.<
 <p class="admonition-title">Note</p>
 <p>Most databases have a limit on the length of the table/collection name.
 The limit is usually 64 characters.</p>
+</div>
+<h3 id="on-failed">On Failed</h3>
+<p>The subscription engine has a <a href="#retry-strategy">retry strategy</a> to retry subscriptions that have an error.
+If this does not work, the subscription changes the status to failed and will be ignored in all future runs.
+You can react to this transition and prevent it, so the subscription can skip the message and continue with the next one.
+To do this, you can add a method with the <code>OnFailed</code> attribute.
+If the method throws an exception, the subscription will be set to failed,
+otherwise the subscription will continue with the next message.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\OnFailed</span><span class="p">;</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Processor</span><span class="p">;</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Subscribe</span><span class="p">;</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Message\Message</span><span class="p">;</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="p">#[</span><span class="nd">Processor</span><span class="p">(</span><span class="s1">&#39;invoice&#39;</span><span class="p">)]</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">InvoiceProcessor</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="p">{</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>    <span class="p">#[</span><span class="nd">Subscribe</span><span class="p">(</span><span class="nx">OrderPlaced</span><span class="o">::</span><span class="na">class</span><span class="p">)]</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">onOrderPlaced</span><span class="p">(</span><span class="nx">OrderPlaced</span> <span class="nv">$orderPlaced</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>    <span class="p">{</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>        <span class="c1">// an error occurs</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>    <span class="p">}</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>    <span class="p">#[</span><span class="nd">OnFailed</span><span class="p">]</span>
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">onFailed</span><span class="p">(</span><span class="nx">Message</span> <span class="nv">$message</span><span class="p">,</span> <span class="nx">Throwable</span> <span class="nv">$throwable</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>    <span class="p">{</span>
+<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>        <span class="c1">// do something (failed queue, logging, etc.), so the subscription can continue</span>
+<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a>    <span class="p">}</span>
+<a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a><span class="p">}</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Currently, the <code>OnFailed</code> method is only available for non-batchable subscribers.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>OnFailed</code> method is called after the retry strategy has decided that the subscription should be set to failed.</p>
 </div>
 <h3 id="versioning">Versioning</h3>
 <p>As soon as the structure of a projection changes, or you need other events from the past,
@@ -2648,60 +2747,84 @@ This is useful for subscribers to create reports or to migrate data.</p>
 <a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>   <span class="c1">// ...</span>
 <a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="p">}</span>
 </code></pre></div>
+<h3 id="select-retry-strategy">Select Retry Strategy</h3>
+<p>You can select a retry strategy for your subscriber.
+We preconfigured two strategies for you: <code>default</code> and <code>no_retry</code>.</p>
+<ul>
+<li><code>default</code> - The default strategy retries the subscription 5 times.</li>
+<li><code>no_retry</code> - The no retry strategy does not retry the subscription.</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\RetryStrategy</span><span class="p">;</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Subscribe</span><span class="p">;</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Message\Message</span><span class="p">;</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="p">#[</span><span class="nd">Subscriber</span><span class="p">(</span><span class="s1">&#39;welcome_email&#39;</span><span class="p">,</span> <span class="nx">RunMode</span><span class="o">::</span><span class="na">FromNow</span><span class="p">)]</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="p">#[</span><span class="nd">RetryStrategy</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)]</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">WelcomeSubscriber</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="p">{</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>    <span class="p">#[</span><span class="nd">Subscribe</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">)]</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">onProfileCreated</span><span class="p">(</span><span class="nx">Message</span> <span class="nv">$message</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>    <span class="p">{</span>
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>        <span class="k">echo</span> <span class="s1">&#39;Welcome!&#39;</span><span class="p">;</span>
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>    <span class="p">}</span>
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="p">}</span>
+</code></pre></div>
+You can configure or add more strategies if you want.
+For more information, see the <a href="#retry-strategy">retry strategy</a> documentation.</p>
 <h3 id="batching">Batching</h3>
 <p>You can also optimize the performance of your subscribers by processing a number of events in a batch.
 This is particularly useful when projections need to be rebuilt.
 To achieve this, you can implement the <code>BatchableSubscriber</code> interface.</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\Connection</span><span class="p">;</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Projector</span><span class="p">;</span>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Subscriber\BatchableSubscriber</span><span class="p">;</span>
-<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>
-<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="p">#[</span><span class="nd">Projector</span><span class="p">(</span><span class="s1">&#39;profile_1&#39;</span><span class="p">)]</span>
-<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">MigrationSubscriber</span> <span class="k">implements</span> <span class="nx">BatchableSubscriber</span>
-<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="p">{</span>
-<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
-<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>        <span class="k">private</span> <span class="nx">readonly</span> <span class="nx">Connection</span> <span class="nv">$connection</span><span class="p">,</span>
-<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>    <span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>    <span class="p">}</span>
-<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>
-<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>    <span class="sd">/** @var array&lt;string, int&gt; */</span>
-<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>    <span class="k">private</span> <span class="k">array</span> <span class="nv">$nameChanged</span> <span class="o">=</span> <span class="p">[];</span>
-<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>
-<a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>    <span class="p">#[</span><span class="nd">Subscribe</span><span class="p">(</span><span class="nx">NameChanged</span><span class="o">::</span><span class="na">class</span><span class="p">)]</span>
-<a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">handleNameChanged</span><span class="p">(</span><span class="nx">NameChanged</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
-<a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a>    <span class="p">{</span>
-<a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">nameChanged</span><span class="p">[</span><span class="nv">$event</span><span class="o">-&gt;</span><span class="na">userId</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
-<a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a>    <span class="p">}</span>
-<a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a>
-<a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">beginBatch</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
-<a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a>    <span class="p">{</span>
-<a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">nameChanged</span> <span class="o">=</span> <span class="p">[];</span>
-<a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">beginTransaction</span><span class="p">();</span>
-<a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a>    <span class="p">}</span>
-<a id="__codelineno-18-27" name="__codelineno-18-27" href="#__codelineno-18-27"></a>
-<a id="__codelineno-18-28" name="__codelineno-18-28" href="#__codelineno-18-28"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">commitBatch</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
-<a id="__codelineno-18-29" name="__codelineno-18-29" href="#__codelineno-18-29"></a>    <span class="p">{</span>
-<a id="__codelineno-18-30" name="__codelineno-18-30" href="#__codelineno-18-30"></a>        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">nameChanged</span> <span class="k">as</span> <span class="nv">$userId</span> <span class="o">=&gt;</span> <span class="nv">$name</span><span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-18-31" name="__codelineno-18-31" href="#__codelineno-18-31"></a>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span>
-<a id="__codelineno-18-32" name="__codelineno-18-32" href="#__codelineno-18-32"></a>                <span class="s1">&#39;UPDATE user SET name = :name WHERE id = :id&#39;</span><span class="p">,</span>
-<a id="__codelineno-18-33" name="__codelineno-18-33" href="#__codelineno-18-33"></a>                <span class="p">[</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="nv">$name</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$userId</span><span class="p">],</span>
-<a id="__codelineno-18-34" name="__codelineno-18-34" href="#__codelineno-18-34"></a>            <span class="p">);</span>
-<a id="__codelineno-18-35" name="__codelineno-18-35" href="#__codelineno-18-35"></a>        <span class="p">}</span>
-<a id="__codelineno-18-36" name="__codelineno-18-36" href="#__codelineno-18-36"></a>
-<a id="__codelineno-18-37" name="__codelineno-18-37" href="#__codelineno-18-37"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">commit</span><span class="p">();</span>
-<a id="__codelineno-18-38" name="__codelineno-18-38" href="#__codelineno-18-38"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">nameChanged</span> <span class="o">=</span> <span class="p">[];</span>
-<a id="__codelineno-18-39" name="__codelineno-18-39" href="#__codelineno-18-39"></a>    <span class="p">}</span>
-<a id="__codelineno-18-40" name="__codelineno-18-40" href="#__codelineno-18-40"></a>
-<a id="__codelineno-18-41" name="__codelineno-18-41" href="#__codelineno-18-41"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">rollbackBatch</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
-<a id="__codelineno-18-42" name="__codelineno-18-42" href="#__codelineno-18-42"></a>    <span class="p">{</span>
-<a id="__codelineno-18-43" name="__codelineno-18-43" href="#__codelineno-18-43"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">rollBack</span><span class="p">();</span>
-<a id="__codelineno-18-44" name="__codelineno-18-44" href="#__codelineno-18-44"></a>    <span class="p">}</span>
-<a id="__codelineno-18-45" name="__codelineno-18-45" href="#__codelineno-18-45"></a>
-<a id="__codelineno-18-46" name="__codelineno-18-46" href="#__codelineno-18-46"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">forceCommit</span><span class="p">()</span><span class="o">:</span> <span class="nx">bool</span>
-<a id="__codelineno-18-47" name="__codelineno-18-47" href="#__codelineno-18-47"></a>    <span class="p">{</span>
-<a id="__codelineno-18-48" name="__codelineno-18-48" href="#__codelineno-18-48"></a>        <span class="k">return</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">nameChanged</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">;</span>
-<a id="__codelineno-18-49" name="__codelineno-18-49" href="#__codelineno-18-49"></a>    <span class="p">}</span>
-<a id="__codelineno-18-50" name="__codelineno-18-50" href="#__codelineno-18-50"></a><span class="p">}</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\Connection</span><span class="p">;</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Projector</span><span class="p">;</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Subscriber\BatchableSubscriber</span><span class="p">;</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="p">#[</span><span class="nd">Projector</span><span class="p">(</span><span class="s1">&#39;profile_1&#39;</span><span class="p">)]</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">MigrationSubscriber</span> <span class="k">implements</span> <span class="nx">BatchableSubscriber</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="p">{</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>        <span class="k">private</span> <span class="nx">readonly</span> <span class="nx">Connection</span> <span class="nv">$connection</span><span class="p">,</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>    <span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>    <span class="p">}</span>
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>    <span class="sd">/** @var array&lt;string, int&gt; */</span>
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>    <span class="k">private</span> <span class="k">array</span> <span class="nv">$nameChanged</span> <span class="o">=</span> <span class="p">[];</span>
+<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>
+<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>    <span class="p">#[</span><span class="nd">Subscribe</span><span class="p">(</span><span class="nx">NameChanged</span><span class="o">::</span><span class="na">class</span><span class="p">)]</span>
+<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">handleNameChanged</span><span class="p">(</span><span class="nx">NameChanged</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>    <span class="p">{</span>
+<a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">nameChanged</span><span class="p">[</span><span class="nv">$event</span><span class="o">-&gt;</span><span class="na">userId</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
+<a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>    <span class="p">}</span>
+<a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>
+<a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">beginBatch</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a>    <span class="p">{</span>
+<a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">nameChanged</span> <span class="o">=</span> <span class="p">[];</span>
+<a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">beginTransaction</span><span class="p">();</span>
+<a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a>    <span class="p">}</span>
+<a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a>
+<a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">commitBatch</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-19-29" name="__codelineno-19-29" href="#__codelineno-19-29"></a>    <span class="p">{</span>
+<a id="__codelineno-19-30" name="__codelineno-19-30" href="#__codelineno-19-30"></a>        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">nameChanged</span> <span class="k">as</span> <span class="nv">$userId</span> <span class="o">=&gt;</span> <span class="nv">$name</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-19-31" name="__codelineno-19-31" href="#__codelineno-19-31"></a>            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">executeStatement</span><span class="p">(</span>
+<a id="__codelineno-19-32" name="__codelineno-19-32" href="#__codelineno-19-32"></a>                <span class="s1">&#39;UPDATE user SET name = :name WHERE id = :id&#39;</span><span class="p">,</span>
+<a id="__codelineno-19-33" name="__codelineno-19-33" href="#__codelineno-19-33"></a>                <span class="p">[</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="nv">$name</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$userId</span><span class="p">],</span>
+<a id="__codelineno-19-34" name="__codelineno-19-34" href="#__codelineno-19-34"></a>            <span class="p">);</span>
+<a id="__codelineno-19-35" name="__codelineno-19-35" href="#__codelineno-19-35"></a>        <span class="p">}</span>
+<a id="__codelineno-19-36" name="__codelineno-19-36" href="#__codelineno-19-36"></a>
+<a id="__codelineno-19-37" name="__codelineno-19-37" href="#__codelineno-19-37"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">commit</span><span class="p">();</span>
+<a id="__codelineno-19-38" name="__codelineno-19-38" href="#__codelineno-19-38"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">nameChanged</span> <span class="o">=</span> <span class="p">[];</span>
+<a id="__codelineno-19-39" name="__codelineno-19-39" href="#__codelineno-19-39"></a>    <span class="p">}</span>
+<a id="__codelineno-19-40" name="__codelineno-19-40" href="#__codelineno-19-40"></a>
+<a id="__codelineno-19-41" name="__codelineno-19-41" href="#__codelineno-19-41"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">rollbackBatch</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-19-42" name="__codelineno-19-42" href="#__codelineno-19-42"></a>    <span class="p">{</span>
+<a id="__codelineno-19-43" name="__codelineno-19-43" href="#__codelineno-19-43"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">rollBack</span><span class="p">();</span>
+<a id="__codelineno-19-44" name="__codelineno-19-44" href="#__codelineno-19-44"></a>    <span class="p">}</span>
+<a id="__codelineno-19-45" name="__codelineno-19-45" href="#__codelineno-19-45"></a>
+<a id="__codelineno-19-46" name="__codelineno-19-46" href="#__codelineno-19-46"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">forceCommit</span><span class="p">()</span><span class="o">:</span> <span class="nx">bool</span>
+<a id="__codelineno-19-47" name="__codelineno-19-47" href="#__codelineno-19-47"></a>    <span class="p">{</span>
+<a id="__codelineno-19-48" name="__codelineno-19-48" href="#__codelineno-19-48"></a>        <span class="k">return</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">nameChanged</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">;</span>
+<a id="__codelineno-19-49" name="__codelineno-19-49" href="#__codelineno-19-49"></a>    <span class="p">}</span>
+<a id="__codelineno-19-50" name="__codelineno-19-50" href="#__codelineno-19-50"></a><span class="p">}</span>
 </code></pre></div>
 This interface provides you with all the options you need to process your data collectively.</p>
 <p>The <code>beginBatch</code> method is called as soon as a subscriber wants to process an event.
@@ -2845,124 +2968,156 @@ We provide two implementations by default.
 Which one has a better performance depends on the use case.</p>
 <h4 id="store-message-loader">Store Message Loader</h4>
 <p>The store message loader loads all the messages from the event store.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\StoreMessageLoader</span><span class="p">;</span>
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
-<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="sd">/** @var Store $store */</span>
-<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="nv">$messageLoader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">StoreMessageLoader</span><span class="p">(</span><span class="nv">$store</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\StoreMessageLoader</span><span class="p">;</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="sd">/** @var Store $store */</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="nv">$messageLoader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">StoreMessageLoader</span><span class="p">(</span><span class="nv">$store</span><span class="p">);</span>
 </code></pre></div>
 <h4 id="event-filtered-store-message-loader">Event Filtered Store Message Loader</h4>
 <p>The event filtered store message loader loads only the messages that are relevant for the subscribers.
 It looks before loading the messages which subscribers are interested in the events.
 Then it loads with a filter only the relevant messages.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Metadata\Event\EventMetadataFactory</span><span class="p">;</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\EventFilteredStoreMessageLoader</span><span class="p">;</span>
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
-<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="sd">/**</span>
-<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="sd"> * @var Store $store</span>
-<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="sd"> * @var EventMetadataFactory $eventMetadataFactory</span>
-<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="sd"> * @var SubscriberRepository $subscriberRepository</span>
-<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="sd"> */</span>
-<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="nv">$messageLoader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EventFilteredStoreMessageLoader</span><span class="p">(</span>
-<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>    <span class="nv">$store</span><span class="p">,</span>
-<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>    <span class="nv">$eventMetadataFactory</span><span class="p">,</span>
-<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>    <span class="nv">$subscriberRepository</span><span class="p">,</span>
-<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Metadata\Event\EventMetadataFactory</span><span class="p">;</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\EventFilteredStoreMessageLoader</span><span class="p">;</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="sd">/**</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="sd"> * @var Store $store</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="sd"> * @var EventMetadataFactory $eventMetadataFactory</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="sd"> * @var SubscriberRepository $subscriberRepository</span>
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="sd"> */</span>
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="nv">$messageLoader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EventFilteredStoreMessageLoader</span><span class="p">(</span>
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>    <span class="nv">$store</span><span class="p">,</span>
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>    <span class="nv">$eventMetadataFactory</span><span class="p">,</span>
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>    <span class="nv">$subscriberRepository</span><span class="p">,</span>
+<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="p">);</span>
 </code></pre></div>
 <h3 id="subscription-store">Subscription Store</h3>
 <p>The Subscription Engine uses a subscription store to store the status of each subscription.
 We provide a Doctrine implementation of this by default.</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\Connection</span><span class="p">;</span>
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Store\DoctrineSubscriptionStore</span><span class="p">;</span>
-<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
-<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="sd">/** @var Connection $connection */</span>
-<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="nv">$subscriptionStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineSubscriptionStore</span><span class="p">(</span><span class="nv">$connection</span><span class="p">);</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\Connection</span><span class="p">;</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Store\DoctrineSubscriptionStore</span><span class="p">;</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="sd">/** @var Connection $connection */</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="nv">$subscriptionStore</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineSubscriptionStore</span><span class="p">(</span><span class="nv">$connection</span><span class="p">);</span>
 </code></pre></div>
 So that the schema for the subscription store can also be created,
 we have to tell the <code>DoctrineSchemaDirector</code> our schema configuration.
 Using <code>ChainDoctrineSchemaConfigurator</code> we can add multiple schema configurators.
 In our case they need the <code>DoctrineSchemaDirector</code> from the event store and subscription store.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\Connection</span><span class="p">;</span>
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\ChainDoctrineSchemaConfigurator</span><span class="p">;</span>
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaDirector</span><span class="p">;</span>
-<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
-<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Store\DoctrineSubscriptionStore</span><span class="p">;</span>
-<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>
-<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="sd">/**</span>
-<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="sd"> * @var Connection $connection</span>
-<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="sd"> * @var Store $eventStore</span>
-<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="sd"> * @var DoctrineSubscriptionStore $subscriptionStore</span>
-<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="sd"> */</span>
-<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a><span class="nv">$schemaDirector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineSchemaDirector</span><span class="p">(</span>
-<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a>    <span class="nv">$connection</span><span class="p">,</span>
-<a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>    <span class="k">new</span> <span class="nx">ChainDoctrineSchemaConfigurator</span><span class="p">([</span>
-<a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a>        <span class="nv">$eventStore</span><span class="p">,</span>
-<a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a>        <span class="nv">$subscriptionStore</span><span class="p">,</span>
-<a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a>    <span class="p">]),</span>
-<a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">use</span> <span class="nx">Doctrine\DBAL\Connection</span><span class="p">;</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\ChainDoctrineSchemaConfigurator</span><span class="p">;</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Schema\DoctrineSchemaDirector</span><span class="p">;</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Store\Store</span><span class="p">;</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Store\DoctrineSubscriptionStore</span><span class="p">;</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="sd">/**</span>
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="sd"> * @var Connection $connection</span>
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="sd"> * @var Store $eventStore</span>
+<a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="sd"> * @var DoctrineSubscriptionStore $subscriptionStore</span>
+<a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="sd"> */</span>
+<a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a><span class="nv">$schemaDirector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DoctrineSchemaDirector</span><span class="p">(</span>
+<a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a>    <span class="nv">$connection</span><span class="p">,</span>
+<a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a>    <span class="k">new</span> <span class="nx">ChainDoctrineSchemaConfigurator</span><span class="p">([</span>
+<a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a>        <span class="nv">$eventStore</span><span class="p">,</span>
+<a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a>        <span class="nv">$subscriptionStore</span><span class="p">,</span>
+<a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a>    <span class="p">]),</span>
+<a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a><span class="p">);</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You can find more about schema configurator <a href="../store/">here</a> </p>
 </div>
 <h3 id="retry-strategy">Retry Strategy</h3>
-<p>The subscription engine uses a retry strategy to retry subscriptions that have failed.
-Our default strategy can be configured with the following parameters:</p>
+<p>The subscription engine uses a retry strategy to retry subscriptions that have an error.
+If the retry strategy says that the subscription should not be retried anymore,
+e.g. the maximum number of retry attempts has been reached, then the subscription is set to failed.</p>
+<h4 id="clock-based-retry-strategy">Clock Based Retry Strategy</h4>
+<p>We provide a clock based retry strategy by default.
+You can configure the base delay, the delay factor and the maximum number of attempts.</p>
 <ul>
 <li><code>baseDelay</code> - The base delay in seconds.</li>
 <li><code>delayFactor</code> - The factor by which the delay is multiplied after each attempt.</li>
 <li><code>maxAttempts</code> - The maximum number of attempts.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\RetryStrategy\ClockBasedRetryStrategy</span><span class="p">;</span>
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
-<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="nv">$retryStrategy</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ClockBasedRetryStrategy</span><span class="p">(</span>
-<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>    <span class="nx">baseDelay</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
-<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>    <span class="nx">delayFactor</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
-<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>    <span class="nx">maxAttempts</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
-<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\RetryStrategy\ClockBasedRetryStrategy</span><span class="p">;</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="nv">$retryStrategy</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ClockBasedRetryStrategy</span><span class="p">(</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>    <span class="nx">baseDelay</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>    <span class="nx">delayFactor</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>    <span class="nx">maxAttempts</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="p">);</span>
 </code></pre></div>
+<h4 id="non-retry-strategy">Non Retry Strategy</h4>
+<p>If you don't want to retry subscriptions that have an error, you can use the non retry strategy.
+The subscription will be set to failed after the first error.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\RetryStrategy\NoRetryStrategy</span><span class="p">;</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="nv">$retryStrategy</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">NoRetryStrategy</span><span class="p">();</span>
+</code></pre></div>
+<h4 id="retry-strategy-repository">Retry Strategy Repository</h4>
+<p>You can define multiple retry strategies and select them by name in the subscriber.
+This is useful if you have different retry strategies for different subscribers.
+Here is an example how you can configure the repository.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\RetryStrategy\ClockBasedRetryStrategy</span><span class="p">;</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\RetryStrategy\NoRetryStrategy</span><span class="p">;</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\RetryStrategy\RetryStrategyRepository</span><span class="p">;</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="nv">$retryStrategyRepository</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">RetryStrategyRepository</span><span class="p">([</span>
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>    <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">ClockBasedRetryStrategy</span><span class="p">(</span>
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>        <span class="nx">baseDelay</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>        <span class="nx">delayFactor</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>        <span class="nx">maxAttempts</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+<a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>    <span class="p">),</span>
+<a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a>    <span class="s1">&#39;no_retry&#39;</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">NoRetryStrategy</span><span class="p">(),</span>
+<a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a><span class="p">]);</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is what our default configuration looks like if you do not define the retry strategy.</p>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>You can reactivate the subscription manually or remove it and rebuild it from scratch.</p>
+<p>You can change the default retry strategy by define the name in the constructor as second parameter.</p>
 </div>
 <h3 id="subscriber-accessor">Subscriber Accessor</h3>
 <p>The subscriber accessor repository is responsible for providing the subscribers to the subscription engine.
 We provide a metadata subscriber accessor repository by default.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Subscriber\MetadataSubscriberAccessorRepository</span><span class="p">;</span>
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>
-<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="sd">/**</span>
-<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="sd"> * @var object $subscriber1</span>
-<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="sd"> * @var object $subscriber2</span>
-<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="sd"> * @var object $subscriber3</span>
-<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="sd"> */</span>
-<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="nv">$subscriberAccessorRepository</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MetadataSubscriberAccessorRepository</span><span class="p">([</span>
-<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>    <span class="nv">$subscriber1</span><span class="p">,</span>
-<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>    <span class="nv">$subscriber2</span><span class="p">,</span>
-<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a>    <span class="nv">$subscriber3</span><span class="p">,</span>
-<a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a><span class="p">]);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Subscriber\MetadataSubscriberAccessorRepository</span><span class="p">;</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="sd">/**</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="sd"> * @var object $subscriber1</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="sd"> * @var object $subscriber2</span>
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="sd"> * @var object $subscriber3</span>
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="sd"> */</span>
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="nv">$subscriberAccessorRepository</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MetadataSubscriberAccessorRepository</span><span class="p">([</span>
+<a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a>    <span class="nv">$subscriber1</span><span class="p">,</span>
+<a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a>    <span class="nv">$subscriber2</span><span class="p">,</span>
+<a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a>    <span class="nv">$subscriber3</span><span class="p">,</span>
+<a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a><span class="p">]);</span>
 </code></pre></div>
 <h3 id="subscription-engine_1">Subscription Engine</h3>
 <p>Now we can create the subscription engine and plug together the necessary services.
 The message loader is needed to load the messages, the Subscription Store to store the subscription state
 and we need the subscriber accessor repository. Optionally, we can also pass a retry strategy.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\DefaultSubscriptionEngine</span><span class="p">;</span>
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\MessageLoader</span><span class="p">;</span>
-<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\RetryStrategy\NoRetryStrategy</span><span class="p">;</span>
-<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Store\DoctrineSubscriptionStore</span><span class="p">;</span>
-<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Subscriber\MetadataSubscriberAccessorRepository</span><span class="p">;</span>
-<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>
-<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="sd">/**</span>
-<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="sd"> * @var MessageLoader $messageLoader</span>
-<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="sd"> * @var DoctrineSubscriptionStore $subscriptionStore</span>
-<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="sd"> * @var MetadataSubscriberAccessorRepository $subscriberAccessorRepository</span>
-<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="sd"> * @var NoRetryStrategy $retryStrategy</span>
-<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a><span class="sd"> */</span>
-<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a><span class="nv">$subscriptionEngine</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultSubscriptionEngine</span><span class="p">(</span>
-<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a>    <span class="nv">$messageLoader</span><span class="p">,</span>
-<a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a>    <span class="nv">$subscriptionStore</span><span class="p">,</span>
-<a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a>    <span class="nv">$subscriberAccessorRepository</span><span class="p">,</span>
-<a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a>    <span class="nv">$retryStrategy</span><span class="p">,</span>
-<a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\DefaultSubscriptionEngine</span><span class="p">;</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\MessageLoader</span><span class="p">;</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\RetryStrategy\RetryStrategyRepository</span><span class="p">;</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Store\DoctrineSubscriptionStore</span><span class="p">;</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Subscriber\MetadataSubscriberAccessorRepository</span><span class="p">;</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="sd">/**</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="sd"> * @var MessageLoader $messageLoader</span>
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="sd"> * @var DoctrineSubscriptionStore $subscriptionStore</span>
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="sd"> * @var MetadataSubscriberAccessorRepository $subscriberAccessorRepository</span>
+<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a><span class="sd"> * @var RetryStrategyRepository $retryStrategyRepository</span>
+<a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a><span class="sd"> */</span>
+<a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a><span class="nv">$subscriptionEngine</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DefaultSubscriptionEngine</span><span class="p">(</span>
+<a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a>    <span class="nv">$messageLoader</span><span class="p">,</span>
+<a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a>    <span class="nv">$subscriptionStore</span><span class="p">,</span>
+<a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a>    <span class="nv">$subscriberAccessorRepository</span><span class="p">,</span>
+<a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a>    <span class="nv">$retryStrategyRepository</span><span class="p">,</span> <span class="c1">// optional, if not set the default retry strategy is used</span>
+<a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a><span class="p">);</span>
 </code></pre></div>
 <h3 id="catch-up-subscription-engine">Catch up Subscription Engine</h3>
 <p>If aggregates are used in the processors and new events are generated there,
@@ -2970,11 +3125,11 @@ then they are not part of the current subscription engine run and will only be p
 This is usually not a problem in dev or prod environment because a worker is used
 and these events will be processed at some point. But in testing it is not so easy.
 For this reason, we have the <code>CatchUpSubscriptionEngine</code> decorator.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\CatchUpSubscriptionEngine</span><span class="p">;</span>
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>
-<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionStore */</span>
-<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="nv">$catchupSubscriptionEngine</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CatchUpSubscriptionEngine</span><span class="p">(</span><span class="nv">$subscriptionEngine</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\CatchUpSubscriptionEngine</span><span class="p">;</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionStore */</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="nv">$catchupSubscriptionEngine</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CatchUpSubscriptionEngine</span><span class="p">(</span><span class="nv">$subscriptionEngine</span><span class="p">);</span>
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -2983,11 +3138,11 @@ For this reason, we have the <code>CatchUpSubscriptionEngine</code> decorator.</
 <h3 id="throw-on-error-subscription-engine">Throw on error Subscription Engine</h3>
 <p>This is another decorator for the subscription engine. It throws an exception if a subscription is in error state.
 This is useful for testing or development to get directly feedback if something is wrong.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
-<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\ThrowOnErrorSubscriptionEngine</span><span class="p">;</span>
-<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>
-<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionStore */</span>
-<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="nv">$throwOnErrorSubscriptionEngine</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ThrowOnErrorSubscriptionEngine</span><span class="p">(</span><span class="nv">$subscriptionEngine</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\ThrowOnErrorSubscriptionEngine</span><span class="p">;</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionStore */</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="nv">$throwOnErrorSubscriptionEngine</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ThrowOnErrorSubscriptionEngine</span><span class="p">(</span><span class="nv">$subscriptionEngine</span><span class="p">);</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -2997,21 +3152,21 @@ The subscription engine has an build in retry strategy to retry subscriptions th
 <h3 id="run-subscription-engine-after-save">Run Subscription Engine after save</h3>
 <p>You can trigger the subscription engine after calling the <code>save</code> method on the repository.
 This means that a worker to run the subscriptions are not needed.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Repository\RepositoryManager</span><span class="p">;</span>
-<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
-<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Repository\RunSubscriptionEngineRepositoryManager</span><span class="p">;</span>
-<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>
-<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="sd">/**</span>
-<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="sd"> * @var SubscriptionEngine $subscriptionEngine</span>
-<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="sd"> * @var RepositoryManager $defaultRepositoryManager</span>
-<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="sd"> */</span>
-<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="nv">$eventBus</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">RunSubscriptionEngineRepositoryManager</span><span class="p">(</span>
-<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a>    <span class="nv">$defaultRepositoryManager</span><span class="p">,</span>
-<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>    <span class="nv">$subscriptionEngine</span><span class="p">,</span>
-<a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a>    <span class="p">[</span><span class="s1">&#39;id1&#39;</span><span class="p">,</span> <span class="s1">&#39;id2&#39;</span><span class="p">],</span> <span class="c1">// filter subscribers by id</span>
-<a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a>    <span class="p">[</span><span class="s1">&#39;group1&#39;</span><span class="p">,</span> <span class="s1">&#39;group2&#39;</span><span class="p">],</span> <span class="c1">// filter subscribers by group</span>
-<a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a>    <span class="mi">100</span><span class="p">,</span> <span class="c1">// limit the number of messages</span>
-<a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Repository\RepositoryManager</span><span class="p">;</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Repository\RunSubscriptionEngineRepositoryManager</span><span class="p">;</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="sd">/**</span>
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="sd"> * @var SubscriptionEngine $subscriptionEngine</span>
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="sd"> * @var RepositoryManager $defaultRepositoryManager</span>
+<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a><span class="sd"> */</span>
+<a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a><span class="nv">$eventBus</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">RunSubscriptionEngineRepositoryManager</span><span class="p">(</span>
+<a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a>    <span class="nv">$defaultRepositoryManager</span><span class="p">,</span>
+<a id="__codelineno-31-11" name="__codelineno-31-11" href="#__codelineno-31-11"></a>    <span class="nv">$subscriptionEngine</span><span class="p">,</span>
+<a id="__codelineno-31-12" name="__codelineno-31-12" href="#__codelineno-31-12"></a>    <span class="p">[</span><span class="s1">&#39;id1&#39;</span><span class="p">,</span> <span class="s1">&#39;id2&#39;</span><span class="p">],</span> <span class="c1">// filter subscribers by id</span>
+<a id="__codelineno-31-13" name="__codelineno-31-13" href="#__codelineno-31-13"></a>    <span class="p">[</span><span class="s1">&#39;group1&#39;</span><span class="p">,</span> <span class="s1">&#39;group2&#39;</span><span class="p">],</span> <span class="c1">// filter subscribers by group</span>
+<a id="__codelineno-31-14" name="__codelineno-31-14" href="#__codelineno-31-14"></a>    <span class="mi">100</span><span class="p">,</span> <span class="c1">// limit the number of messages</span>
+<a id="__codelineno-31-15" name="__codelineno-31-15" href="#__codelineno-31-15"></a><span class="p">);</span>
 </code></pre></div>
 <div class="admonition danger">
 <p class="admonition-title">Danger</p>
@@ -3031,12 +3186,12 @@ Especially in combination with the <code>CatchUpSubscriptionEngine</code> and <c
 <h2 id="usage">Usage</h2>
 <p>The Subscription Engine has a few methods needed to use it effectively.
 A <code>SubscriptionEngineCriteria</code> can be passed to all of these methods to filter the respective subscriptions.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
-<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>
-<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="nv">$criteria</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">(</span>
-<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>    <span class="nx">ids</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;profile_1&#39;</span><span class="p">,</span> <span class="s1">&#39;welcome_email&#39;</span><span class="p">],</span>
-<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>    <span class="nx">groups</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;default&#39;</span><span class="p">],</span>
-<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="nv">$criteria</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">(</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>    <span class="nx">ids</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;profile_1&#39;</span><span class="p">,</span> <span class="s1">&#39;welcome_email&#39;</span><span class="p">],</span>
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>    <span class="nx">groups</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;default&#39;</span><span class="p">],</span>
+<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="p">);</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -3046,11 +3201,11 @@ A <code>SubscriptionEngineCriteria</code> can be passed to all of these methods 
 <p>New subscriptions need to be set up before they can be used.
 In this step, the subscription engine also tries to call the <code>setup</code> method if available.
 After the setup process, the subscription is set to booting or active.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
-<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
-<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>
-<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
-<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">setup</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">setup</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -3060,69 +3215,69 @@ After the setup process, the subscription is set to booting or active.</p>
 <p>You can boot the subscriptions with the <code>boot</code> method.
 All booting subscriptions will catch up to the current event stream.
 After the boot process, the subscription is set to active or finished.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
-<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
-<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>
-<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
-<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">boot</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
+<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">boot</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
 </code></pre></div>
 <h3 id="run">Run</h3>
 <p>All active subscriptions are continued and updated here.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
-<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
-<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>
-<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
-<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
 </code></pre></div>
 <h3 id="teardown">Teardown</h3>
 <p>If subscriptions are detached, they can be cleaned up here.
 The subscription engine also tries to call the <code>teardown</code> method if available.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
-<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
-<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>
-<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
-<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">teardown</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
+<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">teardown</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
 </code></pre></div>
 <h3 id="remove">Remove</h3>
 <p>You can also directly remove a subscription regardless of its status.
 An attempt is made to call the <code>teardown</code> method if available.
 But the entry will still be removed if it doesn't work.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
-<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
-<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>
-<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
-<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">remove</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">remove</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
 </code></pre></div>
 <h3 id="reactivate">Reactivate</h3>
 <p>If a subscription had an error or is outdated, you can reactivate it.
 As a result, the subscription gets in the last status again.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
-<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
-<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>
-<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
-<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">reactivate</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
+<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">reactivate</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
 </code></pre></div>
 <h3 id="pause">Pause</h3>
 <p>Pausing a subscription is also possible.
 The subscription will then no longer be managed by the subscription engine.
 You can reactivate the subscription if you want so that it continues.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
-<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
-<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>
-<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
-<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">pause</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
+<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a><span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">pause</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
 </code></pre></div>
 <h3 id="status">Status</h3>
 <p>To get the current status of all subscriptions, you can get them using the <code>subscriptions</code> method.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
-<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
-<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>
-<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
-<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="nv">$subscriptions</span> <span class="o">=</span> <span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">subscriptions</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
-<a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a>
-<a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$subscriptions</span> <span class="k">as</span> <span class="nv">$subscription</span><span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a>    <span class="k">echo</span> <span class="nv">$subscription</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span>
-<a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngine</span><span class="p">;</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Subscription\Engine\SubscriptionEngineCriteria</span><span class="p">;</span>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>
+<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="sd">/** @var SubscriptionEngine $subscriptionEngine */</span>
+<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="nv">$subscriptions</span> <span class="o">=</span> <span class="nv">$subscriptionEngine</span><span class="o">-&gt;</span><span class="na">subscriptions</span><span class="p">(</span><span class="k">new</span> <span class="nx">SubscriptionEngineCriteria</span><span class="p">());</span>
+<a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a>
+<a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$subscriptions</span> <span class="k">as</span> <span class="nv">$subscription</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a>    <span class="k">echo</span> <span class="nv">$subscription</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span>
+<a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a><span class="p">}</span>
 </code></pre></div>
 <h2 id="learn-more">Learn more</h2>
 <ul>
@@ -3253,7 +3408,7 @@ You can reactivate the subscription if you want so that it continues.</p>
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.top", "navigation.indexes", "navigation.footer", "content.code.annotate", "content.code.copy"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"canonical_version": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.f13b1293.min.js"></script>
+      <script src="../assets/javascripts/bundle.f1b6f286.min.js"></script>
       
     
   </body>
