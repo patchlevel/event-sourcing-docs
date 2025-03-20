@@ -2081,7 +2081,7 @@ The order handle the order itself and the shipping handle the shipping of the or
 </code></pre></div>
 With this pattern, the Shipping aggregate can listen to the events of the Order aggregate.
 In this case, the <code>Shipping</code> aggregate listens to the <code>OrderCreated</code> event to initialize itself.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\Uuid</span><span class="p">;</span>
 <a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
 <a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Apply</span><span class="p">;</span>
