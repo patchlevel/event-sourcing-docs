@@ -639,6 +639,17 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
+  <a href="#auto-initialize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto Initialize
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#aggregate-root-registry" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1724,6 +1735,17 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
+  <a href="#auto-initialize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto Initialize
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#aggregate-root-registry" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2097,7 +2119,7 @@ you can suppress the missing apply exceptions these events with the <code>Suppre
 <p>When all events are suppressed, debugging becomes more difficult if you forget an apply method.</p>
 </div>
 <h2 id="shared-apply-context">Shared apply context</h2>
-<p>When working with <a href="./#micro-aggregates">micro-aggregates</a>, 
+<p>When working with <a href="./#micro-aggregates">micro-aggregates</a>,
 it’s common that events are applied by different aggregates.
 As a result, an aggregate may receive events it does not handle, which can lead to multiple “missing apply” warnings.</p>
 <p>The <code>SharedApplyContext</code> attribute allows you to declare that several aggregates share the same apply context.
@@ -2563,22 +2585,65 @@ and are not separate aggregates.</p>
 <a id="__codelineno-23-34" name="__codelineno-23-34" href="#__codelineno-23-34"></a>    <span class="p">}</span>
 <a id="__codelineno-23-35" name="__codelineno-23-35" href="#__codelineno-23-35"></a><span class="p">}</span>
 </code></pre></div>
+<h2 id="auto-initialize">Auto Initialize</h2>
+<details class="example">
+<summary>Experimental</summary>
+<p>This feature is still experimental and may change in the future.
+Use it with caution.</p>
+</details>
+<p>Sometimes you want to be able to access an aggregate even if it has not yet been created in the system. 
+In this case, the aggregate should be automatically initialized if it cannot be found in the store. 
+To achieve this, the aggregate must mark the initialization method with the <code>AutoInitialize</code> attribute.
+The method must be static, receives the aggregate ID as an argument and must return an instance of the aggregate.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\BasicAggregateRoot</span><span class="p">;</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Aggregate\Uuid</span><span class="p">;</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Aggregate</span><span class="p">;</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Apply</span><span class="p">;</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\AutoInitialize</span><span class="p">;</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Attribute\Id</span><span class="p">;</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="p">#[</span><span class="nd">Aggregate</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">)]</span>
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="k">final</span> <span class="k">class</span> <span class="nc">Profile</span> <span class="k">extends</span> <span class="nx">BasicAggregateRoot</span>
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="p">{</span>
+<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a>    <span class="p">#[</span><span class="nd">Id</span><span class="p">]</span>
+<a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a>    <span class="k">private</span> <span class="nx">Uuid</span> <span class="nv">$id</span><span class="p">;</span>
+<a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a>
+<a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a>    <span class="p">#[</span><span class="nd">AutoInitialize</span><span class="p">]</span>
+<a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a>    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">initialize</span><span class="p">(</span><span class="nx">Uuid</span> <span class="nv">$id</span><span class="p">)</span><span class="o">:</span> <span class="k">static</span>
+<a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a>    <span class="p">{</span>
+<a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a>        <span class="nv">$self</span> <span class="o">=</span> <span class="k">new</span> <span class="k">static</span><span class="p">();</span>
+<a id="__codelineno-24-18" name="__codelineno-24-18" href="#__codelineno-24-18"></a>        <span class="nv">$self</span><span class="o">-&gt;</span><span class="na">recordThat</span><span class="p">(</span><span class="k">new</span> <span class="nx">ProfileCreated</span><span class="p">(</span><span class="nv">$id</span><span class="p">));</span>
+<a id="__codelineno-24-19" name="__codelineno-24-19" href="#__codelineno-24-19"></a>
+<a id="__codelineno-24-20" name="__codelineno-24-20" href="#__codelineno-24-20"></a>        <span class="k">return</span> <span class="nv">$self</span><span class="p">;</span>
+<a id="__codelineno-24-21" name="__codelineno-24-21" href="#__codelineno-24-21"></a>    <span class="p">}</span>
+<a id="__codelineno-24-22" name="__codelineno-24-22" href="#__codelineno-24-22"></a>
+<a id="__codelineno-24-23" name="__codelineno-24-23" href="#__codelineno-24-23"></a>    <span class="p">#[</span><span class="nd">Apply</span><span class="p">]</span>
+<a id="__codelineno-24-24" name="__codelineno-24-24" href="#__codelineno-24-24"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">applyProfileCreated</span><span class="p">(</span><span class="nx">ProfileCreated</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-24-25" name="__codelineno-24-25" href="#__codelineno-24-25"></a>    <span class="p">{</span>
+<a id="__codelineno-24-26" name="__codelineno-24-26" href="#__codelineno-24-26"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">id</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">;</span>
+<a id="__codelineno-24-27" name="__codelineno-24-27" href="#__codelineno-24-27"></a>    <span class="p">}</span>
+<a id="__codelineno-24-28" name="__codelineno-24-28" href="#__codelineno-24-28"></a><span class="p">}</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Recording events in the <code>initialize</code> method is optional but recommended.</p>
+</div>
 <h2 id="aggregate-root-registry">Aggregate Root Registry</h2>
 <p>The library needs to know about all aggregates so that the correct aggregate class is used to load from the database.
 There is an <code>AggregateRootRegistry</code> for this purpose. The registry is a simple hashmap between aggregate name and aggregate class.</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Metadata\AggregateRoot\AggregateRootRegistry</span><span class="p">;</span>
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>
-<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="nv">$aggregateRegistry</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AggregateRootRegistry</span><span class="p">([</span>
-<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>    <span class="s1">&#39;profile&#39;</span> <span class="o">=&gt;</span> <span class="nx">Profile</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
-<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="p">]);</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Metadata\AggregateRoot\AggregateRootRegistry</span><span class="p">;</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="nv">$aggregateRegistry</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AggregateRootRegistry</span><span class="p">([</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>    <span class="s1">&#39;profile&#39;</span> <span class="o">=&gt;</span> <span class="nx">Profile</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="p">]);</span>
 </code></pre></div>
 So that you don't have to create it by hand, you can use a factory.
 By default, the <code>AttributeAggregateRootRegistryFactory</code> is used.
 There, with the help of paths, all classes with the attribute <code>Aggregate</code> are searched for
 and the <code>AggregateRootRegistry</code> is built up.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Metadata\AggregateRoot\AttributeAggregateRootRegistryFactory</span><span class="p">;</span>
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
-<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="nv">$aggregateRegistry</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">AttributeAggregateRootRegistryFactory</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">([</span><span class="cm">/* paths... */</span><span class="p">]);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\Metadata\AggregateRoot\AttributeAggregateRootRegistryFactory</span><span class="p">;</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="nv">$aggregateRegistry</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">AttributeAggregateRootRegistryFactory</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">([</span><span class="cm">/* paths... */</span><span class="p">]);</span>
 </code></pre></div>
 <h2 id="learn-more">Learn more</h2>
 <ul>
