@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -1611,11 +1611,21 @@ that provides the fully qualified class name (FQCN) of the aggregate you want to
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="p">{</span>
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="nv">$this</span>
 <a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>            <span class="o">-&gt;</span><span class="na">when</span><span class="p">(</span><span class="k">static</span> <span class="nx">fn</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">Profile</span><span class="o">::</span><span class="na">createProfile</span><span class="p">(</span><span class="k">new</span> <span class="nx">CreateProfile</span><span class="p">(</span><span class="nx">ProfileId</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">),</span> <span class="nx">Email</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;hq@patchlevel.de&#39;</span><span class="p">))))</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>            <span class="o">-&gt;</span><span class="na">then</span><span class="p">(</span><span class="k">new</span> <span class="nx">ProfileCreated</span><span class="p">(</span><span class="nx">ProfileId</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">),</span> <span class="nx">Email</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;hq@patchlevel.de&#39;</span><span class="p">)));</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="p">}</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="p">}</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>            <span class="o">-&gt;</span><span class="na">then</span><span class="p">(</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>                <span class="k">new</span> <span class="nx">ProfileCreated</span><span class="p">(</span><span class="nx">ProfileId</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">),</span> <span class="nx">Email</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;hq@patchlevel.de&#39;</span><span class="p">)),</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>                <span class="k">static</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Profile</span> <span class="nv">$profile</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>                    <span class="nx">self</span><span class="o">::</span><span class="na">assertSame</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">toString</span><span class="p">());</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>                    <span class="nx">self</span><span class="o">::</span><span class="na">assertSame</span><span class="p">(</span><span class="s1">&#39;hq@patchlevel.de&#39;</span><span class="p">,</span> <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">toString</span><span class="p">());</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>                    <span class="nx">self</span><span class="o">::</span><span class="na">assertSame</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">visited</span><span class="p">());</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>                <span class="p">},</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>            <span class="p">);</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="p">}</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="p">}</span>
 </code></pre></div>
-You can also prepare the aggregate with events to set it to a specific state and then test whether it behaves as
+In addition to expected events, you can pass <code>Closure</code>s to <code>then</code>.
+The closure receives the aggregate instance after <code>when</code>, so you can run PHPUnit assertions on aggregate state.
+This support is available since <code>patchlevel/event-sourcing-phpunit</code> <code>1.5</code>.</p>
+<p>You can also prepare the aggregate with events to set it to a specific state and then test whether it behaves as
 expected.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">Patchlevel\EventSourcing\PhpUnit\Test\AggregateRootTestCase</span><span class="p">;</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
@@ -1633,9 +1643,16 @@ expected.</p>
 <a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>                <span class="p">),</span>
 <a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>            <span class="p">)</span>
 <a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>            <span class="o">-&gt;</span><span class="na">when</span><span class="p">(</span><span class="k">static</span> <span class="nx">fn</span> <span class="p">(</span><span class="nx">Profile</span> <span class="nv">$profile</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">visitProfile</span><span class="p">(</span><span class="nx">ProfileId</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;2&#39;</span><span class="p">)))</span>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>            <span class="o">-&gt;</span><span class="na">then</span><span class="p">(</span><span class="k">new</span> <span class="nx">ProfileVisited</span><span class="p">(</span><span class="nx">ProfileId</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;2&#39;</span><span class="p">)));</span>
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="p">}</span>
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="p">}</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>            <span class="o">-&gt;</span><span class="na">then</span><span class="p">(</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>                <span class="k">new</span> <span class="nx">ProfileVisited</span><span class="p">(</span><span class="nx">ProfileId</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;2&#39;</span><span class="p">)),</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>                <span class="k">static</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Profile</span> <span class="nv">$profile</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>                    <span class="nx">self</span><span class="o">::</span><span class="na">assertSame</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">toString</span><span class="p">());</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>                    <span class="nx">self</span><span class="o">::</span><span class="na">assertSame</span><span class="p">(</span><span class="s1">&#39;hq@patchlevel.de&#39;</span><span class="p">,</span> <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">toString</span><span class="p">());</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>                    <span class="nx">self</span><span class="o">::</span><span class="na">assertSame</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">visited</span><span class="p">());</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>                <span class="p">},</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>            <span class="p">);</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>    <span class="p">}</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="p">}</span>
 </code></pre></div>
 <h4 id="using-commandbus-like-syntax">Using Commandbus like syntax</h4>
 <p>When using the command bus and the <code>#[Handle]</code> attributes in your aggregate, you can directly provide the command to the
@@ -1650,9 +1667,12 @@ expected.</p>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="p">{</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        <span class="nv">$this</span>
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>            <span class="o">-&gt;</span><span class="na">when</span><span class="p">(</span><span class="k">new</span> <span class="nx">CreateProfile</span><span class="p">(</span><span class="nx">ProfileId</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">),</span> <span class="nx">Email</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;hq@patchlevel.de&#39;</span><span class="p">)))</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>            <span class="o">-&gt;</span><span class="na">then</span><span class="p">(</span><span class="k">new</span> <span class="nx">ProfileCreated</span><span class="p">(</span><span class="nx">ProfileId</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">),</span> <span class="nx">Email</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;hq@patchlevel.de&#39;</span><span class="p">)));</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="p">}</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="p">}</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>            <span class="o">-&gt;</span><span class="na">then</span><span class="p">(</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>                <span class="k">new</span> <span class="nx">ProfileCreated</span><span class="p">(</span><span class="nx">ProfileId</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">),</span> <span class="nx">Email</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;hq@patchlevel.de&#39;</span><span class="p">)),</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>                <span class="k">static</span> <span class="nx">fn</span> <span class="p">(</span><span class="nx">Profile</span> <span class="nv">$profile</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">self</span><span class="o">::</span><span class="na">assertSame</span><span class="p">(</span><span class="s1">&#39;hq@patchlevel.de&#39;</span><span class="p">,</span> <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">toString</span><span class="p">()),</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>            <span class="p">);</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    <span class="p">}</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="p">}</span>
 </code></pre></div>
 If additional parameters are required beyond the command, they can be provided as extra arguments for <code>when</code>.
 In this example, a string is needed, which will be passed directly to the event.</p>
@@ -1677,9 +1697,10 @@ In this example, a string is needed, which will be passed directly to the event.
 <a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>            <span class="p">)</span>
 <a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>            <span class="o">-&gt;</span><span class="na">then</span><span class="p">(</span>
 <a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>                <span class="k">new</span> <span class="nx">ProfileVisited</span><span class="p">(</span><span class="nx">ProfileId</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;2&#39;</span><span class="p">),</span> <span class="s1">&#39;Extra Parameter / Dependency&#39;</span><span class="p">),</span>
-<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>            <span class="p">);</span>
-<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>    <span class="p">}</span>
-<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="p">}</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>                <span class="k">static</span> <span class="nx">fn</span> <span class="p">(</span><span class="nx">Profile</span> <span class="nv">$profile</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">self</span><span class="o">::</span><span class="na">assertSame</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">visited</span><span class="p">()),</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>            <span class="p">);</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>    <span class="p">}</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="p">}</span>
 </code></pre></div>
 <h3 id="subscriber-tests">Subscriber Tests</h3>
 <p>For testing a subscriber, there is a utility class available. Using <code>SubscriberUtilities</code> provides several DX features
@@ -1747,13 +1768,16 @@ This allows you to test the aggregate with a fixed time.</p>
 <a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>                <span class="k">new</span> <span class="nx">ChangeEmail</span><span class="p">(</span><span class="nx">ProfileId</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">),</span> <span class="nx">Email</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;new-hq@patchlevel.de&#39;</span><span class="p">)),</span>
 <a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>                <span class="nv">$clock</span><span class="p">,</span>
 <a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>            <span class="p">)</span>
-<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>            <span class="o">-&gt;</span><span class="na">then</span><span class="p">(</span><span class="k">new</span> <span class="nx">EmailChanged</span><span class="p">(</span>
-<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>                <span class="nx">ProfileId</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">),</span>
-<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>                <span class="nx">Email</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;new-hq@patchlevel.de&#39;</span><span class="p">),</span>
-<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>                <span class="k">new</span> <span class="nx">DateTimeImmutable</span><span class="p">(</span><span class="s1">&#39;2021-01-01 00:00:10&#39;</span><span class="p">),</span>
-<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>            <span class="p">));</span>
-<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>    <span class="p">}</span>
-<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a><span class="p">}</span>
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>            <span class="o">-&gt;</span><span class="na">then</span><span class="p">(</span>
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>                <span class="k">new</span> <span class="nx">EmailChanged</span><span class="p">(</span>
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>                    <span class="nx">ProfileId</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">),</span>
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>                    <span class="nx">Email</span><span class="o">::</span><span class="na">fromString</span><span class="p">(</span><span class="s1">&#39;new-hq@patchlevel.de&#39;</span><span class="p">),</span>
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>                    <span class="k">new</span> <span class="nx">DateTimeImmutable</span><span class="p">(</span><span class="s1">&#39;2021-01-01 00:00:10&#39;</span><span class="p">),</span>
+<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>                <span class="p">),</span>
+<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>                <span class="k">static</span> <span class="nx">fn</span> <span class="p">(</span><span class="nx">Profile</span> <span class="nv">$profile</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">self</span><span class="o">::</span><span class="na">assertSame</span><span class="p">(</span><span class="s1">&#39;new-hq@patchlevel.de&#39;</span><span class="p">,</span> <span class="nv">$profile</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">toString</span><span class="p">()),</span>
+<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>            <span class="p">);</span>
+<a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>    <span class="p">}</span>
+<a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
